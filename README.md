@@ -1,0 +1,2 @@
+# hana
+Hana WordPress Theme
