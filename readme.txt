@@ -1,0 +1,33 @@
+Thanks for choosing Hana WordPress Theme.
+--------------------------------------------------------------------------------------------------------
+ Documentation :
+--------------------------------------------------------------------------------------------------------
+For documentations and user guides, visit http://www.rewindcreation.com/docs
+--------------------------------------------------------------------------------------------------------
+ Licenses:
+--------------------------------------------------------------------------------------------------------
+Hana WordPress Theme, Copyright 2014 Stephen Cui
+Hand is distributed under the terms of the GNU GPL v3
+
+The resources used in Hana are all GPL-compatible:
+
+Foundation Framework: Licensed under MIT Open Source
+http://foundation.zurb.com/
+
+Font Awesome is licensed under SIL Open Font License for font and MIT for CSS.
+http://fortawesome.github.io/Font-Awesome/
+
+bxSlider is licensed under MIT license. 
+https://github.com/stevenwanderski/bxslider-4
+
+Theme Backend, other icons and images are created by RewindCreationand licensed under GPL v3
+http://www.rewindcreation.com/
+--------------------------------------------------------------------------------------------------------
+Screenshot
+--------------------------------------------------------------------------------------------------------
+All images used on screenshot is owned by Theme Author and released under GPL.
+
+Hana Theme uses Jetpack's Featured Content function. The Featured Content Slider will appear when
+- Jetpack is activated
+- and there is at least ONE post tagged "featured".
+

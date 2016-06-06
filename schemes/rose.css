@@ -1,0 +1,64 @@
+/******************************************************************
+ * Rose Color Scheme for Passion Theme
+ *
+ * This is an example to help you customize the color of your site
+ * 
+ *****************************************************************/
+
+/********************************************
+ * Background
+ ********************************************/
+.top-bar {
+	background: #F64A8A;
+}
+
+body {
+	background: #fff4f9;
+}
+
+.sectionmenu {
+	border-bottom: 1px solid #d9d9d9;
+	background: #dfdfdf;
+}
+#footer,
+#footer-widget-area {
+	background: #333333;
+	color: #ccc;
+}
+/********************************************
+ * Widgets
+ ********************************************/
+
+#footer-widget-area .widget-title {
+	color: #ddd;
+	border-bottom-color: #3e3e3e;
+}
+
+.blog-widget .widget-container {
+	border-color: #F64A8A;
+}
+
+.blog-widget .widget-title {
+	background: #F982AE;
+	color: #fff;
+}
+
+.titlebar {
+	border-color: #F64A8A;	
+}
+/********************************************
+ * Top Bar 
+ ********************************************/
+
+/********************************************
+ * Section Menu
+ ********************************************/
+.section-menu > ul > li > a {
+/* border-color: f971a4; */
+	color: #000;
+	font-weight: bold;
+}
+
+.section-menu > ul > li:first-child {
+/* border-color: f971a4; */
+}	

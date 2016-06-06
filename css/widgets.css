@@ -1,0 +1,22 @@
+/*
+Admin Widgets CSS
+*/
+#widget-nav-tabs {
+	list-style-type: none;
+	margin: 0;
+}
+
+#widget-nav-tabs li {
+	margin: 5px 0;
+	background: #eee;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+#widget-nav-tabs li.tab-selected {
+	background: #ddd;	
+}
+
+#widget-nav-tabs li select {
+	margin-top: 8px;
+}

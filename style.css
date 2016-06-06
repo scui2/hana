@@ -1,0 +1,28 @@
+/*!
+Theme Name: Hana
+Theme URI: http://www.rewindcreation.com/hana
+Author URI: http://www.rewindcreation.com/
+
+Description: HANA is a simple and feature-rich Foundation 6 theme that is perfect for your business or personal blog. It features a full width carousels or ticker style slider with responsive header and siderbars. In addition to 3 Page Templates and 2 Custom Widgets, simple and powerful customize settings allow user changeing layout and design easily. HANA has build-in support to popular plugins such as Jetpack, bbPress, WooCommerce and many more.
+
+Author: RewindCreation
+
+Version: 1.0.3
+License: GNU General Public License v3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+Tags: two-columns, three-columns, grid-layout, custom-background, threaded-comments, sticky-post, custom-menu, full-width-template, post-formats, theme-options, left-sidebar, right-sidebar, featured-images
+
+Text Domain: hana
+
+HANA WordPress Theme, Copyright (C) 2016 Stephen Cui
+------------------------------------------------------------------ */
+/****************************************************************
+ * Surprised to see empty stylesheet? Please note that the theme
+ * style is located in css/hana.css.
+ * You may use one of the follow options to override the style
+ * 1. Use Jetpack's custom css function
+ https://en.support.wordpress.com/custom-design/editing-css/
+ * 2. Create a Child Theme. we will include Child Theme's
+ * style.css automatically.
+ ***************************************************************/
