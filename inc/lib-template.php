@@ -48,23 +48,27 @@ function hana_display_portfolio( $args, $thumbnail = 'hana-thumb', $column = 1, 
 			$blog->the_post();
 			
 			if ( $column  > 1 && 0 == $col )
-				echo '<div class="row" data-equalizer data-equalize-on="medium">';
+				echo '<div class="row pfitem" data-equalizer data-equalize-on="medium">';
 			if  ($column > 1) {
 				echo '<div class="' . $div_class .'">';				
 				$col = $col + 1;
 				if ($col == $column )
 					$col = 0;	
-			}
-			get_template_part( 'parts/content', 'portfolio' );
-				
-			if  ($column > 1) {
-				echo '</div>';				
+				get_template_part( 'parts/content', 'portfolio' );				
+				echo '</div>';
 				if ($col == 0)
 					echo '</div>';
 			}
+			else {
+				get_template_part( 'parts/content', 'loop' );				
+			}
+				
 		}				
 		if ( $col > 0 )
-			echo '</div>';				
+			echo '</div>';
+		if 	($args['paged'] < $blog->max_num_pages) {
+			echo apply_filters( 'hana_portfolio_load_more', '<a class="expanded secondary button load-more">' . __('SEE MORE','hana') . '</a>' );
+		}
 	endif;	
 	wp_reset_postdata();
 }

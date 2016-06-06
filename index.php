@@ -9,7 +9,7 @@
  * @link    http://www.rewindcreation.com/
  */
 get_header(); ?>
-<div id="content" class="site-content <?php hana_content_class(); ?>" role="main">
+<div id="content" class="site-content multi <?php hana_content_class(); ?>" role="main">
 <?php
 	if ( have_posts() ) {
 		hana_content_nav( 'nav-above' );

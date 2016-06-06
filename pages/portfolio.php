@@ -69,8 +69,7 @@ get_header();
 <?php
 	}	
 	hana_display_portfolio( $query, $pt_thumbnail, $column, $entry_meta );
-?>
-<a class="expanded secondary button load-more"><?php _e('Load More','hana'); ?></a>			
+?>		
 </div>
 <?php if ($sidebar) get_sidebar(); ?>
 <?php get_footer(); ?>

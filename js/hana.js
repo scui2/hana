@@ -92,12 +92,12 @@ jQuery(document).ready(function($){
 	}	
 //Portfolio Ajax Loading
 	if  ( $('.portfolio').length !== 0 ) {
-		var button = $('.portfolio .load-more');
 		var page = 2;
 		var loading = false;
 
-		$('body').on('click', '.load-more', function(){
+		$('body').on('click', '.portfolio .load-more', function(){
 			if( ! loading ) {
+				$('.portfolio .load-more').remove();
 				loading = true;
 				var data = {
 					action: 'hana_portfolio_load_more',
@@ -109,23 +109,19 @@ jQuery(document).ready(function($){
 				};
 				$.post(hanaloadmore.url, data, function(res) {
 					if( res.success) {
-						if (res.data !== '' ) {
-							$('.portfolio').append( res.data );
-							$('.portfolio').append( button );
-							var newEqualizer = new Foundation.Equalizer($(".portfolio"), {
+						$('.portfolio').append( res.data );
+						if ( hanaloadmore.column > 1 ) {
+							var newHanaEqualizer = new Foundation.Equalizer($(".portfolio"), {
  								equalizeOnStack: false,equalizeByRow: true, equalizeOn: 'medium'
-							});
-							page = page + 1;				
+							});					
 						}
-						else {
-							button.addClass('hide');
-						}
+						page = page + 1;				
 						loading = false;
 					} else {
-					// console.log(res);
+					 	//console.log(res);
 					}
 				}).fail(function(xhr, textStatus, e) {
-					// console.log(xhr.responseText);
+					 //console.log(xhr.responseText);
 				});
 			}
 		});

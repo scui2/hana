@@ -742,8 +742,8 @@ img#wpstats {
 @media screen and (max-width: 39.9375em) {
 	
 .featured-caption {
-	top: auto;
-	left: 0;
+ 	top: auto;
+ 	left: 0;
 	right: 0;
 	bottom: 0;
 	padding: 0.5em 1em;
@@ -762,60 +762,6 @@ img#wpstats {
 	min-height: 200px;
 }
 
-}
-/********************************************
- * 6.1 Featured Content
- ********************************************/
-.home-category {
-	padding-top: 1em;
-}
-
-.box {
-	border: 1px solid #eef0f7;
-	margin-bottom: 1em;
-	background: #fff;
-	position: relative;
-	padding: 0 0 10px 0;
-}
-
-.box:hover {
-	-webkit-box-shadow: 4px 4px 4px 0px rgba(50, 50, 50, 0.5);
-	-moz-box-shadow:    4px 4px 4px 0px rgba(50, 50, 50, 0.5);
-	box-shadow:         4px 4px 4px 0px rgba(50, 50, 50, 0.5);
-}
-
-.category-title {
-	font-size: 1.1em;
-	line-height: 1;
-	padding: 8px 10px;
-	background: #f9f9f9;
-	margin: 0;
-	font-weight: bold;
-}
-
-.category-title > a {
-	color: #222;
-	display: block
-}
-
-.box .entry-title {
-	font-size: 1em;
-	line-height: 1;
-	padding: 8px 10px;
-	margin: 0;	
-}
-
-.box .entry-title a {
-	display: block;
-}
-
-.box .entry-title a:hover {
-	text-decoration: underline;
-}
-
-.box p {
-	margin-bottom: 0;
-	font-size: 0.875em;
 }
 /********************************************
  * 7. Post
@@ -849,6 +795,10 @@ img#wpstats {
 
 .entry-title a {
 	color: #0a0a0a;
+}
+
+.entry-title a:hover {
+	color: #2e6d9d;;	
 }
 
 .hentry {
@@ -917,6 +867,7 @@ img#wpstats {
 .scale-item-video {
 	width: 33%;	
 }
+
 .featured-media-container .scale-item {
 	max-width: 100%;	
 }
@@ -926,11 +877,13 @@ img#wpstats {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
+
 .scale-item:hover img {
   -moz-transform: scale(1.1);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
 /********************************************
  * Manual Excerpt
  ********************************************/
@@ -1432,47 +1385,43 @@ li.pingback {
 	margin-bottom: 1em;	
 }
 
-.portfolio .scale-item {
+.pfitem .scale-item {
 	max-width: 100%;
 	width: 100%;
 	margin-bottom: 0.5em;
 }
 
-.portfolio .scale-item img {
+.pfitem .scale-item img {
 	width: 100%;
 }
 
-.portfolio .hentry {
+.pfitem .hentry {
 	position: relative;
 	background: #f6f6f6;
 }
 
-.portfolio .hentry:hover {
+.pfitem .hentry:hover {
 	-webkit-box-shadow: 4px 4px 4px 0px rgba(50, 50, 50, 0.5);
 	-moz-box-shadow:    4px 4px 4px 0px rgba(50, 50, 50, 0.5);
 	box-shadow:         4px 4px 4px 0px rgba(50, 50, 50, 0.5);
 }
 
-.portfolio .entry-title {
+.pfitem .entry-title {
 	font-size: 1.25em;
 }
 
-.portfolio .entry-title a {
+.pfitem .entry-title a {
 	display: block;
 }
 
-.portfolio .entry-title a:hover {
-	text-decoration: underline;
-}
-
-.portfolio .entry-header,
-.portfolio .entry-summary,
-.portfolio .entry-footer {
+.pfitem .entry-header,
+.pfitem .entry-summary,
+.pfitem .entry-footer {
 	padding-left: 1em;
 	padding-right: 1em;
 }
 
-.portfolio .entry-header {
+.pfitem .entry-header {
 	padding-top: 1em;
 	padding-bottom: 0;
 }
@@ -1491,7 +1440,7 @@ li.pingback {
 	box-sizing:         border-box;
 }
 
-.portfolio .hentry:hover .portfolio-caption {
+.pfitem .hentry:hover .portfolio-caption {
 	opacity: 1;
 	transition: all 500ms ease;
 }

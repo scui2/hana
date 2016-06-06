@@ -178,13 +178,9 @@ function hana_scheme_options( $scheme  ) {
 			'label' => __('Default','hana'),
 			'css'   => '',
 		),
-		'rewind' 	=> array(
-			'label' => __('Rewind','hana'),
-			'css'   => $theme_uri . '/scheme/rewind.css',
-		),
-		'rose' 	=> array(
-			'label' => __('Rose','hana'),
-			'css'   => $theme_uri . '/scheme/rose.css',
+		'orange' 	=> array(
+			'label' => __('Orange','hana'),
+			'css'   => $theme_uri . '/schemes/orange.css',
 		),
 	);
 	return $schemes;

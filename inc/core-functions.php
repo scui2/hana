@@ -19,9 +19,6 @@ add_filter('post_class','hana_change_sticky_class');
 
 if ( ! function_exists( 'hana_body_classes' ) ):
 function hana_body_classes( $classes ) {		
-	if ( ! is_single() )
-		$classes[] = 'multi';
-
 	if ( get_background_image() ) {
 		$classes[] = 'custom-background-image';
 	}
