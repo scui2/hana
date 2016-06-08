@@ -257,8 +257,9 @@ h1, h2, h3, h4, h5, h6 {
 .off-canvas-content {
 	background: none;
 }
+
 .sticky-header {
-	position: fixed;
+	position: fixed !important;
 	z-index: 5;
 	top: 0;
 }
@@ -275,6 +276,11 @@ h1, h2, h3, h4, h5, h6 {
 .top-bar.shrunk {
 	padding: 0em 0.25em;
 	transition: all 500ms ease;
+}
+
+.top-bar.shrunk img {
+	max-height: 40px;
+	width: auto;
 }
 
 .top-bar.shrunk .site-description {
@@ -306,8 +312,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .title-bar img {
-	margin-top: -0.5em;
-	margin-bottom: -0.5em;	
+	margin-top: -0.25em;
+	margin-bottom: 0;	
 	max-height: 38px;
 	width: auto;
 }
@@ -357,6 +363,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .page-title h3 {
 	padding-top: 0.25em;
+}
+
+.topmenu-toggle:before {
+	font-family: "FontAwesome";
+	content: "\f067";
+}
+
+.topmenu-toggle.is-open:before {
+	content: "\f00d";	
 }
 
 /********************************************
@@ -496,6 +511,10 @@ h1, h2, h3, h4, h5, h6 {
 #offCanvasLeft {
 	padding-top: 1.8em;
 	background: #343c43;
+}
+
+.is-off-canvas-open .leftmenu-toggle {
+	display: none;
 }
 
 .leftmenu > ul {
@@ -676,6 +695,10 @@ img#wpstats {
 	min-height: 400px;
 }
 
+.fullwidth-slider .featured-content-full {
+	margin-top: -141px;
+	transition: all 500ms ease-in-out;
+}
 .featured-content-ticker {
 	padding: 10px 0;
 	text-align: center;	
@@ -708,15 +731,21 @@ img#wpstats {
 .featured-title a {
 	color: #fff;
 	font-weight: bold;
+	text-align: center;
 }
 
 .featured-page,
 .featured-excerpt {
-	color: #eee;
+	color: #f6f6f6;
+	text-align: center;
+}
+
+.featured-page a{
+	color: #F38630;	
 }
 
 .featured-excerpt p {
-	margin-bottom: 0; 	
+	margin-bottom: 0.25em; 	
 }
 
 .btn-featured {
@@ -869,7 +898,8 @@ img#wpstats {
 }
 
 .featured-media-container .scale-item {
-	max-width: 100%;	
+	max-width: 100%;
+	margin: 0;
 }
 
 .scale-item img {
@@ -1426,25 +1456,6 @@ li.pingback {
 	padding-bottom: 0;
 }
 
-.portfolio-caption {
-	position: absolute;
-	width: 100%;
-	top: 0;
-	font-size: 0.875em;
-	background: rgba(59, 89, 152, 0.3);
-	padding: 1em 1em 0 1em;
-	color: #fff;
-	opacity: 0;	
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing:    border-box;
-	box-sizing:         border-box;
-}
-
-.pfitem .hentry:hover .portfolio-caption {
-	opacity: 1;
-	transition: all 500ms ease;
-}
-
 /********************************************
  * 19. Social
  ********************************************/
@@ -1471,7 +1482,8 @@ li.pingback {
 
 .sociallink-footer {
 	display: block;
-	text-align:center;	
+	text-align: center;
+	margin-bottom: -2em;
 }
 
 .sociallink li a:hover {
@@ -1553,6 +1565,14 @@ li.pingback {
 	float: none !important;
 	display: block;
 	text-align: center;	
+}
+
+.sociallink-footer {
+	margin-bottom: 0;
+}
+
+.bx-controls-direction {
+	display: none;
 }
 
 }

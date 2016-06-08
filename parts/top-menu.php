@@ -14,15 +14,17 @@
 <?php
 	} ?>
     <div class="title-bar show-for-small-only" data-responsive-toggle="top-menu" data-hide-for="medium">
-		<button class="float-left title-bar-icon" data-open="offCanvasLeft"><i class="fa fa-bars"></i></button>
+<?php	if ( has_nav_menu( 'section' ) ) { ?>
+			<button class="float-left title-bar-icon leftmenu-toggle" data-open="offCanvasLeft"><i class="fa fa-bars"></i></button>
+<?php	} ?>
  		<div class="top-bar-title"><?php hana_branding(); ?></div>
-    	<button class="float-right title-bar-icon" data-toggle="top-menu"><i class="fa fa-plus"></i></button>
+    	<button class="float-right title-bar-icon hana-toggle topmenu-toggle" data-toggle="top-menu"></button>
     </div>
 	<div id="top-menu" class="top-bar" data-toggler>
 		<div class="column row <?php if ( hana_option( 'fullwidth_header' ) ) echo ' expanded'; ?>">
 <?php		if ( has_nav_menu( 'section' ) ) { ?>
 		  		<div class="top-bar-left show-for-medium-only">
-					<button class="title-bar-icon" data-toggle="offCanvasLeft"><i class="fa fa-bars"></i></button>    
+					<button class="title-bar-icon leftmenu-toggle" data-toggle="offCanvasLeft"><i class="fa fa-bars"></i></button>    
 	 	  		</div>
 <?php		} ?>
 			<div class="top-bar-left show-for-small-only"> 

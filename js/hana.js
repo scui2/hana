@@ -17,7 +17,7 @@ jQuery(document).ready(function($){
 			backtotop.fadeIn();
 		} else {
 			backtotop.fadeOut();
-		}
+		}	
 	});
 	// Search Focus
     $(window).on(
@@ -30,17 +30,25 @@ jQuery(document).ready(function($){
    			});
         }  
     );
+    // Toggle Class
+	$('.hana-toggle').click(function (e) {
+		$(this).toggleClass('is-open');
+		return false;
+	});    
     // Shrinking Topbar
 	var stickyContainer = $('.sticky');
 	stickyContainer.on('sticky.zf.stuckto:top', function(){
   		stickyContainer.find('.top-bar').addClass('shrunk');
 	}).on('sticky.zf.unstuckfrom:top', function(){
   		stickyContainer.find('.top-bar').removeClass('shrunk');
+  		setTimeout(hanaAdjustHeader, 510);
 	});
     //Resize
     var slider;
 	$(window).on("orientationchange resize", function () {
-		$("#offCanvasLeft").foundation("close");
+		if ( $("#offCanvasLeft").length !== 0 ) {
+			$("#offCanvasLeft").foundation("close");
+		}
 		$(".sticky").foundation('_calc', true);
 		if ( slider ) {
 			slider.reloadSlider();			

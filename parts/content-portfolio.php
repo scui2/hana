@@ -24,11 +24,6 @@
 			<?php the_excerpt(); ?>
 		</div>
 <?php
-	} else { ?>
-		<div class="portfolio-caption clearfix">
-			<?php the_excerpt(); ?>
-		</div>		
-<?php
 	}
 	hana_post_edit();
 	global $hana_entry_meta;
