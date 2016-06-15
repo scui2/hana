@@ -15,6 +15,7 @@
 		hana_featured_media(); ?>
 	<header class="entry-header">
 <?php	hana_post_title();
+		hana_comment_link();
 		hana_meta_middle(); ?>
 	</header>
 	<div class="entry-summary clearfix">

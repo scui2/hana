@@ -51,6 +51,7 @@ body {
 	-ms-word-wrap: break-word;
 	word-wrap: break-word;
 }
+
 pre {
 	padding-bottom: 1.25em;
 	overflow: auto;
@@ -58,6 +59,10 @@ pre {
 
 h1, h2, h3, h4, h5, h6 {
 	color: inherit;
+}
+
+a:hover {
+	color: #F38630;	
 }
 /********************************************
  * 2. WordPress Class
@@ -259,7 +264,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sticky-header {
-	position: fixed !important;
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -ms-sticky;
+	position: -o-sticky;
+	position: sticky;
 	z-index: 5;
 	top: 0;
 }
@@ -339,7 +348,7 @@ h1, h2, h3, h4, h5, h6 {
  	text-shadow: 2px 2px 4px #000000;
 }
 
-.is-stuck .top-bar .site-title a {
+.shrunk.top-bar .site-title a {
 	font-size: 0.75em;	
 }
 
@@ -387,9 +396,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .top-bar .menu a:hover {
-	color: #2199e8;
+	color: #F38630;
 }
-
 .top-bar .submenu {
 	background: #23282D;
 	border-color: #373f46;
@@ -441,8 +449,8 @@ h1, h2, h3, h4, h5, h6 {
 	background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
 }
 
-.section-menu ul li:hover a {
-	color: #fff;
+.section-menu ul li a:hover {
+	color: #F38630;
 }
 	
 .section-menu ul li a {
@@ -481,7 +489,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-menu ul ul li a:hover {
-	background: #4b545f;
+	background: #30363d;
 }
 
 .section-menu ul ul ul {
@@ -697,8 +705,8 @@ img#wpstats {
 
 .fullwidth-slider .featured-content-full {
 	margin-top: -141px;
-	transition: all 500ms ease-in-out;
 }
+
 .featured-content-ticker {
 	padding: 10px 0;
 	text-align: center;	
@@ -719,25 +727,25 @@ img#wpstats {
 
 .featured-caption {
 	background: #cfcfcf;
-	background: rgba(59, 89, 152, 0.3);
+	background: rgba(100, 100, 100, 0.3);
 	padding: 1em;
 	position: absolute;
 	top: 40%;
 	right: 20%;
 	left: 20%;
+	text-align: center;
 }
 
 .featured-title,
 .featured-title a {
 	color: #fff;
 	font-weight: bold;
-	text-align: center;
 }
 
 .featured-page,
 .featured-excerpt {
 	color: #f6f6f6;
-	text-align: center;
+	font-size: 1.125em;
 }
 
 .featured-page a{
@@ -751,6 +759,13 @@ img#wpstats {
 .btn-featured {
 	font-weight: bold;
 	margin-bottom: 0;
+	background-color: #F38630;
+    color: #f7f7f7;
+}
+
+.btn-featured:hover, .btn-featured:focus {
+	background-color: #cc8b00;
+	color: #f7f7f7;
 }
 
 .fullwidth-image {
@@ -768,30 +783,6 @@ img#wpstats {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-@media screen and (max-width: 39.9375em) {
-	
-.featured-caption {
- 	top: auto;
- 	left: 0;
-	right: 0;
-	bottom: 0;
-	padding: 0.5em 1em;
-	font-size: 0.8em;
-}
-
-.btn-featured {
-	display: none;
-}
-
-.bx-wrapper .bx-pager {
-	display: none;	
-}
-
-.hana-slide {
-	min-height: 200px;
-}
-
-}
 /********************************************
  * 7. Post
  ********************************************/
@@ -802,6 +793,7 @@ img#wpstats {
 }
 
 .featured-media-container {
+	display: inline-block;
 	margin-bottom: 1em;	
 }
 
@@ -827,7 +819,7 @@ img#wpstats {
 }
 
 .entry-title a:hover {
-	color: #2e6d9d;;	
+	color: #F38630;
 }
 
 .hentry {
@@ -999,6 +991,31 @@ img#wpstats {
 /********************************************
  * 8. Post Meta
  ********************************************/
+ .post-comments {
+ 	float: right;
+ 	font-size: 0.8em;
+
+ }
+
+.comment-link {
+	position: relative;
+	border: 1px solid #f1f1f1;
+	background: #f1f1f1;
+	border-radius:5px;
+	padding: 5px 10px;
+}
+
+a.comment-link:before {
+    content: "";
+    position: absolute;
+	top: 100%;
+	left: 40%;
+	border-top: 7px solid transparent;
+	border-top-color: inherit; 
+ 	border-left: 7px solid transparent;
+ 	border-right: 10px solid transparent; 
+}
+
 .entry-meta {
 	font-size: 0.8em;
 	line-height: 2;
@@ -1010,10 +1027,6 @@ img#wpstats {
 .entry-meta li {
 	display: inline-block;
 	margin-right: 0.5em;	
-}
-
-.entry-meta a {
-	color: #1a5c79;
 }
 
 .entry-meta-top {
@@ -1080,7 +1093,7 @@ img#wpstats {
 	display: block;
 	position: absolute;
 	right: 0;
-	top: 0;
+	bottom: 0;
 	background: #cbcaf9;
 	padding: 0.1em 0.4em;
 	font-size: 1.25em;
@@ -1117,8 +1130,7 @@ img#wpstats {
 /********************************************
  * 9. Post Comments
  ********************************************/
-.commentlist,
-.children {
+.commentlist {
 	margin: 0;
 	list-style: none;
 	font-size: 14px;
@@ -1127,7 +1139,8 @@ img#wpstats {
 .comment {
 	position: relative;
 }
-.children {
+
+.commentlist .children {
 	margin-left: 1em;
 }
 
@@ -1135,7 +1148,7 @@ img#wpstats {
 	font-size: 12px;
 }
 .comment-meta .avatar {
-    border: 1px solid #ccc;
+    border: 1px solid #e1e1e1;
     padding: 3px;
 	margin-right: 0.5em;
 	display: inline-block;
@@ -1160,7 +1173,7 @@ li.pingback {
 	overflow: hidden;
 	padding: 0.5em;
     position: relative;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #e1e1e1;
 }
 
 .comment-reply {
@@ -1171,16 +1184,10 @@ li.pingback {
 
 .comment-edit-link,
 .comment-reply-link {
-	background: #595E6F;
+	background: #F1F1F1;
 	padding: 0.25em 0.5em;
 	display: inline-block;
-	margin-left: 5px;
-	color: #f0f0f0;
-}
-
-.comment-edit-link:hover,
-.comment-reply-link:hover {
-	background: #7c8296;
+	margin-left: 0.25em;
 }
 
 .form-allowed-tags {
@@ -1206,12 +1213,7 @@ li.pingback {
 	padding: 0.8em 0;
 }
 
-.nav-previous {
-	float: left;
-}
-
 .nav-next {
-	float: right;
 	text-align: right;
 }
 
@@ -1267,8 +1269,9 @@ li.pingback {
 	padding: 0;
 }
 
-.widget ul ul ul {
-	margin-left: 0.75em;
+.widget .children {
+	margin-left: 0.5em;
+	font-size: 0.9375em;
 }
 
 
@@ -1300,32 +1303,19 @@ li.pingback {
 	border-bottom: 1px solid #e1e1e1;
 }
 
-.widget ul li a:hover {
-	text-decoration: underline;
-}
-
 .widget_archive ul li span,
 .widget_categories ul li span {
 	position: absolute;
 	top: 3px;
-	right: 0.75em;
+	right: 5px;
 	color: #999;
 }
 
 .widget-title {
 	font-size: 1.2em;
 	color: #6B7B84;
-	padding: 0.5em 0;
-	margin: 0;
-}
-
-.blog-widget .widget-title {
-	padding: 0.4em 0.5em 0.6em 0.5em;
-	margin: 0;
-	background: #f7f7f7;
-	background: linear-gradient(top, #e8ebf2 0%, #ffffff 90%);
-	background: -moz-linear-gradient(top, #e8ebf2 0%, #ffffff 90%);
-	background: -webkit-linear-gradient(top, #e8ebf2 0%,#ffffff 90%);
+	padding: 0.4em 0.25em 0.6em 0.25em;
+	margin-bottom: 0.25em;
 }
 
 .footer-widget .widget-title {
@@ -1403,8 +1393,8 @@ li.pingback {
 }
 
 .hana_navigation .tabs > li.is-active > a {
-	background: #d0d6d9;
-	border-top: 3px solid #c6caea;
+	background: #F1F1F1;
+	border-top: 3px solid #c9d0d3;
 }
 
 /********************************************
@@ -1511,8 +1501,11 @@ li.pingback {
 .sl-rss {
 	color: #FFA500 !important; }
 	
+.sl-github {
+	color: #999 !important; }
+
 .sociallink-footer li a {
-	color: #0b0b0b !important;
+	color: #4078C0 !important;
 }
 /********************************************
  * Extras
@@ -1537,6 +1530,33 @@ li.pingback {
 }
 
 @media screen and (max-width: 767px) {
+
+.fullwidth-slider .featured-content-full {
+	margin-top: 33px;
+}
+
+.featured-caption {
+ 	top: auto;
+ 	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 0.5em 1em;
+	font-size: 0.8em;
+}
+
+.btn-featured {
+	display: none;
+}
+
+.bx-wrapper .bx-pager {
+	width: auto;
+	top: -25px;
+	right: 0;
+}
+
+.hana-slide {
+	min-height: 200px;
+}
 
 .featured-media-container {
 	margin-left: -11px;
@@ -1588,7 +1608,7 @@ li.pingback {
 }
 
 .fullwidth-slider .is-anchored .top-bar {
-	background: rgba(69, 99, 162, 0.3);
+	background: rgba(100, 100, 100, 0.3);
 }
 
 }

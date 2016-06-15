@@ -33,7 +33,7 @@
 							<?php the_excerpt( '' ); ?>
 						</div>
 <?php				} ?>
-					<a class="button btn-featured float-right" href="<?php echo get_permalink(); ?>"><?php echo esc_attr( hana_readmore_text() ); ?></a>
+					<a class="button btn-featured" href="<?php echo get_permalink(); ?>"><?php echo esc_attr( hana_readmore_text() ); ?></a>
 <?php			} else { ?>
 					<h3 class="featured-title">
 						<?php the_title(); ?>
@@ -50,7 +50,7 @@
 <?php
 	$sliderOption = array (
 		'mode' => hana_option( 'slider_mode' ),
-		'speed' => hana_option( 'slider_speed' ),
+		'speed' => hana_option( 'slider_speed' ),	
 	);
 	wp_localize_script( 'hana', 'hanaSlider', $sliderOption );
 	wp_reset_postdata();

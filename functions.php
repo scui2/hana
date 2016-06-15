@@ -8,7 +8,7 @@
  * @license GPL v3 or later
  * @link    http://www.rewindcreation.com/
  */
-define( 'HANA_VERSION', '1.0.3' );
+define( 'HANA_VERSION', '1.0.4' );
 
 if ( ! function_exists( 'hana_setup' ) ):
 function hana_setup() {
@@ -48,8 +48,9 @@ function hana_setup() {
 	// Editor Style
 	add_editor_style();
 	// Image Sizes
-	add_image_size( 'hana-ticker', 255, 155, true);
-	add_image_size( 'hana-thumb', 300, 200, true);
+	if ( 'ticker' == hana_option('slider_type') )
+		add_image_size( 'hana-ticker', 255, 155, true);
+	add_image_size( 'hana-thumb', 480, 320, true);
 }
 endif;
 add_action( 'after_setup_theme', 'hana_setup' );
@@ -63,21 +64,12 @@ add_action( 'after_setup_theme', 'hana_content_width', 0 );
 function hana_theme_scripts() {
 	$template_uri = get_template_directory_uri();		
 	// Load Google Font
-	$hana_fonts = hana_font_list();
-	$fonts = array();
-	$font_elements = hana_font_elements();
-	foreach ( $font_elements as $key => $element ) {
-		$value = hana_option( $key );
-		if ( ! empty( $value ) && 'default' != $value && ! in_array( $value, $fonts) )
-			$fonts[] = $value;		
-	}
-	foreach ( $fonts as $font ) {
-		if ( ! empty( $hana_fonts[ $font ]['url'] ) )
-			wp_enqueue_style( str_replace(' ', '-', $hana_fonts[ $font ]['label']), $hana_fonts[ $font ]['url'], false, '20160525' );
-	}
+	$font_url = hana_google_font_url();
+	if (! empty( $font_url ) )
+		wp_enqueue_style( 'hana-fonts', $font_url );
 	
 	wp_enqueue_style('hana-fontawesome', $template_uri . '/css/font-awesome.min.css', null, '4.6.3');
-	wp_enqueue_style('hana-foundation', $template_uri . '/css/foundation6.css', null, '6.2.3');
+	wp_enqueue_style('hana-foundation', $template_uri . '/css/foundation6.min.css', null, '6.2.3');
 	$deps = array( 'hana-foundation' );
 	if ( $has_featured = hana_has_featured_posts() ) {
 		wp_enqueue_style('hana-bxslider', $template_uri . '/css/jquery.bxslider.min.css', null, '4.2.5');		
@@ -178,27 +170,27 @@ function hana_scheme_options( $scheme  ) {
 			'label' => __('Default','hana'),
 			'css'   => '',
 		),
-		'orange' 	=> array(
-			'label' => __('Orange','hana'),
-			'css'   => $theme_uri . '/schemes/orange.css',
+		'rewind' 	=> array(
+			'label' => __('Rewind Creation','hana'),
+			'css'   => $theme_uri . '/schemes/rewind.css',
 		),
 	);
 	return $schemes;
 }
 add_filter( 'hana_scheme_options', 'hana_scheme_options');
 
-require( get_template_directory() . '/inc/general.php' );
-require( get_template_directory() . '/inc/fonts.php' );
-require( get_template_directory() . '/inc/core-functions.php' );
-require( get_template_directory() . '/inc/lib-foundation.php' );
-require( get_template_directory() . '/inc/lib-formats.php' );
-require( get_template_directory() . '/inc/lib-template.php' );
-require( get_template_directory() . '/inc/lib-meta.php' );
-require( get_template_directory() . '/inc/customize.php' );
-require( get_template_directory() . '/inc/widgets.php' );
-require( get_template_directory() . '/inc/extras.php' );
+require_once( get_template_directory() . '/inc/general.php' );
+require_once( get_template_directory() . '/inc/fonts.php' );
+require_once( get_template_directory() . '/inc/core-functions.php' );
+require_once( get_template_directory() . '/inc/lib-foundation.php' );
+require_once( get_template_directory() . '/inc/lib-formats.php' );
+require_once( get_template_directory() . '/inc/lib-template.php' );
+require_once( get_template_directory() . '/inc/lib-meta.php' );
+require_once( get_template_directory() . '/inc/customize.php' );
+require_once( get_template_directory() . '/inc/widgets.php' );
+require_once( get_template_directory() . '/inc/extras.php' );
 if ( is_admin() ) {
-	require( get_template_directory() . '/inc/core-admin.php' );
+	require_once( get_template_directory() . '/inc/core-admin.php' );
 }
 
 

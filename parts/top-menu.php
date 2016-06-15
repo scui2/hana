@@ -10,7 +10,7 @@
  */
 	if ( hana_option( 'sticky_header' ) ) { ?>
 	<div data-sticky-container>
-  	  <div class="small-12 sticky is-anchored sticky-header" data-sticky data-sticky-on="small" style="width:100%" data-margin-top="0" data-top-anchor="1" data-bottom-anchor="content:bottom" >
+  	  <div class="small-12 sticky is-anchored sticky-header" data-sticky data-sticky-on="small" style="width:100%" data-margin-top="0" data-top-anchor="1" data-bottom-anchor="content:bottom" <?php if (hana_option( 'shrink_topbar') ) echo 'data-shrink'; ?>>
 <?php
 	} ?>
     <div class="title-bar show-for-small-only" data-responsive-toggle="top-menu" data-hide-for="medium">

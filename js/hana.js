@@ -5,7 +5,8 @@ jQuery(document).ready(function($){
     var backtotop = $('.back-to-top');   
 	// Back-to-top Script
 	backtotop.hide();
-	$('.back-to-top a').click(function () {
+	$('.back-to-top a').click(function (e) {
+		e.preventDefault();
 		$('body,html,header').animate({
 			scrollTop: 0
 		}, 800);
@@ -38,10 +39,16 @@ jQuery(document).ready(function($){
     // Shrinking Topbar
 	var stickyContainer = $('.sticky');
 	stickyContainer.on('sticky.zf.stuckto:top', function(){
-  		stickyContainer.find('.top-bar').addClass('shrunk');
+		var shrinkTopBar = stickyContainer.attr('data-shrink');
+		if (shrinkTopBar !== undefined) {
+	  		stickyContainer.find('.top-bar').addClass('shrunk');			
+		}
 	}).on('sticky.zf.unstuckfrom:top', function(){
-  		stickyContainer.find('.top-bar').removeClass('shrunk');
-  		setTimeout(hanaAdjustHeader, 510);
+		var shrinkTopBar = stickyContainer.attr('data-shrink');
+		if (shrinkTopBar !== undefined) {
+	  		stickyContainer.find('.top-bar').removeClass('shrunk');
+  			setTimeout(hanaAdjustHeader, 510);	
+		}
 	});
     //Resize
     var slider;
@@ -79,6 +86,7 @@ jQuery(document).ready(function($){
 			mode: hanaSlider.mode,
 			pause: hanaSlider.speed * 1000,
 			speed: 1000,
+  			useCSS: true,
 			adaptiveHeight: true,
 			onSliderLoad: function(){
         		$(".featured-content").css("visibility", "visible");

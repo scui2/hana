@@ -109,6 +109,12 @@ function hana_social_services() {
 				'1' => '<i class="fa fa-pinterest"></i>',
 			),
 		),
+		'github' => array(
+			'label' => __( 'GitHub', 'hana' ),
+			'variants' => array(
+				'1' => '<i class="fa fa-github"></i>',
+			),
+		),
 		'rss' => array(
 			'label' => __( 'RSS', 'hana' ),
 			'variants' => array(

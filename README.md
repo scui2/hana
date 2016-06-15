@@ -3,7 +3,14 @@ HANA WordPress Theme is a simple and feature-rich Foundation 6 theme that is per
 
 ## Change Log
 
-1.0.3 Initial relase
+### 1.0.4
+
+* Improved Google Font loading method to one call
+* Added option not to shrink the topbar
+ 
+### 1.0.3
+
+* Initial release
 
 ## Built with
 

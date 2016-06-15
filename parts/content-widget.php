@@ -13,7 +13,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php hana_featured_image( $hana_thumbnail ); ?>
 	<header class="entry-header">
-<?php	hana_post_title();
+<?php	hana_post_title( true );
 		if ( $hana_entry_meta )
 			hana_meta_widget(); ?>
 	</header>

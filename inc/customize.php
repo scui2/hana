@@ -15,6 +15,7 @@ function hana_default_options() {
 		// Header
 		'sticky_header' => 1,
 		'fullwidth_header' => 0,
+		'shrink_topbar' => 0,
 		//Layout
 		'fluid_width' => 0,
 		'grid_width' => 1200,
@@ -35,6 +36,7 @@ function hana_default_options() {
 		//Posts
 		'show_author' => 1,
 		'show_date' => 1,
+		'show_featured' => 1,
 		//Social
 		'share_top' => 0,
 		'share_bottom' => 1,
@@ -76,7 +78,7 @@ function hana_customize_register( $wp_customize ){
 	$featured_section = $wp_customize->get_section( 'featured_content' );
 	if ( !empty($featured_section) )
 		$featured_section->priority = 22;
-
+	$featured_section = $wp_customize->get_section( 'static_front_page' )->priority = 20;
 	// Remove the core Display Header Text option.
 	$wp_customize->remove_control( 'display_header_text' );	
     /*****************
@@ -225,6 +227,17 @@ function hana_customize_register( $wp_customize ){
 	) );
 	$wp_customize->add_control( 'sticky_header', array(
 		'label'    => __( 'Sticky Header', 'hana' ),
+		'section'  => 'hana_header',
+		'type'     => 'checkbox',
+		'priority' => 10,
+	) );
+
+	$wp_customize->add_setting( 'shrink_topbar', array(
+		'default'           => $hana_defaults['shrink_topbar'],
+		'sanitize_callback' => 'hana_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'shrink_topbar', array(
+		'label'    => __( 'Shrink Top Bar when scroll down', 'hana' ),
 		'section'  => 'hana_header',
 		'type'     => 'checkbox',
 		'priority' => 10,
@@ -493,6 +506,17 @@ function hana_customize_register( $wp_customize ){
 		'type'     => 'checkbox',
 		'priority' => 10,
 	) );
+	
+	$wp_customize->add_setting( 'show_featured', array(
+		'default'           => $hana_defaults['show_featured'],
+		'sanitize_callback' => 'hana_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'show_featured', array(
+		'label'    => __( 'Display Featured Imagae for single post', 'hana' ),
+		'section'  => 'hana_posts',
+		'type'     => 'checkbox',
+		'priority' => 10,
+	) );
 
     /*****************
 	* Fonts 
@@ -500,8 +524,8 @@ function hana_customize_register( $wp_customize ){
     $wp_customize->add_section(
         'hana_fonts',
         array(
-            'title'         => __('Fonts', 'hana'),
-		    'description'  => __( 'You can select the font for many theme elements such as Body and Post Title. * indicates google fonts. Other Fonts will be used in Custom CSS for advanced users.', 'hana' ),            
+            'title'         => __('Web Fonts', 'hana'),
+		    'description'  => __( 'You can choose the font for many theme elements such as Body and Headings. Other fonts can be used to load additional web fonts', 'hana' ),            
             'priority'      => 26,
         )
     );
@@ -643,9 +667,9 @@ function hana_custom_css( ) {
 	$hana_fonts = hana_font_list();	
 	$font_elements = hana_font_elements();
 	foreach ( $font_elements as $key => $element ) {
-		$value = hana_option( $key );
-		if ( ! empty( $value ) &&  'default' != $value && !empty( $element['selector'] ) )
-			$css .= $element['selector'] . ' {font-family:' . $hana_fonts[ $value ]['family'] . ';}' . "\n";		
+		$option = hana_option( $key );
+		if ( ! empty( $option ) &&  'default' != $option && !empty( $element['selector'] ) )
+			$css .= $element['selector'] . ' {font-family:' . $hana_fonts[ $option ]['name'] . ',' . $hana_fonts[ $option ]['type'] . ';}' . "\n";		
 	}
 	return apply_filters( 'hana_custom_css', $css);
 }

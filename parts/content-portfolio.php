@@ -29,7 +29,8 @@
 	global $hana_entry_meta;
 	if ( $hana_entry_meta ) { ?>
 		<footer class="entry-footer clearfix">
-			<?php hana_meta_portfolio(); ?>
+<?php	 	hana_comment_link();
+			hana_meta_portfolio();?>
 		</footer>
 <?php
 	} ?>

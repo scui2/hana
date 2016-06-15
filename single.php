@@ -16,9 +16,9 @@ get_header();
 			the_post();
 			get_template_part( 'parts/content', get_post_format() ); ?>
 
-			<nav id="nav-single" class="clearfix">
-				<span class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '<i class="fa fa-chevron-left"></i>', 'Previous post link', 'hana' ) . '</span> %title' ); ?></span>
-				<span class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '<i class="fa fa-chevron-right"></i>', 'Next post link', 'hana' ) . '</span>' ); ?></span>
+			<nav id="nav-single" class="row">
+				<div class="nav-previous medium-6 small-12 columns"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '<i class="fa fa-chevron-left"></i>', 'Previous post link', 'hana' ) . '</span> %title' ); ?></div>
+				<div class="nav-next medium-6 small-12 columns"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '<i class="fa fa-chevron-right"></i>', 'Next post link', 'hana' ) . '</span>' ); ?></div>
 			</nav>
 <?php		comments_template( '', true );
 		} ?>

@@ -1,18 +1,39 @@
 /******************************************************************
- * Rose Color Scheme for Passion Theme
+ * Orange Color Scheme for Passion Theme
  *
  * This is an example to help you customize the color of your site
+ * Pallets: #69D2E7	#A7DBD8	#E0E4CC	#F38630	#FA6900
  * 
  *****************************************************************/
+/********************************************
+ * General
+ ********************************************/
+a:hover {
 
+
+}
 /********************************************
  * Background
  ********************************************/
-.top-bar {
-
+.top-bar,
+.title-bar {
+	background: #E0E4CC;
 }
 
 body {
+}
+/********************************************
+ * Background
+ ********************************************/
+.top-bar .menu a {
+	color: #F38630;
+}
+
+.top-bar .menu a:hover {
+	color: #FA6900;
+}
+.dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+	border-color: #f5a461 transparent transparent;
 }
 
 .sectionmenu {
@@ -20,6 +41,10 @@ body {
 #footer,
 #footer-widget-area {
 }
+/********************************************
+ * Buttons
+ ********************************************/
+
 /********************************************
  * Widgets
  ********************************************/

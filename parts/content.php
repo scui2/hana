@@ -12,6 +12,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 <?php
+		hana_comment_link();
 		hana_meta_top();
 		hana_post_title();
 		if ( is_single() && has_excerpt() ) { ?>
@@ -25,7 +26,7 @@
 	</header>
 <?php
 
-	if ( has_post_thumbnail() ) { ?>
+	if ( hana_option( 'show_featured' ) && has_post_thumbnail() ) { ?>
 		<div class="featured-media-container">
 			<?php hana_featured_image(); ?>
 		</div>
