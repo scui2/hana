@@ -46,6 +46,7 @@
 	hana_post_edit();
 ?>
 	<footer class="entry-footer show-for-medium clearfix">
-		<?php hana_meta_bottom(); ?>
+<?php	
+		hana_meta_bottom(); ?>
 	</footer>
 </article>

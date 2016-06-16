@@ -111,7 +111,6 @@ a:hover {
 	clear: both;
 }
 .bypostauthor {
-	
 }
 
 .screen-reader-text {
@@ -264,11 +263,7 @@ a:hover {
 }
 
 .sticky-header {
-	position: -webkit-sticky;
-	position: -moz-sticky;
-	position: -ms-sticky;
-	position: -o-sticky;
-	position: sticky;
+	position: fixed;
 	z-index: 5;
 	top: 0;
 }
@@ -559,7 +554,7 @@ a:hover {
 /* Footer Menu */
 .footer-menu {
 	display: block;
-	text-align: center;
+	text-align: right;
 	margin: 0;
 }
 
@@ -600,7 +595,7 @@ a:hover {
 }
 
 #footer {
-	font-size: 0.8rem;
+	font-size: 0.75em;
 	padding: 2em 1em;
 	background: #DFE3EE;	
 }
@@ -610,19 +605,17 @@ a:hover {
 	padding-top: 1em;
 }
 
-.footer-widget ul,
-.footer-widget ol {
-	font-size: 0.8rem;
+.footer-widget {
+	font-size: 0.75em;
 }
 
-.footer-widget .widget-container ul li,
-.footer-widget .widget-container ul li a {
+.footer-widget .widget ul li,
+.footer-widget .widget ul li a {
 	border-bottom: none;
 }
 
 #site-info {
 	color: #757575;
-	padding: 0;
 }
 
 #site-info a {
@@ -742,6 +735,9 @@ img#wpstats {
 	font-weight: bold;
 }
 
+.featured-title a:hover {
+	color: #F38630;
+}
 .featured-page,
 .featured-excerpt {
 	color: #f6f6f6;
@@ -842,10 +838,6 @@ img#wpstats {
 .entry-footer {
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
-}
-
-.equalizer .hentry {
-	padding-bottom: 6em;
 }
 
 .single-post-link {
@@ -991,30 +983,9 @@ img#wpstats {
 /********************************************
  * 8. Post Meta
  ********************************************/
- .post-comments {
+ .meta-comment {
  	float: right;
- 	font-size: 0.8em;
-
  }
-
-.comment-link {
-	position: relative;
-	border: 1px solid #f1f1f1;
-	background: #f1f1f1;
-	border-radius:5px;
-	padding: 5px 10px;
-}
-
-a.comment-link:before {
-    content: "";
-    position: absolute;
-	top: 100%;
-	left: 40%;
-	border-top: 7px solid transparent;
-	border-top-color: inherit; 
- 	border-left: 7px solid transparent;
- 	border-right: 10px solid transparent; 
-}
 
 .entry-meta {
 	font-size: 0.8em;
@@ -1092,10 +1063,10 @@ a.comment-link:before {
 .edit-link a {
 	display: block;
 	position: absolute;
-	right: 0;
-	bottom: 0;
+	left: -1.75em;
+	top: 0;
 	background: #cbcaf9;
-	padding: 0.1em 0.4em;
+	padding: 0.125em 0.375em;
 	font-size: 1.25em;
 	z-index: 1;
 	opacity: 0.2;
@@ -1236,36 +1207,31 @@ li.pingback {
 /********************************************
  * 11. Widgets
  ********************************************/
-.blog-widget .sticky.is-anchored {
+.sidebar .sticky.is-anchored {
 	position: relative;
 }
 
-.widget-container {
-	margin-bottom: 1em;
+.sidebar {
+	padding-top: 1em;
 }
 
-.blog-widget .widget-container {
-	background: none;
-	padding-bottom: 0.5em;
+.widget {
+	margin-bottom: 1em;
+	padding: 0.5em;
+}
+
+.sidebar .widget {
 	border-top: 5px solid #97a4ae;
 }
 
-.blog-widget .widget_search {
-	padding-top: 1em;
-	padding-bottom: 0.5em;
-}
-
-.blog-widget {
+.sidebar .widget_search {
 	padding-top: 1em;
 }
 
-.widget .entry-title {
-	border: none;
-}
 
 .widget ul {
 	list-style: none;
-	margin: 0px;
+	margin: 0;
 	padding: 0;
 }
 
@@ -1274,9 +1240,8 @@ li.pingback {
 	font-size: 0.9375em;
 }
 
-
 .widget_recent_comments ul li {
-	padding: 5px;
+	padding: 4px;
 	border-bottom: 1px solid #e1e1e1;	
 }
 
@@ -1298,7 +1263,7 @@ li.pingback {
 .widget_archive ul li a,
 .widget_categories ul li a {
 	display: block;
-	padding: 5px;
+	padding: 4px;
 	text-decoration: none;
 	border-bottom: 1px solid #e1e1e1;
 }
@@ -1314,29 +1279,10 @@ li.pingback {
 .widget-title {
 	font-size: 1.2em;
 	color: #6B7B84;
-	padding: 0.4em 0.25em 0.6em 0.25em;
-	margin-bottom: 0.25em;
 }
 
 .footer-widget .widget-title {
 	border-bottom: 1px solid #d1d1d1;
-}
-
-#home-widget-area {
-	background: #f8f9fc;
-	padding-bottom: 1em;
-}
-
-.header-widget .widget-title {
-	display: none;
-}
-
-.header-widget {
-	color: #f1f1f1;
-}
-
-.header-widget a {
-	color: #FBB700;
 }
 
 #wp-calendar {
@@ -1356,7 +1302,6 @@ li.pingback {
 
 .hana_recent_post .hentry {
 	background: none;
-	padding: 0 0.5em 0.5em;
 }
 
 .hana_recent_post .entry-title {
@@ -1473,11 +1418,10 @@ li.pingback {
 .sociallink-footer {
 	display: block;
 	text-align: center;
-	margin-bottom: -2em;
 }
 
 .sociallink li a:hover {
-	color: #eee !important;
+	color: #F38630 !important;
 }
 
 .sl-facebook {
@@ -1564,31 +1508,17 @@ li.pingback {
 }
 
 .footer-menu {
-	clear: both;
-	float: none !important;
-	margin-top: 0.5em;
-}
-
-#site-info,
-#site-generator {
-	float: none !important;
-	text-align: center;
-	display: block;
-	margin-top: 0.5em;
-}
-	
-.ticker-caption {
-	display: none;
-}
-
-.sociallink {
-	float: none !important;
-	display: block;
+	padding: 0.5em 0;
 	text-align: center;	
 }
 
-.sociallink-footer {
-	margin-bottom: 0;
+#site-info {
+	padding: 0.5em 0;
+	text-align: center;	
+} 
+	
+.ticker-caption {
+	display: none;
 }
 
 .bx-controls-direction {

@@ -25,7 +25,7 @@
 <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 	<?php get_template_part( 'parts/left', 'menu' ); ?>
 <div id="wrapper" class="site off-canvas-content" data-off-canvas-content>
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'hana' ); ?></a>
+			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'hana' ); ?></a>
 	<?php do_action('hana_header_top'); //Action Hook ?>
  	<header id="masthead" class="site-header clearfix" role="banner">
 		<?php get_template_part( 'parts/top', 'menu' ); ?>
@@ -36,7 +36,7 @@
 	if (  has_nav_menu( 'section' ) ||  hana_option( 'social_section' ) ) {
 ?>
 		<div class="sectionmenu show-for-large">
-			<div class="column row<?php if ( hana_option( 'fullwidth_header' ) ) echo ' expanded'; ?>">
+			<div class="column row <?php if ( hana_option( 'fullwidth_header' ) ) echo 'expanded'; ?>">
 <?php
 			if (  has_nav_menu( 'section' ) ) { ?>
 				<nav class="section-menu">
@@ -51,7 +51,6 @@
 			hana_social_display( 'sociallink sociallink-section float-right' ); ?>
 			</div>
 		</div>
-
 <?php
 	}
 	if ( 'full' != hana_option( 'slider_type' ) )

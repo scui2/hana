@@ -97,7 +97,7 @@ jQuery(document).ready(function($){
 //Adjust header
 	hanaAdjustHeader();
 	function hanaAdjustHeader() {
-		if  ( $('.featured-content-full').length !== 0 ) {
+		if  ( $('.fullwidth-slider .featured-content-full').length !== 0 ) {
 			var  hwHeight = 0;
 			if($('.top-bar').is(':visible')) {
 				hwHeight = $(".top-bar").outerHeight( false );

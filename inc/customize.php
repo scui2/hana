@@ -31,6 +31,7 @@ function hana_default_options() {
 		'slider_mode' => 'horizontal',
 		'slider_speed' => 10,
 		'slider_height' => 720,
+		'slider_top' => 0,
 		'ticker_min' => 2,
 		'ticker_max' => 5,		
 		//Posts
@@ -259,108 +260,119 @@ function hana_customize_register( $wp_customize ){
     *****************/
 	if ( !empty( $featured_section ) ) {
 	
-	$wp_customize->add_setting( 'max_featured', array(
-		'default'           => $hana_defaults['max_featured'],
-		'sanitize_callback' => 'absint',
-	) );
-	$wp_customize->add_control( 'max_featured', array(
-		'label'    => __( 'Maximum Featured Posts', 'hana' ),
-		'section'  => 'featured_content',
-		'type'     => 'number',
-		'priority' => 40,
-        'input_attrs' => array(
-        	'min'   => 1,
-            'max'   => 99,
-            'step'  => 1,
-        ),
-	) ); 
-	
-	$wp_customize->add_setting( 'slider_type', array(
-		'default'           => $hana_defaults['slider_type'],
-		'sanitize_callback' => 'hana_sanitize_slider_type',
-	) );
-	$wp_customize->add_control( 'slider_type', array(
-		'label'    => __( 'Slider Type', 'hana' ),
-		'section'  => 'featured_content',
-		'type'     => 'radio',
-		'choices'  => hana_slider_type_choices(),
-		'priority' => 41,
-	) );	
+		$wp_customize->add_setting( 'max_featured', array(
+			'default'           => $hana_defaults['max_featured'],
+			'sanitize_callback' => 'absint',
+		) );
+		$wp_customize->add_control( 'max_featured', array(
+			'label'    => __( 'Maximum Featured Posts', 'hana' ),
+			'section'  => 'featured_content',
+			'type'     => 'number',
+			'priority' => 40,
+	        'input_attrs' => array(
+	        	'min'   => 1,
+	            'max'   => 99,
+	            'step'  => 1,
+	        ),
+		) ); 
+		
+		$wp_customize->add_setting( 'slider_type', array(
+			'default'           => $hana_defaults['slider_type'],
+			'sanitize_callback' => 'hana_sanitize_slider_type',
+		) );
+		$wp_customize->add_control( 'slider_type', array(
+			'label'    => __( 'Slider Type', 'hana' ),
+			'section'  => 'featured_content',
+			'type'     => 'radio',
+			'choices'  => hana_slider_type_choices(),
+			'priority' => 50,
+		) );	
 
-	$wp_customize->add_setting( 'slider_mode', array(
-		'default'           => $hana_defaults['slider_mode'],
-		'sanitize_callback' => 'hana_sanitize_slider_mode',
-	) );
-	$wp_customize->add_control( 'slider_mode', array(
-		'label'    => __( 'Slider Mode', 'hana' ),
-		'section'  => 'featured_content',
-		'type'     => 'radio',
-		'choices'  => hana_slider_mode_choices(),
-		'priority' => 42,
-	) );	
+		$wp_customize->add_setting( 'slider_mode', array(
+			'default'           => $hana_defaults['slider_mode'],
+			'sanitize_callback' => 'hana_sanitize_slider_mode',
+		) );
+		$wp_customize->add_control( 'slider_mode', array(
+			'label'    => __( 'Slider Mode', 'hana' ),
+			'section'  => 'featured_content',
+			'type'     => 'radio',
+			'choices'  => hana_slider_mode_choices(),
+			'priority' => 50,
+		) );	
 
-	$wp_customize->add_setting( 'slider_speed', array(
-		'default'           => $hana_defaults['slider_speed'],
-		'sanitize_callback' => 'absint',
-	) );
-	$wp_customize->add_control( 'slider_speed', array(
-		'label'    => __( 'Speed (second)', 'hana' ),
-		'section'  => 'featured_content',
-		'type'     => 'number',
-		'priority' => 43,
-        'input_attrs' => array(
-        	'min'   => 1,
-            'max'   => 500,
-            'step'  => 1,
-        ),
-	) );   
+		$wp_customize->add_setting( 'slider_top', array(
+			'default'           => $hana_defaults['slider_top'],
+			'sanitize_callback' => 'hana_sanitize_checkbox',
+		) );
+		$wp_customize->add_control( 'slider_top', array(
+			'label'    => __( 'Align slider to top', 'hana' ),
+			'section'  => 'featured_content',
+			'type'     => 'checkbox',
+			'priority' => 50,
+		) );
+		
+		$wp_customize->add_setting( 'slider_speed', array(
+			'default'           => $hana_defaults['slider_speed'],
+			'sanitize_callback' => 'absint',
+		) );
+		$wp_customize->add_control( 'slider_speed', array(
+			'label'    => __( 'Speed (second)', 'hana' ),
+			'section'  => 'featured_content',
+			'type'     => 'number',
+			'priority' => 50,
+	        'input_attrs' => array(
+	        	'min'   => 1,
+	            'max'   => 500,
+	            'step'  => 1,
+	        ),
+		) );   
 
-	$wp_customize->add_setting( 'slider_height', array(
-		'default'           => $hana_defaults['slider_height'],
-		'sanitize_callback' => 'absint',
-	) );
-	$wp_customize->add_control( 'slider_height', array(
-		'label'    => __( 'Slide Height (0 = Auto Height)', 'hana' ),
-		'section'  => 'featured_content',
-		'type'     => 'number',
-		'priority' => 44,
-        'input_attrs' => array(
-        	'min'   => 0,
-            'max'   => 1080,
-            'step'  => 1,
-        ),
-	) );    
-	
-	$wp_customize->add_setting( 'ticker_min', array(
-		'default'           => $hana_defaults['ticker_min'],
-		'sanitize_callback' => 'absint',
-	) );
-	$wp_customize->add_control( 'ticker_min', array(
-		'label'    => __( 'Minimum slides (Ticker mode)', 'hana' ),
-		'section'  => 'featured_content',
-		'type'     => 'number',
-		'priority' => 45,
-        'input_attrs' => array(
-        	'min'   => 1,
-            'max'   => 10,
-            'step'  => 1,
-        ),
-	) );   
-	$wp_customize->add_setting( 'ticker_max', array(
-		'default'           => $hana_defaults['ticker_max'],
-		'sanitize_callback' => 'absint',
-	) );
-	$wp_customize->add_control( 'ticker_max', array(
-		'label'    => __( 'Maximum slides (Ticker mode)', 'hana' ),
-		'section'  => 'featured_content',
-		'type'     => 'number',
-		'priority' => 46,
-        'input_attrs' => array(
-        	'min'   => 1,
-            'max'   => 10,
-            'step'  => 1,
-        ),
-	) );  		 			
+		$wp_customize->add_setting( 'slider_height', array(
+			'default'           => $hana_defaults['slider_height'],
+			'sanitize_callback' => 'absint',
+		) );
+		$wp_customize->add_control( 'slider_height', array(
+			'label'    => __( 'Slide Height (0 = Auto Height)', 'hana' ),
+			'section'  => 'featured_content',
+			'type'     => 'number',
+			'priority' => 50,
+	        'input_attrs' => array(
+	        	'min'   => 0,
+	            'max'   => 1080,
+	            'step'  => 1,
+	        ),
+		) );   
+		
+		$wp_customize->add_setting( 'ticker_min', array(
+			'default'           => $hana_defaults['ticker_min'],
+			'sanitize_callback' => 'absint',
+		) );
+		$wp_customize->add_control( 'ticker_min', array(
+			'label'    => __( 'Minimum slides (Ticker mode)', 'hana' ),
+			'section'  => 'featured_content',
+			'type'     => 'number',
+			'priority' => 50,
+	        'input_attrs' => array(
+	        	'min'   => 1,
+	            'max'   => 10,
+	            'step'  => 1,
+	        ),
+		) );   
+		$wp_customize->add_setting( 'ticker_max', array(
+			'default'           => $hana_defaults['ticker_max'],
+			'sanitize_callback' => 'absint',
+		) );
+		$wp_customize->add_control( 'ticker_max', array(
+			'label'    => __( 'Maximum slides (Ticker mode)', 'hana' ),
+			'section'  => 'featured_content',
+			'type'     => 'number',
+			'priority' => 50,
+	        'input_attrs' => array(
+	        	'min'   => 1,
+	            'max'   => 10,
+	            'step'  => 1,
+	        ),
+		) );  		 			
 
 	} // end of featured_content	
     /*****************

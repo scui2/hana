@@ -114,48 +114,48 @@ function hana_widgets_init() {
 			'id'   			=> $id,
 			'name' 			=> $sidebar['name'],
 			'description'   => $sidebar['description'],
-			'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
-			'after_widget'  => '</li>',
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>',
 		) );		
 	}	
 }
-add_action( 'widgets_init', 'hana_widgets_init' ); 
+add_action( 'widgets_init', 'hana_widgets_init' );
 
 function hana_sidebars() {
 	$sidebars = array (
-		'full-widget-area' => array(
+		'sidebar-full' => array(
 			'name' => __( 'Blog Widget Area (Full)', 'hana' ),
 			'description' => __( 'Available for Left or Right sidebar layout.', 'hana' ),
 		),
-		'first-widget-area' => array(
+		'sidebar-1' => array(
 			'name' => __( 'Blog Widget Area 1', 'hana' ),
 			'description' => __( 'Blog Widget Area 1', 'hana' ),
 		),
-		'second-widget-area' => array(
+		'sidebar-2' => array(
 			'name' => __( 'Blog Widget Area 2', 'hana' ),
 			'description' => __( 'Blog Widget Area 2', 'hana' ),
 		),
-		'first-footer-widget-area' => array(
+		'footer-1' => array(
 			'name' => __( 'Footer Widget Area 1', 'hana' ),
 			'description' => __( 'Footer Widget Area 1', 'hana' ),
 		),
-		'second-footer-widget-area' => array(
+		'footer-2' => array(
 			'name' => __( 'Footer Widget Area 2', 'hana' ),
 			'description' => __( 'Footer Widget Area 2', 'hana' ),
 		),
-		'third-footer-widget-area' => array(
+		'footer-3' => array(
 			'name' => __( 'Footer Widget Area 3', 'hana' ),
 			'description' => __( 'Footer Widget Area 3', 'hana' ),
 		),
-		'fourth-footer-widget-area' => array(
+		'footer-4' => array(
 			'name' => __( 'Footer Widget Area 4', 'hana' ),
 			'description' => __( 'Footer Widget Area 4', 'hana' ),
 		),
 	);
 	if ( class_exists( 'bbPress' ) ) {
-		$sidebars['bbp-widget-area'] = array(
+		$sidebars['sidebar-bbp'] = array(
 			'name' => __( 'bbPress Widget Area', 'hana' ),
 			'description' => __( 'bbPress Widget Area', 'hana' ),
 		);

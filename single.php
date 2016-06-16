@@ -11,7 +11,7 @@
 
 get_header();
 ?>
-	<div id="content" class="site-content <?php hana_content_class(); ?>" role="main">
+	<div id="content" class="site-content <?php echo hana_content_class(); ?>" role="main">
 <?php	while ( have_posts() ) {
 			the_post();
 			get_template_part( 'parts/content', get_post_format() ); ?>

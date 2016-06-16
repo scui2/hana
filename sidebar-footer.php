@@ -6,49 +6,41 @@
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
-	if ( ( is_active_sidebar( 'first-footer-widget-area' ) && hana_option( 'footer1' ) > 0 )
-		|| ( is_active_sidebar( 'second-footer-widget-area' ) && hana_option( 'footer2' ) > 0 )
-		|| ( is_active_sidebar( 'third-footer-widget-area' ) && hana_option( 'footer3' ) > 0 )		
-		|| ( is_active_sidebar( 'fourth-footer-widget-area' ) && hana_option( 'footer4' ) > 0 ) ) {
+if ( ( is_active_sidebar( 'footer-1' ) && hana_option( 'footer1' ) > 0 )
+		|| ( is_active_sidebar( 'footer-2' ) && hana_option( 'footer2' ) > 0 )
+		|| ( is_active_sidebar( 'footer-3' ) && hana_option( 'footer3' ) > 0 )		
+		|| ( is_active_sidebar( 'footer-4' ) && hana_option( 'footer4' ) > 0 ) ) {
 ?>
 <div id="footer-widget-area" role="complementary">
 	<div class="row">
 <?php
-	if ( is_active_sidebar( 'first-footer-widget-area' ) && hana_option( 'footer1' ) > 0 ) { ?>
-		<div id="first" class="<?php echo hana_grid_columns( hana_option( 'footer1' ) ); ?> widget footer-widget">
-			<ul class="xoxo">
-				<?php dynamic_sidebar( 'first-footer-widget-area' ); ?>
-			</ul>
+	if ( is_active_sidebar( 'footer-1' ) && hana_option( 'footer1' ) > 0 ) { ?>
+		<div id="footer-1" class="<?php echo hana_grid_columns( intval(hana_option( 'footer1' ) ) ); ?> footer-widget">
+			<?php dynamic_sidebar( 'footer-1' ); ?>
 		</div>
 <?php
 	}
-	if ( is_active_sidebar( 'second-footer-widget-area' ) && hana_option( 'footer2' ) > 0) { ?>
-		<div id="second" class="<?php echo hana_grid_columns( hana_option( 'footer2' ) ); ?> widget footer-widget">	
-			<ul class="xoxo">
-				<?php dynamic_sidebar( 'second-footer-widget-area' ); ?>
-			</ul>
+	if ( is_active_sidebar( 'footer-2' ) && hana_option( 'footer2' ) > 0 ) { ?>
+		<div id="footer-2" class="<?php echo hana_grid_columns( intval(hana_option( 'footer2' ) ) ); ?> footer-widget">
+			<?php dynamic_sidebar( 'footer-2' ); ?>
 		</div>
 <?php
 	}
-	if ( is_active_sidebar( 'third-footer-widget-area' ) && hana_option( 'footer3' ) > 0 ) { ?>
-		<div id="third" class="<?php echo hana_grid_columns( hana_option( 'footer3' ) ); ?> widget footer-widget">
-			<ul class="xoxo">
-				<?php dynamic_sidebar( 'third-footer-widget-area' ); ?>
-			</ul>
+	if ( is_active_sidebar( 'footer-3' ) && hana_option( 'footer3' ) > 0 ) { ?>
+		<div id="footer-3" class="<?php echo hana_grid_columns( intval(hana_option( 'footer3' ) ) ); ?> footer-widget">
+			<?php dynamic_sidebar( 'footer-3' ); ?>
 		</div>
 <?php
 	}
-	if ( is_active_sidebar( 'fourth-footer-widget-area' ) && hana_option( 'footer4' ) > 0 ) { ?>
-		<div id="fourth" class="<?php echo hana_grid_columns( hana_option( 'footer4' ) ); ?> widget footer-widget">
-			<ul class="xoxo">
-				<?php dynamic_sidebar( 'fourth-footer-widget-area' ); ?>
-			</ul>
+	if ( is_active_sidebar( 'footer-4' ) && hana_option( 'footer4' ) > 0 ) { ?>
+		<div id="footer-4" class="<?php echo hana_grid_columns( intval(hana_option( 'footer4' ) ) ); ?> footer-widget">
+			<?php dynamic_sidebar( 'footer-4' ); ?>
 		</div>
 <?php
 	} ?>
 	</div>
 </div>
 <?php
-	}
+}

@@ -55,11 +55,8 @@ endif;
 
 if ( ! function_exists( 'hana_comment_link' ) ) :
 function hana_comment_link() {
-	if ( 'post' == get_post_type() && comments_open() && ! post_password_required() ) {
-		echo '<span class="post-comments">';
-		comments_popup_link( __( 'Comment', 'hana' ), __( '1', 'hana' ) , __( '%', 'hana' ), 'comment-link' );
-		echo '</span>';
-	}		
+	if ( 'post' == get_post_type() )
+		echo hana_meta_comment( false );
 }
 endif;
 // Post Meta for Recent Post Widget
@@ -163,15 +160,19 @@ function hana_meta_author( $list = true ) {
 }
 
 // Prints Comments Link
-function hana_meta_comment() {
+function hana_meta_comment( $list ) {
 	$html = '';	
 	if ( comments_open() && ! post_password_required() ) {
 		ob_start();
  		if ( $list )
 			echo '<li class="meta-comment">';
 		else
-			echo '<span class="meta-comment">';
-		comments_popup_link( __( 'Comment', 'hana' ), __( '1 Comment', 'hana' ) , __( '% Comments', 'hana' ) );			
+			echo '<span class="entry-meta meta-comment">';
+		comments_popup_link( __( '0', 'hana' ), __( '1', 'hana' ) , __( '%', 'hana' ) );			
+ 		if ( $list )
+			echo '</li>';
+		else
+			echo '</span>';
 		$html = ob_get_clean();
 	}
 	return apply_filters( 'hana_meta_comment', $html );

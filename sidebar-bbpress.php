@@ -9,15 +9,11 @@
  * @link    http://www.rewindcreation.com/
  */ 
 	$sidebar = intval( hana_option( 'sidebar_bbp' ) );
-	if ( $sidebar > 0 && is_active_sidebar( 'bbp-widget-area' ) ) {
-				
+	if ( $sidebar > 0 && is_active_sidebar( 'sidebar-bbp' ) ) {
 		$sidebar_class = 'large-' . $sidebar . ' medium-' . $sidebar . ' columns';
 ?>	
-		<div id="bbp-sidebar" class="<?php echo $sidebar_class; ?> widget blog-widget" role="complementary">		
-			<ul class="xoxo">		
-<?php			dynamic_sidebar( 'bbp-widget-area' );	?>
-			</ul>
+		<div id="sidebar-bbp" class="<?php echo $sidebar_class; ?> sidebar" role="complementary">			
+			<?php dynamic_sidebar( 'sidebar-bbp' );	?>
 		</div>
 <?php
 	}
-?>

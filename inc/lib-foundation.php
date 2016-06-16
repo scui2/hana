@@ -64,7 +64,7 @@ function hana_content_class() {
 		$class .= ' large-centered';		
 	}
 	$class .= ' columns';
-	echo $class;
+	return $class;
 }
 endif;
 
@@ -102,7 +102,7 @@ function hana_sidebar_class( $location ) {
 		$class .= ' columns';	
 	}		
 			    
-	echo $class;
+	return $class;
 }
 endif;
 
@@ -120,13 +120,6 @@ function hana_grid_full() {
 }
 endif;
 
-if ( ! function_exists( 'hana_full_width_class' ) ) :
-function hana_full_width_class() {
-	if ( hana_option('fluid_width') || is_page_template( 'pages/fullwidth.php') )
-		echo ' expanded';
-}
-endif;
-
 if ( ! function_exists( 'hana_bbp_class' ) ) :
 function hana_bbp_class() {
 	$sidebar = intval( hana_option( 'sidebar_bbp' ) );
@@ -135,6 +128,13 @@ function hana_bbp_class() {
 	$class = 'large-' . $width  . ' medium-' . $width;
 	$class .= ' columns';	
 			    
-	echo $class;
+	return $class;
+}
+endif;
+
+if ( ! function_exists( 'hana_full_width_class' ) ) :
+function hana_full_width_class() {
+	if ( hana_option('fluid_width') || is_page_template( 'pages/fullwidth.php') )
+		echo ' expanded';
 }
 endif;

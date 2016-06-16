@@ -22,7 +22,7 @@ function hana_body_classes( $classes ) {
 	if ( get_background_image() ) {
 		$classes[] = 'custom-background-image';
 	}
-	if ( 'full' == hana_option('slider_type') &&  hana_option( 'sticky_header' ) && hana_has_featured_posts() )
+	if ( 'full' == hana_option('slider_type') &&  hana_option( 'sticky_header' ) &&  hana_option( 'slider_top' ) && hana_has_featured_posts() )
 		$classes[] = 'fullwidth-slider';
 	if ( ! is_page_template( 'pages/fullwidth.php') && ! is_page_template( 'pages/nosidebar.php') )
 		$classes[] = 'sidebar-' . hana_option( 'sidebar_pos' );
@@ -228,8 +228,12 @@ endif;
 
 if ( ! function_exists( 'hana_page_title' ) ) :	
 function hana_page_title() {	
-	if ( ! have_posts() ) return;
+	if ( ! have_posts() )
+		return;
 	
+	if ( class_exists( 'bbPress' ) && is_bbpress() )
+		return;
+			
 	$title = '';
 	$class = '';
 	if ( is_search() ) { 
