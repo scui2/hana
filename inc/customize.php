@@ -67,7 +67,7 @@ function hana_default_options() {
 function hana_option( $option ) {
 	global $hana_defaults;
 	
-	return get_theme_mod( $option, $hana_defaults[ $option ] );
+	return get_theme_mod( $option, $hana_defaults[$option] );
 }
 
 function hana_customize_register( $wp_customize ){
@@ -378,18 +378,13 @@ function hana_customize_register( $wp_customize ){
     /*****************
 	* Social 
     *****************/
-    $wp_customize->add_panel( 'hana_social', array(
-        'priority'       => 25,
-        'title'          => __('Social', 'hana'),
-    ) );
         
     $wp_customize->add_section(
-        'hana_social_sharing',
+        'hana_social',
         array(
-            'title'         => __('Social Sharing', 'hana'),
-		    'description'  => __( 'Choose the location where Jetpack sharing buttons are displayed.', 'hana'),
-            'panel'         => 'hana_social', 		           
-            'priority'      => 10,
+            'title'         => __('Social', 'hana'),
+		    'description'  => __( 'Choose the location where Jetpack sharing buttons are displayed.', 'hana'),           
+            'priority'      => 50,
         )
     );
 	$wp_customize->add_setting( 'share_top', array(
@@ -398,7 +393,7 @@ function hana_customize_register( $wp_customize ){
 	) );
 	$wp_customize->add_control( 'share_top', array(
 		'label'    => __( 'Display Jetpack Sharing on Top', 'hana' ),
-		'section'  => 'hana_social_sharing',
+		'section'  => 'hana_social',
 		'type'     => 'checkbox',
 		'priority' => 10,
 	) );
@@ -409,27 +404,19 @@ function hana_customize_register( $wp_customize ){
 	) );
 	$wp_customize->add_control( 'share_bottom', array(
 		'label'    => __( 'Display Jetpack Sharing at Bottom', 'hana' ),
-		'section'  => 'hana_social_sharing',
+		'section'  => 'hana_social',
 		'type'     => 'checkbox',
 		'priority' => 10,
 	) );
 
-    $wp_customize->add_section(
-        'hana_social_link',
-        array(
-            'title'         => __('Social Link', 'hana'),
-		    'description'  => '',
-            'panel'         => 'hana_social', 		           
-            'priority'      => 20,
-        )
-    );
 	$wp_customize->add_setting( 'social_top', array(
 		'default'           => $hana_defaults['social_top'],
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'social_top', array(
-		'label'    => __( 'Display Social Link on top', 'hana' ),
-		'section'  => 'hana_social_link',
+		'label'    => __( 'Display Social Menu with Top Menu', 'hana' ),
+		'description'  => __( 'Create a custom Social Menu and choose the location to display. Supported social services will be displayed as an icon. See theme documentation for setup instruction.', 'hana'),           
+		'section'  => 'hana_social',
 		'type'     => 'checkbox',
 		'priority' => 20,
 	) );	
@@ -439,8 +426,8 @@ function hana_customize_register( $wp_customize ){
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'social_section', array(
-		'label'    => __( 'Display Social Link in Section Menu', 'hana' ),
-		'section'  => 'hana_social_link',
+		'label'    => __( 'Display Social Menu with Section Menu', 'hana' ),
+		'section'  => 'hana_social',
 		'type'     => 'checkbox',
 		'priority' => 20,
 	) );
@@ -451,25 +438,10 @@ function hana_customize_register( $wp_customize ){
 	) );
 	$wp_customize->add_control( 'social_footer', array(
 		'label'    => __( 'Display Social Link in Footer', 'hana' ),
-		'section'  => 'hana_social_link',
+		'section'  => 'hana_social',
 		'type'     => 'checkbox',
 		'priority' => 20,
 	) );
-
-	$services = hana_social_services();	
-	foreach ($services as $key => $service ) {
-
-		$wp_customize->add_setting( 'social_' . $key, array(
-			'default'           => '',
-			'sanitize_callback' => 'esc_url_raw',
-		) );
-		$wp_customize->add_control( 'social_' . $key, array(
-			'label'    => $service['label'],
-			'section'  => 'hana_social_link',
-			'type'     => 'text',
-			'priority' => 50,
-		) );		
-	}
     /*****************
 	* Colors 
     *****************/

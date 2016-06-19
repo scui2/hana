@@ -69,75 +69,22 @@ function hana_jetpack_sharing( $pos = 'bottom' ) {
 }
 endif;
 /******************************
-* Social Links
+* Social Menu
 ******************************/
-function hana_social_services() {
-	$socials = array(
-		'facebook' => array(
-			'label' => __( 'Facebook', 'hana' ),
-			'variants' => array(
-				'1' => '<i class="fa fa-facebook"></i>',
-			),
-		),
-		'twitter' => array(
-			'label' => __( 'Twitter', 'hana' ),
-			'variants' => array(
-				'1' => '<i class="fa fa-twitter"></i>',
-			),
-		),
-		'linkedin' => array(
-			'label' => __( 'Linkedin', 'hana' ),
-			'variants' => array(
-				'1' => '<i class="fa fa-linkedin"></i>',
-			),
-		),
-		'googleplus' => array(
-			'label' => __( 'Google+', 'hana' ),
-			'variants' => array(
-				'1' => '<i class="fa fa-google-plus-official"></i>',
-			),
-		),
-		'youtube' => array(
-			'label' => __( 'YouTube', 'hana' ),
-			'variants' => array(
-				'1' => '<i class="fa fa-youtube-play"></i>',
-			),
-		),
-		'pinterest' => array(
-			'label' => __( 'Pinterest', 'hana' ),
-			'variants' => array(
-				'1' => '<i class="fa fa-pinterest"></i>',
-			),
-		),
-		'github' => array(
-			'label' => __( 'GitHub', 'hana' ),
-			'variants' => array(
-				'1' => '<i class="fa fa-github"></i>',
-			),
-		),
-		'rss' => array(
-			'label' => __( 'RSS', 'hana' ),
-			'variants' => array(
-				'1' => '<i class="fa fa-rss"></i>',
-			),
-		),
-	);
-	return apply_filters('hana_social_services', $socials );
-}
-
-function hana_social_display( $class = 'sociallink' ) {
-	$services = hana_social_services();	
-	$list = '';
-	foreach ($services as $key => $service ) {
-		if ( get_theme_mod( 'social_' . $key ) ) {
-			$list .= '<li><a class="sl-' . esc_attr( $key  ) . '" href="';
-			$list .= esc_url( get_theme_mod( 'social_' . $key ) ) . '" title="';
-			$list .= __('Follow us on ', 'hana') .$service['label'] . '">' . $service['variants'][1];
-			$list .= '</a></li>';
-		}
+if ( ! function_exists( 'hana_social_menu' ) ) :
+function hana_social_menu( $class = 'sociallink' ) {
+	if ( has_nav_menu( 'social' ) ) {
+		wp_nav_menu(
+			array(
+				'theme_location'  => 'social',
+				'container'       => false,
+				'menu_class'      => $class,
+				'depth'           => 1,
+				'link_before'     => '<span class="screen-reader-text">',
+				'link_after'      => '</span>',
+				'fallback_cb'     => '',
+			)
+		);
 	}
-	if ( !empty( $list ) ) {
-		$list = '<ul class="' . $class . '">' . $list . '</ul>';
-	}
-	echo apply_filters( 'hana_social_display', $list );
 }
+endif;

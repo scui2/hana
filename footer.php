@@ -14,13 +14,15 @@
 <div id="footer" class="site-footer">
 	<div class="row">
 		<div id="site-info" class="medium-4 columns">
-			<i class="fa fa-copyright"></i> <?php printf( date('Y') ); ?><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+			<?php _e( 'Copyright <i class="fa fa-copyright"></i> ', 'hana');
+			printf( date('Y') ); ?>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 		</div>
 <?php	$menu_class ='medium-8';
-		if ( hana_option( 'social_footer') ) { 
+		if ( hana_option( 'social_footer') & has_nav_menu('social') ) { 
 			$menu_class ='medium-4'; ?>
 			<div class="medium-4 columns">
-				<?php hana_social_display( 'sociallink sociallink-footer' ); ?>
+				<?php hana_social_menu( 'social social-footer' ); ?>
 			</div>
 <?php	} ?>
 		<div class="<?php echo $menu_class;?> columns footer-menu">

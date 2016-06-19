@@ -134,7 +134,7 @@ endif;
 
 if ( ! function_exists( 'hana_full_width_class' ) ) :
 function hana_full_width_class() {
-	if ( hana_option('fluid_width') || is_page_template( 'pages/fullwidth.php') )
+	if ( hana_option('fluid_width') || is_page_template( array('pages/fullwidth.php', 'pages/homepage.php') ) )
 		echo ' expanded';
 }
 endif;

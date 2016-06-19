@@ -16,16 +16,8 @@ function hana_setup() {
 	$hana_defaults = hana_default_options();
 	
 	load_theme_textdomain( 'hana', get_template_directory() . '/languages' );
-	
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'title-tag' );
-		
-	register_nav_menus( array(
-		'top-bar' => __( 'Top Menu' , 'hana' ),
-		'section' => __( 'Section Menu' , 'hana' ),
-		'footer'  => __( 'Footer Menu', 'hana' ),
-	));
-	
 	// Custom Logo 
 	add_theme_support( 'custom-logo', array(
 		'height'      => 160,
@@ -44,6 +36,9 @@ function hana_setup() {
 		'max_posts' => hana_option( 'max_featured' ),
 	 	'post_types' => array( 'post', 'page' ),
 	));
+	// Woo Commerce support
+	add_theme_support( 'woocommerce' );
+	
 	remove_filter( 'term_description', 'wpautop' );
 	// Editor Style
 	add_editor_style();
@@ -51,6 +46,13 @@ function hana_setup() {
 	if ( 'ticker' == hana_option('slider_type') )
 		add_image_size( 'hana-ticker', 255, 155, true);
 	add_image_size( 'hana-thumb', 480, 320, true);
+	
+	register_nav_menus( array(
+		'top-bar' => __( 'Top Menu' , 'hana' ),
+		'section' => __( 'Section Menu' , 'hana' ),
+		'footer'  => __( 'Footer Menu', 'hana' ),
+		'social'  => __( 'Social Menu', 'hana' ),
+	));
 }
 endif;
 add_action( 'after_setup_theme', 'hana_setup' );
@@ -103,7 +105,7 @@ function hana_theme_scripts() {
 }
 if ( ! is_admin() )
 	add_action( 'wp_enqueue_scripts', 'hana_theme_scripts' );
-	
+
 function hana_widgets_init() {
 	register_widget( 'Hana_Recent_Post' );
 	register_widget( 'Hana_Navigation' );

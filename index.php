@@ -8,7 +8,8 @@
  * @license GPL v3 or later
  * @link    http://www.rewindcreation.com/
  */
-get_header(); ?>
+	get_header();
+	hana_page_title(); ?>
 <div id="content" class="site-content multi <?php echo hana_content_class(); ?>" role="main">
 <?php
 	if ( have_posts() ) {

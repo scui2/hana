@@ -31,9 +31,9 @@
 				<?php get_search_form(); ?>
 			</div>
  			<div class="top-bar-title show-for-medium"><?php hana_branding(); ?></div>
-<?php		if ( hana_option( 'social_top') ) { ?>
+<?php		if ( hana_option( 'social_top') && has_nav_menu( 'social') ) { ?>
  				<div class="top-bar-right">
-					<?php hana_social_display( 'sociallink menu' ); ?>
+					<?php hana_social_menu( 'social menu' ); ?>
  				</div>
 <?php		} ?>
  			<div class="top-bar-right show-for-medium">

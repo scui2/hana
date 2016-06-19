@@ -33,7 +33,7 @@
  <?php
 	if ( 'full' == hana_option( 'slider_type' ) )
 		hana_featured_top();
-	if (  has_nav_menu( 'section' ) ||  hana_option( 'social_section' ) ) {
+	if (  has_nav_menu( 'section' ) ||  ( hana_option( 'social_section' ) && has_nav_menu( 'social' ) ) ) {
 ?>
 		<div class="sectionmenu show-for-large">
 			<div class="column row <?php if ( hana_option( 'fullwidth_header' ) ) echo 'expanded'; ?>">
@@ -47,16 +47,14 @@
 					)); ?>
 				</nav>
 <?php		}
-		if ( hana_option( 'social_section') )
-			hana_social_display( 'sociallink sociallink-section float-right' ); ?>
+		if ( hana_option( 'social_section') && has_nav_menu( 'social' ) )
+			hana_social_menu( 'social social-section float-right' ); ?>
 			</div>
 		</div>
 <?php
 	}
 	if ( 'full' != hana_option( 'slider_type' ) )
 		hana_featured_top();
-	hana_page_title();
 	do_action('hana_header_before_main'); //Action Hook
 ?>
-	
-  <div id="main" class="row<?php hana_full_width_class() ?>">
+<div id="main" class="row<?php hana_full_width_class() ?>">

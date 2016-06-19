@@ -231,9 +231,6 @@ function hana_page_title() {
 	if ( ! have_posts() )
 		return;
 	
-	if ( class_exists( 'bbPress' ) && is_bbpress() )
-		return;
-			
 	$title = '';
 	$class = '';
 	if ( is_search() ) { 
