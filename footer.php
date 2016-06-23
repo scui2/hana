@@ -10,13 +10,20 @@
  */
  ?>
 </div><!-- main -->
-<?php get_sidebar( 'footer' ); ?>
+<?php
+ 	get_sidebar( 'footer' ); ?>
 <div id="footer" class="site-footer">
-	<div class="row">
-		<div id="site-info" class="medium-4 columns">
-			<?php _e( 'Copyright <i class="fa fa-copyright"></i> ', 'hana');
-			printf( date('Y') ); ?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+	<div class="<?php echo hana_header_row_class(); ?>">
+		<div id="site-info" class="copyright medium-4 columns">
+<?php 		if ( empty( hana_option('copyright_text') ) ) {
+				printf( __('%1$s %2$s <a href="%3$s" titlte="%4$s" rel="home">%4$s</a>', 'hana'),
+									__( 'Copyright &copy;', 'hana'),
+									sprintf( date('Y') ),
+									esc_url( home_url( '/' ) ),
+									esc_attr( get_bloginfo( 'name', 'display' ) ) );	
+			} else {
+				echo hana_wp_kses_text( hana_option('copyright_text') );  //Only allow a, br and em and strong tag in copyright text
+			} ?>
 		</div>
 <?php	$menu_class ='medium-8';
 		if ( hana_option( 'social_footer') & has_nav_menu('social') ) { 
@@ -34,8 +41,8 @@
 	</div>
 <?php
 	if ( hana_option( 'design_credit' ) ) { ?>
-		<div class="design-credit row text-center">
-			<a href="<?php echo esc_url( __( 'http://www.rewindcreation.com/', 'hana' ) ); ?>"><?php _e('Hana Theme by RewindCreation', 'hana') ?></a>
+		<div class="design-credit text-center <?php echo hana_header_row_class(); ?>">
+			<a href="<?php echo esc_url( __( 'http://rewindcreation.com/', 'hana' ) ); ?>"><?php _e('Hana Theme by RewindCreation', 'hana') ?></a>
 		</div>
 <?php
 	} ?>

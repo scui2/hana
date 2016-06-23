@@ -9,8 +9,9 @@
  * @link    http://www.rewindcreation.com/
  */
 	if ( hana_option( 'sticky_header' ) ) { ?>
-	<div data-sticky-container>
-  	  <div class="small-12 sticky is-anchored sticky-header" data-sticky data-sticky-on="small" style="width:100%" data-margin-top="0" data-top-anchor="1" data-bottom-anchor="content:bottom" <?php if (hana_option( 'shrink_topbar') ) echo 'data-shrink'; ?>>
+	<div data-sticky-container class="sticky-container">
+  	  <div class="small-12 sticky sticky-header" data-sticky data-sticky-on="small" data-margin-top="0" data-top-anchor="1" data-bottom-anchor="content:bottom" <?php if (hana_option( 'shrink_topbar') ) echo 'data-shrink'; ?>>
+  	  
 <?php
 	} ?>
     <div class="title-bar show-for-small-only" data-responsive-toggle="top-menu" data-hide-for="medium">
@@ -21,13 +22,13 @@
     	<button class="float-right title-bar-icon hana-toggle topmenu-toggle" data-toggle="top-menu"></button>
     </div>
 	<div id="top-menu" class="top-bar" data-toggler>
-		<div class="column row <?php if ( hana_option( 'fullwidth_header' ) ) echo ' expanded'; ?>">
+		<div class="<?php echo hana_header_row_class(); ?>">
 <?php		if ( has_nav_menu( 'section' ) ) { ?>
 		  		<div class="top-bar-left show-for-medium-only">
 					<button class="title-bar-icon leftmenu-toggle" data-toggle="offCanvasLeft"><i class="fa fa-bars"></i></button>    
 	 	  		</div>
 <?php		} ?>
-			<div class="top-bar-left show-for-small-only"> 
+			<div class="top-bar-left show-for-small-only small-search-form"> 
 				<?php get_search_form(); ?>
 			</div>
  			<div class="top-bar-title show-for-medium"><?php hana_branding(); ?></div>

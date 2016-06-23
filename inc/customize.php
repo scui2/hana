@@ -49,7 +49,8 @@ function hana_default_options() {
 		'footer1' => 3,	
 		'footer2' => 3,	
 		'footer3' => 3,	
-		'footer4' => 3,	
+		'footer4' => 3,
+		'copyright_text' => '',
 		//Fonts
 		'bodyfont' => 'default',
 		'headingfont' => 'default',
@@ -305,7 +306,7 @@ function hana_customize_register( $wp_customize ){
 			'sanitize_callback' => 'hana_sanitize_checkbox',
 		) );
 		$wp_customize->add_control( 'slider_top', array(
-			'label'    => __( 'Align slider to top', 'hana' ),
+			'label'    => __( 'Align Fullwidth Slider to Top', 'hana' ),
 			'section'  => 'featured_content',
 			'type'     => 'checkbox',
 			'priority' => 50,
@@ -603,7 +604,18 @@ function hana_customize_register( $wp_customize ){
             'step'  => 1,
         ),
 	) );
-	
+
+	$wp_customize->add_setting( 'copyright_text', array(
+		'default'           => $hana_defaults['copyright_text'],
+		'sanitize_callback' => 'hana_sanitize_text',
+	) );
+	$wp_customize->add_control( 'copyright_text', array(
+		'label'    => __( 'Copyright Text', 'hana' ),
+		'section'  => 'hana_footer',
+		'type'     => 'text',
+		'priority' => 45,
+	) );
+		
 	$wp_customize->add_setting( 'design_credit', array(
 		'default'           => $hana_defaults['design_credit'],
 		'sanitize_callback' => 'hana_sanitize_checkbox',

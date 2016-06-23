@@ -166,18 +166,20 @@ function hana_get_related_posts( $numb_of_posts = 4 ) {
 	return new WP_Query( $args );
 }
 
-if ( ! function_exists( 'hana_single_post_link' ) ) :
-/* This function echo the link to single post view for the following:
-- Aside Post
-- Post without title
-------------------------------------------------------------------------- */
-function hana_single_post_link() {
-	if ( ! is_single() ) {
-		if ( has_post_format( 'aside' ) || has_post_format( 'quote' ) || '' == the_title_attribute( 'echo=0' ) ) { 
-			printf ('<a class="single-post-link" href="%1$s" title="%1$s"><i class="fa fa-chevron-right"></i></a>',
-				get_permalink(),
-				get_the_title()	);
-		} 
+function hana_get_link( $content ) {
+	$link = array();
+	if ( preg_match('/<a (.+?)>/', $content, $match) ) {
+    	foreach ( wp_kses_hair($match[1], array('http')) as $attr) {
+        	$link[$attr['name']] = $attr['value'];
+    	}
 	}
+	return $link;
 }
-endif;
+// Allow a br and em and strong tag only.
+function hana_wp_kses_text( $text ) {
+	return wp_kses( $text , array(	'a'  => array( 'href' => array(), 'title' => array() ),
+    								'br' => array(),
+    								'em' => array(),
+									'strong' => array() ) );
+}
+			

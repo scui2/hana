@@ -38,7 +38,10 @@
 			hana_meta_middle(); ?>
 		</header>
 		<div class="entry-summary clearfix">
-			<?php the_excerpt(); ?>
+<?php		if ( has_post_format( array('quote','aside','audio') ) )
+				the_content();
+			else
+				the_excerpt(); ?>
 		</div>
 <?php	
 	}
@@ -46,7 +49,6 @@
 	hana_post_edit();
 ?>
 	<footer class="entry-footer show-for-medium clearfix">
-<?php	
-		hana_meta_bottom(); ?>
+		<?php hana_meta_bottom(); ?>
 	</footer>
 </article>

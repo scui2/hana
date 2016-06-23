@@ -8,10 +8,7 @@
 /********************************************
  * General
  ********************************************/
-a:hover {
 
-
-}
 /********************************************
  * Background
  ********************************************/
@@ -20,27 +17,72 @@ a:hover {
 	background: #E0E4CC;
 }
 
-body {
+/********************************************
+ * Header
+ ********************************************/
+.site-description {
+	color: #fff;
 }
 /********************************************
- * Background
+ * Menu
  ********************************************/
+.top-bar .submenu {
+ 	border-color: #d1d8b4;
+ 	background: #E0E4CC;
+}
+ 
 .top-bar .menu a {
-	color: #F38630;
+	color: #414141;
 }
 
-.top-bar .menu a:hover {
-	color: #FA6900;
-}
 .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
-	border-color: #f5a461 transparent transparent;
+	border-color: #999 transparent transparent;
 }
 
 .sectionmenu {
+	border-top: 1px solid #d1d8b4;
+	border-bottom: 1px solid #d1d8b4;
+	background: #E0E4CC;
 }
-#footer,
-#footer-widget-area {
+
+.section-menu > ul > li > a,
+.section-menu ul ul li a {
+	color: #414141;
 }
+
+.section-menu ul li:hover {
+	background: #E0E4CC;
+	background: linear-gradient(top, #E0E4CC 0%, #e8ead7 80%);
+	background: -moz-linear-gradient(top, #E0E4CC 0%, #e8ead7 80%);
+	background: -webkit-linear-gradient(top, #E0E4CC 0%,#e8ead7 80%);
+}
+
+.section-menu ul ul {
+	background: #e8ead7;
+}
+
+.section-menu ul ul li {
+	border-color: #E0E4CC;
+}
+
+.section-menu ul ul li a:hover {
+	background: #E0E4CC;
+}
+
+/********************************************
+ * Post
+ ********************************************/
+.entry-meta,
+.entry-meta a {
+	color: #737373;	
+}
+
+.entry-meta a:hover {
+	color: #F38630;		
+}
+
+
+
 /********************************************
  * Buttons
  ********************************************/
@@ -49,29 +91,9 @@ body {
  * Widgets
  ********************************************/
 
-#footer-widget-area .widget-title {
-
-}
-
-.blog-widget .widget-container {
-}
-
-.blog-widget .widget-title {
-}
-
-.titlebar {
-}
 /********************************************
- * Top Bar 
+ * Links
  ********************************************/
-
-/********************************************
- * Section Menu
- ********************************************/
-.section-menu > ul > li > a {
-
+a {
+ color: #69D2E7;
 }
-
-.section-menu > ul > li:first-child {
-
-}	

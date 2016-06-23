@@ -66,13 +66,13 @@ class Hana_Recent_Post extends WP_Widget {
 
 			if ( ! empty( $title ) ) {
 				echo $before_title;
-				echo $title; // Can set this with a widget option, or omit altogether
+				echo esc_attr( $title ); // Can set this with a widget option, or omit altogether
 				echo $after_title;			
 				if ( ! empty( $category_link ) && $category ) {
 					printf( '<a href="%1$s" title="%2$s" class="hana_recent_post_link">%3$s <i class="fa fa-angle-right"></i></a>',
-						get_category_link( $category ) ,
-						get_the_category_by_ID( $category ),
-						$category_link );					
+						esc_url( get_category_link( $category ) ) ,
+						esc_attr( get_the_category_by_ID( $category ) ),
+						esc_attr( $category_link ) );					
 				}	
 			}
 
@@ -229,7 +229,7 @@ class Hana_Navigation extends WP_Widget {
 		echo $before_widget; 
 		if ( ! empty( $title ) ) {
 			echo $before_title;
-			echo $title;
+			echo esc_attr( $title );
 			echo $after_title;
 		}
 
@@ -287,7 +287,7 @@ class Hana_Navigation extends WP_Widget {
 				$rec_args['post_status'] = 'publish';
 				$recent_posts = wp_get_recent_posts( $rec_args ); 
 				foreach( $recent_posts as $recent_post ){
-					echo '<li><a href="' . get_permalink($recent_post["ID"]) . '" title="Look '.esc_attr($recent_post["post_title"]).'" >' . $recent_post["post_title"].'</a> </li> ';
+					echo '<li><a href="' . esc_url( get_permalink($recent_post["ID"]) ) . '" title="Look '.esc_attr($recent_post["post_title"]).'" >' . esc_attr( $recent_post["post_title"] ) .'</a> </li> ';
 				}			
 				echo '</ul></div>';
 				break;

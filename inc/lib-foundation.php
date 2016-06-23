@@ -132,9 +132,24 @@ function hana_bbp_class() {
 }
 endif;
 
-if ( ! function_exists( 'hana_full_width_class' ) ) :
-function hana_full_width_class() {
-	if ( hana_option('fluid_width') || is_page_template( array('pages/fullwidth.php', 'pages/homepage.php') ) )
-		echo ' expanded';
+if ( ! function_exists( 'hana_main_class' ) ) :
+function hana_main_class() {
+	if ( is_page_template( 'pages/fullwidth.php' ) )
+		$class =  'clearfix';
+	elseif ( hana_option('fluid_width') )
+		$class = "row expanded";
+	else
+		$class =  'row';
+	return $class;
+}
+endif;
+
+if ( ! function_exists( 'hana_header_row_class' ) ) :
+function hana_header_row_class() {
+	if ( hana_option('fluid_width') || hana_option('fullwidth_header') )
+		$class = "row expanded";
+	else
+		$class = "row";		
+	return $class;
 }
 endif;

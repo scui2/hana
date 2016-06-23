@@ -23,17 +23,22 @@
 			elseif ( has_post_thumbnail() )
 				the_post_thumbnail( 'full', array( 'class'	=> 'fullwidth-image', 'title' => get_the_title() ) ); ?>
 			<div class="featured-caption clearfix">
-
-<?php			if ('post' == get_post_type() )  { ?>
+<?php			if ('post' == get_post_type() )  {
+					$link_url = get_the_permalink();
+					if ( has_post_format( 'link' ) ) {
+						$link = hana_get_link( get_the_content() );					
+    					if ( isset( $link['href'] ) )
+    						$link_url = $link['href'];
+					} ?>
 					<h3 class="featured-title">
-						<a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a>
+						<a href="<?php echo esc_url($link_url); ?>"><?php the_title(); ?></a>
 					</h3>
 <?php				if ( has_excerpt()) { ?>
 						<div class="featured-excerpt">
 							<?php the_excerpt( '' ); ?>
 						</div>
 <?php				} ?>
-					<a class="button btn-featured" href="<?php echo get_permalink(); ?>"><?php echo esc_attr( hana_readmore_text() ); ?></a>
+					<a class="button btn-featured" href="<?php echo esc_url($link_url); ?>"><?php echo esc_attr( hana_readmore_text() ); ?></a>
 <?php			} else { ?>
 					<h3 class="featured-title">
 						<?php the_title(); ?>

@@ -33,7 +33,7 @@
 		</div>
 		<?php hana_post_edit(); ?>
 		<nav id="nav-single" class="row">
-				<div class="nav-previous  medium-6 small-12 columns"><?php previous_image_link( false, __( '<i class="fa fa-chevron-left"></i> Previous', 'hana') ); ?></span>
+				<div class="nav-previous medium-6 small-12 columns"><?php previous_image_link( false, __( '<i class="fa fa-chevron-left"></i> Previous', 'hana') ); ?></span>
 				<div class="nav-next medium-6 small-12 columns"><?php next_image_link( false, __( 'Next <i class="fa fa-chevron-right"></i>', 'hana') ); ?></div>
 		</nav>
 	</article>

@@ -8,7 +8,7 @@
  * @license GPL v3 or later
  * @link    http://www.rewindcreation.com/
  */ 
-	$sidebar = intval( hana_option( 'sidebar_bbp' ) );
+	$sidebar = absint( hana_option( 'sidebar_bbp' ) );
 	if ( $sidebar > 0 && is_active_sidebar( 'sidebar-bbp' ) ) {
 		$sidebar_class = 'large-' . $sidebar . ' medium-' . $sidebar . ' columns';
 ?>	

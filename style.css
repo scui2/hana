@@ -7,7 +7,7 @@ Description: HANA is a simple and feature-rich Foundation 6 theme that is perfec
 
 Author: RewindCreation
 
-Version: 1.0.4
+Version: 1.0.4.3
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -18,8 +18,7 @@ Text Domain: hana
 HANA WordPress Theme, Copyright (C) 2016 Stephen Cui
 ------------------------------------------------------------------ */
 /****************************************************************
- * Surprised to see empty stylesheet? Please note that the theme
- * style is located in css/hana.css.
+ * Please note that the theme style is located in css/hana.css.
  * You may use one of the follow options to override the style
  * 1. Use Jetpack's custom css function
  https://en.support.wordpress.com/custom-design/editing-css/

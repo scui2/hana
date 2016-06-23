@@ -195,4 +195,3 @@ if ( is_admin() ) {
 	require_once( get_template_directory() . '/inc/core-admin.php' );
 }
 
-

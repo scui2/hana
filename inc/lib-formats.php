@@ -78,7 +78,7 @@ function hana_has_featured_posts( $minimum = 1 ) {
 	if ( class_exists( 'bbPress' ) && is_bbpress() )
        return false;	       
        
-    if ( is_page() && ( ! is_page_template( 'pages/homepage.php') ) )
+    if ( is_page() &&  !is_front_page() )
        return false;
        	
     $minimum = absint( $minimum );
@@ -147,6 +147,23 @@ function hana_featured_top( ) {
 			<?php get_template_part( 'parts/featured', $slider_type ); ?>
 		</div>
 <?php
+	}
+}
+endif;
+
+
+if ( ! function_exists( 'hana_single_post_link' ) ) :
+/* This function echo the link to single post view for the following:
+- Aside Post
+- Post without title
+------------------------------------------------------------------------- */
+function hana_single_post_link() {
+	if ( ! is_single() ) {
+		if ( has_post_format( 'aside' ) || has_post_format( 'quote' ) || '' == the_title_attribute( 'echo=0' ) ) { 
+			printf ('<a class="single-post-link" href="%1$s" title="%1$s"><i class="fa fa-chevron-right"></i></a>',
+				get_permalink(),
+				get_the_title()	);
+		} 
 	}
 }
 endif;

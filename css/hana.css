@@ -1,11 +1,11 @@
 /**
- * Theme style
+ * HANA Theme style
  * 
  * @package	hana
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
 ********************************************
  * 1. General
  * 2. WordPress Class
@@ -21,7 +21,7 @@
  * 12. Portfolio
  * 19. Social
  * 20. Responsive
- * 21. Print Sty;e
+ * 21. Print Style
  ********************************************/
  
 /********************************************
@@ -61,9 +61,6 @@ h1, h2, h3, h4, h5, h6 {
 	color: inherit;
 }
 
-a:hover {
-	color: #F38630;	
-}
 /********************************************
  * 2. WordPress Class
  ********************************************/
@@ -73,9 +70,10 @@ a:hover {
 	text-align: center;
 }
 
-.wp-caption p.wp-caption-text {
+.wp-caption .wp-caption-text {
 	margin: 0.5rem;
 	color: #888;
+	font-size: 0.9rem;
 }
 
 .alignleft {
@@ -110,6 +108,7 @@ a:hover {
 .format-gallery .entry-content {
 	clear: both;
 }
+
 .bypostauthor {
 }
 
@@ -122,8 +121,8 @@ a:hover {
 /********************************************
  * HTML5 Gallery
  ********************************************/
-.gallery:before,
-.gallery:after {
+.gallery::before,
+.gallery::after {
 	content: "";
 	display: table;
 	clear: both;
@@ -214,7 +213,7 @@ a:hover {
 	width: 100%;
 }
 
-.gallery-caption:before {
+.gallery-caption::before {
 	content: "";
 	height: 100%;
 	min-height: 49px;
@@ -241,9 +240,13 @@ a:hover {
 }
 
 .sticky-header {
-	position: fixed;
 	z-index: 5;
 	top: 0;
+	width: 100%;
+}
+
+.sticky-container {
+	height: 38px;	
 }
 
 .top-bar {
@@ -266,8 +269,7 @@ a:hover {
 }
 
 .top-bar.shrunk .site-description {
-	display: none;
-	transition: all 100ms ease;
+	display: none; 
 }
 
 .top-bar .menu {
@@ -286,7 +288,7 @@ a:hover {
 
 .title-bar .top-bar-title {
 	display: inline-block;	
-	width: 80%;
+	width: 85%;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
@@ -323,7 +325,7 @@ a:hover {
 }
 
 .title-bar .site-title a {
-	font-size: 1.5rem;	
+	font-size: 1.25rem;	
 }
 
 .shrunk.top-bar .site-title a {
@@ -334,6 +336,7 @@ a:hover {
 	color: #eee;
 	font-size: 1rem;
 	margin-top: -0.5rem;
+	display: inline-block;
 }
 
 .top-bar input {
@@ -342,11 +345,6 @@ a:hover {
 
 .dropdown.menu > li.opens-left > .is-dropdown-submenu {
 	margin-top: 0;
-}
-
-.page-title {
-	padding: 0.25rem 1rem;
-	border-bottom: 1px solid #eee;
 }
 
 .topmenu-toggle:before {
@@ -358,6 +356,14 @@ a:hover {
 	content: "\f00d";	
 }
 
+.page-title {
+	padding: 0.5rem 1rem 0.25rem;
+	border-bottom: 1px solid #eee;
+}
+
+.small-search-form {
+	padding: 0 1em;
+}
 /********************************************
  * 4. Menu
  ********************************************/
@@ -377,6 +383,7 @@ a:hover {
 	background: #23282D;
 	border-color: #373f46;
 }
+
 /* Section Menu */
 .sectionmenu {
 	border-bottom: 1px solid #004C54;
@@ -406,7 +413,7 @@ a:hover {
 	z-index: 10;
 }
 
-.section-menu ul:after {
+.section-menu ul::after {
 	content: "";
 	clear: both;
 	display: block;
@@ -452,8 +459,7 @@ a:hover {
 
 .section-menu ul ul li {
 	float: none; 
-	border-top: 1px solid #6b727c;
-	border-bottom: 1px solid #575f6a;
+	border-top: 1px solid #575f6a;
 	position: relative;
 }
 
@@ -474,8 +480,8 @@ a:hover {
 	min-width: 100%;
 }
 
-.section-menu > ul > li.current-menu-parent:after,
-.section-menu > ul > li.current-menu-item:after {
+.section-menu > ul > li.current-menu-parent::after,
+.section-menu > ul > li.current-menu-item::after {
 	content: '';
 	position: absolute;
 	top: 2.5rem;
@@ -485,8 +491,8 @@ a:hover {
 	border-bottom: 6px solid #FEFEFE;
 }
 
-.section-menu > ul > li.current-menu-parent:hover:after,
-.section-menu > ul > li.current-menu-item:hover:after {
+.section-menu > ul > li.current-menu-parent:hover::after,
+.section-menu > ul > li.current-menu-item:hover::after {
 	content: '';
 	border: none;
 }
@@ -542,7 +548,6 @@ a:hover {
 	padding: 0;
 	margin:  0;
 	list-style:none;
-	font-size: 0.875rem;
 }
 
 .footer-menu ul li ul,
@@ -568,25 +573,25 @@ a:hover {
 /********************************************
  * 5. Footer
  ********************************************/
-.custom-background #footer-widget-area,
+.custom-background #footer-widgets,
 .custom-background #footer {
 	background: #f1f1f1;
 	background: rgba(250,250,250, 0.8);
 }
 
 #footer {
-	font-size: 0.875rem;
-	padding: 2rem 1rem;
+	font-size: 0.75rem;
+	padding: 2rem 0;
 	background: #DFE3EE;	
 }
 
-#footer-widget-area {
+#footer-widgets {
 	background: #DFE3EE;
 	padding-top: 1rem;
 }
 
 .footer-widget {
-	font-size: 0.875rem;
+	font-size: 0.8125rem;
 }
 
 .footer-widget .widget ul li,
@@ -594,11 +599,11 @@ a:hover {
 	border-bottom: none;
 }
 
-#site-info {
+.copyright {
 	color: #757575;
 }
 
-#site-info a {
+.copyright a {
 	color: #757575;
 	text-decoration: none;
 	padding: 0 0.25rem;
@@ -618,13 +623,12 @@ a:hover {
 
 img#wpstats {
 	display: none;
-	margin: 0 auto 10px;
 }
 /* Back to top button */
 .back-to-top {
 	position: fixed;
-	bottom: 30px;
-	right: 20px;
+	bottom: 2em;
+	right: 1em;
 }
 
 .back-to-top a {
@@ -676,10 +680,6 @@ img#wpstats {
 	min-height: 25rem;
 }
 
-.fullwidth-slider .featured-content-full {
-	margin-top: -141px;
-}
-
 .featured-content-ticker {
 	padding: 0.625rem 0;
 	text-align: center;	
@@ -729,7 +729,7 @@ img#wpstats {
 }
 
 .featured-excerpt p {
-	margin-bottom: 0.25rem; 	
+	margin-bottom: 0.5rem; 	
 }
 
 .btn-featured {
@@ -877,6 +877,10 @@ img#wpstats {
   transform: scale(1.1);
 }
 
+.more-link {
+	font-size: 0.875rem;
+	text-transform: uppercase;
+}
 /********************************************
  * Manual Excerpt
  ********************************************/
@@ -902,31 +906,12 @@ img#wpstats {
 /********************************************
  * Post Formats
  ********************************************/
-.multi .format-aside .entry-header,
-.multi .format-aside .entry-footer,
-.multi .format-quote .entry-header,
-.multi .format-quote .entry-footer,
-.multi .format-link .entry-header  {
+.loop .format-aside .entry-header,
+.loop .format-aside .entry-footer,
+.loop .format-quote .entry-header,
+.loop .format-quote .entry-footer {
 	display: none;
 }
-
-.format-link .entry-summary a:before,
-.format-link .entry-content a:before {
-	font-family: "FontAwesome";
-	content: "\f0ac";
-	margin-right: 0.75rem;
-}
-
-.format-link .entry-summary a,
-.format-link .entry-content a {
-	font-size: 1.125rem;
-}
-
-.format-link .entry-summary,
-.format-link .entry-content {
-	padding: 1rem;
-}
-
 
 .format-aside .entry-content,
 .format-aside .entry-summary,
@@ -944,13 +929,14 @@ img#wpstats {
 	margin: 0;
 	border: none;
 }
+
 .entry-content blockquote cite {
 	margin: 0.25rem 0 0;
 	display: block;
 }
 
-.format-quote .entry-content:before,
-.format-quote .entry-summary:before {
+.format-quote .entry-content::before,
+.format-quote .entry-summary::before {
 	position: absolute;
 	top: 1.875rem;
 	left: -0.25rem;
@@ -959,6 +945,17 @@ img#wpstats {
 	font-size: 2.25rem;
 	color: #888;
 }
+
+.format-link .more-link {
+	display: none;
+}
+
+.format-link .entry-title a::before {
+	font-family: "FontAwesome";
+	content: "\f0ac";
+	margin-right: 0.75rem;
+}
+
 /********************************************
  * 8. Post Meta
  ********************************************/
@@ -967,7 +964,7 @@ img#wpstats {
  }
 
 .entry-meta {
-	font-size: 0.8rem;
+	font-size: 0.875rem;
 	line-height: 1.5;
 	color: #1a5c79;
 	margin: 0;
@@ -999,14 +996,14 @@ img#wpstats {
 	text-transform: uppercase;
 }
 
-.meta-parent:before,
-.meta-img-size:before,
-.entry-more a:before,
-.entry-tag:before,
-.meta-comment a:before,
-.entry-meta-bottom .entry-date:before,
-.entry-meta-bottom .by-author a:before,
-.entry-meta-bottom .entry-category:before {
+.meta-parent::before,
+.meta-img-size::before,
+.entry-more a::before,
+.entry-tag::before,
+.meta-comment a::before,
+.entry-meta-bottom .entry-date::before,
+.entry-meta-bottom .by-author a::before,
+.entry-meta-bottom .entry-category::before {
 	font-family: "FontAwesome";
 	margin-right: 0.375rem;
 }
@@ -1015,37 +1012,37 @@ img#wpstats {
 	display: none;
 }
 
-.entry-meta-bottom .entry-date:before {
+.entry-meta-bottom .entry-date::before {
 	content: "\f017";
 }
 
-.entry-meta-bottom .by-author a:before {
+.entry-meta-bottom .by-author a::before {
 	content: "\f007"; }
 
-.meta-comment a:before {
+.meta-comment a::before {
 	content: "\f086"; }
 
-.entry-tag:before {
+.entry-tag::before {
 	content: "\f02c"; }
 
-.entry-more a:before {
+.entry-more a::before {
 	content: "\f0a4"; }
 
-.meta-parent:before,
-.entry-meta-bottom .entry-category:before {
+.meta-parent::before,
+.entry-meta-bottom .entry-category::before {
 	content: "\f07c"; }
 
-.meta-img-size:before {
+.meta-img-size::before {
 	content: "\f03e"; }
 	
 .edit-link a {
 	display: block;
 	position: absolute;
-	left: -1.75rem;
+	right: 0;
 	top: 0;
 	background: #cbcaf9;
 	padding: 0.125rem 0.375rem;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	z-index: 1;
 	opacity: 0.2;
 }
@@ -1108,7 +1105,7 @@ img#wpstats {
 	margin-right: 0.5rem;
 }
 
-.comment-meta cite:before {
+.comment-meta cite::before {
 	content: ' ';
 }
 .commentlist p {
@@ -1161,6 +1158,10 @@ li.pingback {
 	padding: 0.8rem 0;
 }
 
+.nav-previous .nav-next {
+	padding: 0.25rem 0;
+}
+
 .nav-next {
 	text-align: right;
 }
@@ -1184,6 +1185,10 @@ li.pingback {
 /********************************************
  * 11. Widgets
  ********************************************/
+.sticky-sidebar {
+	width: 100%;
+}
+
 .sidebar .sticky.is-anchored {
 	position: relative;
 }
@@ -1260,6 +1265,7 @@ li.pingback {
 }
 
 .footer-widget .widget-title {
+	font-size: 1rem;
 	border-bottom: 1px solid #d1d1d1;
 }
 
@@ -1367,7 +1373,12 @@ li.pingback {
 	padding-top: 1rem;
 	padding-bottom: 0;
 }
-
+/********************************************
+ * 13. Links
+ ********************************************/
+a:hover, a:focus  {
+	color: #F38630;	
+}
 /********************************************
  * 19. Social
  ********************************************/
@@ -1503,7 +1514,7 @@ li.pingback {
 	text-align: center;	
 }
 
-#site-info {
+.copyright {
 	padding: 0.5rem 0;
 	text-align: center;	
 } 
@@ -1530,6 +1541,10 @@ li.pingback {
 
 .fullwidth-slider .is-anchored .top-bar {
 	background: rgba(100, 100, 100, 0.3);
+}
+
+.sticky-container {
+	height: 141px;	
 }
 
 }
