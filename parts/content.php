@@ -6,7 +6,7 @@
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -26,7 +26,7 @@
 	</header>
 <?php
 
-	if ( hana_option( 'show_featured' ) && has_post_thumbnail() ) { ?>
+	if ( get_theme_mod( 'show_featured' ) && has_post_thumbnail() ) { ?>
 		<div class="featured-media-container">
 			<?php hana_featured_image(); ?>
 		</div>
@@ -35,7 +35,10 @@
 	<div class="entry-content clearfix">
 <?php
 		the_content( '' );
-		wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'hana' ) . '</span>', 'after' => '</div>' ) ); 
+		wp_link_pages( array( 'before' => '<div class="page-link"><span class="page-link-title">' . __( 'Pages:', 'hana' ) . '</span>',
+						 	'after' => '</div>' ,
+						 	'link_before' => '<span class="page-link-number">',
+						 	'link_after' => '</span>' ) ); 
 ?>
 	</div>
 	<footer class="entry-footer clearfix">

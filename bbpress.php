@@ -7,7 +7,7 @@
  * @link    http://www.rewindcreation.com/
  */
 get_header(); ?>
-<div id="content" role="main" class="site-content <?php echo hana_bbp_class(); ?>">
+<div id="content" role="main" class="site-content <?php hana_grid()->bbp_content_class(); ?>">
 <?php
 	while ( have_posts() ) {
 		the_post();

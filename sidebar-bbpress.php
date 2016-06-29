@@ -8,11 +8,8 @@
  * @license GPL v3 or later
  * @link    http://www.rewindcreation.com/
  */ 
-	$sidebar = absint( hana_option( 'sidebar_bbp' ) );
-	if ( $sidebar > 0 && is_active_sidebar( 'sidebar-bbp' ) ) {
-		$sidebar_class = 'large-' . $sidebar . ' medium-' . $sidebar . ' columns';
-?>	
-		<div id="sidebar-bbp" class="<?php echo $sidebar_class; ?> sidebar" role="complementary">			
+	if ( absint( get_theme_mod( 'sidebar_bbp', 3 ) ) > 0 && is_active_sidebar( 'sidebar-bbp' ) ) {
+?>		<div id="sidebar-bbp" class="sidebar <?php hana_grid()->bbp_sidebar_class(); ?>" role="complementary">			
 			<?php dynamic_sidebar( 'sidebar-bbp' );	?>
 		</div>
 <?php

@@ -8,9 +8,9 @@
  * @license GPL v3 or later
  * @link    http://www.rewindcreation.com/
  */
-	if ( hana_option( 'sticky_header' ) ) { ?>
+	if ( get_theme_mod( 'sticky_header' ) ) { ?>
 	<div data-sticky-container class="sticky-container">
-  	  <div class="small-12 sticky sticky-header" data-sticky data-sticky-on="small" data-margin-top="0" data-top-anchor="1" data-bottom-anchor="content:bottom" <?php if (hana_option( 'shrink_topbar') ) echo 'data-shrink'; ?>>
+  	  <div class="small-12 sticky sticky-header is-anchored" data-sticky data-sticky-on="small" data-margin-top="0" data-top-anchor="1" data-bottom-anchor="content:bottom" <?php if ( get_theme_mod( 'shrink_topbar') ) echo 'data-shrink'; ?>>
   	  
 <?php
 	} ?>
@@ -22,7 +22,7 @@
     	<button class="float-right title-bar-icon hana-toggle topmenu-toggle" data-toggle="top-menu"></button>
     </div>
 	<div id="top-menu" class="top-bar" data-toggler>
-		<div class="<?php echo hana_header_row_class(); ?>">
+		<div class="<?php hana_grid()->header_row_class(); ?>">
 <?php		if ( has_nav_menu( 'section' ) ) { ?>
 		  		<div class="top-bar-left show-for-medium-only">
 					<button class="title-bar-icon leftmenu-toggle" data-toggle="offCanvasLeft"><i class="fa fa-bars"></i></button>    
@@ -32,28 +32,28 @@
 				<?php get_search_form(); ?>
 			</div>
  			<div class="top-bar-title show-for-medium"><?php hana_branding(); ?></div>
-<?php		if ( hana_option( 'social_top') && has_nav_menu( 'social') ) { ?>
+  			<div class="top-bar-right show-for-medium">
+  				<ul class="menu"><li><a data-open="modelSearch"><span class="fa fa-search"></span></a></li></ul>		
+ 			</div> 
+<?php		if ( get_theme_mod( 'social_top') && has_nav_menu( 'social') ) { ?>
  				<div class="top-bar-right">
 					<?php hana_social_menu( 'social menu' ); ?>
  				</div>
 <?php		} ?>
- 			<div class="top-bar-right show-for-medium">
-  				<ul class="menu"><li><a data-open="modelSearch"><span class="fa fa-search"></span></a></li></ul>		
- 			</div> 
   			<div class="top-bar-right">
 <?php  			wp_nav_menu(array(
 					'theme_location' => 'top-bar',
 					'container' => false,
-					'menu_class' => 'menu horizontal',
+					'menu_class' => 'menu horizontal dropdown',
 					'fallback_cb' => 'hana_nav_fb', // fallback function 
 					'items_wrap' => '<ul id="%1$s" class="%2$s" data-responsive-menu="drilldown medium-dropdown">%3$s</ul>',
 					'walker' => new hana_topbar_walker()
 				)); ?>
-			</div>		
+			</div>
 		</div>	
 	</div><!-- top-bar -->
 <?php
-	if ( hana_option( 'sticky_header' ) ) { ?>
+	if ( get_theme_mod( 'sticky_header' ) ) { ?>
   	  </div>
 	</div><!-- sticky container -->
 <?php

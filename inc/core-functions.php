@@ -10,6 +10,46 @@
  */
 if ( ! defined('ABSPATH') ) exit;
 
+/******************************
+* Featured Posts
+******************************/
+if ( ! function_exists( 'hana_featured_top' ) ):
+function hana_featured_top( ) {
+	if ( hana_has_featured_posts() ) {
+		$slider_type = esc_attr( get_theme_mod('slider_type', 'full') ); ?>
+		<div class="featured-content featured-content-<?php echo $slider_type; ?> clearfix">
+			<?php get_template_part( 'parts/featured', $slider_type ); ?>
+		</div>
+<?php
+	}
+}
+endif;
+
+function hana_has_featured_posts( $minimum = 1 ) { 
+	global $hana_featured_posts;
+	if ( is_paged() || is_search() || is_archive() || is_single()  )
+       return false;
+       
+	if ( class_exists( 'bbPress' ) && is_bbpress() )
+       return false;	       
+       
+    if ( is_page() &&  !is_front_page() )
+       return false;
+       	
+    $minimum = absint( $minimum );
+    
+    if ( ! is_array( $hana_featured_posts ) )
+	    $hana_featured_posts = apply_filters( 'hana_get_featured_posts', array() );
+ 
+    if ( ! is_array( $hana_featured_posts ) )
+        return false;
+ 
+    if ( $minimum > count( $hana_featured_posts ) )
+        return false;
+ 
+    return true;
+}
+
 function hana_change_sticky_class( $classes ) {
 	$classes = array_diff( $classes, array( 'sticky' ) );
 	$classes[] = 'wp-sticky';
@@ -22,10 +62,10 @@ function hana_body_classes( $classes ) {
 	if ( get_background_image() ) {
 		$classes[] = 'custom-background-image';
 	}
-	if ( 'full' == hana_option('slider_type') &&  hana_option( 'sticky_header' ) &&  hana_option( 'slider_top' ) && hana_has_featured_posts() )
+	if ( 'full' == get_theme_mod('slider_type', 'full') &&  get_theme_mod( 'sticky_header' ) &&  get_theme_mod( 'slider_top' ) && hana_has_featured_posts() )
 		$classes[] = 'fullwidth-slider';
 	if ( ! is_page_template( 'pages/fullwidth.php') && ! is_page_template( 'pages/nosidebar.php') )
-		$classes[] = 'sidebar-' . hana_option( 'sidebar_pos' );
+		$classes[] = 'sidebar-' . get_theme_mod( 'sidebar_pos', 'right' );
 
 	return $classes;
 }
@@ -99,17 +139,18 @@ function hana_comment( $comment, $args, $depth ) {
 					 	echo human_time_diff( get_comment_time( 'U' ), current_time( 'timestamp') ) . __( ' ago', 'hana' );
 						//printf( __( '%1$s at %2$s', 'hana' ), get_comment_date(), get_comment_time() ); ?>
 					</time></a>
-					<div class="comment-reply">
-<?php 					comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => __('Reply', 'hana') ) ) );
-						edit_comment_link( '<i class="fa fa-pencil"></i> ' ); ?>
-					</div>
 <?php					if ( $comment->comment_approved == '0' ) { ?>
 					<em><?php _e( 'Your comment is awaiting moderation.', 'hana' ); ?></em>
 <?php 				}; ?>
 				</div>
 			</footer>
-			<div class="comment-content"><?php comment_text(); ?></div>
-
+			<div class="comment-content">
+				<?php comment_text(); ?>
+				<div class="comment-reply">
+<?php 				comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => __('Reply', 'hana') ) ) );
+					edit_comment_link( '<i class="fa fa-pencil"></i> ' ); ?>
+					</div>
+			</div>
 		</article>
 	<?php
 			break;
@@ -243,9 +284,7 @@ function hana_page_title() {
 		$title = sprintf( __( '<span class="pt-label">Search Results for: </span><span class="pt-name">%s</span>', 'hana' ), get_search_query() );
 		$class .= 'pt-search';
 	} elseif ( is_author() ) {
-			the_post();
-			$title = sprintf( __( '<span class="pt-label">Author: </span><span class="pt-name">%s</span>', 'hana' ), '<a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( "ID" ) ) ) . '" title="' . esc_attr( get_the_author() ) . '" rel="me">' . esc_attr( get_the_author() ) . '</a>' );
-			rewind_posts();		
+		$title = get_the_archive_title();
 	}
 	elseif ( is_category() ) {
 		$category_description = get_the_archive_description();
@@ -253,38 +292,31 @@ function hana_page_title() {
 		if ( empty( $category_description ) )			
 			$title = sprintf( __( '<span class="pt-label">Category: </span><span class="pt-name">%s</span>', 'hana' ), esc_attr( $category_name ) );
 		else
-			$title = esc_attr( $category_description );		
+			$title = $category_description;		
 		$category_id = get_cat_ID( $category_name );
 		// Category Title Class
 		$class .= ' pt-category pt-category-' .  $category_id;
 		$parent = get_term( $category_id, 'category' );
 		while ( $parent->parent ) {
-			$class .= ' pt-category-' . $parent->parent;
+			$class .= ' pt-category-' . esc_attr( $parent->parent );
 			$parent = get_term( $parent->parent , 'category' );				
 		}
 	}
 	elseif ( is_tag() ) {
-		$tag_description = tag_description();
+		$tag_description = get_the_archive_description();
 		if ( empty( $tag_description ) )				
-			$title = sprintf( __( '<span class="pt-label">Tag: </span><span class="pt-name">%s</span>', 'hana' ), single_tag_title( '', false ) );
+			$title = sprintf( __( '<span class="pt-label">Tag: </span><span class="pt-name">%s</span>', 'hana' ), esc_attr( get_the_archive_title() ) );
 		else
-			$title = esc_attr( $tag_description );
+			$title = $tag_description;
 		$class .= ' pt-tag';
 	}
 	elseif ( is_archive() ) {
-		if ( is_day() ) 
-			$title = sprintf( __( '<span class="pt-label">Daily Archives: </span><span class="pt-name">%s</span>', 'hana' ), get_the_date() );
-		elseif ( is_month() )
-			$title = sprintf( __( '<span class="pt-label">Monthly Archives: </span><span class="pt-name">%s</span>', 'hana' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'hana' ) ) );
-		elseif ( is_year() )
-			$title = sprintf( __( '<span class="pt-label">Yearly Archives: </span><span class="pt-name">%s</span>', 'hana' ), get_the_date( _x( 'Y', 'yearly archives date format', 'hana' ) ) );
-		else
-			$title = get_the_title();
+		$title = get_the_archive_title();
 		$class = 'pt-archive';
 	}
 	if ( !empty( $title ) ) { ?>
 		<div class="page-title <?php echo esc_attr( $class ); ?>">
-			<h3><?php echo $title; ?></h3>
+			<?php echo $title; ?>
 		</div>
 <?php		
 	}

@@ -89,7 +89,7 @@ function hana_category_choices( $inc = 'all' ) {
 	elseif ( 'metaall' == $inc )
 		$choices[''] = __( 'All Categories', 'hana' );
 	elseif ( 'blank' == $inc )
-		$choices[''] = __( '', 'hana' );
+		$choices[''] = '';
 		
 	foreach ( $categories as $category )
 		$choices[ $category->term_id ] = $category->name;

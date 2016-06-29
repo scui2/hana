@@ -11,7 +11,7 @@
  */
 	get_header();
 ?>
-<div id="content" class="site-content <?php echo hana_grid_full(); ?>" role="main">
+<div id="content" class="site-content <?php hana_grid()->fullgrid_class(); ?>" role="main">
 <?php
 	while ( have_posts() ) {
 		the_post(); ?>
@@ -33,8 +33,8 @@
 		</div>
 		<?php hana_post_edit(); ?>
 		<nav id="nav-single" class="row">
-				<div class="nav-previous medium-6 small-12 columns"><?php previous_image_link( false, __( '<i class="fa fa-chevron-left"></i> Previous', 'hana') ); ?></span>
-				<div class="nav-next medium-6 small-12 columns"><?php next_image_link( false, __( 'Next <i class="fa fa-chevron-right"></i>', 'hana') ); ?></div>
+				<div class="nav-previous medium-6 columns"><?php previous_image_link( false, __( '<i class="fa fa-chevron-left"></i> Previous', 'hana') ); ?></span>
+				<div class="nav-next medium-6 columns"><?php next_image_link( false, __( 'Next <i class="fa fa-chevron-right"></i>', 'hana') ); ?></div>
 		</nav>
 	</article>
 <?php

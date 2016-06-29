@@ -10,7 +10,7 @@
  */
 	get_header();
 	hana_page_title(); ?>
-<div id="content" class="site-content loop <?php echo hana_content_class(); ?>" role="main">
+<div id="content" class="site-content loop <?php hana_grid()->content_class(); ?>" role="main">
 <?php
 	if ( have_posts() ) {
 		hana_content_nav( 'nav-above' );

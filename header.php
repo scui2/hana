@@ -31,11 +31,11 @@
 		<?php get_template_part( 'parts/top', 'menu' ); ?>
 	</header>
  <?php
-	if ( 'full' == hana_option( 'slider_type' ) )
+	if ( 'full' == get_theme_mod( 'slider_type', 'full' ) )
 		hana_featured_top();
 	get_template_part( 'parts/section', 'menu' );
-	if ( 'full' != hana_option( 'slider_type' ) )
+	if ( 'full' != get_theme_mod( 'slider_type', 'full' ) )
 		hana_featured_top();
 	do_action('hana_header_before_main'); //Action Hook
 ?>
-<div id="main" class="<?php echo hana_main_class();?>">
+<div id="main" class="<?php hana_grid()->main_class(); ?>">

@@ -92,8 +92,7 @@ jQuery(document).ready(function($){
 			adaptiveHeight: true,
 			onSliderLoad: function(){
         		$(".featured-content").css("visibility", "visible");
-        		$(".featured-content").css("height", "auto");      
-	       		$(".sticky-header").addClass("is-anchored");
+        		$(".featured-content").css("height", "auto");
       		}
 		});
 	}

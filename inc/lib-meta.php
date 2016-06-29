@@ -31,9 +31,9 @@ function hana_meta_middle() {
 		$html = '<ul class="entry-meta entry-meta-middle">';
 		if ( ! is_single() )
 			$html .= hana_meta_category();	
-		if (  hana_option('show_date') )
+		if (  ! get_theme_mod('hide_date') )
 			$html .= hana_meta_date();
-		if (  hana_option('show_author') )
+		if ( ! get_theme_mod('hide_author') )
 			$html .= hana_meta_author();	
 		$html .= '</ul>';	
 		echo apply_filters( 'hana_meta_middle', $html );	
@@ -80,11 +80,7 @@ function hana_meta_portfolio() {
 	if ( 'post' == get_post_type() && ( hana_option('show_date')  || hana_option('show_author') ) ) {
 		$sep = ' &bull; ';
 		$html = '<ul class="entry-meta entry-meta-middle">';
-		$html .= hana_meta_category();
-		if (  hana_option('show_date') )
-			$html .= hana_meta_date();
-		if (  hana_option('show_author') )
-			$html .= hana_meta_author();	
+		$html .= hana_meta_tag();
 		$html .= '</ul>';	
 		echo apply_filters( 'hana_meta_portfolio', $html );
 	}	

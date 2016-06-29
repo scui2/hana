@@ -2,7 +2,7 @@
 /**
  * Functions related to Post Formats
  * 
- * @package	hana
+ * @package	hanacore
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
@@ -70,38 +70,15 @@ function hana_is_featured() {
 		return false;
 }
 
-function hana_has_featured_posts( $minimum = 1 ) { 
-	global $hana_featured_posts;
-	if ( is_paged() || is_search() || is_archive() || is_single()  )
-       return false;
-       
-	if ( class_exists( 'bbPress' ) && is_bbpress() )
-       return false;	       
-       
-    if ( is_page() &&  !is_front_page() )
-       return false;
-       	
-    $minimum = absint( $minimum );
-    
-    if ( ! is_array( $hana_featured_posts ) )
-	    $hana_featured_posts = apply_filters( 'hana_get_featured_posts', array() );
- 
-    if ( ! is_array( $hana_featured_posts ) )
-        return false;
- 
-    if ( $minimum > count( $hana_featured_posts ) )
-        return false;
- 
-    return true;
-}
-
 function hana_has_featured_media() {
+
 	if ( has_post_thumbnail() )
 		return true;
 	elseif ( hana_get_image() )
 		return true;
 	elseif ( hana_get_video() )
 		return true;
+
 	return false;
 }
 
@@ -125,8 +102,8 @@ function hana_featured_image( $size = 'full', $class = null, $link = false ) {
 			$class = 'featured-image-' . $size;
 		if ( ! is_single( $post ) || $link ) {
 			printf ('<div class="scale-item"><a href="%1$s" title="%2$s">', 
-				get_permalink(),
-				get_the_title()	);	
+				esc_url( get_permalink() ),
+				esc_attr( get_the_title() ) );	
 			the_post_thumbnail( $size, array( 'class'	=> $class, 'title' => get_the_title() ) );
 			echo '</a></div>';
 		}
@@ -136,21 +113,6 @@ function hana_featured_image( $size = 'full', $class = null, $link = false ) {
 	}
 }
 endif;
-/******************************
-* Featured Posts
-******************************/
-if ( ! function_exists( 'hana_featured_top' ) ):
-function hana_featured_top( ) {
-	if ( hana_has_featured_posts() ) {
-		$slider_type = esc_attr( hana_option('slider_type') ); ?>
-		<div class="featured-content featured-content-<?php echo $slider_type; ?> clearfix">
-			<?php get_template_part( 'parts/featured', $slider_type ); ?>
-		</div>
-<?php
-	}
-}
-endif;
-
 
 if ( ! function_exists( 'hana_single_post_link' ) ) :
 /* This function echo the link to single post view for the following:
@@ -161,8 +123,8 @@ function hana_single_post_link() {
 	if ( ! is_single() ) {
 		if ( has_post_format( 'aside' ) || has_post_format( 'quote' ) || '' == the_title_attribute( 'echo=0' ) ) { 
 			printf ('<a class="single-post-link" href="%1$s" title="%1$s"><i class="fa fa-chevron-right"></i></a>',
-				get_permalink(),
-				get_the_title()	);
+				esc_url( get_permalink() ),
+				esc_attr( get_the_title() )	);
 		} 
 	}
 }

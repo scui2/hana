@@ -76,25 +76,7 @@ function hana_font_choices() {
 	return $choices;
 }
 
-function hana_font_elements() {
-	$elements = array(
-		'bodyfont'      => array( 'label' => __( 'Body Font', 'hana'),
-							 	'selector' => 'body'  ),
-		'headingfont'   => array( 'label' => __( 'Heading Font', 'hana'),
-								'selector' => 'h1, h2, h3, h4, h5, h6'  ),
-		'posttitlefont' => array( 'label' => __( 'Post Title Font', 'hana'),
-								'selector' => '.entry-title'  ),
-		'sitetitlefont' => array( 'label' => __( 'Site Title Font', 'hana'),
-								'selector' => '.site-title a'  ),
-		'otherfont1' => array( 'label' => __( 'Other Font 1', 'hana'),
-								'selector' => ''  ),
-		'otherfont2' => array( 'label' => __( 'Other Font 2', 'hana'),
-								'selector' => ''  ),
-		'otherfont3' => array( 'label' => __( 'Other Font 3', 'hana'),
-								'selector' => ''  ),
-	);
-	return apply_filters( 'hana_font_elements', $elements );
-}
+
 
 if ( ! function_exists( 'hana_google_font_url' ) ):
 function hana_google_font_url() {
@@ -103,18 +85,18 @@ function hana_google_font_url() {
 	$font_elements = hana_font_elements();
 	$fonts = array();
 	foreach ( $font_elements as $key => $element ) {
-		$value = hana_option( $key );
-		if ( ! empty( $value ) && 'default' != $value && ! in_array( $value, $fonts) ) {
+		$value = get_theme_mod( $key );
+		if ( $value && 'default' != $value && ! in_array( $value, $fonts) ) {
 			$fonts[] = $value ;					
 		}
 	}
 	if ( !empty( $fonts ) ) {
-		$font_families = array();
+		$ffamilies = array();
 		foreach ( $fonts as $font ) {
-			$font_families[] = $hana_fonts[ $font ]['name'] . $hana_fonts[ $font ]['weight'];
+			$ffamilies[] = $hana_fonts[ $font ]['name'] . $hana_fonts[ $font ]['weight'];
 		}
 		$args = array(
-			'family' => urlencode( implode( '|', $font_families ) ),
+			'family' => urlencode( implode( '|', $ffamilies ) ),
 			'subset' => urlencode( apply_filters( 'hana_webfont_subset', 'latin,latin-ext' ) ),
 		);
 		$url = add_query_arg( $args, apply_filters( 'hana_webfont_url', '//fonts.googleapis.com/css' ) );

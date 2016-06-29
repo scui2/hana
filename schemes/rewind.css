@@ -17,11 +17,26 @@
 	background: #E0E4CC;
 }
 
+#footer {
+	background: #CCB89D;	
+}
+
+#footer-widgets {
+	background: #ddcfbd;
+	background: linear-gradient(top, #ddcfbd 0%, #CCB89D 100%);
+	background: -moz-linear-gradient(top, #ddcfbd 0%, #CCB89D 100%);
+	background: -webkit-linear-gradient(top, #ddcfbd 0%,#CCB89D 100%);
+}
+
 /********************************************
  * Header
  ********************************************/
 .site-description {
-	color: #fff;
+	color: #f1f1f1;
+}
+
+.title-bar-icon {
+	color: #404040;	
 }
 /********************************************
  * Menu
@@ -35,13 +50,23 @@
 	color: #414141;
 }
 
+.top-bar .menu.dropdown > li > a {
+	text-transform: uppercase;
+	font-size: .875rem;
+	font-weight: bold;
+}
+
+.fullwidth-slider .is-anchored .top-bar .dropdown > li > a {
+	color: #e9e9e9;	
+}
+
 .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
-	border-color: #999 transparent transparent;
+	border-color: #909090 transparent transparent;
 }
 
 .sectionmenu {
-	border-top: 1px solid #d1d8b4;
-	border-bottom: 1px solid #d1d8b4;
+	border-top: 1px solid #d8ddbf;
+	border-bottom: 1px solid #d8ddbf;
 	background: #E0E4CC;
 }
 
@@ -51,7 +76,7 @@
 }
 
 .section-menu ul li:hover {
-	background: #E0E4CC;
+	background: #e8ead7;
 	background: linear-gradient(top, #E0E4CC 0%, #e8ead7 80%);
 	background: -moz-linear-gradient(top, #E0E4CC 0%, #e8ead7 80%);
 	background: -webkit-linear-gradient(top, #E0E4CC 0%,#e8ead7 80%);
@@ -66,34 +91,59 @@
 }
 
 .section-menu ul ul li a:hover {
-	background: #E0E4CC;
+	background: #ccd2ac;
 }
 
 /********************************************
  * Post
  ********************************************/
-.entry-meta,
-.entry-meta a {
-	color: #737373;	
-}
-
-.entry-meta a:hover {
-	color: #F38630;		
-}
-
-
 
 /********************************************
  * Buttons
  ********************************************/
+.button {
+	background: #2BAF85;
+}
 
+.button:hover, .button:focus {
+    background-color: #238d6b;
+     }
 /********************************************
  * Widgets
  ********************************************/
+.sidebar .widget {
+	border-top: none;
+}
 
+.sidebar .widget-title {
+	font-variant: small-caps;
+}
+
+.sidebar .widget-divider:not(:last-child) {
+	display: block;
+	width: 90%;
+	margin: 1rem auto 1rem;
+	border: 0;
+	height: 1px; 
+	background-image: -webkit-linear-gradient(left, #f0f0f0, #A7DBD8, #f0f0f0);
+	background-image: -moz-linear-gradient(left, #f0f0f0, #A7DBD8, #f0f0f0);
+	background-image: -ms-linear-gradient(left, #f0f0f0, #A7DBD8, #f0f0f0);
+	background-image: -o-linear-gradient(left, #f0f0f0, #A7DBD8, #f0f0f0); 
+} 
+
+.footer-widget .widget-title {
+	border-bottom: 1px solid #CCB89D;
+}
 /********************************************
  * Links
  ********************************************/
 a {
- color: #69D2E7;
+	color: #2BAF85;
 }
+
+.fullwidth-slider .is-anchored .top-bar .dropdown > li > a:hover,
+.top-bar .menu a:hover {
+	color: #F38630;
+}
+
+

@@ -10,70 +10,7 @@
  */
 if ( ! defined('ABSPATH') ) exit;
 
-function hana_default_options() {
-	$defaults = array(
-		// Header
-		'sticky_header' => 1,
-		'fullwidth_header' => 0,
-		'shrink_topbar' => 0,
-		//Layout
-		'fluid_width' => 0,
-		'grid_width' => 1200,
-		'content_column' => 8,
-		'sidebar1_column' => 2,
-		'sidebar2_column' => 2,
-		'sidebar_bbp' => 3,
-		'sidebar_pos' => 'right',
-		'sticky_sidebar' => 0,
-		//Feature
-		'max_featured' => 10,
-		'slider_type' => 'full',
-		'slider_mode' => 'horizontal',
-		'slider_speed' => 10,
-		'slider_height' => 720,
-		'slider_top' => 0,
-		'ticker_min' => 2,
-		'ticker_max' => 5,		
-		//Posts
-		'show_author' => 1,
-		'show_date' => 1,
-		'show_featured' => 1,
-		//Social
-		'share_top' => 0,
-		'share_bottom' => 1,
-		'social_top' => 1,
-		'social_section' => 0,
-		'social_footer' => 0,
-		// Footer
-		'design_credit' => 1,
-		'footer1' => 3,	
-		'footer2' => 3,	
-		'footer3' => 3,	
-		'footer4' => 3,
-		'copyright_text' => '',
-		//Fonts
-		'bodyfont' => 'default',
-		'headingfont' => 'default',
-		'posttitlefont' => 'default',
-		'sitetitlefont' => 'default',
-		'otherfont1' => 'default',
-		'otherfont2' => 'default',
-		'otherfont3' => 'default',
-		//Others
-		'color_scheme' => 'default',
-	);
-	return apply_filters( 'hana_default_options', $defaults);
-}
-
-function hana_option( $option ) {
-	global $hana_defaults;
-	
-	return get_theme_mod( $option, $hana_defaults[$option] );
-}
-
-function hana_customize_register( $wp_customize ){
-	global $hana_defaults;
-			
+function hana_customize_register( $wp_customize ){			
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	
@@ -90,17 +27,17 @@ function hana_customize_register( $wp_customize ){
         'hana_layout',
         array(
             'title'         => __('Layout', 'hana'),
-		    'description'  => __( 'The theme uses 12 columns grid system. Grid width is defined in pixels. Content and sidebar width are defined in columns. Make sure the sume of content and sidebar columns equals to 12.', 'hana' ),            
+		    'description'  => __( 'The theme uses 12-column grid system. Grid width is defined in pixels. Content and sidebar width are defined in columns. Make sure the sume of content and sidebar columns equals to 12.', 'hana' ),            
             'priority'      => 20,
         )
     );
 
-	$wp_customize->add_setting( 'fluid_width', array(
-		'default'           => $hana_defaults['fluid_width'],
+	$wp_customize->add_setting( 'fluid_grid', array(
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
-	$wp_customize->add_control( 'fluid_width', array(
-		'label'    => __( 'Fluid Width (Full Width)', 'hana' ),
+	$wp_customize->add_control( 'fluid_grid', array(
+		'label'    => __( 'Fluid Grid (Full Width)', 'hana' ),
 		'section'  => 'hana_layout',
 		'type'     => 'checkbox',
 		'priority' => 10,
@@ -108,7 +45,7 @@ function hana_customize_register( $wp_customize ){
     		
 	// Grid Width
 	$wp_customize->add_setting( 'grid_width', array(
-		'default'           => $hana_defaults['grid_width'],
+		'default'           => 1200,
 		'sanitize_callback' => 'absint',
 	) );
 	$wp_customize->add_control( 'grid_width', array(
@@ -124,7 +61,7 @@ function hana_customize_register( $wp_customize ){
 	) );
 	// Content Width
 	$wp_customize->add_setting( 'content_column', array(
-		'default'           => $hana_defaults['content_column'],
+		'default'           => 8,
 		'sanitize_callback' => 'absint',
 	) );
 	$wp_customize->add_control( 'content_column', array(
@@ -139,7 +76,7 @@ function hana_customize_register( $wp_customize ){
         ),
 	) );
 	$wp_customize->add_setting( 'sidebar1_column', array(
-		'default'           => $hana_defaults['sidebar1_column'],
+		'default'           => 2,
 		'sanitize_callback' => 'absint',
 	) );
 	$wp_customize->add_control( 'sidebar1_column', array(
@@ -155,7 +92,7 @@ function hana_customize_register( $wp_customize ){
 	) );
 
 	$wp_customize->add_setting( 'sidebar2_column', array(
-		'default'           => $hana_defaults['sidebar2_column'],
+		'default'           => 2,
 		'sanitize_callback' => 'absint',
 	) );
 	$wp_customize->add_control( 'sidebar2_column', array(
@@ -172,7 +109,7 @@ function hana_customize_register( $wp_customize ){
 	
 
 		$wp_customize->add_setting( 'sidebar_bbp', array(
-			'default'           => $hana_defaults['sidebar_bbp'],
+			'default'           => 3,
 			'sanitize_callback' => 'absint',
 		) );
 		$wp_customize->add_control( 'sidebar_bbp', array(
@@ -189,11 +126,12 @@ function hana_customize_register( $wp_customize ){
 		
 	// Sidebar Position.
 	$wp_customize->add_setting( 'sidebar_pos', array(
-		'default'           => $hana_defaults['sidebar_pos'],
+		'default'           => 'right',
 		'sanitize_callback' => 'hana_sanitize_sidebar',
 	) );
 	$wp_customize->add_control( 'sidebar_pos', array(
 		'label'    => __( 'Sidebar Position', 'hana' ),
+		'description'    => __( 'Blog Widget Area (Full) will not be displayed for Left & Right Sidebar', 'hana' ),
 		'section'  => 'hana_layout',
 		'type'     => 'radio',
 		'choices'  => hana_sidebar_postion_choices(),
@@ -201,7 +139,7 @@ function hana_customize_register( $wp_customize ){
 	) );	
 	
 	$wp_customize->add_setting( 'sticky_sidebar', array(
-		'default'           => $hana_defaults['sticky_sidebar'],
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'sticky_sidebar', array(
@@ -222,38 +160,37 @@ function hana_customize_register( $wp_customize ){
             'priority'      => 21,
         )
     );
-    
+	$wp_customize->add_setting( 'fluid_header', array(
+		'default'           => 0,
+		'sanitize_callback' => 'hana_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'fluid_header', array(
+		'label'    => __( 'Fluid Width Header and Footer', 'hana' ),
+		'section'  => 'hana_header',
+		'type'     => 'checkbox',
+		'priority' => 10,
+	) );
+	
 	$wp_customize->add_setting( 'sticky_header', array(
-		'default'           => $hana_defaults['sticky_header'],
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'sticky_header', array(
 		'label'    => __( 'Sticky Header', 'hana' ),
 		'section'  => 'hana_header',
 		'type'     => 'checkbox',
-		'priority' => 10,
+		'priority' => 20,
 	) );
 
 	$wp_customize->add_setting( 'shrink_topbar', array(
-		'default'           => $hana_defaults['shrink_topbar'],
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'shrink_topbar', array(
 		'label'    => __( 'Shrink Top Bar when scroll down', 'hana' ),
 		'section'  => 'hana_header',
 		'type'     => 'checkbox',
-		'priority' => 10,
-	) );
-	
-	$wp_customize->add_setting( 'fullwidth_header', array(
-		'default'           => $hana_defaults['fullwidth_header'],
-		'sanitize_callback' => 'hana_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'fullwidth_header', array(
-		'label'    => __( 'Fluid Width Header', 'hana' ),
-		'section'  => 'hana_header',
-		'type'     => 'checkbox',
-		'priority' => 11,
+		'priority' => 30,
 	) );
    
     /*****************
@@ -262,7 +199,7 @@ function hana_customize_register( $wp_customize ){
 	if ( !empty( $featured_section ) ) {
 	
 		$wp_customize->add_setting( 'max_featured', array(
-			'default'           => $hana_defaults['max_featured'],
+			'default'           => 10,
 			'sanitize_callback' => 'absint',
 		) );
 		$wp_customize->add_control( 'max_featured', array(
@@ -278,7 +215,7 @@ function hana_customize_register( $wp_customize ){
 		) ); 
 		
 		$wp_customize->add_setting( 'slider_type', array(
-			'default'           => $hana_defaults['slider_type'],
+			'default'           => 'full',
 			'sanitize_callback' => 'hana_sanitize_slider_type',
 		) );
 		$wp_customize->add_control( 'slider_type', array(
@@ -290,7 +227,7 @@ function hana_customize_register( $wp_customize ){
 		) );	
 
 		$wp_customize->add_setting( 'slider_mode', array(
-			'default'           => $hana_defaults['slider_mode'],
+			'default'           => 'horizontal',
 			'sanitize_callback' => 'hana_sanitize_slider_mode',
 		) );
 		$wp_customize->add_control( 'slider_mode', array(
@@ -302,7 +239,7 @@ function hana_customize_register( $wp_customize ){
 		) );	
 
 		$wp_customize->add_setting( 'slider_top', array(
-			'default'           => $hana_defaults['slider_top'],
+			'default'           => 0,
 			'sanitize_callback' => 'hana_sanitize_checkbox',
 		) );
 		$wp_customize->add_control( 'slider_top', array(
@@ -313,7 +250,7 @@ function hana_customize_register( $wp_customize ){
 		) );
 		
 		$wp_customize->add_setting( 'slider_speed', array(
-			'default'           => $hana_defaults['slider_speed'],
+			'default'           => 10, // second
 			'sanitize_callback' => 'absint',
 		) );
 		$wp_customize->add_control( 'slider_speed', array(
@@ -329,7 +266,7 @@ function hana_customize_register( $wp_customize ){
 		) );   
 
 		$wp_customize->add_setting( 'slider_height', array(
-			'default'           => $hana_defaults['slider_height'],
+			'default'           => 720, //px
 			'sanitize_callback' => 'absint',
 		) );
 		$wp_customize->add_control( 'slider_height', array(
@@ -345,7 +282,7 @@ function hana_customize_register( $wp_customize ){
 		) );   
 		
 		$wp_customize->add_setting( 'ticker_min', array(
-			'default'           => $hana_defaults['ticker_min'],
+			'default'           => 2, //Slide
 			'sanitize_callback' => 'absint',
 		) );
 		$wp_customize->add_control( 'ticker_min', array(
@@ -360,7 +297,7 @@ function hana_customize_register( $wp_customize ){
 	        ),
 		) );   
 		$wp_customize->add_setting( 'ticker_max', array(
-			'default'           => $hana_defaults['ticker_max'],
+			'default'           => 5, //slides
 			'sanitize_callback' => 'absint',
 		) );
 		$wp_customize->add_control( 'ticker_max', array(
@@ -389,7 +326,7 @@ function hana_customize_register( $wp_customize ){
         )
     );
 	$wp_customize->add_setting( 'share_top', array(
-		'default'           => $hana_defaults['share_top'],
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'share_top', array(
@@ -400,7 +337,7 @@ function hana_customize_register( $wp_customize ){
 	) );
 	
 	$wp_customize->add_setting( 'share_bottom', array(
-		'default'           => $hana_defaults['share_bottom'],
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'share_bottom', array(
@@ -411,7 +348,7 @@ function hana_customize_register( $wp_customize ){
 	) );
 
 	$wp_customize->add_setting( 'social_top', array(
-		'default'           => $hana_defaults['social_top'],
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'social_top', array(
@@ -423,7 +360,7 @@ function hana_customize_register( $wp_customize ){
 	) );	
 
 	$wp_customize->add_setting( 'social_section', array(
-		'default'           => $hana_defaults['social_section'],
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'social_section', array(
@@ -434,7 +371,7 @@ function hana_customize_register( $wp_customize ){
 	) );
 
 	$wp_customize->add_setting( 'social_footer', array(
-		'default'           => $hana_defaults['social_footer'],
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'social_footer', array(
@@ -448,7 +385,7 @@ function hana_customize_register( $wp_customize ){
     *****************/
 	
 	$wp_customize->add_setting( 'color_scheme', array(
-			'default'           => $hana_defaults['color_scheme'],
+			'default'           => 'default',
 			'sanitize_callback' => 'hana_sanitize_schemes',
 	) );
 	$wp_customize->add_control( 'color_scheme', array(
@@ -470,34 +407,34 @@ function hana_customize_register( $wp_customize ){
         )
     );
 		
-	$wp_customize->add_setting( 'show_author', array(
-		'default'           => $hana_defaults['show_author'],
+	$wp_customize->add_setting( 'hide_author', array(
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
-	$wp_customize->add_control( 'show_author', array(
-		'label'    => __( 'Display Author', 'hana' ),
+	$wp_customize->add_control( 'hide_author', array(
+		'label'    => __( 'Hide Author', 'hana' ),
 		'section'  => 'hana_posts',
 		'type'     => 'checkbox',
 		'priority' => 10,
 	) );
    
-	$wp_customize->add_setting( 'show_date', array(
-		'default'           => $hana_defaults['show_date'],
+	$wp_customize->add_setting( 'hide_date', array(
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'show_date', array(
-		'label'    => __( 'Display Date', 'hana' ),
+		'label'    => __( 'Hide Date', 'hana' ),
 		'section'  => 'hana_posts',
 		'type'     => 'checkbox',
 		'priority' => 10,
 	) );
 	
-	$wp_customize->add_setting( 'show_featured', array(
-		'default'           => $hana_defaults['show_featured'],
+	$wp_customize->add_setting( 'hide_featured', array(
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
-	$wp_customize->add_control( 'show_featured', array(
-		'label'    => __( 'Display Featured Imagae for single post', 'hana' ),
+	$wp_customize->add_control( 'hide_featured', array(
+		'label'    => __( 'Hide Featured Imagae in Single Post View', 'hana' ),
 		'section'  => 'hana_posts',
 		'type'     => 'checkbox',
 		'priority' => 10,
@@ -517,7 +454,7 @@ function hana_customize_register( $wp_customize ){
 	$font_elements = hana_font_elements();
 	foreach ( $font_elements as $key => $element ) {
 		$wp_customize->add_setting( $key, array(
-				'default'           => $hana_defaults[$key],
+				'default'           => 'default',
 			'sanitize_callback' => 'hana_sanitize_fonts',
 		) );
 		$wp_customize->add_control( $key, array(
@@ -542,7 +479,7 @@ function hana_customize_register( $wp_customize ){
     );
     
 	$wp_customize->add_setting( 'footer1', array(
-		'default'           => $hana_defaults['footer1'],
+		'default'           => 3,
 		'sanitize_callback' => 'absint',
 	) );
 	$wp_customize->add_control( 'footer1', array(
@@ -558,7 +495,7 @@ function hana_customize_register( $wp_customize ){
 	) );
 
 	$wp_customize->add_setting( 'footer2', array(
-		'default'           => $hana_defaults['footer2'],
+		'default'           => 3,
 		'sanitize_callback' => 'absint',
 	) );
 	$wp_customize->add_control( 'footer2', array(
@@ -574,7 +511,7 @@ function hana_customize_register( $wp_customize ){
 	) );
 
 	$wp_customize->add_setting( 'footer3', array(
-		'default'           => $hana_defaults['footer3'],
+		'default'           => 3,
 		'sanitize_callback' => 'absint',
 	) );
 	$wp_customize->add_control( 'footer3', array(
@@ -590,7 +527,7 @@ function hana_customize_register( $wp_customize ){
 	) );
 	
 	$wp_customize->add_setting( 'footer4', array(
-		'default'           => $hana_defaults['footer4'],
+		'default'           => 3,
 		'sanitize_callback' => 'absint',
 	) );
 	$wp_customize->add_control( 'footer4', array(
@@ -606,7 +543,7 @@ function hana_customize_register( $wp_customize ){
 	) );
 
 	$wp_customize->add_setting( 'copyright_text', array(
-		'default'           => $hana_defaults['copyright_text'],
+		'default'           => '',
 		'sanitize_callback' => 'hana_sanitize_text',
 	) );
 	$wp_customize->add_control( 'copyright_text', array(
@@ -616,12 +553,12 @@ function hana_customize_register( $wp_customize ){
 		'priority' => 45,
 	) );
 		
-	$wp_customize->add_setting( 'design_credit', array(
-		'default'           => $hana_defaults['design_credit'],
+	$wp_customize->add_setting( 'hide_credit', array(
+		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
-	$wp_customize->add_control( 'design_credit', array(
-		'label'    => __( 'Show Design Credit', 'hana' ),
+	$wp_customize->add_control( 'hide_credit', array(
+		'label'    => __( 'Hide Design Credit', 'hana' ),
 		'section'  => 'hana_footer',
 		'type'     => 'checkbox',
 		'priority' => 50,
@@ -640,12 +577,10 @@ function hana_customize_section_js() {
 }
 add_action( 'customize_controls_enqueue_scripts', 'hana_customize_section_js' );
 
-function hana_custom_css( ) {
-	global $hana_defaults;
-	
+function hana_custom_css( ) {	
 	$css = '';
-	$width = hana_option( 'grid_width' );
-	if ( $hana_defaults[ 'grid_width' ] != $width ) {
+	$width = get_theme_mod( 'grid_width', 1200 );
+	if ( 1200 != $width ) {
 		$css .= '.row {max-width: ' . $width . 'px; }' . "\n";
 	}
 	// Site Title text color
@@ -656,15 +591,15 @@ function hana_custom_css( ) {
 	if ( ! empty ($header_image) ) {
 		$css .= '.top-bar {background-image:url(' . esc_url( $header_image ) . '); }' . "\n";		
 	}
-	if ( 0 != hana_option( 'slider_height' ) &&  'full' == hana_option ('slider_type' ) ) {
-		$css .= '.hana-slide {max-height: ' . hana_option( 'slider_height' ) . 'px;}' . "\n";
+	if ( get_theme_mod( 'slider_height' ) &&  'full' == get_theme_mod ('slider_type' ) ) {
+		$css .= '.hana-slide {max-height: ' . get_theme_mod( 'slider_height' ) . 'px;}' . "\n";
 	}
 	//Font
 	$hana_fonts = hana_font_list();	
 	$font_elements = hana_font_elements();
 	foreach ( $font_elements as $key => $element ) {
-		$option = hana_option( $key );
-		if ( ! empty( $option ) &&  'default' != $option && !empty( $element['selector'] ) )
+		$option = get_theme_mod( $key );
+		if ( $option &&  'default' != $option && !empty( $element['selector'] ) )
 			$css .= $element['selector'] . ' {font-family:' . $hana_fonts[ $option ]['name'] . ',' . $hana_fonts[ $option ]['type'] . ';}' . "\n";		
 	}
 	return apply_filters( 'hana_custom_css', $css);
@@ -785,7 +720,7 @@ function hana_social_icon_choices() {
 }
 
 function hana_scheme_choices() {
-	$schemes = apply_filters( 'hana_scheme_options', NULL );
+	$schemes = hana_scheme_options();
 	$choices = array();
 	foreach ( $schemes as $key => $scheme ) {
 		$choices[$key] = $scheme['label'];
@@ -810,3 +745,23 @@ function hana_custom_header_background() {
 }
 endif;
 add_action( 'after_setup_theme', 'hana_custom_header_background' );
+
+function hana_font_elements() {
+	$elements = array(
+		'bodyfont'      => array( 'label' => __( 'Body Font', 'hana'),
+							 	'selector' => 'body'  ),
+		'headingfont'   => array( 'label' => __( 'Heading Font', 'hana'),
+								'selector' => 'h1, h2, h3, h4, h5, h6'  ),
+		'posttitlefont' => array( 'label' => __( 'Post Title Font', 'hana'),
+								'selector' => '.entry-title'  ),
+		'sitetitlefont' => array( 'label' => __( 'Site Title Font', 'hana'),
+								'selector' => '.site-title a'  ),
+		'otherfont1' => array( 'label' => __( 'Other Font 1', 'hana'),
+								'selector' => ''  ),
+		'otherfont2' => array( 'label' => __( 'Other Font 2', 'hana'),
+								'selector' => ''  ),
+		'otherfont3' => array( 'label' => __( 'Other Font 3', 'hana'),
+								'selector' => ''  ),
+	);
+	return apply_filters( 'hana_font_elements', $elements );
+}

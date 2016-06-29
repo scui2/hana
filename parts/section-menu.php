@@ -8,9 +8,9 @@
  * @license GPL v3 or later
  * @link    http://rewindcreation.com/
  */
-if (  has_nav_menu( 'section' ) ||  ( hana_option( 'social_section' ) && has_nav_menu( 'social' ) ) ) { ?>
+if (  has_nav_menu( 'section' ) ||  ( get_theme_mod( 'social_section' ) && has_nav_menu( 'social' ) ) ) { ?>
 	<div class="sectionmenu show-for-large">
-		<div class="<?php echo hana_header_row_class(); ?>">
+		<div class="<?php hana_grid()->header_row_class(); ?>">
 <?php		if ( has_nav_menu( 'section' ) ) { ?>
 				<nav class="section-menu">
 <?php				wp_nav_menu( array(
@@ -20,7 +20,7 @@ if (  has_nav_menu( 'section' ) ||  ( hana_option( 'social_section' ) && has_nav
 					)); ?>
 				</nav>
 <?php		}
-			if ( hana_option( 'social_section') && has_nav_menu( 'social' ) ) {
+			if ( get_theme_mod( 'social_section') && has_nav_menu( 'social' ) ) {
 				hana_social_menu( 'social social-section float-right' );
 			} ?>
 		</div>

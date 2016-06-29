@@ -60,7 +60,7 @@ get_header();
     wp_localize_script( 'hana', 'hanaloadmore', $args );
     
 ?>  
-<div id="content" class="portfolio <?php echo $sidebar ? hana_content_class() : hana_grid_full(); ?>" role="main">
+<div id="content" class="portfolio <?php $sidebar ? hana_grid()->content_class() : hana_grid()->fullgrid_class(); ?>" role="main">
 <?php 
 	if ( $intro ){ ?>
 		<div class="page-intro">

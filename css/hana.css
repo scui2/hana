@@ -245,7 +245,7 @@ h1, h2, h3, h4, h5, h6 {
 	width: 100%;
 }
 
-.sticky-container {
+.site-header .sticky-container {
 	height: 38px;	
 }
 
@@ -283,12 +283,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .title-bar-icon {
 	font-size: 1.25rem;
-	margin: 0.25rem 0.25rem 0 0.25rem;
+	margin: 0.375rem 0.25rem 0 0.25rem;
 }
 
 .title-bar .top-bar-title {
 	display: inline-block;	
-	width: 85%;
+	width: 86%;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
@@ -361,6 +361,11 @@ h1, h2, h3, h4, h5, h6 {
 	border-bottom: 1px solid #eee;
 }
 
+.page-title p {
+	font-size: 1.75rem;
+	margin-bottom: 0;
+}
+
 .small-search-form {
 	padding: 0 1em;
 }
@@ -376,9 +381,6 @@ h1, h2, h3, h4, h5, h6 {
 	color: #e6e6e6;
 }
 
-.top-bar .menu a:hover {
-	color: #F38630;
-}
 .top-bar .submenu {
 	background: #23282D;
 	border-color: #373f46;
@@ -431,10 +433,6 @@ h1, h2, h3, h4, h5, h6 {
 	background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
 }
 
-.section-menu ul li a:hover {
-	color: #F38630;
-}
-	
 .section-menu ul li a {
 	display: block;
 	padding: 0.625rem 1.25rem;		
@@ -442,11 +440,11 @@ h1, h2, h3, h4, h5, h6 {
 }	
 .section-menu > ul > li > a {
 	color: #fff;
-	border-right: 1px solid rgba(100,100,100,0.15);
+	border-right: 1px solid rgba(150,150,150,0.15);
 }
 
 .section-menu > ul > li:first-child {
-	border-left: 1px solid rgba(100,100,100,0.15);	
+	border-left: 1px solid rgba(150,150,150,0.15);	
 }	
 	
 .section-menu ul ul {
@@ -715,17 +713,10 @@ img#wpstats {
 	font-weight: bold;
 }
 
-.featured-title a:hover {
-	color: #F38630;
-}
 .featured-page,
 .featured-excerpt {
 	color: #f6f6f6;
 	font-size: 1.125rem;
-}
-
-.featured-page a{
-	color: #F38630;	
 }
 
 .featured-excerpt p {
@@ -791,13 +782,6 @@ img#wpstats {
 }
 .entry-title {
 	font-size: 1.25rem;
-}
-.entry-title a {
-	color: #0a0a0a;
-}
-
-.entry-title a:hover {
-	color: #F38630;
 }
 
 .hentry {
@@ -879,6 +863,7 @@ img#wpstats {
 
 .more-link {
 	font-size: 0.875rem;
+	font-weight: bold;
 	text-transform: uppercase;
 }
 /********************************************
@@ -966,7 +951,7 @@ img#wpstats {
 .entry-meta {
 	font-size: 0.875rem;
 	line-height: 1.5;
-	color: #1a5c79;
+	color: #595959;
 	margin: 0;
 	list-style: none;
 }
@@ -1038,13 +1023,12 @@ img#wpstats {
 .edit-link a {
 	display: block;
 	position: absolute;
-	right: 0;
+	left: -2rem;
 	top: 0;
-	background: #cbcaf9;
 	padding: 0.125rem 0.375rem;
 	font-size: 1rem;
 	z-index: 1;
-	opacity: 0.2;
+	opacity: 0.1;
 }
 
 .edit-link a:hover {
@@ -1121,18 +1105,11 @@ li.pingback {
 	border-bottom: 1px solid #e1e1e1;
 }
 
-.comment-reply {
-	position: absolute;
-	right: 0;
-	top: 0.25rem;
-}
-
 .comment-edit-link,
 .comment-reply-link {
-	background: #F1F1F1;
+	background: #f9f9f9;
 	padding: 0.25rem 0.5rem;
-	display: inline-block;
-	margin-left: 0.25rem;
+	margin-right: 0.25rem;
 }
 
 .form-allowed-tags {
@@ -1169,18 +1146,28 @@ li.pingback {
 .page-link {
 	clear: both;
 	margin: 0.5rem 0;
-	word-spacing: 0.187rem;
+	padding-top: 0.75rem;
+	display: block;
+	text-align: center;
+	border-top: 1px solid #eee;
 }
 
-.page-link a {
+.page-link-title {
+	text-transform: uppercase;
+	font-size: 0.875rem;
+}
+.page-link .page-link-number {
 	font-weight: normal;
-	padding: 0.25rem 0.375rem;
-	text-decoration: none;
-	border: 1px solid #999;
+	padding: 0.375rem 0.5rem;
+	border: 1px solid #eee;
 }
 
-.page-link a:hover {
-	background: #d7d7d7;
+.page-link a > .page-link-number:hover {
+	background: #e8e8e8;
+}
+
+.page-link > .page-link-number {
+	background: #daddef;	
 }
 /********************************************
  * 11. Widgets
@@ -1188,6 +1175,7 @@ li.pingback {
 .sticky-sidebar {
 	width: 100%;
 }
+
 
 .sidebar .sticky.is-anchored {
 	position: relative;
@@ -1200,14 +1188,18 @@ li.pingback {
 
 .widget {
 	margin-bottom: 1rem;
-	padding: 0.5rem;
+	padding: 0.5rem 1rem;
+}
+
+.widget-divider {
+	display: none;
 }
 
 .sidebar .widget {
 	border-top: 5px solid #97a4ae;
 }
 
-.sidebar .widget_search {
+.sidebar .widget.widget_search {
 	padding-top: 1rem;
 }
 
@@ -1262,6 +1254,7 @@ li.pingback {
 .widget-title {
 	font-size: 1.2rem;
 	color: #6B7B84;
+	margin-bottom: 0.5rem;
 }
 
 .footer-widget .widget-title {
@@ -1294,8 +1287,8 @@ li.pingback {
 
 .hana_recent_post_link {
 	position: absolute;
-	top: 4px;
-	right: 0.5em;
+	top: 0.5rem;
+	right: 1rem;
 }
 
 .hana_recent_post .entry-header,
@@ -1322,7 +1315,7 @@ li.pingback {
 
 .hana_navigation .tabs > li.is-active > a {
 	background: #F1F1F1;
-	border-top: 3px solid #c9d0d3;
+	border-top: 3px solid #e7e7e7;
 }
 
 /********************************************
@@ -1376,9 +1369,28 @@ li.pingback {
 /********************************************
  * 13. Links
  ********************************************/
-a:hover, a:focus  {
-	color: #F38630;	
+.entry-title a {
+	color: #0a0a0a;
 }
+
+#footer li a,
+.widget li a,
+.entry-meta a {
+	color: #595959;	
+}
+
+a:hover, a:focus,
+.top-bar .menu a:hover,
+.section-menu ul li a:hover,
+.featured-title a:hover,
+.entry-title a:hover,
+.entry-meta a:hover,
+.widget li a:hover,
+#footer li a:hover  {
+	color: #F38630;
+}
+
+
 /********************************************
  * 19. Social
  ********************************************/
@@ -1412,7 +1424,7 @@ a:hover, a:focus  {
 }
 
 .social-footer > li > a::before  {
-	color: #4078C0 !important;
+	color: #333333 !important;
 }
 
 .social li a[href*="facebook.com"]::before {
@@ -1486,10 +1498,15 @@ a:hover, a:focus  {
  	left: 0;
 	right: 0;
 	bottom: 0;
-	padding: 0.5rem 1rem;
+	padding: 0.25rem 1rem;
 	font-size: 0.8rem;
+	line-height: 1.3;
 }
 
+.featured-excerpt p {
+	line-height: 1.3;
+	margin-bottom: 0.25rem;
+}
 .btn-featured {
 	display: none;
 }
@@ -1532,7 +1549,7 @@ a:hover, a:focus  {
 @media screen and (min-width: 768px) {
 
 .entry-title {
-	font-size: 2rem;
+	font-size: 1.875rem;
 }
 
 .admin-bar .is-stuck {
@@ -1543,7 +1560,7 @@ a:hover, a:focus  {
 	background: rgba(100, 100, 100, 0.3);
 }
 
-.sticky-container {
+.site-header .sticky-container {
 	height: 141px;	
 }
 

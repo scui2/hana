@@ -20,7 +20,7 @@ add_action( 'woocommerce_before_main_content', 'hana_woocommerce_content_wrapper
 add_action( 'woocommerce_after_main_content', 'hana_woocommerce_content_wrapper_end', 10);
 
 function hana_woocommerce_content_wrapper() {
-  echo '<div id="content" class="' . hana_content_class() . '">';
+  echo '<div id="content" class="' . hana_grid()-> content_class(false) . '">';
 }
  
 function hana_woocommerce_content_wrapper_end() {
@@ -37,7 +37,7 @@ add_action( 'jigoshop_before_main_content', 'hana_jigoshop_content_wrapper', 10 
 add_action( 'jigoshop_after_main_content', 'hana_jigoshop_content_wrapper_end', 10 );
 
 function hana_jigoshop_content_wrapper() {
-  echo '<div id="content" class="' . hana_cotent_class() . '">';
+  echo '<div id="content" class="' . hana_grid()->cotent_class(false) . '">';
 }
  
 function hana_jigoshop_content_wrapper_end() {
@@ -61,9 +61,9 @@ endif;
 if ( ! function_exists( 'hana_jetpack_sharing' ) ) :
 function hana_jetpack_sharing( $pos = 'bottom' ) {
 	if ( function_exists( 'sharing_display' ) ) {
-		if ( 'top' == $pos && hana_option( 'share_top' ) )
+		if ( 'top' == $pos && get_theme_mod( 'share_top' ) )
 			echo '<span class="hana-share-top">' . sharing_display() . '</span>';
-		elseif ( 'bottom' == $pos && hana_option( 'share_bottom' ) )
+		elseif ( 'bottom' == $pos && get_theme_mod( 'share_bottom' ) )
 			echo '<span class="hana-share-bottom clearfix">' . sharing_display() . '</span>';
 	}
 }

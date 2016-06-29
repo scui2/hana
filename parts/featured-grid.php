@@ -36,9 +36,9 @@
 	</ul></div>
 <?php
 	$sliderOption = array (
-		'mode' => hana_option( 'slider_mode' ),
-		'speed' => hana_option( 'slider_speed' ),
+		'mode' => get_theme_mod( 'slider_mode', 'horizontal' ),
+		'speed' => get_theme_mod( 'slider_speed', 10 ),
 	);
-	wp_localize_script( 'hana', 'hanaSlider', $sliderOption );
+	wp_localize_script( 'hana-script', 'hanaSlider', $sliderOption );
 	wp_reset_postdata();
 ?>
