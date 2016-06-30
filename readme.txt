@@ -7,7 +7,7 @@ For documentations and user guides, visit http://rewindcreation.com/docs
  Licenses:
 --------------------------------------------------------------------------------------------------------
 Hana WordPress Theme, Copyright 2016 Stephen Cui
-Hand is distributed under the terms of the GNU GPL v3
+Hana is distributed under the terms of the GNU GPL v3
 
 The resources used in Hana are all GPL-compatible:
 
@@ -20,8 +20,8 @@ http://fortawesome.github.io/Font-Awesome/
 bxSlider is licensed under MIT license. 
 https://github.com/stevenwanderski/bxslider-4
 
-Theme Backend, other icons and images are created by RewindCreationand licensed under GPL v3
-http://www.rewindcreation.com/
+Theme Backend and images are created by RewindCreation and licensed under GPL v3
+http://rewindcreation.com/
 --------------------------------------------------------------------------------------------------------
  Credits
 --------------------------------------------------------------------------------------------------------

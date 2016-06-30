@@ -61,15 +61,6 @@ function hana_get_video() {
 	return $hana_objects[ $post_id ];
 }
 
-function hana_is_featured() {
-	global $post; // WP global variable
-	
-	if ( is_sticky() && ! is_paged() )
-		return true;
-	else
-		return false;
-}
-
 function hana_has_featured_media() {
 
 	if ( has_post_thumbnail() )
@@ -90,29 +81,6 @@ function hana_featured_media( $size = 'hana-thumb' ) {
 	elseif ( hana_get_video() )
 		echo '<div class="scale-item scale-item-video">' . hana_get_video() . '</div>';
 }
-/******************************
-* Display Featured Media
-******************************/
-if ( ! function_exists( 'hana_featured_image' ) ) :
-function hana_featured_image( $size = 'full', $class = null, $link = false ) {
-	global $post;
-
-	if ( 'none' != $size && has_post_thumbnail() ) {
-		if ( ! $class )
-			$class = 'featured-image-' . $size;
-		if ( ! is_single( $post ) || $link ) {
-			printf ('<div class="scale-item"><a href="%1$s" title="%2$s">', 
-				esc_url( get_permalink() ),
-				esc_attr( get_the_title() ) );	
-			the_post_thumbnail( $size, array( 'class'	=> $class, 'title' => get_the_title() ) );
-			echo '</a></div>';
-		}
-		else {
-			the_post_thumbnail( $size, array( 'class' => $class, 'title' => get_the_title() ) );
-		}
-	}
-}
-endif;
 
 if ( ! function_exists( 'hana_single_post_link' ) ) :
 /* This function echo the link to single post view for the following:

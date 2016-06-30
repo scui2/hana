@@ -57,7 +57,7 @@ get_header();
 		'entry_meta' => $entry_meta,
 		'thumbnail' => $thumbnail,		
   	);
-    wp_localize_script( 'hana', 'hanaloadmore', $args );
+    wp_localize_script( 'hana-script', 'hanaloadmore', $args );
     
 ?>  
 <div id="content" class="portfolio <?php $sidebar ? hana_grid()->content_class() : hana_grid()->fullgrid_class(); ?>" role="main">

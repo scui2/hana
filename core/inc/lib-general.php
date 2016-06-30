@@ -1,6 +1,6 @@
 <?php
 /**
- * Content Functions
+ * Utilit Functions
  * 
  * @package	hana
  * @since   1.0
@@ -25,35 +25,27 @@ function hana_sort_array( &$array, $key ) {
 }
 // Return Post Type array
 function hana_post_types() { 
-	$types = array( 
-		'post' => __( 'Post', 'hana' ),
-		'page' => __( 'Page', 'hana' ),
-	);
-
-	$args = array(
-  		'public'   => true,
-  		'_builtin' => false ); 
-	$post_types = get_post_types( $args ); 
-	foreach ( $post_types as $post_type ) {
-		$types[ $post_type ] = $post_type;
-	}
+	$types = array_merge(
+		get_post_types( array( 'public'  => true, '_builtin' => true ) ),
+		get_post_types( array( 'public'  => true, '_builtin' => false ) )
+  	);
 	return apply_filters( 'hana_post_types', $types );
 }
 
 // Return Thumbnail
 if ( ! function_exists( 'hana_thumbnail_size' ) ) : 
-function hana_thumbnail_size( $option, $x = 96, $y = 96 ) {
+function hana_thumbnail_size( $size, $x = 96, $y = 96 ) {
 
-	if ( empty( $option ) )
+	if ( empty( $size ) )
 		return 'thumbnail';
-	elseif ( 'custom' == $option ) {
+	elseif ( 'custom' == $size ) {
 		if ( ($x > 0) && ($y > 0) )
 			return array( $x, $y);
 		else
 			return 'thumbnail';	
 	}
 	else 
-		return $option;
+		return $size;
 }
 endif;
 
@@ -66,7 +58,7 @@ function hana_thumbnail_array() {
 		'full'		=> __( 'Full', 'hana' ),	
 		'none'		=> __( 'None', 'hana' ),	
 	);
-	
+
 	global $_wp_additional_image_sizes;
 	if ( isset( $_wp_additional_image_sizes ) )
 		foreach( $_wp_additional_image_sizes as $key => $item) 
@@ -85,9 +77,9 @@ function hana_category_choices( $inc = 'all' ) {
 	
 	$choices = array();
 	if ( 'all' == $inc )
-		$choices[0] = __( 'All Categories', 'hana' );
+		$choices[0] =  __( 'All Categories', 'hana' );
 	elseif ( 'metaall' == $inc )
-		$choices[''] = __( 'All Categories', 'hana' );
+		$choices[''] =   __( 'All Categories', 'hana' );
 	elseif ( 'blank' == $inc )
 		$choices[''] = '';
 		
@@ -175,11 +167,4 @@ function hana_get_link( $content ) {
 	}
 	return $link;
 }
-// Allow a br and em and strong tag only.
-function hana_wp_kses_text( $text ) {
-	return wp_kses( $text , array(	'a'  => array( 'href' => array(), 'title' => array() ),
-    								'br' => array(),
-    								'em' => array(),
-									'strong' => array() ) );
-}
-			
+		

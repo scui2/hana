@@ -62,12 +62,14 @@ endif;
 // Post Meta for Recent Post Widget
 if ( ! function_exists( 'hana_meta_widget' ) ) :
 function hana_meta_widget() {
-	if ( 'post' == get_post_type() && ( hana_option('show_date')  || hana_option('show_author') ) ) {
+	if ( get_theme_mod('hide_date') && get_theme_mod('hide_author') ) 
+		return;
+	if ( 'post' == get_post_type() ) {
 		$html = '<ul class="entry-meta entry-meta-bottom">';
 		$html .= hana_meta_category();
-		if (  hana_option('show_date') )
+		if (  ! get_theme_mod('hide_date') )
 			$html .= hana_meta_date();
-		if (  hana_option('show_author') )
+		if (  ! get_theme_mod('hide_author') )
 			$html .= hana_meta_author();	
 		$html .= '</ul>';	
 		echo apply_filters( 'hana_meta_widget', $html );
@@ -77,7 +79,7 @@ endif;
 // Post Meta for Portfolio
 if ( ! function_exists( 'hana_meta_portfolio' ) ) :
 function hana_meta_portfolio() {
-	if ( 'post' == get_post_type() && ( hana_option('show_date')  || hana_option('show_author') ) ) {
+	if ( 'post' == get_post_type() ) {
 		$sep = ' &bull; ';
 		$html = '<ul class="entry-meta entry-meta-middle">';
 		$html .= hana_meta_tag();
@@ -116,7 +118,7 @@ function hana_meta_category( $list = true ) {
 function hana_meta_date( $list = true, $style = 2 ) {
 	$html = '';
 	if ( 1 == $style ) {
-		$html .= '<p class="post-date-2">';
+		$html .= '<p class="post-date-1">';
 		$html .=  '<span class="month">' . get_the_date('M') . '</span>';
 		$html .=  '<span class="day">' . get_the_date('j') . '</span>';
 		$html .=  '<span class="year">' . get_the_date('Y') . '</span></p>';
@@ -126,7 +128,7 @@ function hana_meta_date( $list = true, $style = 2 ) {
 		else
 			$html .= '<span class="entry-date">';
 
-		$html .= sprintf( __( '<time datetime="%1$s">%2$s</time>', 'hana' ),
+		$html .= sprintf( '<time datetime="%1$s">%2$s</time>' ,
 			esc_attr( get_the_date( 'c' ) ),
 			esc_html( get_the_date() ) );	
  		if ( $list )

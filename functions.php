@@ -8,7 +8,7 @@
  * @license GPL v3 or later
  * @link    http://rewindcreation.com/
  */
-define( 'HANA_VERSION', '1.0.4.4' );
+define( 'HANA_VERSION', '1.0.4.5' );
 
 // Load HANACore Functions
 require_once( trailingslashit( get_template_directory() ) . 'core/hana-core.php' );
@@ -76,9 +76,10 @@ function hana_theme_scripts() {
 	wp_enqueue_style( 'hana-style', HANA_THEME_URI . 'css/hana.css', $deps, HANA_VERSION );
 	wp_enqueue_script( 'hana-script' , HANA_THEME_URI . 'js/hana.js', $deps, HANA_VERSION, true );	
 	// Load Scheme's style
-    if ( get_theme_mod( 'color_scheme' ) &&  'default' == get_theme_mod( 'color_scheme' ) ) {
+	$scheme = get_theme_mod( 'color_scheme', 'default' );
+    if ( 'default' != $scheme  ) {
 		$schemes = hana_scheme_options();		
-		wp_enqueue_style( 'hana-scheme', $schemes[ get_theme_mod( 'color_scheme' ) ]['css'], $deps, HANA_VERSION );
+		wp_enqueue_style( 'hana-scheme', $schemes[ $scheme ]['css'], $deps, HANA_VERSION );
  		$deps[] = 'hana-scheme';
 	} 
 	//Load child theme's style.css
@@ -158,20 +159,129 @@ function hana_scheme_options() {
 		),
 		'rewind' 	=> array(
 			'label' => __('Rewind Creation','hana'),
-			'css'   => HANA_THEME_URI . 'schemes/rewind.css',
+			'css'   => HANA_THEME_URI . 'css/rewind.css',
 		),
 	);
 	return apply_filters( 'hana_scheme_options', $schemes );
 }
 
-require_once( get_template_directory() . '/inc/general.php' );
-require_once( get_template_directory() . '/inc/core-functions.php' );
-require_once( get_template_directory() . '/inc/lib-template.php' );
-require_once( get_template_directory() . '/inc/lib-meta.php' );
-require_once( get_template_directory() . '/inc/customize.php' );
-require_once( get_template_directory() . '/inc/widgets.php' );
-require_once( get_template_directory() . '/inc/extras.php' );
-if ( is_admin() ) {
-	require_once( get_template_directory() . '/inc/core-admin.php' );
-}
+add_filter( 'body_class', 'hana_body_classes' );
+if ( ! function_exists( 'hana_body_classes' ) ):
+function hana_body_classes( $classes ) {		
+	if ( get_background_image() ) {
+		$classes[] = 'custom-background-image';
+	}
+	if ( 'full' == get_theme_mod('slider_type', 'full' ) &&  get_theme_mod( 'sticky_header' ) &&  get_theme_mod( 'slider_top' ) && hana_has_featured_posts() )
+		$classes[] = 'fullwidth-slider';
+	if ( ! is_page_template( 'pages/fullwidth.php') && ! is_page_template( 'pages/nosidebar.php') )
+		$classes[] = 'sidebar-' . get_theme_mod( 'sidebar_pos', 'right' );
 
+	return $classes;
+}
+endif;
+
+
+if ( ! function_exists( 'hana_comment' ) ) :
+function hana_comment( $comment, $args, $depth ) {
+	$GLOBALS['comment'] = $comment;
+	switch ( $comment->comment_type ) {
+		case 'pingback' :
+		case 'trackback' :
+	?>
+	<li class="post pingback">
+		<p><?php _e( 'Pingback:', 'hana' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( '<i class="fa fa-pencil"></i>'); ?></p>
+	</li>
+	<?php
+			break;
+		default :
+	?>
+	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+		<article id="comment-<?php comment_ID(); ?>" class="comment">
+			<footer class="clearfix">
+				<div class="comment-meta">
+<?php 				echo get_avatar( $comment, 40 );
+					printf( '<cite class="fn">%1$s</cite>', get_comment_author_link() );  ?>
+					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
+						<time datetime="<?php comment_time( 'c' ); ?>"><?php echo human_time_diff( get_comment_time( 'U' ), current_time( 'timestamp') ) . __( ' ago', 'hana' ); ?>
+						</time></a>
+<?php				if ( $comment->comment_approved == '0' ) { ?>
+						<em><?php _e( 'Your comment is awaiting moderation.', 'hana' ); ?></em>
+<?php 				}; ?>
+				</div>
+			</footer>
+			<div class="comment-content">
+				<?php comment_text(); ?>
+				<div class="comment-reply">
+<?php 				comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => __('Reply', 'hana') ) ) );
+					edit_comment_link( '<i class="fa fa-pencil"></i> ' ); ?>
+				</div>
+			</div>
+		</article>
+	<?php
+			break;
+	}
+}
+endif;
+
+if ( ! function_exists( 'hana_the_attached_image' ) ) :	
+function hana_the_attached_image() {
+//Adopted from Twenty Fourteen
+	$post = get_post();
+
+	$attachment_size     = apply_filters( 'hana_attachment_size', array( 1024, 1024 ) );
+	$next_attachment_url = wp_get_attachment_url();
+
+	$attachment_ids = get_posts( array(
+		'post_parent'    => $post->post_parent,
+		'fields'         => 'ids',
+		'numberposts'    => -1,
+		'post_status'    => 'inherit',
+		'post_type'      => 'attachment',
+		'post_mime_type' => 'image',
+		'order'          => 'ASC',
+		'orderby'        => 'menu_order ID',
+	) );
+
+	if ( count( $attachment_ids ) > 1 ) {
+		foreach ( $attachment_ids as $attachment_id ) {
+			if ( $attachment_id == $post->ID ) {
+				$next_id = current( $attachment_ids );
+				break;
+			}
+		}
+
+		if ( $next_id ) {
+			$next_attachment_url = get_attachment_link( $next_id );
+		} else {
+			$next_attachment_url = get_attachment_link( array_shift( $attachment_ids ) );
+		}
+	}
+
+	printf( '<a href="%1$s" rel="attachment">%2$s</a>',
+		esc_url( $next_attachment_url ),
+		wp_get_attachment_image( $post->ID, $attachment_size )
+	);
+}
+endif;
+
+if ( ! function_exists( 'hana_branding' ) ):
+function hana_branding() {
+	if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+		the_custom_logo();
+	}
+	else { // Display Site Title and Tagline
+?>
+		<div class="site-title-container">
+		  <h3 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h3>
+		  <h4 class="site-description show-for-medium "><?php bloginfo( 'description' ); ?></h4>
+		</div>
+<?php	
+	}
+}
+endif;
+
+require_once( trailingslashit( get_template_directory() ) . 'inc/lib-featured.php' );
+require_once( trailingslashit( get_template_directory() ) . 'inc/lib-template.php' );
+require_once( trailingslashit( get_template_directory() ) . 'inc/lib-meta.php' );
+require_once( trailingslashit( get_template_directory() ) . 'inc/customize.php' );
+require_once( trailingslashit( get_template_directory() ) . 'inc/extras.php' );

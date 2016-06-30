@@ -556,3 +556,13 @@ function hana_widget_field( $widget, $args = array(), $value ) {
 	if ( $ptag )
 		echo '</p>';
 }
+
+add_action( 'admin_enqueue_scripts', 'hana_load_widget_scripts' );
+function hana_load_widget_scripts( $hooks ) {
+	global $post_type;
+
+	if ( 'widgets.php' == $hooks ) {
+		wp_enqueue_style( 'hana-widgets', HANA_CORE_URI . 'css/widgets.css', null, '1.0' );	
+		wp_enqueue_script( 'hana-widgets', HANA_CORE_URI . 'js/widgets.js', array( 'jquery-ui-sortable' ) );			
+	}
+}

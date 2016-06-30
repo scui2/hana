@@ -1,6 +1,6 @@
 <?php
 /**
- * Featured Content
+ * Functions for page templates
  * 
  * @package	hana
  * @since   1.0
@@ -73,3 +73,12 @@ function hana_display_portfolio( $args, $thumbnail = 'hana-thumb', $column = 1, 
 	wp_reset_postdata();
 }
 endif;
+
+add_action( 'admin_enqueue_scripts', 'hana_load_template_scripts' );
+function hana_load_template_scripts( $hooks ) {
+	global $post_type;
+
+	if ( 'page' == $post_type ) {
+		wp_enqueue_script( 'hana-template', HANA_THEME_URI . 'js/template.js', array( 'jquery') );	
+	}
+}

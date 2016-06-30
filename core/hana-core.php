@@ -48,11 +48,12 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 		*/		
 		public function core_functions() {
 			require_once( HANA_CORE_DIR . 'inc/core-functions.php' );
-			require_once( HANA_CORE_DIR . 'core-texts.php' );
 			require_once( HANA_CORE_DIR . 'inc/class-grid.php' );
+			require_once( HANA_CORE_DIR . 'inc/lib-general.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-menu.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-formats.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-fonts.php' );
+			require_once( HANA_CORE_DIR . 'inc/widgets.php' );
 		}		
 		/**
 		* Define constants to be used in Core and Themes
@@ -68,7 +69,7 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 
 		public function admin() {
 			if ( is_admin() ) {
-				
+				require_once( HANA_CORE_DIR . 'inc/admin-functions.php' );				
 			}
 		}	
 	} // Class HanaCore

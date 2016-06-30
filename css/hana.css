@@ -19,6 +19,7 @@
  * 10. Navigation
  * 11. Widgets
  * 12. Portfolio
+ * 18. Pricing Table
  * 19. Social
  * 20. Responsive
  * 21. Print Style
@@ -359,10 +360,10 @@ h1, h2, h3, h4, h5, h6 {
 .page-title {
 	padding: 0.5rem 1rem 0.25rem;
 	border-bottom: 1px solid #eee;
+	font-size: 1.75rem;
 }
 
 .page-title p {
-	font-size: 1.75rem;
 	margin-bottom: 0;
 }
 
@@ -1389,7 +1390,40 @@ a:hover, a:focus,
 #footer li a:hover  {
 	color: #F38630;
 }
-
+/********************************************
+ * 18. Links
+ ********************************************/
+.pricing-table {
+  border: solid 1px #DDDDDD;
+  border-radius: 5px;
+}
+.pricing-table li {
+  border-bottom: dotted 1px #DDDDDD;
+  font-size: 0.75rem;
+  padding: 0.875rem 1.125rem;
+}
+.pricing-table li:last-child {
+  border-bottom: 0;
+}
+.pricing-table .title {
+  background-color: #333333;
+  color: #EEEEEE;
+  font-size: 1rem;
+  border-bottom: 0;
+}
+.pricing-table .price {
+  background-color: #F6F6F6;
+  color: #333333;
+  font-size: 1.75rem;
+  border-bottom: 0;
+}
+.pricing-table .description {
+  color: #777777;
+  font-size: 0.75rem;
+}
+.pricing-table .button {
+  margin: 0;
+}
 
 /********************************************
  * 19. Social

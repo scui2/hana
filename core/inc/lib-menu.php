@@ -36,3 +36,12 @@ class hana_page_walker extends Walker_Page {
 	}
 
 }
+// Add active class for current selected menu item
+add_filter('nav_menu_css_class' , 'hana_active_menu_class');
+function hana_active_menu_class( $classes ) {
+    if ( in_array('current-menu-item', $classes) ){
+        $classes[] = 'active';
+    }
+    return $classes;
+}
+

@@ -35,7 +35,18 @@ jQuery(document).ready(function($){
 	$('.hana-toggle').click(function (e) {
 		$(this).toggleClass('is-open');
 		return false;
-	});    
+	});   
+	// Show Comments
+	var postCommnet = $('#comments');
+	if ( postCommnet !== undefined ) {
+		var hanaHash = window.location.hash;
+		if ( '#respond' == hanaHash || '#comments' == hanaHash ) {
+			postCommnet.css("display", "block");
+		} else {
+			postCommnet.css("display", "none");		
+		}		
+	}
+
     // Shrinking Topbar
 	var stickyContainer = $('.sticky');
 	stickyContainer.on('sticky.zf.stuckto:top', function(){
@@ -144,5 +155,6 @@ jQuery(document).ready(function($){
 			}
 		});	
 	} //Portfolio
+
 
 });

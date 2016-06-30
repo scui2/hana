@@ -107,22 +107,21 @@ function hana_customize_register( $wp_customize ){
         ),
 	) );
 	
-
-		$wp_customize->add_setting( 'sidebar_bbp', array(
-			'default'           => 3,
-			'sanitize_callback' => 'absint',
-		) );
-		$wp_customize->add_control( 'sidebar_bbp', array(
-			'label'    => __( 'bbPress Sidebar (Column)', 'hana' ),
-			'section'  => 'hana_layout',
-			'type'     => 'number',
-			'priority' => 13,
-       	 'input_attrs' => array(
-        	'min'   => 0,
+	$wp_customize->add_setting( 'sidebar_bbp', array(
+		'default'           => 3,
+		'sanitize_callback' => 'absint',
+	) );
+	$wp_customize->add_control( 'sidebar_bbp', array(
+		'label'    => __( 'bbPress Sidebar (Column)', 'hana' ),
+		'section'  => 'hana_layout',
+		'type'     => 'number',
+		'priority' => 13,
+      	'input_attrs' => array(
+    	   	'min'   => 0,
             'max'   => 6,
             'step'  => 1,
         	),
-		) );
+	) );
 		
 	// Sidebar Position.
 	$wp_customize->add_setting( 'sidebar_pos', array(
@@ -266,7 +265,7 @@ function hana_customize_register( $wp_customize ){
 		) );   
 
 		$wp_customize->add_setting( 'slider_height', array(
-			'default'           => 720, //px
+			'default'           => 0, //px
 			'sanitize_callback' => 'absint',
 		) );
 		$wp_customize->add_control( 'slider_height', array(
@@ -579,7 +578,7 @@ add_action( 'customize_controls_enqueue_scripts', 'hana_customize_section_js' );
 
 function hana_custom_css( ) {	
 	$css = '';
-	$width = get_theme_mod( 'grid_width', 1200 );
+	$width = get_theme_mod( 'grid_width' );
 	if ( 1200 != $width ) {
 		$css .= '.row {max-width: ' . $width . 'px; }' . "\n";
 	}
@@ -591,7 +590,7 @@ function hana_custom_css( ) {
 	if ( ! empty ($header_image) ) {
 		$css .= '.top-bar {background-image:url(' . esc_url( $header_image ) . '); }' . "\n";		
 	}
-	if ( get_theme_mod( 'slider_height' ) &&  'full' == get_theme_mod ('slider_type' ) ) {
+	if ( get_theme_mod( 'slider_height' ) &&  'full' == get_theme_mod ('slider_type', 'full' ) ) {
 		$css .= '.hana-slide {max-height: ' . get_theme_mod( 'slider_height' ) . 'px;}' . "\n";
 	}
 	//Font
