@@ -151,14 +151,10 @@ function hana_meta_boxes() {
         	),
         	array(
             	'name' => __('Layout :', 'hana'),
-            	'desc' => __('Columns','hana'),
+            	'desc' => '',
             	'id' => $prefix . '_column',
             	'type' => 'select',
-				'options' => array( 
-					'1' => '1',
-					'2' => '2',
-					'' 	=> '3',	// Default
-					'4'	=> '4' ),
+				'options' => hana_columns_choices( true ),
         	),
         	array(
             	'name' => __('Image Size : ', 'hana'),
@@ -206,4 +202,87 @@ function hana_add_meta_boxes() {
 	
 	foreach ( $meta_boxes as $meta_box )
 		$box = new Hana_Meta_Box( $meta_box );
+}
+
+function hana_widget_field( $widget, $args = array(), $value ) {
+	$args = wp_parse_args($args, array ( 
+		'field' => 'title',
+		'type' => 'text',
+		'label' => '',
+		'desc' => '',
+		'class' => 'widefat',
+		'options' => array(),
+		'label_all' => '',
+		'ptag' => true,
+		) );
+	extract( $args, EXTR_SKIP );
+
+	$field_id =  esc_attr( $widget->get_field_id( $field ) );
+	$field_name = esc_attr( $widget->get_field_name( $field ) );
+	
+	if ( $ptag )
+		echo '<p>';
+	if ( ! empty( $label ) ) {
+		echo '<label for="' . $field_id . '">';
+		echo $label . '</label> ';
+	}
+	switch ( $type ) {
+		case 'text':
+		case 'hidden':
+			echo '<input class="' . $class . '" id="' . $field_id;
+			echo '" name="' . $field_name . '" type="' . $type .'" value="';
+			echo esc_attr( $value ) . '" />';
+			break;
+		case 'textarea':
+			echo '<textarea class="' . $class . '" id="' . $field_id;
+			echo '" name="' . $field_name . '" type="' . $type .'" row="10" col="20">';
+			echo esc_textarea( $value ) . '</textarea>';
+			break;
+		case 'url':
+			echo '<input class="' . $class . '" id="' . $field_id;
+			echo '" name="' . $field_name . '" type="' . $type .'" value="';
+			echo esc_url( $value ) . '" />';
+			break;
+		case 'number':
+			echo '<input class="' . $class . '" id="' . $field_id;
+			echo '" name="' . $field_name . '" type="text" size="3" value="';
+			echo esc_attr( $value ) . '" />';
+			break;
+		case 'checkbox':
+			echo '<input class="' . $class . '" id="' . $field_id;
+			echo '" name="' . $field_name . '" type="' . $type .'" value="1" ';
+			echo checked( '1', $value, false ) . ' /> ';
+			echo '<label for="' . $field_id . '"> ' . $desc . '</label>';
+			break;
+		case 'select':
+			echo '<select id="' . $field_id . '" name="' . $field_name . '">';
+			foreach ( $options as $key => $label ) {
+				echo '<option value="' . $key . '" ' . selected( $key, $value, false );
+				echo '>' . $label . '</option>';
+			}
+			echo '</select>';
+			break;
+		case 'media':
+			echo '<input class="media-upload-id" id="' . $field_id;
+			echo '" name="' . $field_name . '" type="hidden" value="';
+			echo esc_attr( $value ) . '" />';
+			echo '<input class="media-upload-btn" id="' . $field_id;
+			echo '_btn" name="' . $field_name . '_btn" type="button" value="'. __( 'Choose Image', 'advantage' ) . '">';
+			echo '<input class="media-upload-del" id="' . $field_id;
+			echo '_del" name="' . $field_name . '_del" type="button" value="'. __( 'Remove', 'advantage' ) . '">';
+			break;
+	}
+	if ( $ptag )
+		echo '</p>';
+}
+
+add_action( 'admin_enqueue_scripts', 'hana_load_widget_scripts' );
+function hana_load_widget_scripts( $hooks ) {
+	global $post_type;
+
+	if ( 'widgets.php' == $hooks ) {
+		wp_enqueue_media();
+		wp_enqueue_style( 'hana-widgets', HANA_CORE_URI . 'css/widgets.css', null, '1.0' );	
+		wp_enqueue_script( 'hana-widgets', HANA_CORE_URI . 'js/widgets.js', array( 'jquery-ui-sortable' ) );			
+	}
 }

@@ -1,12 +1,12 @@
 <?php
 /**
- * Utilit Functions
+ * Utility Functions
  * 
  * @package	hana
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 
 //Sorting array by key
@@ -70,22 +70,6 @@ function hana_thumbnail_array() {
 function hana_categories() {
 	$categories = get_categories();
 	return apply_filters( 'hana_categories', $categories );
-}
-
-function hana_category_choices( $inc = 'all' ) {
-	$categories = hana_categories();
-	
-	$choices = array();
-	if ( 'all' == $inc )
-		$choices[0] =  __( 'All Categories', 'hana' );
-	elseif ( 'metaall' == $inc )
-		$choices[''] =   __( 'All Categories', 'hana' );
-	elseif ( 'blank' == $inc )
-		$choices[''] = '';
-		
-	foreach ( $categories as $category )
-		$choices[ $category->term_id ] = $category->name;
-	return apply_filters( 'hana_category_choices', $choices );
 }
 
 function hana_top_categories( $count = 0 ) {

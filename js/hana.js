@@ -53,7 +53,6 @@ jQuery(document).ready(function($){
 		var shrinkTopBar = stickyContainer.attr('data-shrink');
 		if (shrinkTopBar !== undefined) {
 	  		stickyContainer.find('.top-bar').addClass('shrunk');
-
 		}
 	}).on('sticky.zf.unstuckfrom:top', function(){
 		var shrinkTopBar = stickyContainer.attr('data-shrink');

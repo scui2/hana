@@ -8,8 +8,6 @@
  * @license GPL v3 or later
  * @link    http://rewindcreation.com/
  */
-define( 'HANA_VERSION', '1.0.4.5' );
-
 // Load HANACore Functions
 require_once( trailingslashit( get_template_directory() ) . 'core/hana-core.php' );
 new HANA_Core();
@@ -50,6 +48,10 @@ function hana_theme_setup() {
 		'footer'  => __( 'Footer Menu', 'hana' ),
 		'social'  => __( 'Social Menu', 'hana' ),
 	));
+	// Widgets
+	add_theme_support( 'hana-recentpost' );
+	add_theme_support( 'hana-navigation' );
+	add_theme_support( 'hana-marketing' );	
 }
 endif;
 
@@ -73,18 +75,18 @@ function hana_theme_scripts() {
 	if ( $has_featured = hana_has_featured_posts() ) {
 		$deps[] = 'bxslider';	
 	}
-	wp_enqueue_style( 'hana-style', HANA_THEME_URI . 'css/hana.css', $deps, HANA_VERSION );
-	wp_enqueue_script( 'hana-script' , HANA_THEME_URI . 'js/hana.js', $deps, HANA_VERSION, true );	
+	wp_enqueue_style( 'hana-style', HANA_THEME_URI . 'css/hana.css', $deps, HANA_THEME_VERSION );
+	wp_enqueue_script( 'hana-script' , HANA_THEME_URI . 'js/hana.js', $deps, HANA_THEME_VERSION, true );	
 	// Load Scheme's style
 	$scheme = get_theme_mod( 'color_scheme', 'default' );
     if ( 'default' != $scheme  ) {
 		$schemes = hana_scheme_options();		
-		wp_enqueue_style( 'hana-scheme', $schemes[ $scheme ]['css'], $deps, HANA_VERSION );
+		wp_enqueue_style( 'hana-scheme', $schemes[ $scheme ]['css'], $deps, HANA_THEME_VERSION );
  		$deps[] = 'hana-scheme';
 	} 
 	//Load child theme's style.css
     if ( HANA_THEME_URI != HANA_CHILD_URI )
-		wp_enqueue_style( 'hana-child', get_stylesheet_uri(), $deps, HANA_VERSION );
+		wp_enqueue_style( 'hana-child', get_stylesheet_uri(), $deps, HANA_THEME_VERSION );
 	// Add inline style based on customizer settings
     $custom_css = hana_custom_css();
 	if ( ! empty( $custom_css ) )
@@ -93,25 +95,7 @@ function hana_theme_scripts() {
 endif;
 
 add_action( 'widgets_init', 'hana_widgets_init' );
-function hana_widgets_init() {
-	register_widget( 'Hana_Recent_Post' );
-	register_widget( 'Hana_Navigation' );
-
-	$sidebars = hana_sidebars();
-	foreach ( $sidebars as $id => $sidebar ) {
-		register_sidebar( array(
-			'id'   			=> $id,
-			'name' 			=> $sidebar['name'],
-			'description'   => $sidebar['description'],
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section><hr class="widget-divider">',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );		
-	}	
-}
-
-function hana_sidebars() {
+function hana_widgets_init() {	
 	$sidebars = array (
 		'sidebar-full' => array(
 			'name' => __( 'Blog Widget Area (Full)', 'hana' ),
@@ -148,7 +132,47 @@ function hana_sidebars() {
 			'description' => __( 'bbPress Widget Area', 'hana' ),
 		);
 	}
-	return apply_filters( 'hana_sidebars', $sidebars );
+	
+	foreach ( $sidebars as $id => $sidebar ) {
+		register_sidebar( array(
+			'id'   			=> $id,
+			'name' 			=> $sidebar['name'],
+			'description'   => $sidebar['description'],
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section><hr class="widget-divider">',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
+		) );		
+	}	
+	// Home Widget
+	$num = absint( apply_filters('hana_homewidget_number', 4) );
+	for ( $i = 1; $i <= $num; $i++ ) {
+		$column = absint( get_theme_mod( 'home_column_' . $i, 3 ) );
+		if ( $column > 1 ) {
+			$desc = sprintf( __('The widgets will be displayed horizontally in %1$s-column layout.', 'hana'), $column);	
+			$col = absint( 12 / $column );
+			$class = 'large-' . $col . ' columns ';	
+		} else {
+			$desc = '';	
+			$class = '';	
+		}
+		// Same height for all widgets
+		$width = absint( get_theme_mod( 'home_width_' . $i, 12 ) );
+		if ( 12 == $width && $column > 1) {
+			$watch = 'data-equalizer-watch';
+		} else {
+			$watch = '';
+		}
+		register_sidebar( array(
+			'id'   			=> 'home-' . $i,
+			'name' 			=> sprintf( __('Home Widget Area %1$s', 'hana'), $i),
+			'description'   => $desc,
+			'before_widget' => '<section id="%1$s" class="' . $class . 'widget %2$s" ' . $watch .  '>',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
+		) );
+	}
 }
 
 function hana_scheme_options() {
@@ -186,15 +210,13 @@ function hana_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	switch ( $comment->comment_type ) {
 		case 'pingback' :
-		case 'trackback' :
-	?>
+		case 'trackback' : ?>
 	<li class="post pingback">
 		<p><?php _e( 'Pingback:', 'hana' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( '<i class="fa fa-pencil"></i>'); ?></p>
 	</li>
 	<?php
 			break;
-		default :
-	?>
+		default : ?>
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<article id="comment-<?php comment_ID(); ?>" class="comment">
 			<footer class="clearfix">
@@ -266,7 +288,7 @@ endif;
 
 if ( ! function_exists( 'hana_branding' ) ):
 function hana_branding() {
-	if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
+	if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) { //To remove function_exists at 4.7
 		the_custom_logo();
 	}
 	else { // Display Site Title and Tagline

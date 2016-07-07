@@ -31,3 +31,4 @@
 ?>
 	</footer>
 </article>
+<hr class="post-divider">

@@ -2,7 +2,7 @@
 /**
  * Widgets
  * 
- * @package	hana
+ * @package	hanacore
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
@@ -10,173 +10,9 @@
  */
 if ( ! defined('ABSPATH') ) exit;
 
-class Hana_Recent_Post extends WP_Widget {
-	function __construct() {
-		WP_Widget::__construct(
-			'hana_recent_post',
-			__( '(Hana) Recent Posts', 'hana' ),
-			array(
-				'classname' => 'hana_recent_post',
-				'description' => __( 'Use this widget to list your recent post summary.', 'hana' ),
-			)
-		);
-	}
-	// Widget outputs
-	function widget( $args, $instance ) {
-		extract( $args, EXTR_SKIP );
-		$instance = wp_parse_args($instance, $this->widget_defaults());
-		extract( $instance, EXTR_SKIP );
-		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base);
-					
- 		if ( $random_post )
-			$sortby = 'rand';
-		else
-			$sortby = '';
-		if ( $sticky_post )
-			$sticky = array();
-		else
-			$sticky = get_option( 'sticky_posts' );
-						
-		$query_str = array(
-			'order' => 'DESC',
-			'orderby' => $sortby,
-			'posts_per_page' => $number,
-			'post_status' => 'publish',
-			'post_type' => $posttype,
-			'ignore_sticky_posts' => 1,
-			'no_found_rows' => 1,
-		);
-		if ( 'post' == $posttype ) {
-			$query_str['category__in'] = $category;
-			$query_str['post__not_in'] = $sticky;			
-		}
-		if ( ! empty( $customquery ) ) {
-			$custom_query = wp_parse_args( $customquery, NULL );
-			foreach ( $custom_query as $key => $query ) {
-				if ( strpos( $key, '__' ) && strpos( $query, ',' ) )
-					$query_str[$key] = explode( ',', $query );	
-				else
-					$query_str[$key] = $query;
-			}
-		}
-
-		$recent_posts = new WP_Query( $query_str );
-		if ( $recent_posts->have_posts() ) :
-			echo $before_widget; 
-
-			if ( ! empty( $title ) ) {
-				echo $before_title;
-				echo esc_attr( $title ); // Can set this with a widget option, or omit altogether
-				echo $after_title;			
-				if ( ! empty( $category_link ) && $category ) {
-					printf( '<a href="%1$s" title="%2$s" class="hana_recent_post_link">%3$s <i class="fa fa-angle-right"></i></a>',
-						esc_url( get_category_link( $category ) ) ,
-						esc_attr( get_the_category_by_ID( $category ) ),
-						esc_attr( $category_link ) );					
-				}	
-			}
-
-			global $hana_thumbnail, $hana_entry_meta;
-			$hana_entry_meta = $entry_meta;			
-			$hana_thumbnail = hana_thumbnail_size( $thumbnail );
-			$col = 0;
-			while ( $recent_posts->have_posts() ) : 
-				$recent_posts->the_post();
-				$div_class = '';
-				if ( $column > 1 && $col == 0 )
-					echo '<div class="row">';
-				if ($column == 2) {
-					$div_class = "large-6 medium-6 columns";
-					$col = $col + 1;
-					if ($col == 2)
-						$col = 0;
-				}
-				elseif ($column == 3) {
-					$div_class = "large-4 medium-4 columns";
-					$col = $col + 1;
-					if ($col == 3)
-						$col = 0;
-				}
-				elseif ($column == 4) {
-					$div_class = "large-3 medium-3 columns";
-					$col = $col + 1;
-					if ($col == 4)
-						$col = 0;
-				}
-
-				if  ($column > 1)
-					echo '<div class="' . $div_class .'">';
-				get_template_part( 'parts/content', 'widget' );
-				
-				if  ($column > 1) {
-					echo '</div>';				
-					if ($col == 0)
-						echo '</div>';
-				}
-			endwhile;
-			
-			if ( $col > 0 )
-				echo '</div>';
-			echo $after_widget;
-			// Reset the post globals as this query will have stomped on it
-			wp_reset_postdata();
-		endif;
-	}
-
-	// Update options
-	function update( $new, $old ) {
-		$instance = $old;
-		$instance['title'] = strip_tags( $new['title'] );
-		$instance['number'] = (int) $new['number'];
-		$col = (int) $new['column'];
-		if ($col > 4)
-			$col = 4;
-		if ($col <1 )
-			$col = 1;
-		$instance['column'] = $col;
-		$instance['posttype'] = $new['posttype'];	
-		$instance['customquery'] = wp_kses_stripslashes( $new['customquery'] );
-		$instance['category'] =  (int) $new['category'];
-		$instance['sticky_post'] =  (int) $new['sticky_post'];
-		$instance['random_post'] =  (int) $new['random_post'];
-		$instance['entry_meta'] =  (int) $new['entry_meta'];
-		$instance['category_link'] =  strip_tags($new['category_link']);
-		$instance['thumbnail'] = $new['thumbnail'];
-
-		return $instance;
-	}
-	
-	function widget_defaults() {
-		return array(
-			'title' => '',
-			'posttype' => 'post',
-			'number' => '10',
-			'category' => '0',
-			'sticky_post' => '0',
-			'random_post' => '0',
-			'column' => '1',
-			'thumbnail' => '1',
-			'entry_meta' => '0',
-			'category_link' => '',
-			'customquery' => '',
-		);
-	}
-	// Display options
-	function form( $instance ) {
-		$instance = wp_parse_args($instance, $this->widget_defaults());
-
-		hana_widget_field( $this, array ( 'field' => 'title', 'label' => __( 'Title:', 'hana' ) ), $instance['title'] );
-		hana_widget_field( $this, array ( 'field' => 'posttype', 'type' => 'select', 'label' => __( 'Post Type:', 'hana' ), 'options' => hana_post_types(), 'class' => '' ), $instance['posttype'] );
-		hana_widget_field( $this, array ( 'field' => 'number', 'type' => 'number', 'label' => __( 'Number of posts to show:', 'hana' ),  'class' => '' ), $instance['number'] );
-		hana_widget_field( $this, array ( 'field' => 'random_post', 'type' => 'checkbox', 'desc' => __( 'Random Posts', 'hana' ), 'class' => '' ), $instance['random_post'] );
-		hana_widget_field( $this, array ( 'field' => 'column', 'type' => 'number', 'label' => __( 'No of Columns (1-4):', 'hana' ),  'class' => '' ), $instance['column'] );
-		hana_widget_field( $this, array ( 'field' => 'category', 'type' => 'select', 'label' => __( 'Category:', 'hana' ), 'label_all' => __( 'All Categories', 'hana' ), 'options' => hana_category_choices() ), $instance['category'] );
-		hana_widget_field( $this, array ( 'field' => 'sticky_post', 'type' => 'checkbox', 'desc' => __( 'Include sticky posts in the category', 'hana' ), 'class' => '' ), $instance['sticky_post'] );	
-		hana_widget_field( $this, array ( 'field' => 'thumbnail', 'type' => 'select', 'label' => __( 'Thumbnail:', 'hana' ), 'options' => hana_thumbnail_array(), 'class' => '' ), $instance['thumbnail'] );
-		hana_widget_field( $this, array ( 'field' => 'entry_meta', 'type' => 'checkbox', 'desc' => __( 'Display post meta', 'hana' ), 'class' => '' ), $instance['entry_meta'] );
-		hana_widget_field( $this, array ( 'field' => 'category_link', 'label' => __( 'Single category link : ', 'hana' ), 'class' => '' ), $instance['category_link'] );
-		hana_widget_field( $this, array ( 'field' => 'customquery', 'label' => __( 'Custom Query:', 'hana' ) ), $instance['customquery'] );	
-	}
+add_action( 'widgets_init', 'hana_widget_navigation_init' );
+function hana_widget_navigation_init() {
+	register_widget( 'Hana_Navigation' );
 }
 
 class Hana_Navigation extends WP_Widget {
@@ -185,7 +21,7 @@ class Hana_Navigation extends WP_Widget {
 			'hana_navigation',
 			__( '(Hana) Navigation', 'hana' ),
 			array(
-				'classname'   => 'hana_navigation',
+				'classname'   => 'navigation',
 				'description' => __( 'Tabbed navigation.', 'hana' ),
 			)
 		);
@@ -496,73 +332,5 @@ class Hana_Navigation extends WP_Widget {
 		hana_widget_field( $this, array ( 'field' => 'showcount', 'type' => 'checkbox', 'desc' => __( 'Show Post Counts', 'hana' ), 'class' => '' ), $instance['showcount'] );
 		hana_widget_field( $this, array ( 'field' => 'textcontent', 'type' => 'textarea', 'label' => __( 'Text:', 'hana' ) ), $instance['textcontent'] );
 		hana_widget_field( $this, array ( 'field' => 'data', 'type' => 'hidden', 'class' => 'widefat hanadata', 'ptag' => false ), $instance['data'] );		
-	}
-}
-
-function hana_widget_field( $widget, $args = array(), $value ) {
-	$args = wp_parse_args($args, array ( 
-		'field' => 'title',
-		'type' => 'text',
-		'label' => '',
-		'desc' => '',
-		'class' => 'widefat',
-		'options' => array(),
-		'label_all' => '',
-		'ptag' => true,
-		) );
-	extract( $args, EXTR_SKIP );
-
-	$field_id =  esc_attr( $widget->get_field_id( $field ) );
-	$field_name = esc_attr( $widget->get_field_name( $field ) );
-	
-	if ( $ptag )
-		echo '<p>';
-	if ( ! empty( $label ) ) {
-		echo '<label for="' . $field_id . '">';
-		echo $label . '</label> ';
-	}
-	switch ( $type ) {
-		case 'text':
-		case 'hidden':
-			echo '<input class="' . $class . '" id="' . $field_id;
-			echo '" name="' . $field_name . '" type="' . $type .'" value="';
-			echo esc_attr( $value ) . '" />';
-			break;
-		case 'textarea':
-			echo '<textarea class="' . $class . '" id="' . $field_id;
-			echo '" name="' . $field_name . '" type="' . $type .'" row="10" col="20">';
-			echo esc_textarea( $value ) . '</textarea>';
-			break;
-		case 'number':
-			echo '<input class="' . $class . '" id="' . $field_id;
-			echo '" name="' . $field_name . '" type="text" size="3" value="';
-			echo esc_attr( $value ) . '" />';
-			break;
-		case 'checkbox':
-			echo '<input class="' . $class . '" id="' . $field_id;
-			echo '" name="' . $field_name . '" type="' . $type .'" value="1" ';
-			echo checked( '1', $value, false ) . ' /> ';
-			echo '<label for="' . $field_id . '"> ' . $desc . '</label>';
-			break;
-		case 'select':
-			echo '<select id="' . $field_id . '" name="' . $field_name . '">';
-			foreach ( $options as $key => $label ) {
-				echo '<option value="' . $key . '" ' . selected( $key, $value, false );
-				echo '>' . $label . '</option>';
-			}
-			echo '</select>';
-			break;
-	}
-	if ( $ptag )
-		echo '</p>';
-}
-
-add_action( 'admin_enqueue_scripts', 'hana_load_widget_scripts' );
-function hana_load_widget_scripts( $hooks ) {
-	global $post_type;
-
-	if ( 'widgets.php' == $hooks ) {
-		wp_enqueue_style( 'hana-widgets', HANA_CORE_URI . 'css/widgets.css', null, '1.0' );	
-		wp_enqueue_script( 'hana-widgets', HANA_CORE_URI . 'js/widgets.js', array( 'jquery-ui-sortable' ) );			
 	}
 }

@@ -149,6 +149,32 @@ function hana_customize_register( $wp_customize ){
 	) );
 
     /*****************
+	* Typography 
+    *****************/
+    $wp_customize->add_section(
+        'hana_typo',
+        array(
+            'title'         => __('Typography', 'hana'),
+		    'description'  => __( 'You can choose the font for many theme elements such as Body and Headings. Other fonts can be used to load additional web fonts', 'hana' ),            
+            'priority'      => 20,
+        )
+    );
+	$font_elements = hana_font_elements();
+	foreach ( $font_elements as $key => $element ) {
+		$wp_customize->add_setting( $key, array(
+				'default'           => 'default',
+			'sanitize_callback' => 'hana_sanitize_fonts',
+		) );
+		$wp_customize->add_control( $key, array(
+			'label'    => $element['label'],
+			'section'  => 'hana_typo',
+			'type'     => 'select',
+			'priority' => 10,
+			'choices'  => hana_font_choices(),
+		) );	
+	}
+	
+    /*****************
 	* Header 
     *****************/
     $wp_customize->add_section(
@@ -195,7 +221,7 @@ function hana_customize_register( $wp_customize ){
     /*****************
 	* Featured Content 
     *****************/
-	if ( !empty( $featured_section ) ) {
+	if ( !empty( $featured_section ) ) { //If Jetpack is active
 	
 		$wp_customize->add_setting( 'max_featured', array(
 			'default'           => 10,
@@ -312,77 +338,10 @@ function hana_customize_register( $wp_customize ){
 		) );  		 			
 
 	} // end of featured_content	
-    /*****************
-	* Social 
-    *****************/
-        
-    $wp_customize->add_section(
-        'hana_social',
-        array(
-            'title'         => __('Social', 'hana'),
-		    'description'  => __( 'Choose the location where Jetpack sharing buttons are displayed.', 'hana'),           
-            'priority'      => 50,
-        )
-    );
-	$wp_customize->add_setting( 'share_top', array(
-		'default'           => 0,
-		'sanitize_callback' => 'hana_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'share_top', array(
-		'label'    => __( 'Display Jetpack Sharing on Top', 'hana' ),
-		'section'  => 'hana_social',
-		'type'     => 'checkbox',
-		'priority' => 10,
-	) );
 	
-	$wp_customize->add_setting( 'share_bottom', array(
-		'default'           => 0,
-		'sanitize_callback' => 'hana_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'share_bottom', array(
-		'label'    => __( 'Display Jetpack Sharing at Bottom', 'hana' ),
-		'section'  => 'hana_social',
-		'type'     => 'checkbox',
-		'priority' => 10,
-	) );
-
-	$wp_customize->add_setting( 'social_top', array(
-		'default'           => 0,
-		'sanitize_callback' => 'hana_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'social_top', array(
-		'label'    => __( 'Display Social Menu with Top Menu', 'hana' ),
-		'description'  => __( 'Create a custom Social Menu and choose the location to display. Supported social services will be displayed as an icon. See theme documentation for setup instruction.', 'hana'),           
-		'section'  => 'hana_social',
-		'type'     => 'checkbox',
-		'priority' => 20,
-	) );	
-
-	$wp_customize->add_setting( 'social_section', array(
-		'default'           => 0,
-		'sanitize_callback' => 'hana_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'social_section', array(
-		'label'    => __( 'Display Social Menu with Section Menu', 'hana' ),
-		'section'  => 'hana_social',
-		'type'     => 'checkbox',
-		'priority' => 20,
-	) );
-
-	$wp_customize->add_setting( 'social_footer', array(
-		'default'           => 0,
-		'sanitize_callback' => 'hana_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'social_footer', array(
-		'label'    => __( 'Display Social Link in Footer', 'hana' ),
-		'section'  => 'hana_social',
-		'type'     => 'checkbox',
-		'priority' => 20,
-	) );
     /*****************
 	* Colors 
     *****************/
-	
 	$wp_customize->add_setting( 'color_scheme', array(
 			'default'           => 'default',
 			'sanitize_callback' => 'hana_sanitize_schemes',
@@ -438,32 +397,6 @@ function hana_customize_register( $wp_customize ){
 		'type'     => 'checkbox',
 		'priority' => 10,
 	) );
-
-    /*****************
-	* Fonts 
-    *****************/
-    $wp_customize->add_section(
-        'hana_fonts',
-        array(
-            'title'         => __('Web Fonts', 'hana'),
-		    'description'  => __( 'You can choose the font for many theme elements such as Body and Headings. Other fonts can be used to load additional web fonts', 'hana' ),            
-            'priority'      => 26,
-        )
-    );
-	$font_elements = hana_font_elements();
-	foreach ( $font_elements as $key => $element ) {
-		$wp_customize->add_setting( $key, array(
-				'default'           => 'default',
-			'sanitize_callback' => 'hana_sanitize_fonts',
-		) );
-		$wp_customize->add_control( $key, array(
-			'label'    => $element['label'],
-			'section'  => 'hana_fonts',
-			'type'     => 'select',
-			'priority' => 10,
-			'choices'  => hana_font_choices(),
-		) );	
-	}
 	
     /*****************
 	* Footer 
@@ -561,18 +494,149 @@ function hana_customize_register( $wp_customize ){
 		'section'  => 'hana_footer',
 		'type'     => 'checkbox',
 		'priority' => 50,
+	) );
+    /*****************
+	* Social 
+    *****************/  
+    $wp_customize->add_section(
+        'hana_social',
+        array(
+            'title'         => __('Social', 'hana'),
+		    'description'  => __( 'Choose the location where Jetpack sharing buttons are displayed.', 'hana'),           
+            'priority'      => 50,
+        )
+    );
+	$wp_customize->add_setting( 'share_top', array(
+		'default'           => 0,
+		'sanitize_callback' => 'hana_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'share_top', array(
+		'label'    => __( 'Display Jetpack Sharing on Top', 'hana' ),
+		'section'  => 'hana_social',
+		'type'     => 'checkbox',
+		'priority' => 10,
+	) );
+	
+	$wp_customize->add_setting( 'share_bottom', array(
+		'default'           => 0,
+		'sanitize_callback' => 'hana_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'share_bottom', array(
+		'label'    => __( 'Display Jetpack Sharing at Bottom', 'hana' ),
+		'section'  => 'hana_social',
+		'type'     => 'checkbox',
+		'priority' => 10,
+	) );
+
+	$wp_customize->add_setting( 'social_top', array(
+		'default'           => 0,
+		'sanitize_callback' => 'hana_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'social_top', array(
+		'label'    => __( 'Display Social Menu with Top Menu', 'hana' ),
+		'description'  => __( 'Create a custom Social Menu and choose the location to display. Supported social services will be displayed as an icon. See theme documentation for setup instruction.', 'hana'),           
+		'section'  => 'hana_social',
+		'type'     => 'checkbox',
+		'priority' => 20,
 	) );	
+
+	$wp_customize->add_setting( 'social_section', array(
+		'default'           => 0,
+		'sanitize_callback' => 'hana_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'social_section', array(
+		'label'    => __( 'Display Social Menu with Section Menu', 'hana' ),
+		'section'  => 'hana_social',
+		'type'     => 'checkbox',
+		'priority' => 20,
+	) );
+
+	$wp_customize->add_setting( 'social_footer', array(
+		'default'           => 0,
+		'sanitize_callback' => 'hana_sanitize_checkbox',
+	) );
+	$wp_customize->add_control( 'social_footer', array(
+		'label'    => __( 'Display Social Link in Footer', 'hana' ),
+		'section'  => 'hana_social',
+		'type'     => 'checkbox',
+		'priority' => 20,
+	) );
+    /*****************
+	* Home Page 
+    *****************/
+	$wp_customize->add_section(
+        'hana_homepage',
+        array(
+            'title'         => __( 'Home Page', 'hana'),
+		    'description'  => __(  'Widgets in Home Widget Areas can be displayed horizontally. Simple specify the width and the layout for each widget area.','hana'),            
+            'priority'      => 50,
+        )
+    );
+    
+    $num = absint( apply_filters('hana_homewidget_number', 4) );
+	for ( $i = 1; $i <= $num; $i++ ) {
+		// Title		
+		$wp_customize->add_setting( 'home_title_' . $i, array(
+			'default'           => '',
+			'sanitize_callback' => 'hana_sanitize_text',
+		) );
+		$wp_customize->add_control( 'home_title_' . $i, array(
+			'label'    => sprintf( __('Home Widget Area %1$s Title', 'hana'), $i),
+			'section'  => 'hana_homepage',
+			'type'     => 'text',
+			'priority' => 10 * $i,
+		) );
+		// Subtitle Title		
+		$wp_customize->add_setting( 'home_subtitle_' . $i, array(
+			'default'           => '',
+			'sanitize_callback' => 'hana_sanitize_text',
+		) );
+		$wp_customize->add_control( 'home_subtitle_' . $i, array(
+			'label'    => __('Sub-Title', 'hana'),
+			'section'  => 'hana_homepage',
+			'type'     => 'text',
+			'priority' => 10 * $i,
+		) );
+		// Width
+		$wp_customize->add_setting( 'home_width_' . $i, array(
+			'default'           => 12,
+			'sanitize_callback' => 'absint',
+		) );
+		$wp_customize->add_control( 'home_width_' . $i, array(
+			'label'    => __( 'Width (Column)', 'hana' ),
+			'section'  => 'hana_homepage',
+			'type'     => 'number',
+			'priority' => 10 * $i,
+ 	   		'input_attrs' => array(
+  		    	'min'   => 0,
+           	 	'max'   => 12,
+           		 'step'  => 1 ),
+		) );
+
+		$wp_customize->add_setting( 'home_column_' . $i, array(
+			'default'           => '3',
+			'sanitize_callback' => 'hana_sanitize_columns',
+		) );
+		$wp_customize->add_control( 'home_column_' . $i, array(
+			'label'    => __( 'Layout', 'hana'),
+			'section'  => 'hana_homepage',
+			'type'     => 'select',
+			'priority' => 10 * $i,
+			'choices'  => hana_columns_choices(),
+		) );	
+	} //end for
+    
 }
 add_action('customize_register', 'hana_customize_register');
 
 
 function hana_customize_preview_js() {
-	wp_enqueue_script( 'hana-customize', get_template_directory_uri() . '/js/customize.js', array( 'customize-preview' ), '20160606', true );
+	wp_enqueue_script( 'hana-customize', HANA_THEME_URI . 'js/customize.js', array( 'customize-preview' ), '20160606', true );
 }
 add_action( 'customize_preview_init', 'hana_customize_preview_js' );
 
 function hana_customize_section_js() {
-	wp_enqueue_script( 'hana-customize-section', get_template_directory_uri() . '/js/customize-section.js', array( 'customize-controls' ), '20160606', true );
+	wp_enqueue_script( 'hana-customize-section', HANA_THEME_URI . 'js/customize-section.js', array( 'customize-controls' ), '20160606', true );
 }
 add_action( 'customize_controls_enqueue_scripts', 'hana_customize_section_js' );
 
@@ -637,28 +701,6 @@ function hana_sanitize_slider_mode( $input ) {
     }
 }
 
-function hana_sanitize_social_icon( $input ) {
-    $valid = hana_social_icon_choices();
- 
-    if ( array_key_exists( $input, $valid ) ) {
-        return $input;
-    } else {
-        return '';
-    }
-}
-
-function hana_sanitize_fonts( $input ) {
-    $valid = hana_font_choices();
- 
-    if ( array_key_exists( $input, $valid ) ) {
-    	if ( is_numeric($input ) )
-    		return 'default';
-        return $input;
-    } else {
-        return '';
-    }
-}
-
 function hana_sanitize_schemes( $input ) {
     $valid = hana_scheme_choices();
  
@@ -667,18 +709,6 @@ function hana_sanitize_schemes( $input ) {
     } else {
         return '';
     }
-}
-// Checkbox
-function hana_sanitize_checkbox( $input ) {
-    if ( $input == 1 ) {
-        return 1;
-    } else {
-        return '';
-    }
-}
-// Text
-function hana_sanitize_text( $input ) {
-    return wp_kses_post( force_balance_tags( $input ) );
 }
 /***********************
 * Choices Functions 
@@ -706,16 +736,9 @@ function hana_slider_mode_choices() {
     $choices = array(
         'horizontal'    => __('Horizontal', 'hana'),
         'vertical'     => __('Vertical', 'hana'),
+        'fade'     => __('Fade', 'hana'),
     );    
  	return apply_filters( 'hana_slider_type_choices', $choices );
-}
-
-function hana_social_icon_choices() {
-    $choices = array(
-        '1'    => __('Normal', 'hana'),
-        '2'     => __('Square', 'hana'),
-    );    
- 	return apply_filters( 'hana_social_icon_choices', $choices );
 }
 
 function hana_scheme_choices() {

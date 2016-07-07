@@ -17,7 +17,7 @@ class HANA_Grid {
 
 	public $grid = array(
 		'grid_width' => 1200,
-		'grid_column' => 12, //Only 12-Column Grid is supported
+		'grid_column' => 12, //Only 12-Column Grid is supported as of now
 		'fluid_grid' => 0,
 		'fluid_header' => 0,
 		'sidebar_pos' => 'right',
@@ -41,17 +41,19 @@ class HANA_Grid {
 
 	public function main_class( $echo = true ) {
 		$class = array();
-		if ( is_page_template( 'pages/fullwidth.php' ) )
+		if ( is_page_template( apply_filters('hanagrid_fullwidth_templates', array('pages/fullwidth.php','pages/homepage.php') ) ) )
 			$class[] = 'clearfix';
 		else {
 			$class[] = 'row';
 			if ($this->grid['fluid_grid'] )
 				$class[] = 'expanded';
 		}
+		$class = apply_filters( 'hanagrid_main_class', $class );
+		$imp_class = implode( ' ', $class );
 		if ( $echo )
-			echo implode( ' ', $class );
+			echo esc_attr( $imp_class );
 		else
-			return $class;
+			return $imp_class;
 	}
 
 	public function header_row_class( $echo = true ) {
@@ -59,10 +61,12 @@ class HANA_Grid {
 		$class[] = 'row';
 		if ( $this->grid['fluid_grid'] || $this->grid['fluid_header']  )
 			$class[] = 'expanded';
+		$class = apply_filters( 'hanagrid_header_row_class', $class );
+		$imp_class = implode( ' ', $class );
 		if ( $echo )
-			echo implode( ' ', $class );
+			echo esc_attr( $imp_class );
 		else
-			return $class;
+			return $imp_class;
 	}
 
 	public function content_class( $echo = true ) {
@@ -70,7 +74,6 @@ class HANA_Grid {
 		$class[] = 	'large-' . $this->grid['content_column'];
 		$class[] = 	'medium-' . $this->grid['content_column'];
 
-echo $this->grid['sidebar_pos'];
 		if ( 'left' == $this->grid['sidebar_pos'] && ( $this->grid['sidebar1_column'] > 0 || $this->grid['sidebar2_column'] > 0 ) ) {
 			if ( ( $this->grid['content_column'] + $this->grid['sidebar1_column'] + $this->grid['sidebar2_column'] ) > $this->grid['grid_column']  ) {
 				if ( $this->grid['sidebar1_column'] > $this->grid['sidebar2_column'] )
@@ -93,10 +96,11 @@ echo $this->grid['sidebar_pos'];
 		}
 		$class[] = 'columns';
 		$class = apply_filters( 'hanagrid_content_class', $class );
+		$imp_class = implode( ' ', $class );
 		if ( $echo )
-			echo implode( ' ', $class );
+			echo esc_attr( $imp_class );
 		else
-			return $class;
+			return $imp_class;
 	}
 	
 	public function sidebar_class( $location = 'full', $echo = true ) {
@@ -142,20 +146,22 @@ echo $this->grid['sidebar_pos'];
 			$class[] = 'columns';
 			$class = apply_filters( 'hanagrid_sidebartwo_class', $class );	
 		}		
+		$imp_class = implode( ' ', $class );
 		if ( $echo )
-			echo implode( ' ', $class );
+			echo esc_attr( $imp_class );
 		else
-			return $class;
+			return $imp_class;
 	}
 	
 	public function fullgrid_class ( $echo = true ) {
 		$class = array();
 		$class[] = 'large-' . $this->grid['grid_column'];
 		$class[] = 'columns';
+		$imp_class = implode( ' ', $class );
 		if ( $echo )
-			echo implode( ' ', $class );
+			echo esc_attr( $imp_class );
 		else
-			return $class;
+			return $imp_class;
 	}
 
 	public function column_class ( $large_col, $medium_col = NULL, $echo = true ) {
@@ -165,10 +171,11 @@ echo $this->grid['sidebar_pos'];
 		$class[] = 'large-' . $large_col;
 		$class[] = 'medium-' . $medium_col;
 		$class[] = 'columns';
+		$imp_class = implode( ' ', $class );
 		if ( $echo )
-			echo implode( ' ', $class );
+			echo esc_attr( $imp_class );
 		else
-			return $class;
+			return $imp_class;
 	}
 	
 	public function bbp_content_class ( $echo = true ) {
@@ -179,11 +186,11 @@ echo $this->grid['sidebar_pos'];
 		$class[] = 'medium-' . $width;
 		$class[] = 'columns';
 		$class = apply_filters( 'hanagrid_bbp_content_class', $class );
-		
+		$imp_class = implode( ' ', $class );
 		if ( $echo )
-			echo implode( ' ', $class );
+			echo esc_attr( $imp_class );
 		else
-			return $class;
+			return $imp_class;
 	}
 	
 	public function bbp_sidebar_class ( $echo = true ) {
@@ -193,11 +200,11 @@ echo $this->grid['sidebar_pos'];
 		$class[] = 'medium-' . $this->grid['sidebar_bbp'];
 		$class[] = 'columns';
 		$class = apply_filters( 'hanagrid_bbp_sidebar_class', $class );
-		
+		$imp_class = implode( ' ', $class );
 		if ( $echo )
-			echo implode( ' ', $class );
+			echo esc_attr( $imp_class );
 		else
-			return $class;
+			return $imp_class;
 	}
 	/**
 	 * Create the object when called for the 1st time

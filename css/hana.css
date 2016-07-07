@@ -19,6 +19,7 @@
  * 10. Navigation
  * 11. Widgets
  * 12. Portfolio
+ * 13. Home Page
  * 18. Pricing Table
  * 19. Social
  * 20. Responsive
@@ -241,7 +242,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sticky-header {
-	z-index: 5;
+	z-index: 99; /* IE10 */
 	top: 0;
 	width: 100%;
 }
@@ -255,13 +256,6 @@ h1, h2, h3, h4, h5, h6 {
 	background-repeat:no-repeat;
 	background-position: top center;
 	background-size: cover;	
-	padding: 2rem 0.25rem;
-	transition: all 500ms ease;
-}
-
-.top-bar.shrunk {
-	padding: 0 0.25rem;
-	transition: all 500ms ease;
 }
 
 .top-bar.shrunk img {
@@ -724,6 +718,7 @@ img#wpstats {
 	margin-bottom: 0.5rem; 	
 }
 
+.button.custom,
 .btn-featured {
 	font-weight: bold;
 	margin-bottom: 0;
@@ -731,6 +726,7 @@ img#wpstats {
     color: #f7f7f7;
 }
 
+.button.custom:hover, .button.custom:focus, 
 .btn-featured:hover, .btn-featured:focus {
 	background-color: #cc8b00;
 	color: #f7f7f7;
@@ -761,7 +757,7 @@ img#wpstats {
 }
 
 .featured-media-container {
-	display: inline-block;
+	display: block;
 	margin-bottom: 1rem;	
 }
 
@@ -781,14 +777,25 @@ img#wpstats {
 .entry-header {
 	padding-bottom: 0.5rem;
 }
+
 .entry-title {
 	font-size: 1.25rem;
 }
 
 .hentry {
 	position: relative;
-	border-bottom: 1px solid #eee;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.section-divider,
+.post-divider {
+	display: block;
+	height: 1px; 
+	border: 0;
+	background-image: -webkit-linear-gradient(left, #fefefe, #e9e9e9, #fcfcfc);
+	background-image: -moz-linear-gradient(left, #fefefe, #e9e9e9, #fefefe);
+	background-image: -ms-linear-gradient(left, #fefefe, #e9e9e9, #fefefe);
+	background-image: -o-linear-gradient(left, #fefefe, #e9e9e9, #fefefe);
 }
 
 .entry-content {
@@ -866,6 +873,29 @@ img#wpstats {
 	font-size: 0.875rem;
 	font-weight: bold;
 	text-transform: uppercase;
+}
+/********************************************
+ * Links
+ ********************************************/
+.entry-title a {
+	color: #0a0a0a;
+}
+
+#footer li a,
+.widget li a,
+.entry-meta a {
+	color: #595959;	
+}
+
+a:hover, a:focus,
+.top-bar .menu a:hover,
+.section-menu ul li a:hover,
+.featured-title a:hover,
+.entry-title a:hover,
+.entry-meta a:hover,
+.widget li a:hover,
+#footer li a:hover  {
+	color: #F38630;
 }
 /********************************************
  * Manual Excerpt
@@ -1170,6 +1200,11 @@ li.pingback {
 .page-link > .page-link-number {
 	background: #daddef;	
 }
+
+.pagination .current {
+	background: #daddef;
+	color: #0a0a0a;
+}
 /********************************************
  * 11. Widgets
  ********************************************/
@@ -1274,39 +1309,46 @@ li.pingback {
 /********************************************
  * Hana Recent Post Widget
  ********************************************/
-.hana_recent_post {
+.recent-post {
 	position: relative;
 }
 
-.hana_recent_post .hentry {
+.recent-post .hentry {
 	background: none;
 }
 
-.hana_recent_post .entry-title {
+.recent-post .entry-title {
 	font-size: 1.25rem;
 }
 
-.hana_recent_post_link {
+.recent-post-link {
 	position: absolute;
 	top: 0.5rem;
 	right: 1rem;
 }
 
-.hana_recent_post .entry-header,
-.hana_recent_post .entry-content,
-.hana_recent_post .entry-summary,
-.hana_recent_post .entry-footer {
+.recent-post .entry-header,
+.recent-post .entry-content,
+.recent-post .entry-summary,
+.recent-post .entry-footer {
 	padding-left: 0;
 	padding-right: 0;
+}
+
+.recent-post .columns .scale-item {
+	max-width: 100%;
+	width: 100%;
+	float: none;
+	margin-bottom: 0;
 }
 /********************************************
  * Hana Navigation Widget
  ********************************************/
-.hana_navigation .tabs {
+.navigation .tabs {
 	margin-top: 0.5rem;
 	margin-bottom: 0;
 }
-.hana_navigation .tabs > li > a {
+.navigation .tabs > li > a {
 	font-size: 1rem;
 	font-weight: bold;
 	padding: 0.8rem 0.5rem;
@@ -1314,9 +1356,79 @@ li.pingback {
 	border-top: 3px solid transparent;
 }
 
-.hana_navigation .tabs > li.is-active > a {
+.navigation .tabs > li.is-active > a {
 	background: #F1F1F1;
 	border-top: 3px solid #e7e7e7;
+}
+
+/********************************************
+ * Hana Marking
+ ********************************************/
+.marketing-horizontal, .marketing-vertical {
+	position: relative;
+	height: 100%;
+	border: 1px solid transparent;
+	padding-bottom: 4.5rem;
+}
+
+.marketing-horizontal:hover,
+.marketing-vertical:hover {
+	background: #f8f8f8;
+}
+.marketing-vertical  {
+	text-align: center;	
+}
+
+.marketing-icon {
+	font-size: 5rem;
+	margin-top: 1rem;
+	color: #9a9a9a;
+}
+
+.marketing-icon:hover {
+	color: #F38630;
+}
+
+.marketing-horizontal .marketing-icon {
+	font-size: 4rem;	
+}
+
+.marketing-logo {
+	text-align: center;
+}
+
+.marketing-logo img {
+	display: block;
+	margin: 0 auto;
+}
+
+.marketing-logo img:hover {
+	opacity: 0.75;
+}
+
+.marketing .widget-title,
+.marketing h2 {
+	font-size: 1.5rem;
+}
+
+.marketing .widget-title {
+	margin-top: 0.5rem;
+	text-align: center;
+}
+
+.marketing-text {
+	padding-top: 1rem;
+}
+
+.marketing-coa {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
 }
 
 /********************************************
@@ -1331,6 +1443,8 @@ li.pingback {
 	max-width: 100%;
 	width: 100%;
 	margin-bottom: 0.5rem;
+	display: block;
+	float: none;
 }
 
 .pfitem .scale-item img {
@@ -1368,30 +1482,18 @@ li.pingback {
 	padding-bottom: 0;
 }
 /********************************************
- * 13. Links
+ * 13. Home Page
  ********************************************/
-.entry-title a {
-	color: #0a0a0a;
+.home-section {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 }
 
-#footer li a,
-.widget li a,
-.entry-meta a {
-	color: #595959;	
-}
-
-a:hover, a:focus,
-.top-bar .menu a:hover,
-.section-menu ul li a:hover,
-.featured-title a:hover,
-.entry-title a:hover,
-.entry-meta a:hover,
-.widget li a:hover,
-#footer li a:hover  {
-	color: #F38630;
+.widget-area-title {
+	text-align: center;
 }
 /********************************************
- * 18. Links
+ * 18. Pricing Table
  ********************************************/
 .pricing-table {
   border: solid 1px #DDDDDD;
@@ -1525,7 +1627,7 @@ a:hover, a:focus,
  	}
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 47.9375rem) {
 
 .featured-caption {
  	top: auto;
@@ -1578,9 +1680,13 @@ a:hover, a:focus,
 	display: none;
 }
 
+.marketing-horizontal {
+	text-align: center;	
+}
+
 }
 /* Large */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
 
 .entry-title {
 	font-size: 1.875rem;
@@ -1596,6 +1702,17 @@ a:hover, a:focus,
 
 .site-header .sticky-container {
 	height: 141px;	
+}
+
+
+.top-bar {
+	padding: 2rem 0.25rem;
+	transition: all 500ms ease;
+}
+
+.top-bar.shrunk {
+	padding: 0 0.25rem;
+	transition: all 500ms ease;
 }
 
 }

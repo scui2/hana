@@ -109,7 +109,7 @@ function hana_archive_title() {
 		if ( empty( $category_description ) )			
 			$title = sprintf( '<span class="pt-label">%1$s</span><span class="pt-name">%2$s</span>', 
 				__( 'Category : ', 'hana' ),
-				esc_attr( $category_name ) );
+				esc_html( $category_name ) );
 		else
 			$title = $category_description;		
 		$category_id = get_cat_ID( $category_name );
@@ -128,7 +128,7 @@ function hana_archive_title() {
 				__( 'Tag : ', 'hana'),
 				esc_attr( get_the_archive_title() ) );
 		else
-			$title = $tag_description;
+			$title = esc_html( $tag_description );
 		$class .= ' pt-tag';
 	}
 	elseif ( is_archive() ) {

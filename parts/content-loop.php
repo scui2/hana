@@ -52,3 +52,4 @@
 		<?php hana_meta_bottom(); ?>
 	</footer>
 </article>
+<hr class="post-divider">
