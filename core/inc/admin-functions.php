@@ -45,16 +45,16 @@ class Hana_Meta_Box {
 			$default = ( isset( $field['default'] ) ? $field['default'] : '' );
 			switch ( $field['type'] ) {
 				case 'text':
-					echo '<input type="text" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . ( $meta ? $meta : $default ) . '" size="20" />';
+					echo '<input type="text" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . ( $meta ? esc_textarea( $meta ) : $default ) . '" size="20" />';
 					break;
 				case 'hidden':
-					echo '<input type="hidden" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . ( $meta ? $meta : $default ) . '" />';
+					echo '<input type="hidden" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . ( $meta ? esc_textarea( $meta ) : $default ) . '" />';
 					break;
 				case 'textarea':
-					echo '<textarea name="' . $field['id'] . '" id="'. $field['id'] . '" cols="60" rows="4" >' . ( $meta ? $meta : $default ) . '</textarea>' . '<br />' . $field['desc'];
+					echo '<textarea name="' . $field['id'] . '" id="'. $field['id'] . '" cols="60" rows="4" >' . ( $meta ? esc_textarea( $meta ) : $default ) . '</textarea>' . '<br />' . $field['desc'];
 					break;
 				case 'number':
-					echo '<input type="text" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . ( $meta ? $meta : $default ) . '" size="4" />';
+					echo '<input type="text" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . ( $meta ? intval( $meta ) : $default ) . '" size="4" />';
 					break;
 				case 'select':
 					echo '<select name="'. $field['id'] . '" id="'. $field['id'] . '">';
@@ -267,9 +267,9 @@ function hana_widget_field( $widget, $args = array(), $value ) {
 			echo '" name="' . $field_name . '" type="hidden" value="';
 			echo esc_attr( $value ) . '" />';
 			echo '<input class="media-upload-btn" id="' . $field_id;
-			echo '_btn" name="' . $field_name . '_btn" type="button" value="'. __( 'Choose Image', 'advantage' ) . '">';
+			echo '_btn" name="' . $field_name . '_btn" type="button" value="'. __( 'Choose Image', 'hana' ) . '">';
 			echo '<input class="media-upload-del" id="' . $field_id;
-			echo '_del" name="' . $field_name . '_del" type="button" value="'. __( 'Remove', 'advantage' ) . '">';
+			echo '_del" name="' . $field_name . '_del" type="button" value="'. __( 'Remove', 'hana' ) . '">';
 			break;
 	}
 	if ( $ptag )

@@ -2,7 +2,7 @@ jQuery(document).ready(function($){
 
 	$(document).foundation();	
         		
-    var backtotop = $('.back-to-top');   
+    var backtotop = $('.back-to-top'); 
 	// Back-to-top Script
 	backtotop.hide();
 	$('.back-to-top a').click(function (e) {
@@ -12,14 +12,30 @@ jQuery(document).ready(function($){
 		}, 800);
 		return false;
 	});
+	// Mouse Scroll Check
+	var sectionMenu = $('.sectionmenu');
+	var leftMenuToggle = $('.top-bar .leftmenu-toggle');
 	$(window).scroll(function () {
+		hanaScroll();
+	});
+	hanaScroll();
+	function hanaScroll() {
 		var scrollPos = $(window).scrollTop();
 		if (scrollPos > 500) {
 			backtotop.fadeIn();
 		} else {
 			backtotop.fadeOut();
+		}
+		if ( sectionMenu.length !== 0 && leftMenuToggle.length !== 0) {
+			if ( ( sectionMenu.position().top + 40 ) < scrollPos )
+				leftMenuToggle.removeClass("hide");
+			else
+				leftMenuToggle.addClass("hide");
+		}
+		if ( sectionMenu.length !== 0 && sectionMenu.is(':hidden') ) {
+			leftMenuToggle.removeClass("hide");
 		}	
-	});
+	}
 	// Search Focus
     $(window).on(
         'open.zf.reveal', function () {
@@ -34,18 +50,24 @@ jQuery(document).ready(function($){
     // Toggle Class
 	$('.hana-toggle').click(function (e) {
 		$(this).toggleClass('is-open');
-		return false;
 	});   
 	// Show Comments
 	var postCommnet = $('#comments');
+	var commentToggle = $('.comment-toggle');
 	if ( postCommnet !== undefined ) {
 		var hanaHash = window.location.hash;
-		if ( '#respond' == hanaHash || '#comments' == hanaHash ) {
+		if ( '#respond' == hanaHash || hanaHash.match('#comment') ) {
 			postCommnet.css("display", "block");
+			commentToggle.addClass('is-open');
 		} else {
-			postCommnet.css("display", "none");		
+			postCommnet.css("display", "none");	
+			commentToggle.removeClass('is-open');	
 		}		
 	}
+	$('.comment-link').click(function (e) {
+		postCommnet.css("display", "block");
+		commentToggle.addClass('is-open');
+	});
 
     // Shrinking Topbar
 	var stickyContainer = $('.sticky');
@@ -88,6 +110,7 @@ jQuery(document).ready(function($){
 			onSliderLoad: function(){
         		$(".featured-content").css("visibility", "visible");
         		$(".featured-content").css("height", "auto");
+        		hanaScroll();
       		}
 		});
 	}
@@ -103,6 +126,7 @@ jQuery(document).ready(function($){
 			onSliderLoad: function(){
         		$(".featured-content").css("visibility", "visible");
         		$(".featured-content").css("height", "auto");
+        		hanaScroll();
       		}
 		});
 	}
@@ -132,6 +156,7 @@ jQuery(document).ready(function($){
 					nonce: hanaloadmore.nonce,
 					page: page,
 					column: hanaloadmore.column,
+					entry_meta: hanaloadmore.entry_meta,
 					thumbnail: hanaloadmore.thumbnail,
 					query: hanaloadmore.query,
 				};
@@ -154,6 +179,5 @@ jQuery(document).ready(function($){
 			}
 		});	
 	} //Portfolio
-
 
 });

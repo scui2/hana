@@ -12,8 +12,8 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 <?php
-		hana_comment_link();
-		hana_meta_top();
+		hana_postmeta()->display( array( 'comment' ), 'meta-comment' );
+		hana_postmeta()->display( array( 'category' ), 'entry-meta-top', false );
 		hana_post_title();
 		if ( is_single() && has_excerpt() ) { ?>
 			<div class="entry-excerpt clearfix">
@@ -21,31 +21,29 @@
 			</div>
 <?php	}
 		hana_jetpack_sharing( 'top' );
-		hana_meta_middle();
-?>
+		hana_postmeta()->display( array( 'date', 'author' ), 'entry-meta-middle', false  ); ?>
 	</header>
 <?php
 
-	if ( get_theme_mod( 'show_featured' ) && has_post_thumbnail() ) { ?>
-		<div class="featured-media-container">
+	if ( ! get_theme_mod( 'hide_featured' ) && has_post_thumbnail() ) { ?>
+		<div class="featured-media-container clearfix">
 			<?php hana_featured_image(); ?>
 		</div>
 <?php
 	} ?>
 	<div class="entry-content clearfix">
 <?php
-		the_content( '' );
+		the_content();
 		wp_link_pages( array( 'before' => '<div class="page-link"><span class="page-link-title">' . __( 'Pages:', 'hana' ) . '</span>',
 						 	'after' => '</div>' ,
 						 	'link_before' => '<span class="page-link-number">',
 						 	'link_after' => '</span>' ) ); 
 ?>
 	</div>
+	<?php hana_postmeta()->edit_link(); ?>
 	<footer class="entry-footer clearfix">
-<?php	hana_meta_bottom();
-		hana_jetpack_sharing( 'bottom' );
-		hana_post_edit();
-		hana_author_info();
-?>
+<?php	hana_postmeta()->display( array( 'tag' ) );
+		hana_jetpack_sharing( 'bottom' );		
+		get_template_part( 'parts/biography' ); ?>
 	</footer>
 </article>

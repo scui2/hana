@@ -70,20 +70,10 @@ function hana_replace_rel_category ($output) {
 if ( ! function_exists( 'hana_post_title' ) ) :
 function hana_post_title( $link = false ) {
 	if ( ! is_single() || $link ) {
-		$link_url = get_the_permalink();
-		if ( has_post_format( 'link' ) ) {
-			$link = hana_get_link( get_the_content() );					
-    		if ( isset( $link['href'] ) )
-    			$link_url = $link['href'];
-    	}					
-		printf('<h2 class="entry-title"><a href="%1$s" title="%2$s" rel="bookmark">%3$s</a></h2>',
-			esc_url( $link_url ),
-			sprintf( the_title_attribute( 'echo=0' ) ),
-			esc_html( get_the_title() )	);
+		the_title( sprintf( '<h2 class="entry-title"><a href="%1$s" rel="bookmark">', esc_url( hana_get_post_link() ) ), '</a></h2>' );
 	}
 	else {
-		printf('<h1 class="entry-title">%1$s</h1>',
-			esc_html( get_the_title() ) );		
+		the_title( '<h1 class="entry-title">', '</h1>');
 	}
 }
 endif;
@@ -93,28 +83,22 @@ function hana_archive_title() {
 	if ( ! have_posts() )
 		return;
 	
-	$title = '';
-	$class = 'large-12 columns';
-	if ( is_search() ) { 
-		$title = sprintf( '<span class="pt-label">%1$s</span><span class="pt-name">%2$s</span>', 
+	$class = 'large-12 columns ';
+	if ( is_search() ) {
+		$title = sprintf( '%1$s<span class="search-term">%2$s</span>', 
 					__( 'Search Results for: ', 'hana'),
-					get_search_query() );
-		$class .= 'pt-search';
-	} elseif ( is_author() ) {
-		$title = get_the_archive_title();
-	}
-	elseif ( is_category() ) {
-		$category_description = get_the_archive_description();
+					esc_html( get_search_query() ) );
+		$class .= 'ph-search'; ?>
+		<div class="page-header <?php echo esc_attr( $class ); ?>">
+			<h1 class="page-title"><?php echo $title; ?></h1>
+		</div>	
+<?php	return;
+	} 
+	elseif ( is_category() ) { //
 		$category_name = single_cat_title( '', false );
-		if ( empty( $category_description ) )			
-			$title = sprintf( '<span class="pt-label">%1$s</span><span class="pt-name">%2$s</span>', 
-				__( 'Category : ', 'hana' ),
-				esc_html( $category_name ) );
-		else
-			$title = $category_description;		
 		$category_id = get_cat_ID( $category_name );
 		// Category Title Class
-		$class .= ' pt-category pt-category-' .  $category_id;
+		$class .= 'pt-category pt-category-' .  esc_attr( $category_id );
 		$parent = get_term( $category_id, 'category' );
 		while ( $parent->parent ) {
 			$class .= ' pt-category-' . esc_attr( $parent->parent );
@@ -122,25 +106,20 @@ function hana_archive_title() {
 		}
 	}
 	elseif ( is_tag() ) {
-		$tag_description = get_the_archive_description();
-		if ( empty( $tag_description ) )				
-			$title = sprintf( '<span class="pt-label">%1$s</span><span class="pt-name">%2$s</span>',
-				__( 'Tag : ', 'hana'),
-				esc_attr( get_the_archive_title() ) );
-		else
-			$title = esc_html( $tag_description );
-		$class .= ' pt-tag';
+		$class .= 'pt-tag';
 	}
-	elseif ( is_archive() ) {
-		$title = get_the_archive_title();
-		$class = 'pt-archive';
+	elseif ( is_day() || is_month() || is_year() ) {
+		$class .= 'pt-date';
 	}
-	if ( !empty( $title ) ) { ?>
-		<div class="page-title <?php echo esc_attr( $class ); ?>">
-			<?php echo $title; ?>
-		</div>
+	else {
+		return;
+	}
+?>
+	<div class="page-header <?php echo esc_attr( $class ); ?>">
+<?php	the_archive_title( '<h1 class="page-title">', '</h1>' );
+		the_archive_description( '<div class="page-description">', '</div>' ); ?>
+	</div>
 <?php		
-	}
 }
 endif;
 
@@ -179,7 +158,7 @@ function hana_content_nav_link( $num_of_pages, $nav_id ) {
 			
 		foreach ( $links as $link )
 			$html .= '<li>' . $link . '</li>';			
-		$html .='</ul>' . "\n";
+		$html .='</ul>';
 	}
 	echo apply_filters( 'hana_pagination', $html );
 }

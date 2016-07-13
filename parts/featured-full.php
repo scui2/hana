@@ -15,34 +15,23 @@
 	foreach ( $hana_featured_posts as $order => $post ) {
 		setup_postdata( $post );
 ?>
-		<li class="hana-slide hana-slide-<?php echo $post->ID; ?>">
-<?php
-			if ( hana_get_video() ) {
+		<li class="hana-slide hana-slide-<?php the_ID(); ?>">
+<?php		if ( hana_get_video() ) {
 				echo hana_get_video();
-			}
-			elseif ( has_post_thumbnail() )
+			} elseif ( has_post_thumbnail() )
 				the_post_thumbnail( 'full', array( 'class'	=> 'fullwidth-image', 'title' => get_the_title() ) ); ?>
 			<div class="featured-caption clearfix">
-<?php			if ('post' == get_post_type() )  {
-					$link_url = get_the_permalink();
-					if ( has_post_format( 'link' ) ) {
-						$link = hana_get_link( get_the_content() );					
-    					if ( isset( $link['href'] ) )
-    						$link_url = $link['href'];
-					} ?>
-					<h3 class="featured-title">
-						<a href="<?php echo esc_url($link_url); ?>"><?php the_title(); ?></a>
-					</h3>
-<?php				if ( has_excerpt()) { ?>
+<?php			if ( 'post' == get_post_type() )  {
+					$link_url = esc_url( hana_get_post_link() );
+					the_title( sprintf( '<h3 class="featured-title"><a href="%1$s">', $link_url ), '</a></h3>' );
+					if ( has_excerpt() ) { ?>
 						<div class="featured-excerpt">
 							<?php the_excerpt( '' ); ?>
 						</div>
 <?php				} ?>
-					<a class="button btn-featured" href="<?php echo esc_url($link_url); ?>"><?php echo esc_attr( hana_readmore_text() ); ?></a>
-<?php			} else { ?>
-					<h3 class="featured-title">
-						<?php the_title(); ?>
-					</h3>
+					<a class="button btn-featured" href="<?php echo $link_url; ?>"><?php echo hana_readmore_text(); ?></a>
+<?php			} else {
+					the_title( '<h3 class="featured-title">', '</h3>' ); ?>
 					<div class="featured-page">
 						<?php the_content(); ?>
 					</div>
@@ -54,9 +43,8 @@
 	</ul>
 <?php
 	$sliderOption = array (
-		'mode' => get_theme_mod( 'slider_mode', 'horizontal' ),
-		'speed' => get_theme_mod( 'slider_speed', 10 ),	
+		'mode' => esc_attr( get_theme_mod( 'slider_mode', 'horizontal' ) ),
+		'speed' => esc_attr( get_theme_mod( 'slider_speed', 10 ) ),	
 	);
 	wp_localize_script( 'hana-script', 'hanaSlider', $sliderOption );
 	wp_reset_postdata();
-?>

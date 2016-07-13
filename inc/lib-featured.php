@@ -8,38 +8,12 @@
  * @license GPL v3 or later
  * @link    http://www.rewindcreation.com/
  */
-function hana_is_featured() {
-	global $post; // WP global variable
-	
+function hana_is_featured() {	
 	if ( is_sticky() && ! is_paged() )
 		return true;
 	else
 		return false;
 }
-
-/******************************
-* Display Featured Media
-******************************/
-if ( ! function_exists( 'hana_featured_image' ) ) :
-function hana_featured_image( $size = 'full', $class = null, $link = false ) {
-	global $post;
-
-	if ( 'none' != $size && has_post_thumbnail() ) {
-		if ( ! $class )
-			$class = 'featured-image-' . $size;
-		if ( ! is_single( $post ) || $link ) {
-			printf ('<div class="scale-item"><a href="%1$s" title="%2$s">', 
-				esc_url( get_permalink() ),
-				esc_attr( get_the_title() ) );	
-			the_post_thumbnail( $size, array( 'class'	=> $class, 'title' => get_the_title() ) );
-			echo '</a></div>';
-		}
-		else {
-			the_post_thumbnail( $size, array( 'class' => $class, 'title' => get_the_title() ) );
-		}
-	}
-}
-endif;
 
 /******************************
 * Featured Posts
@@ -58,7 +32,7 @@ endif;
 
 function hana_has_featured_posts( $minimum = 1 ) { 
 	global $hana_featured_posts;
-	if ( is_paged() || is_search() || is_archive() || is_single()  )
+	if ( is_paged() || is_search() || is_archive() || is_single() || is_404() )
        return false;
        
 	if ( class_exists( 'bbPress' ) && is_bbpress() )

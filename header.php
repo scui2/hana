@@ -27,7 +27,7 @@
 <div id="wrapper" class="site off-canvas-content" data-off-canvas-content>
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'hana' ); ?></a>
 	<?php do_action('hana_header_top'); //Action Hook ?>
- 	<header id="masthead" class="site-header clearfix" role="banner">
+ 	<header id="masthead" class="site-header" role="banner">
 		<?php get_template_part( 'parts/top', 'menu' ); ?>
 	</header>
  <?php

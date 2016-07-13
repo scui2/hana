@@ -76,7 +76,7 @@ function hana_columns_choices( $meta = false ) {
 		$choices =  array( 
 					'1' => __( 'Full', 'hana'),
 					'2' => __( 'Half', 'hana'),
-					'3' => __( 'One Third', 'hana'),	// Default
+					'3' => __( 'One Third', 'hana'),
 					'4'	=> __( 'One Fourth', 'hana'));		
 	}
 	return apply_filters( 'hana_columns_choices', $choices );

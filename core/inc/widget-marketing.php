@@ -34,7 +34,7 @@ class Hana_Marketing extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base);
 
 		echo $before_widget; ?>
-		<div class="marketing-<?php echo esc_attr($layout); ?>">		
+		<div class="marketing-<?php echo esc_attr($layout); if ( empty( $action_url ) ) echo ' no-coa';  ?>">		
 <?php
 		  if ( ! empty( $title ) ) {
 			echo  $before_title;
@@ -49,7 +49,7 @@ class Hana_Marketing extends WP_Widget {
 			$class2 = hana_grid()->column_class( 8, 8, false );	
 		  } ?>
 		  <div class="row">		
-			<div class="marketing-logo <?php echo $class1; ?>">
+			<div class="marketing-logo <?php echo esc_attr( $class1 ); ?>">
 <?php			if ( ! empty( $image ) || ! empty( $icon ) ) {
 					if ( ! empty( $action_url ) )
 						echo '<a href="' . esc_url( $action_url ) . '">';
@@ -61,7 +61,7 @@ class Hana_Marketing extends WP_Widget {
 						echo '</a>';			
 				} ?>
 			</div>
-			<div class="marketing-text <?php echo $class2; ?>">		
+			<div class="marketing-text <?php echo esc_attr( $class2 ); ?>">		
 <?php			if ( ! empty( $headline ) )
 					echo '<h2>' . esc_attr( $headline ) . '</h2>';
 				if ( ! empty( $tagline ) )
@@ -87,14 +87,14 @@ class Hana_Marketing extends WP_Widget {
 		$instance['title'] = strip_tags( $new['title'] );
 		$instance['headline'] = wp_kses_stripslashes($new['headline']);
 		$instance['tagline'] = wp_kses_stripslashes($new['tagline']);
-		$instance['image'] =  $new['image'];
+		$instance['image'] =  intval( $new['image'] );
 		$instance['icon'] = wp_kses_stripslashes($new['icon']);
-		$instance['thumbnail'] = $new['thumbnail'];
+		$instance['thumbnail'] = esc_attr( $new['thumbnail'] );
 		$instance['action_url'] = esc_url_raw($new['action_url']);
 		$instance['action_label'] = wp_kses_stripslashes($new['action_label']);
 		$instance['action_color'] = wp_kses_stripslashes( $new['action_color'] );
 		$instance['hollow'] = absint( $new['hollow'] );		
-		$instance['layout'] = $new['layout'];
+		$instance['layout'] = esc_attr( $new['layout'] );
 		
 		return $instance;
 	}

@@ -6,14 +6,13 @@
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 	get_header();
 	hana_archive_title(); ?>
-<div id="content" class="site-content loop <?php hana_grid()->content_class(); ?>" role="main">
+<div id="content" class="site-content <?php hana_grid()->content_class(); ?>" role="main">
 <?php
 	if ( have_posts() ) {
-		hana_content_nav( 'nav-above' );
 		while ( have_posts() ) {
 			the_post();
 			if ( is_search() )

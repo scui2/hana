@@ -58,6 +58,7 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 		public function core_functions() {
 			require_once( HANA_CORE_DIR . 'inc/core-functions.php' );
 			require_once( HANA_CORE_DIR . 'inc/class-grid.php' );
+			require_once( HANA_CORE_DIR . 'inc/class-post-meta.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-general.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-menu.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-formats.php' );

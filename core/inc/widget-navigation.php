@@ -32,45 +32,45 @@ class Hana_Navigation extends WP_Widget {
 		$instance = wp_parse_args($instance, $this->widget_defaults());
 		extract( $instance, EXTR_SKIP );
 		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base);		
-		$id = substr( $widget_id, strlen( $this->id_base ) + 1 );
+		$id = esc_attr( substr( $widget_id, strlen( $this->id_base ) + 1 ) );
 
 		$tabs = array();
 		if ( $category )
-			$tabs[] = array( 'order' => $category,
+			$tabs[] = array( 'order' => esc_attr( $category ),
 							 'type'	 => 'category',
-							 'name' =>  $category_label );
+							 'name' =>  esc_attr( $category_label ) );
 		if ( $archive )
-			$tabs[] = array( 'order' => $archive,
+			$tabs[] = array( 'order' => esc_attr( $archive ),
 							 'type'	 => 'archive',
-							 'name' =>  $archive_label );
+							 'name' =>  esc_attr( $archive_label ) );
 		if ( $recent )
-			$tabs[] = array( 'order' => $recent,
+			$tabs[] = array( 'order' => esc_attr( $recent ),
 							 'type'	 => 'recent',
-							 'name' =>  $recent_label );
+							 'name' =>  esc_attr( $recent_label ) );
 		if ( $tag )
-			$tabs[] = array( 'order' => $tag,
+			$tabs[] = array( 'order' => esc_attr( $tag ),
 							 'type'	 => 'tag',
-							 'name' =>  $tag_label );
+							 'name' =>  esc_attr( $tag_label ) );
 		if ($menu && $menu_id )
-			$tabs[] = array( 'order' => $menu,
+			$tabs[] = array( 'order' => esc_attr( $menu ),
 							 'type'	 => 'menu',
-							 'name' =>  $menu_label );
+							 'name' =>  esc_attr( $menu_label ) );
 		if ( $text && ! empty( $textcontent ) )
-			$tabs[] = array( 'order' => $text,
+			$tabs[] = array( 'order' => esc_attr( $text ),
 							 'type'	 => 'text',
-							 'name' =>  $text_label );
+							 'name' =>  esc_attr( $text_label ) );
 
 		hana_sort_array( $tabs, "order" );
 
 		echo $before_widget; 
 		if ( ! empty( $title ) ) {
 			echo $before_title;
-			echo esc_attr( $title );
+			echo esc_html( $title );
 			echo $after_title;
 		}
 
 		$first = true; ?>
-		<ul class="tabs" data-tabs id="hana-tab-<?php echo $id;?>">
+		<ul class="tabs" data-tabs id="hana-tab-<?php echo $id ;?>">
 <?php
 		foreach ( $tabs as $tab) {
 			if ( $tab['order'] > 0) {
@@ -99,7 +99,7 @@ class Hana_Navigation extends WP_Widget {
 			  case 'category':
 				echo '<div class="widget_categories"><ul>';				
 				$cat_args = array();
-				$cat_args['show_count'] = $showcount;
+				$cat_args['show_count'] = esc_attr( $showcount );
 				$cat_args['title_li'] = '';
 				$cat_args['exclude'] = 1;
 				wp_list_categories( $cat_args );		
@@ -109,21 +109,20 @@ class Hana_Navigation extends WP_Widget {
 				echo '<div class="widget_archive"><ul>';
 				$arc_args = array();
 				$arc_args['type'] = 'monthly';
-				$arc_args['show_post_count'] = $showcount;	
-				$arc_args['limit'] = $limits;
-				wp_get_archives( $arc_args ); 	
-							
+				$arc_args['show_post_count'] = esc_attr( $showcount );	
+				$arc_args['limit'] = esc_attr( $limits );
+				wp_get_archives( $arc_args ); 			
 				echo '</ul></div>';
 				break;
 			  case 'recent':
 				echo '<div class="widget_recent_entries"><ul>';
 				
 				$rec_args = array();
-				$rec_args['numberposts'] = $limits;
+				$rec_args['numberposts'] = esc_attr( $limits );
 				$rec_args['post_status'] = 'publish';
 				$recent_posts = wp_get_recent_posts( $rec_args ); 
 				foreach( $recent_posts as $recent_post ){
-					echo '<li><a href="' . esc_url( get_permalink($recent_post["ID"]) ) . '" title="Look '.esc_attr($recent_post["post_title"]).'" >' . esc_attr( $recent_post["post_title"] ) .'</a> </li> ';
+					echo '<li><a href="' . esc_url( get_permalink($recent_post["ID"]) ) . '" title="Look '. esc_attr($recent_post["post_title"]).'" >' . esc_attr( $recent_post["post_title"] ) .'</a> </li> ';
 				}			
 				echo '</ul></div>';
 				break;
@@ -137,7 +136,7 @@ class Hana_Navigation extends WP_Widget {
 			  case 'menu':
 				echo '<div class="widget_nav_menu">';				
 				$menu_args = array();
-				$menu_args['menu'] = $menu_id;
+				$menu_args['menu'] = esc_attr( $menu_id );
 				wp_nav_menu( $menu_args);		
 				echo '</div>';	
 				break;
@@ -174,10 +173,10 @@ class Hana_Navigation extends WP_Widget {
 		$instance['recent_label'] =  wp_kses_stripslashes($new['recent_label']);
 		$instance['tag_label'] =  wp_kses_stripslashes($new['tag_label']);
 		$instance['menu_label'] =  wp_kses_stripslashes($new['menu_label']);
-		$instance['menu_id'] =  $new['menu_id'];
+		$instance['menu_id'] =  esc_attr( $new['menu_id'] );
 		$instance['text_label'] =  wp_kses_stripslashes($new['text_label']);
 		$instance['textcontent'] =  wp_kses_stripslashes($new['textcontent']);
-		$instance['data'] = $new['data'];
+		$instance['data'] = wp_kses_stripslashes( $new['data'] );
 		$items = array();
 		parse_str($instance['data'], $items);
 

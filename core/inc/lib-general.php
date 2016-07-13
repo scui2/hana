@@ -71,7 +71,7 @@ function hana_categories() {
 	$categories = get_categories();
 	return apply_filters( 'hana_categories', $categories );
 }
-
+// Return Top Categories
 function hana_top_categories( $count = 0 ) {
 	$args = array(
 		'orderby' => 'count',
@@ -85,70 +85,19 @@ function hana_top_categories( $count = 0 ) {
 	return apply_filters( 'hana_top_categories', $top_cats );
 }
 
-function hana_adjust_brightness( $hex, $steps ) {
-    // Steps should be between -255 and 255. Negative = darker, positive = lighter
-    $steps = max(-255, min(255, $steps));
-
-    // Format the hex color string
-    $hex = str_replace('#', '', $hex);
-    if (strlen($hex) == 3) {
-        $hex = str_repeat(substr($hex,0,1), 2).str_repeat(substr($hex,1,1), 2).str_repeat(substr($hex,2,1), 2);
-    }
-
-    // Get decimal values
-    $r = hexdec(substr($hex,0,2));
-    $g = hexdec(substr($hex,2,2));
-    $b = hexdec(substr($hex,4,2));
-
-    // Adjust number of steps and keep it inside 0 to 255
-    $r = max(0,min(255,$r + $steps));
-    $g = max(0,min(255,$g + $steps));  
-    $b = max(0,min(255,$b + $steps));
-
-    $r_hex = str_pad(dechex($r), 2, '0', STR_PAD_LEFT);
-    $g_hex = str_pad(dechex($g), 2, '0', STR_PAD_LEFT);
-    $b_hex = str_pad(dechex($b), 2, '0', STR_PAD_LEFT);
-
-    return '#'.$r_hex.$g_hex.$b_hex;
-}
-
-function hana_get_related_posts( $numb_of_posts = 4 ) {
-	$post = get_post();
-		
-	$args = array(
-		'posts_per_page' => $numb_of_posts,
-		'ignore_sticky_posts' => 1,
-		'post__not_in' => array( $post->ID ),
-		'orderby' => 'rand',
-	);
-
-	if ( function_exists( 'yarpp_get_related' ) ) { // Support Yet Another Related Posts
-		$related = yarpp_get_related( array( 'limit' => $numb_of_posts ), $post->ID );
-		$args['post__in'] = wp_list_pluck( $related, 'ID' );
-	} else {
-		$categories = get_the_category();
-		if ( ! empty( $categories ) ) {
-			$category = array_shift( $categories );
-			$args['tax_query'] = array(
-				array(
-					'taxonomy' => 'category',
-					'field' => 'id',
-					'terms' => $category->term_id,
-				),
-			);
-		}		
+// Returns permalink except link post in which 1st link will be returned
+function hana_get_post_link() {
+	$link_url = get_the_permalink();
+	if ( has_post_format( 'link' ) ) {
+		$link = array();
+		if ( preg_match('/<a (.+?)>/', get_the_content(), $match) ) {
+    		foreach ( wp_kses_hair($match[1], array('http')) as $attr) {
+        		$link[$attr['name']] = $attr['value'];
+    		}
+		}			
+    	if ( isset( $link['href'] ) )
+    		$link_url = $link['href'];
 	}
-
-	return new WP_Query( $args );
+	return $link_url;
 }
 
-function hana_get_link( $content ) {
-	$link = array();
-	if ( preg_match('/<a (.+?)>/', $content, $match) ) {
-    	foreach ( wp_kses_hair($match[1], array('http')) as $attr) {
-        	$link[$attr['name']] = $attr['value'];
-    	}
-	}
-	return $link;
-}
-		

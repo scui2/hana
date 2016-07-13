@@ -22,18 +22,17 @@
 	<div class="row column"><hr class="section-divider"></div>
 	<section id="home-section-<?php echo esc_attr($i); ?>" class="home-section home-section-<?php echo ($i % 2 == 0) ? 'odd' : 'even'; ?>" role="complementary">
 		<div class="row">
-			
 <?php		} ?>
-			<div id="<?php echo esc_attr($id); ?>" class="<?php hana_grid()->column_class( $width, $width); ?>">
+			<div id="<?php echo esc_attr( $id ); ?>" class="<?php hana_grid()->column_class( $width, $width ); ?>">
 <?php		$title = get_theme_mod( 'home_title_' . $i );
 			$subtilte = get_theme_mod( 'home_subtitle_' . $i );
 			if ( !empty( $title) || !empty( $subtilte) ) { ?>
 				<div class="widget-area-title">
 <?php			if ( !empty( $title) ) { ?>
-					<h2><?php echo esc_html($title); ?></h2>
+					<h2><?php echo esc_html( $title ); ?></h2>
 <?php			}
 				if ( !empty( $subtilte) ) { ?>
-					<h4 class="subheader"><?php echo esc_html($subtilte); ?></h4>
+					<h4 class="subheader"><?php echo esc_html( $subtilte ); ?></h4>
 <?php			} ?>	
 				</div>				
 <?php		}

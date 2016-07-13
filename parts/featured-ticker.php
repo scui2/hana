@@ -38,11 +38,11 @@
 	if ( 0 == $width )
 		$width = 255;
 	$tickerOption = array (
-			'minSlides' => get_theme_mod( 'ticker_min', 2 ),
-			'maxSlides' => get_theme_mod( 'ticker_max', 5 ),
-			'slideWidth' =>  $width,
-			'speed' =>  get_theme_mod( 'slider_speed', 10 ),
+			'minSlides' => esc_attr( get_theme_mod( 'ticker_min', 2 ) ),
+			'maxSlides' => esc_attr( get_theme_mod( 'ticker_max', 5 ) ),
+			'slideWidth' =>  esc_attr( $width ),
+			'speed' =>  esc_attr( get_theme_mod( 'slider_speed', 10 ) ),
 	);
 	wp_localize_script( 'hana-script', 'hanaTicker', $tickerOption ); 
 	wp_reset_postdata();
-?>
+

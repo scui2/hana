@@ -15,7 +15,7 @@
 	<header class="entry-header">
 <?php	hana_post_title( true );
 		if ( $hana_entry_meta )
-			hana_meta_widget(); ?>
+			hana_postmeta()->display( array( 'category', 'date', 'author' ) ); ?>
 	</header>
 	<div class="entry-summary clearfix">
 		<?php the_excerpt(); ?>

@@ -4,7 +4,7 @@
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 get_header(); ?>
 <div id="content" role="main" class="site-content <?php hana_grid()->bbp_content_class(); ?>">

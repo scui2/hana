@@ -18,7 +18,7 @@
 <?php 		if ( empty( get_theme_mod( 'copyright_text' ) ) ) {
 				printf( '%1$s %2$s <a href="%3$s" titlte="%4$s" rel="home">%4$s</a>',
 									__( 'Copyright &copy;', 'hana'),
-									sprintf( date('Y') ),
+									sprintf( esc_attr( date('Y') ) ),
 									esc_url( home_url( '/' ) ),
 									esc_attr( get_bloginfo( 'name', 'display' ) ) );	
 			} else {

@@ -82,18 +82,21 @@ function hana_featured_media( $size = 'hana-thumb' ) {
 		echo '<div class="scale-item scale-item-video">' . hana_get_video() . '</div>';
 }
 
-if ( ! function_exists( 'hana_single_post_link' ) ) :
-/* This function echo the link to single post view for the following:
-- Aside Post
-- Post without title
-------------------------------------------------------------------------- */
-function hana_single_post_link() {
-	if ( ! is_single() ) {
-		if ( has_post_format( 'aside' ) || has_post_format( 'quote' ) || '' == the_title_attribute( 'echo=0' ) ) { 
-			printf ('<a class="single-post-link" href="%1$s" title="%1$s"><i class="fa fa-chevron-right"></i></a>',
+function hana_featured_image( $size = 'full', $class = null, $link = false ) {
+	global $post;
+
+	if ( 'none' != $size && has_post_thumbnail() ) {
+		if ( ! $class )
+			$class = 'featured-image-' . $size;
+		if ( ! is_single( $post ) || $link ) {
+			printf ('<div class="scale-item"><a href="%1$s" title="%2$s">', 
 				esc_url( get_permalink() ),
-				esc_attr( get_the_title() )	);
-		} 
+				esc_attr( get_the_title() ) );	
+			the_post_thumbnail( $size, array( 'class' => $class, 'title' => get_the_title() ) );
+			echo '</a></div>';
+		}
+		else {
+			the_post_thumbnail( $size, array( 'class' => $class, 'title' => get_the_title() ) );
+		}
 	}
 }
-endif;

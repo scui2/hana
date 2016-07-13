@@ -6,10 +6,6 @@
  * 
  *****************************************************************/
 /********************************************
- * General
- ********************************************/
-
-/********************************************
  * Background
  ********************************************/
 .top-bar,
@@ -52,8 +48,6 @@
 
 .top-bar .menu.dropdown > li > a {
 	text-transform: uppercase;
-	font-size: .875rem;
-	font-weight: bold;
 }
 
 .fullwidth-slider .is-anchored .top-bar .dropdown > li > a {
@@ -95,10 +89,6 @@
 }
 
 /********************************************
- * Post
- ********************************************/
-
-/********************************************
  * Buttons
  ********************************************/
 .button {
@@ -107,7 +97,7 @@
 
 .button:hover, .button:focus {
     background-color: #238d6b;
-     }
+}
 /********************************************
  * Widgets
  ********************************************/
@@ -117,6 +107,10 @@
 
 .sidebar .widget-title {
 	font-variant: small-caps;
+}
+
+.marketing .widget-title {
+	color: #7ebcfa;
 }
 
 .sidebar .widget-divider:not(:last-child) {
@@ -145,5 +139,4 @@ a {
 .top-bar .menu a:hover {
 	color: #F38630;
 }
-
 

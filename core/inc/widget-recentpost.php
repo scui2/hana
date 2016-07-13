@@ -52,7 +52,7 @@ class Hana_Recent_Post extends WP_Widget {
 			'no_found_rows' => 1,
 		);
 		if ( 'post' == $posttype ) {
-			$query_str['category__in'] = $category;
+			$query_str['category__in'] = esc_attr( $category );
 			$query_str['post__not_in'] = $sticky;			
 		}
 		if ( ! empty( $customquery ) ) {
@@ -122,14 +122,14 @@ class Hana_Recent_Post extends WP_Widget {
 		$instance['title'] = strip_tags( $new['title'] );
 		$instance['number'] = (int) $new['number'];
 		$instance['column'] = (int) $new['column'];;
-		$instance['posttype'] = $new['posttype'];	
+		$instance['posttype'] = esc_attr( $new['posttype'] );	
 		$instance['customquery'] = wp_kses_stripslashes( $new['customquery'] );
 		$instance['category'] =  (int) $new['category'];
 		$instance['sticky_post'] =  (int) $new['sticky_post'];
 		$instance['random_post'] =  (int) $new['random_post'];
 		$instance['entry_meta'] =  (int) $new['entry_meta'];
 		$instance['category_link'] =  strip_tags($new['category_link']);
-		$instance['thumbnail'] = $new['thumbnail'];
+		$instance['thumbnail'] = esc_attr( $new['thumbnail'] );
 
 		return $instance;
 	}

@@ -6,7 +6,7 @@
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  * 
  */
 	get_header();
@@ -18,7 +18,7 @@
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<header class="entry-header">
 <?php 		hana_post_title(); 
-			hana_meta_attachment(); ?>
+			hana_postmeta()->display( array( 'date', 'attachment' ) ); ?>
 		</header>
 		<div class="entry-attachment clearfix">
 <?php		hana_the_attached_image();
@@ -27,16 +27,14 @@
 					<?php the_excerpt(); ?>
 				</div>
 <?php		}
-			 the_content();
-			 wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'hana' ) . '</span>', 'after' => '</div>' ) ); 
- ?>
+			the_content(); ?>
 		</div>
-		<?php hana_post_edit(); ?>
-		<nav id="nav-single" class="row">
-				<div class="nav-previous medium-6 columns"><?php previous_image_link( false, __( '<i class="fa fa-chevron-left"></i> Previous', 'hana') ); ?></span>
-				<div class="nav-next medium-6 columns"><?php next_image_link( false, __( 'Next <i class="fa fa-chevron-right"></i>', 'hana') ); ?></div>
-		</nav>
+		<?php hana_postmeta()->edit_link(); ?>
 	</article>
+	<div class="navigation image-navigation clearfix">
+		<div class="nav-previous "><?php previous_image_link( false, __( 'Previous', 'hana') ); ?></div>
+		<div class="nav-next "><?php next_image_link( false, __( 'Next', 'hana') ); ?></div>
+	</div>
 <?php
 	} ?>
 </div>

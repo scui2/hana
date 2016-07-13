@@ -6,7 +6,7 @@
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 ?>
 <article id="post-0" class="post hentry no-results not-found">
@@ -15,15 +15,15 @@
 	</header>
 
 	<div class="entry-content">
-		<?php if ( is_home() ) { ?>
-			<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'hana' ), admin_url( 'post-new.php' ) ); ?></p>
-		<?php } else { ?>
-			<?php if ( is_search() ) { ?> 
+<?php	if ( is_home() ) { ?>
+			<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'hana' ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>
+<?php 	} else {
+			if ( is_search() ) { ?> 
 				<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'hana' ); ?></p>
-			<?php } else { ?>
+<?php 		} else { ?>
 				<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'hana' ); ?></p>
-			<?php } ?>
-				<?php get_search_form(); ?>
-		<?php } ?>
+<?php 		}
+			get_search_form();
+		} ?>
 	</div>
 </article>

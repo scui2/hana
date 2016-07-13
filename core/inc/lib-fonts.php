@@ -6,7 +6,7 @@
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 		
 function hana_font_list() {
@@ -75,8 +75,6 @@ function hana_font_choices() {
 	}
 	return $choices;
 }
-
-
 
 if ( ! function_exists( 'hana_google_font_url' ) ):
 function hana_google_font_url() {

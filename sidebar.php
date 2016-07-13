@@ -20,10 +20,10 @@
 		// Full Sidebar	
 		if ( 'both' != $sidebar_pos && $width > 0 && is_active_sidebar( 'sidebar-full' ) ) { ?>
 			<aside id="sidebar-full" class="<?php hana_grid()->sidebar_class( 'full' ); ?> sidebar" role="complementary" data-sticky-container>
-<?php			if ( !empty($sticky) )
+<?php			if ( !empty( $sticky ) )
 					echo $sticky;
 				dynamic_sidebar( 'sidebar-full' );
-				if ( !empty($sticky) ) {
+				if ( !empty( $sticky ) ) {
 					echo '</div>';
 					$sticky = '';
 				} ?>
@@ -34,10 +34,10 @@
 		// First Sidebar	
 		if ( is_active_sidebar( 'sidebar-1' ) && ( $sidebar1 > 0) ) {	?>	
 			<aside id="sidebar-1" class="<?php hana_grid()->sidebar_class( 'one' ); ?> sidebar" role="complementary" data-sticky-container>
-<?php			if ( !empty($sticky) )
+<?php			if ( !empty( $sticky ) )
 					echo $sticky;
 				dynamic_sidebar( 'sidebar-1' );
-				if ( !empty($sticky) ) {
+				if ( !empty( $sticky ) ) {
 					echo '</div>';
 				} ?>
 			</aside>
@@ -46,10 +46,10 @@
 		// Second Sidebar
 		if ( is_active_sidebar( 'sidebar-2' ) && ( $sidebar2 > 0) ) { ?>
 			<aside id="sidebar-2" class="<?php hana_grid()->sidebar_class( 'two' ); ?> sidebar" role="complementary" data-sticky-container>
-<?php			if ( !empty($sticky) )
+<?php			if ( !empty( $sticky ) )
 				echo $sticky;
 				dynamic_sidebar( 'sidebar-2' );
-				if ( !empty($sticky) ) {
+				if ( !empty( $sticky ) ) {
 					echo '</div>';
 				} ?>
 			</aside>

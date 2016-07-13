@@ -11,7 +11,7 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-equalizer-watch>
 <?php
-	global $hana_thumbnail;
+	global $hana_thumbnail, $hana_entry_meta;
 	
 	if ( $has_media = hana_has_featured_media() )
 		hana_featured_media( $hana_thumbnail ); ?>
@@ -25,12 +25,11 @@
 		</div>
 <?php
 	}
-	hana_post_edit();
-	global $hana_entry_meta;
+	hana_postmeta()->edit_link();
 	if ( $hana_entry_meta ) { ?>
 		<footer class="entry-footer clearfix">
-<?php	 	hana_comment_link();
-			hana_meta_portfolio();?>
+<?php	 	hana_postmeta()->display( array( 'comment' ), 'meta-comment' );
+			hana_postmeta()->display( array( 'tag' ) );?>
 		</footer>
 <?php
 	} ?>

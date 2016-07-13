@@ -6,7 +6,7 @@
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -15,20 +15,16 @@
 		hana_featured_media(); ?>
 	<header class="entry-header">
 <?php	hana_post_title();
-		hana_comment_link();
-		hana_meta_middle(); ?>
+		hana_postmeta()->display( array( 'comment' ), 'meta-comment' );
+		hana_postmeta()->display( array( 'category', 'date', 'author' ) ); ?>
 	</header>
 	<div class="entry-summary clearfix">
 		<?php the_excerpt(); ?>
 	</div>
 <?php
-	hana_post_edit();
-?>
-	<footer class="entry-footer show-for-medium clearfix">
-<?php
-		//wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'hana' ) . '</span>', 'after' => '</div>' ) );
-		hana_meta_bottom();	
-?>
+	hana_postmeta()->edit_link(); ?>
+	<footer class="entry-footer clearfix">
+<?php	hana_postmeta()->display( array( 'tag' ) ); ?>
 	</footer>
 </article>
 <hr class="post-divider">

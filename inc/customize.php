@@ -6,7 +6,7 @@
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 if ( ! defined('ABSPATH') ) exit;
 
@@ -18,7 +18,7 @@ function hana_customize_register( $wp_customize ){
 	if ( !empty($featured_section) )
 		$featured_section->priority = 22;
 	$featured_section = $wp_customize->get_section( 'static_front_page' )->priority = 20;
-	// Remove the core Display Header Text option.
+	// Hana display the header text when there is no logo
 	$wp_customize->remove_control( 'display_header_text' );	
     /*****************
 	* Layout Section 
@@ -380,7 +380,7 @@ function hana_customize_register( $wp_customize ){
 		'default'           => 0,
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
-	$wp_customize->add_control( 'show_date', array(
+	$wp_customize->add_control( 'hide_date', array(
 		'label'    => __( 'Hide Date', 'hana' ),
 		'section'  => 'hana_posts',
 		'type'     => 'checkbox',
@@ -644,18 +644,18 @@ function hana_custom_css( ) {
 	$css = '';
 	$width = get_theme_mod( 'grid_width' );
 	if ( 1200 != $width ) {
-		$css .= '.row {max-width: ' . $width . 'px; }' . "\n";
+		$css .= '.row {max-width: ' . esc_attr( $width ) . 'px; }' . "\n";
 	}
 	// Site Title text color
 	if ( get_theme_mod('header_textcolor') )
-		$css .= '.site-title a {color: #' . get_theme_mod('header_textcolor') . '; }' . "\n";
+		$css .= '.site-title a {color: #' . esc_attr( get_theme_mod('header_textcolor') ) . '; }' . "\n";
 	// Header image as background	
 	$header_image = get_header_image();
 	if ( ! empty ($header_image) ) {
 		$css .= '.top-bar {background-image:url(' . esc_url( $header_image ) . '); }' . "\n";		
 	}
-	if ( get_theme_mod( 'slider_height' ) &&  'full' == get_theme_mod ('slider_type', 'full' ) ) {
-		$css .= '.hana-slide {max-height: ' . get_theme_mod( 'slider_height' ) . 'px;}' . "\n";
+	if ( get_theme_mod( 'slider_height' ) ) {
+		$css .= '.hana-slide {max-height: ' . esc_attr( get_theme_mod( 'slider_height' ) ) . 'px;}' . "\n";
 	}
 	//Font
 	$hana_fonts = hana_font_list();	
@@ -663,9 +663,9 @@ function hana_custom_css( ) {
 	foreach ( $font_elements as $key => $element ) {
 		$option = get_theme_mod( $key );
 		if ( $option &&  'default' != $option && !empty( $element['selector'] ) )
-			$css .= $element['selector'] . ' {font-family:' . $hana_fonts[ $option ]['name'] . ',' . $hana_fonts[ $option ]['type'] . ';}' . "\n";		
+			$css .= $element['selector'] . ' {font-family:' . esc_attr( $hana_fonts[ $option ]['name'] ) . ',' . esc_attr( $hana_fonts[ $option ]['type'] ) . ';}' . "\n";		
 	}
-	return apply_filters( 'hana_custom_css', $css);
+	return apply_filters( 'hana_custom_css', $css );
 }
 
 /***********************
@@ -752,6 +752,7 @@ function hana_scheme_choices() {
 /***************************************
 * Custome Header and Background Support
 ***************************************/
+add_action( 'after_setup_theme', 'hana_custom_header_background' );
 if ( ! function_exists( 'hana_custom_header_background' ) ):
 function hana_custom_header_background() {
 	add_theme_support( 'custom-background', array(
@@ -766,7 +767,6 @@ function hana_custom_header_background() {
 	add_theme_support( 'custom-header', $arg );	
 }
 endif;
-add_action( 'after_setup_theme', 'hana_custom_header_background' );
 
 function hana_font_elements() {
 	$elements = array(

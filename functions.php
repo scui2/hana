@@ -197,51 +197,10 @@ function hana_body_classes( $classes ) {
 	}
 	if ( 'full' == get_theme_mod('slider_type', 'full' ) &&  get_theme_mod( 'sticky_header' ) &&  get_theme_mod( 'slider_top' ) && hana_has_featured_posts() )
 		$classes[] = 'fullwidth-slider';
-	if ( ! is_page_template( 'pages/fullwidth.php') && ! is_page_template( 'pages/nosidebar.php') )
+	if ( ! is_page_template( array('pages/fullwidth.php', 'pages/nosidebar.php') ) && ! is_attachment() )
 		$classes[] = 'sidebar-' . get_theme_mod( 'sidebar_pos', 'right' );
 
 	return $classes;
-}
-endif;
-
-
-if ( ! function_exists( 'hana_comment' ) ) :
-function hana_comment( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
-	switch ( $comment->comment_type ) {
-		case 'pingback' :
-		case 'trackback' : ?>
-	<li class="post pingback">
-		<p><?php _e( 'Pingback:', 'hana' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( '<i class="fa fa-pencil"></i>'); ?></p>
-	</li>
-	<?php
-			break;
-		default : ?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-		<article id="comment-<?php comment_ID(); ?>" class="comment">
-			<footer class="clearfix">
-				<div class="comment-meta">
-<?php 				echo get_avatar( $comment, 40 );
-					printf( '<cite class="fn">%1$s</cite>', get_comment_author_link() );  ?>
-					<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-						<time datetime="<?php comment_time( 'c' ); ?>"><?php echo human_time_diff( get_comment_time( 'U' ), current_time( 'timestamp') ) . __( ' ago', 'hana' ); ?>
-						</time></a>
-<?php				if ( $comment->comment_approved == '0' ) { ?>
-						<em><?php _e( 'Your comment is awaiting moderation.', 'hana' ); ?></em>
-<?php 				}; ?>
-				</div>
-			</footer>
-			<div class="comment-content">
-				<?php comment_text(); ?>
-				<div class="comment-reply">
-<?php 				comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'], 'reply_text' => __('Reply', 'hana') ) ) );
-					edit_comment_link( '<i class="fa fa-pencil"></i> ' ); ?>
-				</div>
-			</div>
-		</article>
-	<?php
-			break;
-	}
 }
 endif;
 
@@ -288,11 +247,10 @@ endif;
 
 if ( ! function_exists( 'hana_branding' ) ):
 function hana_branding() {
-	if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) { //To remove function_exists at 4.7
+	if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) { //To remove function_exists from 4.7
 		the_custom_logo();
 	}
-	else { // Display Site Title and Tagline
-?>
+	else { // Display Site Title and Tagline ?>
 		<div class="site-title-container">
 		  <h3 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h3>
 		  <h4 class="site-description show-for-medium "><?php bloginfo( 'description' ); ?></h4>
@@ -304,6 +262,5 @@ endif;
 
 require_once( trailingslashit( get_template_directory() ) . 'inc/lib-featured.php' );
 require_once( trailingslashit( get_template_directory() ) . 'inc/lib-template.php' );
-require_once( trailingslashit( get_template_directory() ) . 'inc/lib-meta.php' );
 require_once( trailingslashit( get_template_directory() ) . 'inc/customize.php' );
 require_once( trailingslashit( get_template_directory() ) . 'inc/extras.php' );

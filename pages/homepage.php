@@ -2,11 +2,11 @@
 /**
  * Template Name: Home Page
  *
- * @package	passion
+ * @package	hana
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 get_header(); ?>
 <div id="content" class="site-content" role="main">

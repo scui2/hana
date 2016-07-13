@@ -8,7 +8,7 @@
  * @license GPL v3 or later
  * @link    http://rewindcreation.com/
  */
-if (  has_nav_menu( 'section' ) ||  ( get_theme_mod( 'social_section' ) && has_nav_menu( 'social' ) ) ) { ?>
+if (  has_nav_menu( 'section' ) || ( get_theme_mod( 'social_section' ) && has_nav_menu( 'social' ) ) ) { ?>
 	<div class="sectionmenu show-for-large">
 		<div class="<?php hana_grid()->header_row_class(); ?>">
 <?php		if ( has_nav_menu( 'section' ) ) { ?>
