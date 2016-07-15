@@ -36,7 +36,7 @@
 			hana_postmeta()->display( array( 'category', 'date', 'author' ), 'entry-meta-middle', false  ); ?>
 		</header>
 		<div class="entry-summary clearfix">
-<?php		if ( has_post_format( array('quote','aside','audio') ) )
+<?php		if ( has_post_format( array('quote','aside' ) ) )
 				the_content();
 			else
 				the_excerpt(); ?>

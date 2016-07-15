@@ -642,7 +642,7 @@ add_action( 'customize_controls_enqueue_scripts', 'hana_customize_section_js' );
 
 function hana_custom_css( ) {	
 	$css = '';
-	$width = get_theme_mod( 'grid_width' );
+	$width = get_theme_mod( 'grid_width', 1200 );
 	if ( 1200 != $width ) {
 		$css .= '.row {max-width: ' . esc_attr( $width ) . 'px; }' . "\n";
 	}
@@ -654,6 +654,7 @@ function hana_custom_css( ) {
 	if ( ! empty ($header_image) ) {
 		$css .= '.top-bar {background-image:url(' . esc_url( $header_image ) . '); }' . "\n";		
 	}
+	// Slider Height
 	if ( get_theme_mod( 'slider_height' ) ) {
 		$css .= '.hana-slide {max-height: ' . esc_attr( get_theme_mod( 'slider_height' ) ) . 'px;}' . "\n";
 	}
@@ -663,7 +664,7 @@ function hana_custom_css( ) {
 	foreach ( $font_elements as $key => $element ) {
 		$option = get_theme_mod( $key );
 		if ( $option &&  'default' != $option && !empty( $element['selector'] ) )
-			$css .= $element['selector'] . ' {font-family:' . esc_attr( $hana_fonts[ $option ]['name'] ) . ',' . esc_attr( $hana_fonts[ $option ]['type'] ) . ';}' . "\n";		
+			$css .= $element['selector'] . ' {font-family:"' . esc_attr( $hana_fonts[ $option ]['name'] ) . '",' . esc_attr( $hana_fonts[ $option ]['type'] ) . ';}' . "\n";		
 	}
 	return apply_filters( 'hana_custom_css', $css );
 }

@@ -38,7 +38,7 @@
 <?php		}
 			if ( $column > 1 ) {
 				if (12 == $width) { ?>
-					<div class="row" data-equalizer data-equalize-on="medium">					
+					<div class="row" data-equalizer data-equalize-on="large">					
 <?php			} else { ?>
 					<div class="row">						
 <?php			}

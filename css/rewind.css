@@ -24,6 +24,9 @@
 	background: -webkit-linear-gradient(top, #ddcfbd 0%,#CCB89D 100%);
 }
 
+#home-section-2 {
+	background: #e0f8fe;
+}
 /********************************************
  * Header
  ********************************************/
@@ -31,9 +34,11 @@
 	color: #f1f1f1;
 }
 
-.title-bar-icon {
+.title-bar-icon,
+.top-bar .title-bar-icon {
 	color: #404040;	
 }
+
 /********************************************
  * Menu
  ********************************************/
@@ -58,17 +63,6 @@
 	border-color: #909090 transparent transparent;
 }
 
-.sectionmenu {
-	border-top: 1px solid #d8ddbf;
-	border-bottom: 1px solid #d8ddbf;
-	background: #E0E4CC;
-}
-
-.section-menu > ul > li > a,
-.section-menu ul ul li a {
-	color: #414141;
-}
-
 .section-menu ul li:hover {
 	background: #e8ead7;
 	background: linear-gradient(top, #E0E4CC 0%, #e8ead7 80%);
@@ -82,6 +76,9 @@
 
 .section-menu ul ul li {
 	border-color: #E0E4CC;
+}
+.section-menu ul ul li a {
+	color: #0a0a0a;
 }
 
 .section-menu ul ul li a:hover {

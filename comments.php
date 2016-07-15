@@ -14,7 +14,7 @@
 ?>
 <button class="hollow secondary button expanded hana-toggle comment-toggle" data-toggle="comments">
 	<span class="show-comment"><?php comments_number( __( 'Leave a Reply', 'hana' ), __( 'Show 1 Comment.', 'hana' ), __( 'Show % Comments', 'hana' ) ); ?></span>
-	<span class="hide-comment"><?php _e( 'Hide Commeont', 'hana'); ?></span>
+	<span class="hide-comment"><?php _e( 'Hide Comment', 'hana'); ?></span>
 </button>
 <div id="comments" class="comments-area" data-toggler data-animate="fade-in fade-out">
 <?php

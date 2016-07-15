@@ -25,7 +25,7 @@
 		<div class="<?php hana_grid()->header_row_class(); ?>">
 <?php		if ( has_nav_menu( 'section' ) ) { ?>
 		  		<div class="top-bar-left">
-					<button class="title-bar-icon leftmenu-toggle hide" data-toggle="offCanvasLeft"><i class="fa fa-bars"></i></button>    
+					<button class="title-bar-icon leftmenu-toggle hide hide-for-small-only" data-toggle="offCanvasLeft"><i class="fa fa-bars"></i></button>    
 	 	  		</div>
 <?php		} ?>
 			<div class="top-bar-left show-for-small-only small-search-form"> 
@@ -50,6 +50,7 @@
 					'walker' => new hana_topbar_walker()
 				)); ?>
 			</div>
+			<?php do_action('hana_topbar_close'); //Action Hook ?>
 		</div>	
 	</div><!-- top-bar -->
 <?php

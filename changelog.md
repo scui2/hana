@@ -1,5 +1,9 @@
 ## Change Log
 
+### 1.0.5
+
+* Added HANA_KSES class for extracted image and embed
+
 ### 1.0.4
 
 * Consolidated common functions to Hana Core

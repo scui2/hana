@@ -22,7 +22,7 @@
 									esc_url( home_url( '/' ) ),
 									esc_attr( get_bloginfo( 'name', 'display' ) ) );	
 			} else {
-				echo hana_wp_kses_text( get_theme_mod('copyright_text') );  //Only allow a, br and em and strong tag in copyright text
+				echo hana_kses()->text( get_theme_mod('copyright_text') );  //Only allow a, br and em and strong tag in copyright text
 			} ?>
 		</div>
 <?php	$menu_class ='medium-8';

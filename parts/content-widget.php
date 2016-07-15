@@ -11,7 +11,7 @@
  	global $hana_thumbnail, $hana_entry_meta;
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php hana_featured_image( $hana_thumbnail ); ?>
+	<?php hana_featured_media( $hana_thumbnail ); ?>
 	<header class="entry-header">
 <?php	hana_post_title( true );
 		if ( $hana_entry_meta )

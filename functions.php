@@ -69,28 +69,33 @@ function hana_theme_scripts() {
 	if (! empty( $font_url ) )
 		wp_enqueue_style( 'hana-fonts', $font_url );
 	// Load Font Awesome
-	wp_enqueue_style( 'fontawesome' );
+	wp_enqueue_style( 'font-awesome' );
 	// Load Theme Style and Script
 	$deps = array( 'hana-foundation' );
 	if ( $has_featured = hana_has_featured_posts() ) {
-		$deps[] = 'bxslider';	
+		$deps[] = 'jquery-bxslider';	
 	}
 	wp_enqueue_style( 'hana-style', HANA_THEME_URI . 'css/hana.css', $deps, HANA_THEME_VERSION );
-	wp_enqueue_script( 'hana-script' , HANA_THEME_URI . 'js/hana.js', $deps, HANA_THEME_VERSION, true );	
+	wp_enqueue_script( 'hana-script' , HANA_THEME_URI . 'js/hana.js', $deps, HANA_THEME_VERSION, true );
+	$inline_handle = 'hana-style';
 	// Load Scheme's style
 	$scheme = get_theme_mod( 'color_scheme', 'default' );
     if ( 'default' != $scheme  ) {
 		$schemes = hana_scheme_options();		
 		wp_enqueue_style( 'hana-scheme', $schemes[ $scheme ]['css'], $deps, HANA_THEME_VERSION );
  		$deps[] = 'hana-scheme';
+		$inline_handle = 'hana-scheme';
 	} 
 	//Load child theme's style.css
-    if ( HANA_THEME_URI != HANA_CHILD_URI )
-		wp_enqueue_style( 'hana-child', get_stylesheet_uri(), $deps, HANA_THEME_VERSION );
+    if ( HANA_THEME_URI != HANA_CHILD_URI ) {
+		wp_enqueue_style( 'hana-child', get_stylesheet_uri(), $deps, HANA_THEME_VERSION );		
+		$inline_handle = 'hana-child';
+	}
+
 	// Add inline style based on customizer settings
     $custom_css = hana_custom_css();
 	if ( ! empty( $custom_css ) )
-	    wp_add_inline_style( 'hana-style', htmlspecialchars_decode( $custom_css ) );
+	    wp_add_inline_style( $inline_handle, htmlspecialchars_decode( $custom_css ) );
 }
 endif;
 
