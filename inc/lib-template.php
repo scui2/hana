@@ -67,7 +67,7 @@ function hana_display_portfolio( $args, $thumbnail = 'hana-thumb', $column = 1, 
 		if ( $col > 0 )
 			echo '</div>';
 		if 	($args['paged'] < $blog->max_num_pages) {
-			echo apply_filters( 'hana_portfolio_load_more', '<a class="expanded secondary button load-more">' . __('SEE MORE','hana') . '</a>' );
+			echo apply_filters( 'hana_portfolio_load_more', '<a class="expanded secondary button load-more">' . esc_html__('SEE MORE','hana') . '</a>' );
 		}
 	endif;	
 	wp_reset_postdata();

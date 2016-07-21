@@ -1,0 +1,373 @@
+/**
+ * Dark Color Scheme for Hana Theme
+ *
+ * This is an example to help you customize the color of your site
+ * 
+ * @package	hana
+ * @since   1.0
+ * @author  RewindCreation
+ * @license GPL v3 or later
+ * @link    http://rewindcreation.com/
+********************************************/
+/********************************************
+ * Site
+ ********************************************/
+body {
+  background: #333333;
+  color: #FEFEFE; }
+
+a {
+  color: #73bfe6; }
+  a:hover, a:focus {
+    color: #F38630; }
+
+.button {
+  background: #73bfe6; }
+
+.button:hover, .button:focus {
+  background-color: #48abde; }
+
+.site-main {
+  background: #333333; }
+
+.page-header {
+  background: #444444; }
+
+.page-link {
+  border-top: 1px solid #404040; }
+  .page-link .page-link-number {
+    border: 1px solid #404040; }
+  .page-link > .page-link-number {
+    background: #404040; }
+  .page-link a:hover {
+    color: #F38630; }
+    .page-link a:hover .page-link-number {
+      background: #404040; }
+
+.pagination .current {
+  background: #404040;
+  color: #FEFEFE; }
+
+/********************************************
+ * Top Bar
+ ********************************************/
+.top-bar {
+  background: #2B2B2B; }
+  .top-bar .menu {
+    margin-top: 0.25rem; }
+    .top-bar .menu a {
+      color: #FFFAFA; }
+      .top-bar .menu a:hover {
+        color: #F38630; }
+  .top-bar .submenu {
+    background: #2B2B2B;
+    border-color: #454545; }
+
+@media screen and (min-width: 64em) {
+  .fullwidth-slider .is-anchored .top-bar {
+    background: rgba(43, 43, 43, 0.2); } }
+.title-bar {
+  background: #2B2B2B; }
+
+.title-bar-icon {
+  color: #FFFAFA; }
+
+.site-title a {
+  color: #FBB700;
+  text-shadow: 2px 2px 4px #4a4a4a; }
+
+.site-description {
+  color: #cacaca; }
+
+/********************************************
+ * Footer
+ ********************************************/
+.custom-background #footer-widgets,
+.custom-background #footer {
+  background: rgba(27, 27, 27, 0.8); }
+
+#footer {
+  background: #1B1B1B;
+  color: #C0C0C0; }
+
+.copyright a {
+  color: #C0C0C0; }
+
+.design-credit a {
+  color: #C0C0C0; }
+
+.back-to-top a {
+  color: #C0C0C0;
+  background: #666666;
+  border: 2px solid #dadada; }
+  .back-to-top a :hover {
+    color: #F38630; }
+
+/********************************************
+ * Menu
+ ********************************************/
+.sectionmenu {
+  border-top: 1px solid rgba(53, 53, 53, 0.5);
+  border-bottom: 1px solid rgba(53, 53, 53, 0.5);
+  box-shadow: 0 4px 2px -2px #010101;
+  background: #1B1B1B; }
+
+.section-menu ul li:hover {
+  background: #333333; }
+.section-menu ul li a {
+  color: #FEFEFE; }
+  .section-menu ul li a:hover {
+    color: #F38630; }
+.section-menu ul ul {
+  background: #333333;
+  border: 1px solid rgba(77, 77, 77, 0.5); }
+  .section-menu ul ul li {
+    border-top: 1px solid rgba(77, 77, 77, 0.5); }
+    .section-menu ul ul li a:hover {
+      background: #404040; }
+
+.section-menu > ul > li > a {
+  border-right: 1px solid rgba(64, 64, 64, 0.5); }
+.section-menu > ul > li:first-child {
+  border-left: 1px solid rgba(64, 64, 64, 0.5); }
+
+/* Left Menu */
+#offCanvasLeft {
+  background: #0a0a0a; }
+
+.leftmenu > ul > li > a {
+  background: #242424; }
+.leftmenu li a {
+  color: #FFFAFA;
+  border-bottom: 1px solid #242424; }
+  .leftmenu li a:hover {
+    background: #171717; }
+
+.footer-menu ul li {
+  border-right: 1px solid #282828; }
+  .footer-menu ul li ul li:first-child {
+    border-left: 1px solid #282828; }
+  .footer-menu ul li a {
+    color: #C0C0C0; }
+    .footer-menu ul li a:hover {
+      text-decoration: underline; }
+
+/********************************************
+ * Featured Content
+ ********************************************/
+.featured-content {
+  background: #404040; }
+
+.featured-caption {
+  background: rgba(43, 43, 43, 0.2);
+  color: #FFFAFA; }
+
+.featured-title a {
+  color: #73bfe6; }
+  .featured-title a:hover {
+    color: #F38630; }
+
+.ticker-img {
+  background-color: #FFFAFA;
+  border: 1px solid rgba(10, 10, 10, 0.2);
+  box-shadow: 0 1px 3px rgba(10, 10, 10, 0.1); }
+
+.btn-featured {
+  background-color: #73bfe6;
+  color: #FFFAFA; }
+  .btn-featured:hover, .btn-featured:focus {
+    background-color: #48abde;
+    color: #FFFAFA; }
+
+/********************************************
+ * Post
+ ********************************************/
+.hentry {
+  background: #333333; }
+
+.entry-title a {
+  color: #FEFEFE; }
+  .entry-title a:hover {
+    color: #F38630; }
+
+.entry-excerpt {
+  color: #e5e5e5; }
+
+.post-divider, .widget-divider, .section-divider {
+  background-image: -webkit-linear-gradient(left, #333333, #4d4d4d, #333333);
+  background-image: -moz-linear-gradient(left, #333333, #4d4d4d, #333333);
+  background-image: -ms-linear-gradient(left, #333333, #4d4d4d, #333333);
+  background-image: -o-linear-gradient(left, #333333, #4d4d4d, #333333); }
+
+/********************************************
+ * Post Formats
+ ********************************************/
+.format-aside .entry-content,
+.format-aside .entry-summary,
+.format-quote .entry-content,
+.format-quote .entry-summary {
+  background: #404040;
+  border-left: 1.25rem solid #4d4d4d; }
+
+.format-quote .entry-content::after,
+.format-quote .entry-summary::after {
+  color: #C0C0C0; }
+
+/********************************************
+ * Post Meta
+ ********************************************/
+.entry-meta {
+  color: #C0C0C0; }
+  .entry-meta a {
+    color: #C0C0C0; }
+    .entry-meta a:hover {
+      color: #F38630; }
+
+.entry-featured {
+  color: #ff5e5e; }
+
+/*****************************************
+ * Post Comments
+ ********************************************/
+.even > .comment-body {
+  background: #3b3b3b; }
+
+.comment-meta .avatar {
+  border: 1px solid #e1e1e1; }
+.comment-meta a {
+  color: #C0C0C0; }
+
+.comment-metadata > a {
+  color: #C0C0C0; }
+
+.comment-reply-link {
+  color: #C0C0C0; }
+
+/********************************************
+ * Widgets
+ ********************************************/
+.widget-title {
+  font-size: 1.2rem;
+  color: #FEFEFE;
+  line-height: 1; }
+
+.sidebar {
+  color: #e5e5e5; }
+  .sidebar .widget {
+    background: #333333;
+    border: 1px solid #4d4d4d;
+    border-radius: 0 0 0.5rem 0.5rem; }
+  .sidebar .widget-title {
+    color: #C0C0C0;
+    background: #555555;
+    border: 1px solid #4d4d4d;
+    border-radius: none; }
+
+.widget_categories ul li a, .widget_archive ul li a, .widget_pages ul li a, .widget_recent_entries ul li a, .widget_meta ul li a, .widget_nav_menu ul li a, .widget_rss ul li a {
+  border-bottom: 1px solid #404040;
+  color: #C0C0C0; }
+  .widget_categories ul li a:hover, .widget_archive ul li a:hover, .widget_pages ul li a:hover, .widget_recent_entries ul li a:hover, .widget_meta ul li a:hover, .widget_nav_menu ul li a:hover, .widget_rss ul li a:hover {
+    color: #F38630; }
+.widget_categories ul li span, .widget_archive ul li span, .widget_pages ul li span, .widget_recent_entries ul li span, .widget_meta ul li span, .widget_nav_menu ul li span, .widget_rss ul li span {
+  color: #C0C0C0; }
+
+.widget_recent_comments ul li {
+  border-bottom: 1px 1px solid #404040; }
+
+#footer-widgets {
+  background: #1B1B1B;
+  color: #C0C0C0; }
+
+.footer-widget .widget ul li a {
+  color: #C0C0C0; }
+.footer-widget .widget-title-container {
+  border-bottom: 1px solid #2f2f2f; }
+.footer-widget .widget-title {
+  color: #a7a7a7; }
+
+/********************************************
+ * Hana Navigation Widget
+ ********************************************/
+.hana_nav .tabs {
+  border-top: 1px solid #4d4d4d;
+  border-bottom: 1px solid #4d4d4d; }
+  .hana_nav .tabs > li > a {
+    border-right: 1px solid #4d4d4d;
+    color: #C0C0C0; }
+    .hana_nav .tabs > li > a:hover {
+      text-decoration: underline;
+      background: #555555; }
+  .hana_nav .tabs > li.is-active > a {
+    background: #555555; }
+
+/********************************************
+ * Hana Marking
+ ********************************************/
+.marketing-vertical:hover, .marketing-horizontal:hover {
+  background: #404040; }
+
+.marketing-icon {
+  color: #C0C0C0; }
+
+a > .marketing-icon:hover {
+  color: #F38630; }
+
+/********************************************
+ * Portfolio
+ ********************************************/
+.pfitem .hentry {
+  background: #404040; }
+  .pfitem .hentry:hover {
+    box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.5); }
+
+/********************************************
+ * Home Page
+ ********************************************/
+.section-divider {
+  margin: 0 auto; }
+
+.home-section.page-content {
+  background: #444444; }
+
+/********************************************
+ * Pricing Table
+ ********************************************/
+.pricing-table {
+  border: solid 1px #4d4d4d;
+  border-radius: 5px; }
+  .pricing-table li {
+    border-bottom: dotted 1px #4d4d4d;
+    font-size: 0.75rem;
+    padding: 0.875rem 1.125rem; }
+    .pricing-table li:last-child {
+      border-bottom: 0; }
+  .pricing-table .title {
+    background-color: #666666;
+    color: #EEEEEE;
+    font-size: 1rem;
+    border-bottom: 0; }
+  .pricing-table .pricing-table .price {
+    background-color: #F6F6F6;
+    color: #333333;
+    font-size: 1.75rem;
+    border-bottom: 0; }
+  .pricing-table .description {
+    color: #777777;
+    font-size: 0.75rem; }
+  .pricing-table .pricing-table .button {
+    margin: 0; }
+
+/********************************************
+ * Social
+ ********************************************/
+.social li a[href*="facebook.com"]::before {
+  content: '\f09a';
+  color: #3D5A99; }
+.social li a:hover::before {
+  color: #F38630 !important; }
+
+.social-topbar li a::before {
+  color: #ddd !important; }
+
+.social-footer li a::before {
+  color: #FEFEFE !important; }

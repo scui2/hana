@@ -17,7 +17,7 @@
 		<div id="site-info" class="copyright medium-4 columns">
 <?php 		if ( empty( get_theme_mod( 'copyright_text' ) ) ) {
 				printf( '%1$s %2$s <a href="%3$s" titlte="%4$s" rel="home">%4$s</a>',
-									__( 'Copyright &copy;', 'hana'),
+									esc_html__( 'Copyright &copy;', 'hana'),
 									sprintf( esc_attr( date('Y') ) ),
 									esc_url( home_url( '/' ) ),
 									esc_attr( get_bloginfo( 'name', 'display' ) ) );	
@@ -41,7 +41,7 @@
 <?php
 	if ( ! get_theme_mod( 'hide_credit' ) ) { ?>
 		<div class="design-credit text-center <?php hana_grid()->header_row_class(); ?>">
-			<a href="<?php echo esc_url( __('http://rewindcreation.com/', 'hana' ) ) ?>" rel="designer"><?php _e('Hana Theme by RewindCreation', 'hana') ?></a>
+			<a href="<?php echo esc_url( __('http://rewindcreation.com/', 'hana' ) ) ?>" rel="designer"><?php esc_html_e('Hana Theme by RewindCreation', 'hana') ?></a>
 		</div>
 <?php
 	} ?>

@@ -11,17 +11,17 @@
 ?>
 <article id="post-0" class="post hentry no-results not-found">
 	<header class="entry-header">
-		<h2 class="entry-title"><?php _e( 'Nothing Found', 'hana' ); ?></h2>
+		<h2 class="entry-title"><?php esc_html_e( 'Nothing Found', 'hana' ); ?></h2>
 	</header>
 
 	<div class="entry-content">
 <?php	if ( is_home() ) { ?>
-			<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'hana' ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>
+			<p><?php printf( esc_html__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'hana' ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>
 <?php 	} else {
 			if ( is_search() ) { ?> 
-				<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'hana' ); ?></p>
+				<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'hana' ); ?></p>
 <?php 		} else { ?>
-				<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'hana' ); ?></p>
+				<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'hana' ); ?></p>
 <?php 		}
 			get_search_form();
 		} ?>

@@ -31,9 +31,9 @@
 		</div>
 		<?php hana_postmeta()->edit_link(); ?>
 	</article>
-	<div class="navigation image-navigation clearfix">
-		<div class="nav-previous "><?php previous_image_link( false, __( 'Previous', 'hana') ); ?></div>
-		<div class="nav-next "><?php next_image_link( false, __( 'Next', 'hana') ); ?></div>
+	<div class="navigation image-navigation">
+		<div class="nav-previous "><?php previous_image_link( false, esc_html__( 'Previous', 'hana') ); ?></div>
+		<div class="nav-next "><?php next_image_link( false, esc_html__( 'Next', 'hana') ); ?></div>
 	</div>
 <?php
 	} ?>

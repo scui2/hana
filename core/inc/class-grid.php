@@ -39,9 +39,10 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 
 		public function main_class( $echo = true ) {
 			$class = array();
-			if ( is_page_template( apply_filters('hanagrid_fullwidth_templates', array('pages/fullwidth.php','pages/homepage.php') ) ) )
-				$class[] = 'clearfix';
-			else {
+            $class[] = 'site-main';
+			if ( is_page_template( apply_filters('hanagrid_fullwidth_templates', array('pages/fullwidth.php','pages/homepage.php') ) ) ) {
+				$class[] = 'clearfix';                
+            } else {
 				$class[] = 'row';
 				if ($this->grid['fluid_grid'] )
 					$class[] = 'expanded';
@@ -129,6 +130,9 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 					$class[] = 'large-pull-' . $this->grid['content_column'];
 					$class[] = 'medium-pull-' . $this->grid['content_column'];				
 				}
+				if ( 'right' == $this->grid['sidebar_pos'] ) {
+                    $class[] = 'float-right';
+                }
 				$class[] = 'columns';
 				$class = apply_filters( 'hanagrid_sidebarone_class', $class );	
 			}
@@ -151,7 +155,7 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 				return $imp_class;
 		}
 		
-		public function fullgrid_class ( $echo = true ) {
+		public function fullgrid_class( $echo = true ) {
 			$class = array();
 			$class[] = 'large-' . $this->grid['grid_column'];
 			$class[] = 'columns';
@@ -162,12 +166,13 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 				return $imp_class;
 		}
 
-		public function column_class ( $large_col, $medium_col = NULL, $echo = true ) {
-			if ( !isset( $medium_col ) )
-				$medium_col = $large_col;
+		public function column_class( $large_col, $medium_col = NULL, $small_col = NULL, $echo = true ) {
 			$class = array();
 			$class[] = 'large-' . $large_col;
-			$class[] = 'medium-' . $medium_col;
+			if ( isset( $medium_col ) )
+                $class[] = 'medium-' . $medium_col;        
+			if ( isset( $small_col ) )
+                $class[] = 'small-' . $small_col;
 			$class[] = 'columns';
 			$imp_class = implode( ' ', $class );
 			if ( $echo )

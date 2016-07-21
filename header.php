@@ -25,18 +25,16 @@
 <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 	<?php get_template_part( 'parts/left', 'menu' ); ?>
 <div id="wrapper" class="site off-canvas-content" data-off-canvas-content>
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'hana' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'hana' ); ?></a>
 	<?php do_action('hana_header_top'); //Action Hook ?>
  	<header id="masthead" class="site-header" role="banner">
 		<?php get_template_part( 'parts/top', 'menu' ); ?>
 		<?php do_action('hana_header_banner'); //Action Hook ?>
 	</header>
  <?php
-	if ( 'full' == get_theme_mod( 'slider_type', 'full' ) )
-		hana_featured_top();
+    hana_featured_top();
 	get_template_part( 'parts/section', 'menu' );
-	if ( 'full' != get_theme_mod( 'slider_type', 'full' ) )
-		hana_featured_top();
 	do_action('hana_header_before_main'); //Action Hook
+    hana_archive_title(); 
 ?>
 <div id="main" class="<?php hana_grid()->main_class(); ?>">

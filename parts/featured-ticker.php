@@ -23,7 +23,7 @@
 			if ( $image[1] > $width )
 				$width =  $image[1];
 					
-			the_post_thumbnail( 'hana-ticker', array(  'class' => 'ticker-img', 'title' => get_the_title() ) ); ?>
+			the_post_thumbnail( 'hana-ticker', array(  'class' => 'ticker-img', 'title' => esc_attr( get_the_title() ) ) ); ?>
 			<div class="ticker-caption"><?php the_title() ?></div>
 <?php	} else { // No Featured Images  ?>
 			<h3 class="entry-title">

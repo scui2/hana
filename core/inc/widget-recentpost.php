@@ -14,10 +14,10 @@ if ( ! class_exists( 'Hana_Recent_Post' ) ) {
 		function __construct() {
 			WP_Widget::__construct(
 				'hana_recent_post',
-				__( '(Hana) Advanced Recent Posts', 'hana' ),
+				esc_html__( '(Hana) Advanced Recent Posts', 'hana' ),
 				array(
 					'classname' => 'recent-post',
-					'description' => __( 'Use this widget to display posts/pages...', 'hana' ),
+					'description' => esc_html__( 'Use this widget to display posts/pages...', 'hana' ),
 				)
 			);
 		}
@@ -40,9 +40,9 @@ if ( ! class_exists( 'Hana_Recent_Post' ) ) {
 			$query_str = array(
 				'order' => 'DESC',
 				'orderby' => $sortby,
-				'posts_per_page' => $number,
+				'posts_per_page' => absint( $number ),
 				'post_status' => 'publish',
-				'post_type' => $posttype,
+				'post_type' => esc_attr( $posttype ),
 				'ignore_sticky_posts' => 1,
 				'no_found_rows' => 1,
 			);
@@ -66,14 +66,15 @@ if ( ! class_exists( 'Hana_Recent_Post' ) ) {
 
 				if ( ! empty( $title ) ) {
 					echo $before_title;
-					echo esc_html( $title ); // Can set this with a widget option, or omit altogether
-					echo $after_title;			
-					if ( ! empty( $category_link ) && $category ) {
-						printf( '<a href="%1$s" title="%2$s" class="recent-post-link">%3$s <i class="fa fa-angle-right"></i></a>',
+                    if ( $category ) { // Single Category
+						printf( '<a href="%1$s" title="%2$s">%3$s</a>',
 							esc_url( get_category_link( $category ) ) ,
 							esc_attr( get_the_category_by_ID( $category ) ),
-							esc_attr( $category_link ) );					
-					}	
+							esc_html( $title ) );	                        
+                    } else {
+  		                echo esc_html( $title );                    
+                    }
+					echo $after_title;
 				}
 
 				global $hana_thumbnail, $hana_entry_meta;
@@ -82,7 +83,7 @@ if ( ! class_exists( 'Hana_Recent_Post' ) ) {
 				$col = 0;
 				if ( $column > 1 ) {
 					$width = absint( 12 / $column );
-					$div_class = hana_grid()->column_class($width, $width, false);
+					$div_class = hana_grid()->column_class($width, NULL, NULL, false);
 				}
 				while ( $recent_posts->have_posts() ) : 
 					$recent_posts->the_post();
@@ -140,7 +141,6 @@ if ( ! class_exists( 'Hana_Recent_Post' ) ) {
 				'column' => '1',
 				'thumbnail' => '',
 				'entry_meta' => '0',
-				'category_link' => '',
 				'customquery' => '',
 			);
 		}
@@ -148,17 +148,16 @@ if ( ! class_exists( 'Hana_Recent_Post' ) ) {
 		function form( $instance ) {
 			$instance = wp_parse_args($instance, $this->widget_defaults());
 
-			hana_widget_field( $this, array ( 'field' => 'title', 'label' => __( 'Title:', 'hana' ) ), $instance['title'] );
-			hana_widget_field( $this, array ( 'field' => 'posttype', 'type' => 'select', 'label' => __( 'Post Type:', 'hana' ), 'options' => hana_post_types(), 'class' => '' ), $instance['posttype'] );
-			hana_widget_field( $this, array ( 'field' => 'number', 'type' => 'number', 'label' => __( 'Number of posts to show:', 'hana' ),  'class' => '' ), $instance['number'] );
-			hana_widget_field( $this, array ( 'field' => 'random_post', 'type' => 'checkbox', 'desc' => __( 'Random Posts', 'hana' ), 'class' => '' ), $instance['random_post'] );
-			hana_widget_field( $this, array ( 'field' => 'column', 'type' => 'select', 'label' => __( 'Layout:', 'hana' ),  'options' => hana_columns_choices( false ), 'class' => '' ), $instance['column'] );
-			hana_widget_field( $this, array ( 'field' => 'category', 'type' => 'select', 'label' => __( 'Category:', 'hana' ), 'label_all' => __( 'All Categories', 'hana' ), 'options' => hana_category_choices() ), $instance['category'] );
-			hana_widget_field( $this, array ( 'field' => 'sticky_post', 'type' => 'checkbox', 'desc' => __( 'Include sticky posts in the category', 'hana' ), 'class' => '' ), $instance['sticky_post'] );	
-			hana_widget_field( $this, array ( 'field' => 'thumbnail', 'type' => 'select', 'label' => __( 'Thumbnail:', 'hana' ), 'options' => hana_thumbnail_array(), 'class' => '' ), $instance['thumbnail'] );
-			hana_widget_field( $this, array ( 'field' => 'entry_meta', 'type' => 'checkbox', 'desc' => __( 'Display post meta', 'hana' ), 'class' => '' ), $instance['entry_meta'] );
-			hana_widget_field( $this, array ( 'field' => 'category_link', 'label' => __( 'Single category link : ', 'hana' ), 'class' => '' ), $instance['category_link'] );
-			hana_widget_field( $this, array ( 'field' => 'customquery', 'label' => __( 'Custom Query:', 'hana' ) ), $instance['customquery'] );	
+			hana_widget_field( $this, array ( 'field' => 'title', 'label' => esc_html__( 'Title:', 'hana' ) ), $instance['title'] );
+			hana_widget_field( $this, array ( 'field' => 'posttype', 'type' => 'select', 'label' => esc_html__( 'Post Type:', 'hana' ), 'options' => hana_post_types(), 'class' => '' ), $instance['posttype'] );
+			hana_widget_field( $this, array ( 'field' => 'number', 'type' => 'number', 'label' => esc_html__( 'Number of posts to show:', 'hana' ),  'class' => '' ), $instance['number'] );
+			hana_widget_field( $this, array ( 'field' => 'random_post', 'type' => 'checkbox', 'desc' => esc_html__( 'Random Posts', 'hana' ), 'class' => '' ), $instance['random_post'] );
+			hana_widget_field( $this, array ( 'field' => 'column', 'type' => 'select', 'label' => esc_html__( 'Layout:', 'hana' ),  'options' => hana_columns_choices( false ), 'class' => '' ), $instance['column'] );
+			hana_widget_field( $this, array ( 'field' => 'category', 'type' => 'select', 'label' => esc_html__( 'Category:', 'hana' ), 'label_all' => esc_html__( 'All Categories', 'hana' ), 'options' => hana_category_choices() ), $instance['category'] );
+			hana_widget_field( $this, array ( 'field' => 'sticky_post', 'type' => 'checkbox', 'desc' => esc_html__( 'Include sticky posts in the category', 'hana' ), 'class' => '' ), $instance['sticky_post'] );	
+			hana_widget_field( $this, array ( 'field' => 'thumbnail', 'type' => 'select', 'label' => esc_html__( 'Thumbnail:', 'hana' ), 'options' => hana_thumbnail_array(), 'class' => '' ), $instance['thumbnail'] );
+			hana_widget_field( $this, array ( 'field' => 'entry_meta', 'type' => 'checkbox', 'desc' => esc_html__( 'Display post meta', 'hana' ), 'class' => '' ), $instance['entry_meta'] );
+			hana_widget_field( $this, array ( 'field' => 'customquery', 'label' => esc_html__( 'Custom Query:', 'hana' ) ), $instance['customquery'] );	
 		}
 	}
 

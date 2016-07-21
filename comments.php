@@ -13,13 +13,13 @@
 		return;
 ?>
 <button class="hollow secondary button expanded hana-toggle comment-toggle" data-toggle="comments">
-	<span class="show-comment"><?php comments_number( __( 'Leave a Reply', 'hana' ), __( 'Show 1 Comment.', 'hana' ), __( 'Show % Comments', 'hana' ) ); ?></span>
-	<span class="hide-comment"><?php _e( 'Hide Comment', 'hana'); ?></span>
+	<span class="show-comment"><?php comments_number( esc_html__( 'Leave a Reply', 'hana' ), esc_html__( 'Show 1 Comment.', 'hana' ), esc_html__( 'Show % Comments', 'hana' ) ); ?></span>
+	<span class="hide-comment"><?php esc_html_e( 'Hide Comment', 'hana'); ?></span>
 </button>
 <div id="comments" class="comments-area" data-toggler data-animate="fade-in fade-out">
 <?php
 	if ( post_password_required() ) { ?>
-		<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'hana' ); ?></p></div>
+		<p class="nopassword"><?php esc_html_e( 'This post is password protected. Enter the password to view any comments.', 'hana' ); ?></p></div>
 <?php	return;
 	}
 	if ( have_comments() ) {

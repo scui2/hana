@@ -1,139 +1,481 @@
-/******************************************************************
- * Orange Color Scheme for Passion Theme
+/**
+ * Green Color Scheme for Hana Theme
  *
  * This is an example to help you customize the color of your site
- * Pallets: #69D2E7	#A7DBD8	#E0E4CC	#F38630	#FA6900
  * 
- *****************************************************************/
+ * @package	hana
+ * @since   1.0
+ * @author  RewindCreation
+ * @license GPL v3 or later
+ * @link    http://rewindcreation.com/
+********************************************/
 /********************************************
- * Background
+ * Site
  ********************************************/
-.top-bar,
+body {
+  background: #FEFEFE;
+  color: #0a0a0a;
+}
+
+a {
+  color: #2BAF85;
+}
+a:hover, a:focus {
+  color: #F38630;
+}
+
+.button {
+  background: #2BAF85;
+}
+
+.button:hover, .button:focus {
+  background-color: #218666;
+}
+
+.site-main {
+  background: #FEFEFE;
+}
+
+.page-header {
+  background: #f5faf6;
+}
+
+.page-link {
+  border-top: 1px solid #f1f1f1;
+}
+.page-link .page-link-number {
+  border: 1px solid #f1f1f1;
+}
+.page-link > .page-link-number {
+  background: #f1f1f1;
+}
+.page-link a:hover {
+  color: #F38630;
+}
+.page-link a:hover .page-link-number {
+  background: #f1f1f1;
+}
+
+.pagination .current {
+  background: #f1f1f1;
+  color: #0a0a0a;
+}
+
+/********************************************
+ * Top Bar
+ ********************************************/
+.top-bar {
+  background: #006341;
+}
+.top-bar .menu {
+  margin-top: 0.25rem;
+}
+.top-bar .menu a {
+  color: #FFFAFA;
+}
+.top-bar .menu a:hover {
+  color: #F38630;
+}
+.top-bar .submenu {
+  background: #006341;
+  border-color: #4b4b4b;
+}
+
+@media screen and (min-width: 64em) {
+  .fullwidth-slider .is-anchored .top-bar {
+    background: rgba(0, 99, 65, 0.2);
+  }
+}
 .title-bar {
-	background: #E0E4CC;
+  background: #006341;
+}
+
+.title-bar-icon {
+  color: #FFFAFA;
+}
+
+.site-title a {
+  color: #FBB700;
+  text-shadow: 2px 2px 4px #4a4a4a;
+}
+
+.site-description {
+  color: #cacaca;
+}
+
+/********************************************
+ * Footer
+ ********************************************/
+.custom-background #footer-widgets,
+.custom-background #footer {
+  background: rgba(245, 246, 250, 0.8);
 }
 
 #footer {
-	background: #CCB89D;	
+  background: #f5f6fa;
+  color: #303030;
 }
 
-#footer-widgets {
-	background: #ddcfbd;
-	background: linear-gradient(top, #ddcfbd 0%, #CCB89D 100%);
-	background: -moz-linear-gradient(top, #ddcfbd 0%, #CCB89D 100%);
-	background: -webkit-linear-gradient(top, #ddcfbd 0%,#CCB89D 100%);
+.copyright a {
+  color: #00281a;
 }
 
-#home-section-2 {
-	background: #e0f8fe;
-}
-/********************************************
- * Header
- ********************************************/
-.site-description {
-	color: #f1f1f1;
+.design-credit a {
+  color: #303030;
 }
 
-.title-bar-icon,
-.top-bar .title-bar-icon {
-	color: #404040;	
+.back-to-top a {
+  color: #303030;
+  background: white;
+  border: 2px solid #4a4a4a;
+}
+.back-to-top a :hover {
+  color: #F38630;
 }
 
 /********************************************
  * Menu
  ********************************************/
-.top-bar .submenu {
- 	border-color: #d1d8b4;
- 	background: #E0E4CC;
-}
- 
-.top-bar .menu a {
-	color: #414141;
-}
-
-.top-bar .menu.dropdown > li > a {
-	text-transform: uppercase;
-}
-
-.fullwidth-slider .is-anchored .top-bar .dropdown > li > a {
-	color: #e9e9e9;	
-}
-
-.dropdown.menu > li.is-dropdown-submenu-parent > a::after {
-	border-color: #909090 transparent transparent;
+.sectionmenu {
+  border-top: 1px solid rgba(227, 227, 227, 0.5);
+  border-bottom: 1px solid rgba(227, 227, 227, 0.5);
+  box-shadow: 0 4px 2px -2px #e3e3e3;
+  background: #FFFAFA;
 }
 
 .section-menu ul li:hover {
-	background: #e8ead7;
-	background: linear-gradient(top, #E0E4CC 0%, #e8ead7 80%);
-	background: -moz-linear-gradient(top, #E0E4CC 0%, #e8ead7 80%);
-	background: -webkit-linear-gradient(top, #E0E4CC 0%,#e8ead7 80%);
+  background: #f5faf6;
 }
-
+.section-menu ul li a {
+  color: #0a0a0a;
+}
+.section-menu ul li a:hover {
+  color: #F38630;
+}
 .section-menu ul ul {
-	background: #e8ead7;
+  background: #f5faf6;
+  border: 1px solid rgba(222, 222, 222, 0.5);
 }
-
 .section-menu ul ul li {
-	border-color: #E0E4CC;
+  border-top: 1px solid rgba(222, 222, 222, 0.5);
 }
-.section-menu ul ul li a {
-	color: #0a0a0a;
+.section-menu ul ul li a:hover {
+  background: white;
 }
 
-.section-menu ul ul li a:hover {
-	background: #ccd2ac;
+.section-menu > ul > li > a {
+  border-right: 1px solid rgba(235, 235, 235, 0.5);
+}
+.section-menu > ul > li:first-child {
+  border-left: 1px solid rgba(235, 235, 235, 0.5);
+}
+
+/* Left Menu */
+#offCanvasLeft {
+  background: #0a0a0a;
+}
+
+.leftmenu > ul > li > a {
+  background: #242424;
+}
+.leftmenu li a {
+  color: #FFFAFA;
+  border-bottom: 1px solid #242424;
+}
+.leftmenu li a:hover {
+  background: #171717;
+}
+
+.footer-menu ul li {
+  border-right: 1px solid #ebebeb;
+}
+.footer-menu ul li ul li:first-child {
+  border-left: 1px solid #ebebeb;
+}
+.footer-menu ul li a {
+  color: #00281a;
+}
+.footer-menu ul li a:hover {
+  text-decoration: underline;
 }
 
 /********************************************
- * Buttons
+ * Featured Content
  ********************************************/
-.button {
-	background: #2BAF85;
+.featured-content {
+  background: #f1f1f1;
 }
 
-.button:hover, .button:focus {
-    background-color: #238d6b;
+.featured-caption {
+  background: rgba(0, 99, 65, 0.2);
+  color: #FFFAFA;
 }
+
+.featured-title a {
+  color: #FEFEFE;
+}
+.featured-title a:hover {
+  color: #F38630;
+}
+
+.ticker-img {
+  background-color: #FFFAFA;
+  border: 1px solid rgba(10, 10, 10, 0.2);
+  box-shadow: 0 1px 3px rgba(10, 10, 10, 0.1);
+}
+
+.btn-featured {
+  background-color: #2BAF85;
+  color: #FFFAFA;
+}
+.btn-featured:hover, .btn-featured:focus {
+  background-color: #218666;
+  color: #FFFAFA;
+}
+
+/********************************************
+ * Post
+ ********************************************/
+.hentry {
+  background: #FEFEFE;
+}
+
+.entry-title a {
+  color: #006341;
+}
+.entry-title a:hover {
+  color: #F38630;
+}
+
+.entry-excerpt {
+  color: #242424;
+}
+
+.post-divider, .widget-divider, .section-divider {
+  background-image: -webkit-linear-gradient(left, #FEFEFE, #e5e5e5, #FEFEFE);
+  background-image: -moz-linear-gradient(left, #FEFEFE, #e5e5e5, #FEFEFE);
+  background-image: -ms-linear-gradient(left, #FEFEFE, #e5e5e5, #FEFEFE);
+  background-image: -o-linear-gradient(left, #FEFEFE, #e5e5e5, #FEFEFE);
+}
+
+/********************************************
+ * Post Formats
+ ********************************************/
+.format-aside .entry-content,
+.format-aside .entry-summary,
+.format-quote .entry-content,
+.format-quote .entry-summary {
+  background: #f1f1f1;
+  border-left: 1.25rem solid #e5e5e5;
+}
+
+.format-quote .entry-content::after,
+.format-quote .entry-summary::after {
+  color: #808080;
+}
+
+/********************************************
+ * Post Meta
+ ********************************************/
+.entry-meta {
+  color: #808080;
+}
+.entry-meta a {
+  color: #808080;
+}
+.entry-meta a:hover {
+  color: #F38630;
+}
+
+.entry-featured {
+  color: #ff5e5e;
+}
+
+/*****************************************
+ * Post Comments
+ ********************************************/
+.even > .comment-body {
+  background: #f6f6f6;
+}
+
+.comment-meta .avatar {
+  border: 1px solid #e1e1e1;
+}
+.comment-meta a {
+  color: #808080;
+}
+
+.comment-metadata > a {
+  color: #808080;
+}
+
+.comment-reply-link {
+  color: #808080;
+}
+
 /********************************************
  * Widgets
  ********************************************/
+.widget-title {
+  font-size: 1.2rem;
+  color: #0a0a0a;
+  line-height: 1;
+}
+
+.sidebar {
+  color: #242424;
+}
 .sidebar .widget {
-	border-top: none;
+  background: #FEFEFE;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
 }
-
 .sidebar .widget-title {
-	font-variant: small-caps;
+  color: #808080;
+  background: #f5f6fa;
+  border: 1px solid #e5e5e5;
+  border-radius: 1rem;
 }
 
-.marketing .widget-title {
-	color: #7ebcfa;
+.widget_categories ul li a, .widget_archive ul li a, .widget_pages ul li a, .widget_recent_entries ul li a, .widget_meta ul li a, .widget_nav_menu ul li a, .widget_rss ul li a {
+  border-bottom: 1px solid #f1f1f1;
+  color: #00281a;
+}
+.widget_categories ul li a:hover, .widget_archive ul li a:hover, .widget_pages ul li a:hover, .widget_recent_entries ul li a:hover, .widget_meta ul li a:hover, .widget_nav_menu ul li a:hover, .widget_rss ul li a:hover {
+  color: #F38630;
+}
+.widget_categories ul li span, .widget_archive ul li span, .widget_pages ul li span, .widget_recent_entries ul li span, .widget_meta ul li span, .widget_nav_menu ul li span, .widget_rss ul li span {
+  color: #808080;
 }
 
-.sidebar .widget-divider:not(:last-child) {
-	display: block;
-	width: 90%;
-	margin: 1rem auto 1rem;
-	border: 0;
-	height: 1px; 
-	background-image: -webkit-linear-gradient(left, #f0f0f0, #A7DBD8, #f0f0f0);
-	background-image: -moz-linear-gradient(left, #f0f0f0, #A7DBD8, #f0f0f0);
-	background-image: -ms-linear-gradient(left, #f0f0f0, #A7DBD8, #f0f0f0);
-	background-image: -o-linear-gradient(left, #f0f0f0, #A7DBD8, #f0f0f0); 
-} 
+.widget_recent_comments ul li {
+  border-bottom: 1px 1px solid #f1f1f1;
+}
 
+#footer-widgets {
+  background: #f5f6fa;
+  color: #303030;
+}
+
+.footer-widget .widget ul li a {
+  color: #00281a;
+}
+.footer-widget .widget-title-container {
+  border-bottom: 1px solid #e3e3e3;
+}
 .footer-widget .widget-title {
-	border-bottom: 1px solid #CCB89D;
+  color: #4a4a4a;
 }
+
 /********************************************
- * Links
+ * Hana Navigation Widget
  ********************************************/
-a {
-	color: #2BAF85;
+.hana_nav .tabs {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+.hana_nav .tabs > li > a {
+  border-right: 1px solid #e5e5e5;
+  color: #00281a;
+}
+.hana_nav .tabs > li > a:hover {
+  text-decoration: underline;
+  background: #f5f6fa;
+}
+.hana_nav .tabs > li.is-active > a {
+  background: #f5f6fa;
 }
 
-.fullwidth-slider .is-anchored .top-bar .dropdown > li > a:hover,
-.top-bar .menu a:hover {
-	color: #F38630;
+/********************************************
+ * Hana Marking
+ ********************************************/
+.marketing-vertical:hover, .marketing-horizontal:hover {
+  background: #f1f1f1;
 }
 
+.marketing-icon {
+  color: #808080;
+}
+
+a > .marketing-icon:hover {
+  color: #F38630;
+}
+
+/********************************************
+ * Portfolio
+ ********************************************/
+.pfitem .hentry {
+  background: #f1f1f1;
+}
+.pfitem .hentry:hover {
+  box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.5);
+}
+
+/********************************************
+ * Home Page
+ ********************************************/
+.section-divider {
+  margin: 0 auto;
+}
+
+.home-section.page-content {
+  background: #f5faf6;
+}
+
+/********************************************
+ * Pricing Table
+ ********************************************/
+.pricing-table {
+  border: solid 1px #e5e5e5;
+  border-radius: 5px;
+}
+.pricing-table li {
+  border-bottom: dotted 1px #e5e5e5;
+  font-size: 0.75rem;
+  padding: 0.875rem 1.125rem;
+}
+.pricing-table li:last-child {
+  border-bottom: 0;
+}
+.pricing-table .title {
+  background-color: #666666;
+  color: #EEEEEE;
+  font-size: 1rem;
+  border-bottom: 0;
+}
+.pricing-table .pricing-table .price {
+  background-color: #F6F6F6;
+  color: #333333;
+  font-size: 1.75rem;
+  border-bottom: 0;
+}
+.pricing-table .description {
+  color: #777777;
+  font-size: 0.75rem;
+}
+.pricing-table .pricing-table .button {
+  margin: 0;
+}
+
+/********************************************
+ * Social
+ ********************************************/
+.social li a[href*="facebook.com"]::before {
+  content: '\f09a';
+  color: #3D5A99;
+}
+.social li a:hover::before {
+  color: #F38630 !important;
+}
+
+.social-topbar li a::before {
+  color: #ddd !important;
+}
+
+.social-footer li a::before {
+  color: #0a0a0a !important;
+}
+
+#home-section-2 {
+  background: #e0f8fe;
+}

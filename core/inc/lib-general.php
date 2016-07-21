@@ -52,11 +52,11 @@ endif;
 //Thumbal Array
 function hana_thumbnail_array() {
 	$sizes = array (
-		''			=> __( 'Thumbnail', 'hana' ),
-		'medium'	=> __( 'Medium', 'hana' ),
-		'large'		=> __( 'Large', 'hana' ),
-		'full'		=> __( 'Full', 'hana' ),	
-		'none'		=> __( 'None', 'hana' ),	
+		''			=> esc_html__( 'Thumbnail', 'hana' ),
+		'medium'	=> esc_html__( 'Medium', 'hana' ),
+		'large'		=> esc_html__( 'Large', 'hana' ),
+		'full'		=> esc_html__( 'Full', 'hana' ),	
+		'none'		=> esc_html__( 'None', 'hana' ),	
 	);
 
 	global $_wp_additional_image_sizes;

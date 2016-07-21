@@ -34,7 +34,7 @@
 	<div class="entry-content clearfix">
 <?php
 		the_content();
-		wp_link_pages( array( 'before' => '<div class="page-link"><span class="page-link-title">' . __( 'Pages:', 'hana' ) . '</span>',
+		wp_link_pages( array( 'before' => '<div class="page-link"><span class="page-link-title">' . esc_html__( 'Pages:', 'hana' ) . '</span>',
 						 	'after' => '</div>' ,
 						 	'link_before' => '<span class="page-link-number">',
 						 	'link_after' => '</span>' ) ); 

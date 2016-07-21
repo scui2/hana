@@ -1,0 +1,150 @@
+/********************************************
+ * Featured Content
+ ********************************************/
+.bx-wrapper  {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border: none;
+	background: none;
+	margin: 0 auto;
+
+	.bx-pager {
+		bottom: 1rem;
+		left: auto;
+		right: auto;
+	}
+}
+
+.featured-content {
+	visibility: hidden;
+	height: 0;
+	background: $section-background;
+
+	.more-link {
+		display: none;
+	}
+
+} 
+
+.hanaSlider, .hanaTicker {
+	margin: 0;
+}
+
+.hana-slide {
+	min-height: 25rem;
+}
+
+.featured-content-ticker {
+	padding: 0.625rem 0;
+	text-align: center;	
+
+	img:hover {
+		opacity: 0.75;
+	}
+}
+
+.ticker-caption {
+	font-size: 0.75rem;
+	text-align: center;
+}
+
+.featured-caption {
+	background: rgba($top-bar-background, 0.2);
+	padding: 1rem;
+	position: absolute;
+	top: 40%;
+	right: 20%;
+	left: 20%;
+	text-align: center;
+	color: $invert-text-color;
+}
+
+.featured-title {
+	text-transform: uppercase;
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+	
+	a {
+		color: $featured-title-color;
+		&:hover {
+			color: $hover-link-color;
+		}
+	}
+}
+
+.featured-excerpt {
+	font-size: 1.125rem;
+	
+	p {
+		margin-bottom: 0.5rem; 	
+	}
+}
+
+.fullwidth-image {
+	width: 100%;
+}
+
+.ticker-img {
+	padding: 3px;
+	width: 100%;
+	background-color: $snow-white;
+	border: 1px solid rgba($dark, 0.2);
+	box-shadow: 0 1px 3px rgba($dark, 0.1);
+}
+
+.btn-featured {
+	font-weight: bold;
+	margin-bottom: 0;
+	background-color: #F38630;
+    color: $invert-text-color;
+    
+    &:hover, &:focus {
+		background-color: #cc8b00;
+	    color: $invert-text-color;		
+	}
+}
+
+@include respond-upto(medium) {
+    .featured-title {
+	   font-size: 1.5rem;
+    }
+	.featured-caption {
+	 	top: auto;
+	 	left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 0.25rem 1rem;
+		font-size: 0.8rem;
+		line-height: 1.3;
+	}
+
+	.featured-excerpt p {
+		line-height: 1.3;
+		margin-bottom: 0.25rem;
+	}
+	
+
+	.btn-featured {
+		display: none;
+	}
+
+	.bx-wrapper .bx-pager {
+		width: auto;
+		top: -25px;
+		right: 0;
+	}
+
+	.hana-slide {
+		min-height: 12.5rem;
+	}
+	
+	.ticker-caption {
+		display: none;
+	}
+
+	.bx-controls-direction {
+		display: none;
+	}
+
+}

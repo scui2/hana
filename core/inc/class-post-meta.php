@@ -77,7 +77,7 @@ if ( ! class_exists( 'HANA_Post_Meta' ) ) {
 					printf ('<a class="single-post-link meta-icon" href="%1$s" title="%2$s"><span class="screen-reader-text">%3$s</span></a>',
 						esc_url( get_permalink() ),
 						esc_attr( get_the_title() ),
-						__( 'Permalink', 'hana') );
+						esc_html__( 'Permalink', 'hana') );
 				} 
 			}
 		}	
@@ -92,7 +92,7 @@ if ( ! class_exists( 'HANA_Post_Meta' ) ) {
 	 			$cats = rtrim( trim( str_replace( '<br />',  $sep, $cats) ), $sep);
 			}
 			if ( is_sticky() && ! is_paged() ) {
-				$cats = sprintf( '<span class="entry-featured">%1$s</span>%2$s', __( 'Featured', 'hana'), $sep ) . $cats;		
+				$cats = sprintf( '<span class="entry-featured">%1$s</span>%2$s', esc_html__( 'Featured', 'hana'), $sep ) . $cats;		
 			}
 			if ( $icon )
 				$html .= '<li class="entry-category meta-icon">';
@@ -128,7 +128,7 @@ if ( ! class_exists( 'HANA_Post_Meta' ) ) {
 				else
 					$class = 'comment-link';
 				echo '<li>';
-				comments_popup_link( __( '0', 'hana' ), __( '1', 'hana' ) , __( '%', 'hana' ), $class );			
+				comments_popup_link( esc_html__( '0', 'hana' ), esc_html__( '1', 'hana' ) , esc_html__( '%', 'hana' ), $class );			
 				echo '</li>';
 				$html = ob_get_clean();
 			}
@@ -156,8 +156,8 @@ if ( ! class_exists( 'HANA_Post_Meta' ) ) {
 				$html .= '<li class="by-author">';
 			$html .= sprintf( '<a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s %4$s</a>',
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-					esc_attr( sprintf( __( 'View all posts by %s', 'hana' ), get_the_author() ) ),
-					__('<span class="by-author-label">By</span>', 'hana'),
+					esc_attr( sprintf( esc_html__( 'View all posts by %s', 'hana' ), get_the_author() ) ),
+					'<span class="by-author-label">' . esc_html__('By', 'hana') . '</span>',
 					esc_attr( get_the_author() ) );
 			$html .= '</li>';
 			return apply_filters( 'hana_meta_author', $html );

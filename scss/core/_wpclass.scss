@@ -1,0 +1,61 @@
+/********************************************
+ * WordPress Class
+ ********************************************/
+.wp-caption {
+	margin-bottom: 1rem;
+	max-width: 100%;
+	text-align: center;
+
+	.wp-caption-text {
+		margin: 0.5rem;
+		color: #888;
+		font-size: 0.9rem;
+	}
+}
+
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1rem;
+	margin-bottom: 1rem;
+}
+
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1rem;
+	margin-bottom: 1rem;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 1rem auto;	
+}
+
+.gallery .gallery-caption {
+	margin: 0 0 1rem;
+	font-size: 0.8rem;
+}
+
+.gallery dl {
+	margin: 0;
+}
+
+.format-gallery .entry-content {
+	clear: both;
+}
+
+.bypostauthor {
+	display: inline-block;
+}
+
+.screen-reader-text {
+	position: absolute;
+	top:      -9999rem;
+	left:     -9999rem;
+}
+
+img#wpstats {
+	display: none;
+}

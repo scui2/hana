@@ -9,7 +9,7 @@
  * @link    http://rewindcreation.com/
  */
 get_header(); ?>
-<div id="content" class="site-content" role="main">
+<div id="content" class="site-content homepage" role="main">
 	<section id="home-section-0" class="page-content home-section home-section-odd">
 		<div class="row">
 			<div class="<?php hana_grid()->fullgrid_class(); ?>">

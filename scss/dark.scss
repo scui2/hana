@@ -1,0 +1,45 @@
+/**
+ * Dark Color Scheme for Hana Theme
+ *
+ * This is an example to help you customize the color of your site
+ * 
+ * @package	hana
+ * @since   1.0
+ * @author  RewindCreation
+ * @license GPL v3 or later
+ * @link    http://rewindcreation.com/
+********************************************/
+
+@import 'core/_mixins';
+@import '_settings';
+
+$background: #333333;
+$post-background: $background;
+$widget-background: $background;
+$widget-title-background: #555555;
+
+$top-bar-background: #2B2B2B; //dark-red
+$dropdown-background: $top-bar-background;
+$section-background: #1B1B1B;
+$section-dropdown: #333333;
+$leftmenu-background: $dark;
+$footer-background: #1B1B1B;
+$page-header-background: #444444;
+
+$primary-color: #73bfe6;
+$text-color: $white;
+$featured-title-color: $primary-color;
+$post-title-color: $text-color;
+$sidebar-text-color: adjust_color($text-color, 10%);
+$meta-text-color: $silver;
+$invert-text-color: $snow-white;
+$footer-text-color: $silver;
+
+$primary-link-color: #73bfe6;
+$secondary-link-color: $silver;
+$hover-link-color: $bright-orange;
+
+//$widget-title-radius: 1rem;
+$widget-radius: 0 0 0.5rem 0.5rem;
+
+@import 'scheme';

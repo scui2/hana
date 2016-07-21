@@ -54,9 +54,9 @@ function hana_category_choices( $inc = 'all' ) {
 	
 	$choices = array();
 	if ( 'all' == $inc )
-		$choices[0] =  __( 'All Categories', 'hana' );
+		$choices[0] =  esc_html__( 'All Categories', 'hana' );
 	elseif ( 'metaall' == $inc )
-		$choices[''] =   __( 'All Categories', 'hana' );
+		$choices[''] =   esc_html__( 'All Categories', 'hana' );
 	elseif ( 'blank' == $inc )
 		$choices[''] = '';
 		
@@ -68,16 +68,16 @@ function hana_category_choices( $inc = 'all' ) {
 function hana_columns_choices( $meta = false ) {
 	if ( $meta ) {
 		$choices =  array( 
-					'1' => __( 'Full', 'hana'),
-					'2' => __( 'Half', 'hana'),
-					'' 	=> __( 'One Third', 'hana'),	// Default
-					'4'	=> __( 'One Fourth', 'hana'));		
+					'1' => esc_html__( 'Full', 'hana'),
+					'2' => esc_html__( 'Half', 'hana'),
+					'' 	=> esc_html__( 'One Third', 'hana'),	// Default
+					'4'	=> esc_html__( 'One Fourth', 'hana'));		
 	} else {
 		$choices =  array( 
-					'1' => __( 'Full', 'hana'),
-					'2' => __( 'Half', 'hana'),
-					'3' => __( 'One Third', 'hana'),
-					'4'	=> __( 'One Fourth', 'hana'));		
+					'1' => esc_html__( 'Full', 'hana'),
+					'2' => esc_html__( 'Half', 'hana'),
+					'3' => esc_html__( 'One Third', 'hana'),
+					'4'	=> esc_html__( 'One Fourth', 'hana'));		
 	}
 	return apply_filters( 'hana_columns_choices', $choices );
 }

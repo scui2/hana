@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-07-13 14:25-0400\n"
+"POT-Creation-Date: 2016-07-20 08:24-0400\n"
 "PO-Revision-Date: 2016-06-28 15:40-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.8\n"
 "X-Poedit-Basepath: ../../../../../../../Users/scui/Dropbox/GitHub/hana\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-KeywordsList: __;_e;_x;esc_html__;esc_html_e;esc_html_x\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: comments.php:16
@@ -29,7 +29,7 @@ msgid "Show % Comments"
 msgstr ""
 
 #: comments.php:17
-msgid "Hide Commeont"
+msgid "Hide Comment"
 msgstr ""
 
 #: comments.php:22
@@ -80,66 +80,58 @@ msgstr ""
 msgid "check to display post meta"
 msgstr ""
 
-#: core/inc/admin-functions.php:182
-msgid "Post Options"
-msgstr ""
-
-#: core/inc/admin-functions.php:188
-msgid "Read More Label :"
-msgstr ""
-
-#: core/inc/admin-functions.php:270
+#: core/inc/admin-functions.php:254
 msgid "Choose Image"
 msgstr ""
 
-#: core/inc/admin-functions.php:272
+#: core/inc/admin-functions.php:256
 msgid "Remove"
 msgstr ""
 
-#: core/inc/class-post-meta.php:82
+#: core/inc/class-post-meta.php:80
 msgid "Permalink"
 msgstr ""
 
-#: core/inc/class-post-meta.php:97
+#: core/inc/class-post-meta.php:95
 msgid "Featured"
 msgstr ""
 
-#: core/inc/class-post-meta.php:133
+#: core/inc/class-post-meta.php:131
 msgid "0"
 msgstr ""
 
-#: core/inc/class-post-meta.php:133
+#: core/inc/class-post-meta.php:131
 msgid "1"
 msgstr ""
 
-#: core/inc/class-post-meta.php:133
+#: core/inc/class-post-meta.php:131
 msgid "%"
 msgstr ""
 
-#: core/inc/class-post-meta.php:161
+#: core/inc/class-post-meta.php:159
 #, php-format
 msgid "View all posts by %s"
 msgstr ""
 
-#: core/inc/class-post-meta.php:162
-msgid "<span class=\"by-author-label\">By</span>"
+#: core/inc/class-post-meta.php:160
+msgid "By"
 msgstr ""
 
-#: core/inc/core-functions.php:89
+#: core/inc/core-functions.php:83
 msgid "Search Results for: "
 msgstr ""
 
-#: core/inc/core-functions.php:179
+#: core/inc/core-functions.php:173
 #, php-format
 msgid "Page %s"
 msgstr ""
 
-#: core/inc/core-functions.php:207
+#: core/inc/core-functions.php:197
 msgid "Read More"
 msgstr ""
 
 #: core/inc/lib-customizer.php:57 core/inc/lib-customizer.php:59
-#: core/inc/widget-recentpost.php:161
+#: core/inc/widget-recentpost.php:156
 msgid "All Categories"
 msgstr ""
 
@@ -176,200 +168,200 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: core/inc/widget-marketing.php:22
+#: core/inc/widget-marketing.php:17
 msgid "(Hana) Marketing"
 msgstr ""
 
-#: core/inc/widget-marketing.php:25
+#: core/inc/widget-marketing.php:20
 msgid "Display image/icon, headline and action button"
 msgstr ""
 
-#: core/inc/widget-marketing.php:121
+#: core/inc/widget-marketing.php:116
 msgid "Enter FontAwesom icon name or choose an image. Only one of them will be displayed"
 msgstr ""
 
-#: core/inc/widget-marketing.php:122 core/inc/widget-navigation.php:238
-#: core/inc/widget-recentpost.php:156
+#: core/inc/widget-marketing.php:117 core/inc/widget-navigation.php:233
+#: core/inc/widget-recentpost.php:151
 msgid "Title:"
 msgstr ""
 
-#: core/inc/widget-marketing.php:123
+#: core/inc/widget-marketing.php:118
 msgid "Icon:"
 msgstr ""
 
-#: core/inc/widget-marketing.php:127
+#: core/inc/widget-marketing.php:122
 msgid "Image Size:"
 msgstr ""
 
-#: core/inc/widget-marketing.php:128
+#: core/inc/widget-marketing.php:123
 msgid "Headline:"
 msgstr ""
 
-#: core/inc/widget-marketing.php:129
+#: core/inc/widget-marketing.php:124
 msgid "Tagline:"
 msgstr ""
 
-#: core/inc/widget-marketing.php:130
+#: core/inc/widget-marketing.php:125
 msgid "Action URL:"
 msgstr ""
 
-#: core/inc/widget-marketing.php:131
+#: core/inc/widget-marketing.php:126
 msgid "Action Label:"
 msgstr ""
 
-#: core/inc/widget-marketing.php:132
+#: core/inc/widget-marketing.php:127
 msgid "Action Button Color: "
 msgstr ""
 
-#: core/inc/widget-marketing.php:134
+#: core/inc/widget-marketing.php:129
 msgid "Primary"
 msgstr ""
 
-#: core/inc/widget-marketing.php:135
+#: core/inc/widget-marketing.php:130
 msgid "Secondary"
 msgstr ""
 
-#: core/inc/widget-marketing.php:136
+#: core/inc/widget-marketing.php:131
 msgid "Alert"
 msgstr ""
 
-#: core/inc/widget-marketing.php:137
+#: core/inc/widget-marketing.php:132
 msgid "Warning"
 msgstr ""
 
-#: core/inc/widget-marketing.php:138
+#: core/inc/widget-marketing.php:133
 msgid "Success"
 msgstr ""
 
-#: core/inc/widget-marketing.php:140
+#: core/inc/widget-marketing.php:135
 msgid "Hollow Button"
 msgstr ""
 
-#: core/inc/widget-marketing.php:141
+#: core/inc/widget-marketing.php:136
 msgid "Layout: "
 msgstr ""
 
-#: core/inc/widget-marketing.php:143 inc/customize.php:739
+#: core/inc/widget-marketing.php:138 inc/customize.php:736
 msgid "Vertical"
 msgstr ""
 
-#: core/inc/widget-marketing.php:144 inc/customize.php:738
+#: core/inc/widget-marketing.php:139 inc/customize.php:735
 msgid "Horizontal"
 msgstr ""
 
-#: core/inc/widget-navigation.php:22
+#: core/inc/widget-navigation.php:17
 msgid "(Hana) Navigation"
 msgstr ""
 
-#: core/inc/widget-navigation.php:25
+#: core/inc/widget-navigation.php:20
 msgid "Tabbed navigation."
 msgstr ""
 
-#: core/inc/widget-navigation.php:199
+#: core/inc/widget-navigation.php:194
 msgid "Categories"
 msgstr ""
 
-#: core/inc/widget-navigation.php:201
+#: core/inc/widget-navigation.php:196
 msgid "Archives"
 msgstr ""
 
-#: core/inc/widget-navigation.php:203
+#: core/inc/widget-navigation.php:198
 msgid "Latest"
 msgstr ""
 
-#: core/inc/widget-navigation.php:205
+#: core/inc/widget-navigation.php:200
 msgid "Tags"
 msgstr ""
 
-#: core/inc/widget-navigation.php:207 core/inc/widget-navigation.php:307
+#: core/inc/widget-navigation.php:202 core/inc/widget-navigation.php:302
 msgid "Menu"
 msgstr ""
 
-#: core/inc/widget-navigation.php:210 core/inc/widget-navigation.php:321
+#: core/inc/widget-navigation.php:205 core/inc/widget-navigation.php:316
 msgid "Text"
 msgstr ""
 
-#: core/inc/widget-navigation.php:255
+#: core/inc/widget-navigation.php:250
 msgid "Category"
 msgstr ""
 
-#: core/inc/widget-navigation.php:268
+#: core/inc/widget-navigation.php:263
 msgid "Archive"
 msgstr ""
 
-#: core/inc/widget-navigation.php:281
+#: core/inc/widget-navigation.php:276
 msgid "Recent"
 msgstr ""
 
-#: core/inc/widget-navigation.php:294
+#: core/inc/widget-navigation.php:289
 msgid "Tag"
 msgstr ""
 
-#: core/inc/widget-navigation.php:309
+#: core/inc/widget-navigation.php:304
 msgid "Menu:"
 msgstr ""
 
-#: core/inc/widget-navigation.php:309
+#: core/inc/widget-navigation.php:304
 msgid "Select Menu"
 msgstr ""
 
-#: core/inc/widget-navigation.php:330
+#: core/inc/widget-navigation.php:325
 msgid "Post/Line Limits"
 msgstr ""
 
-#: core/inc/widget-navigation.php:331
+#: core/inc/widget-navigation.php:326
 msgid "Show Post Counts"
 msgstr ""
 
-#: core/inc/widget-navigation.php:332
+#: core/inc/widget-navigation.php:327
 msgid "Text:"
 msgstr ""
 
-#: core/inc/widget-recentpost.php:22
+#: core/inc/widget-recentpost.php:17
 msgid "(Hana) Advanced Recent Posts"
 msgstr ""
 
-#: core/inc/widget-recentpost.php:25
+#: core/inc/widget-recentpost.php:20
 msgid "Use this widget to display posts/pages..."
 msgstr ""
 
-#: core/inc/widget-recentpost.php:157
+#: core/inc/widget-recentpost.php:152
 msgid "Post Type:"
 msgstr ""
 
-#: core/inc/widget-recentpost.php:158
+#: core/inc/widget-recentpost.php:153
 msgid "Number of posts to show:"
 msgstr ""
 
-#: core/inc/widget-recentpost.php:159
+#: core/inc/widget-recentpost.php:154
 msgid "Random Posts"
 msgstr ""
 
-#: core/inc/widget-recentpost.php:160
+#: core/inc/widget-recentpost.php:155
 msgid "Layout:"
 msgstr ""
 
-#: core/inc/widget-recentpost.php:161
+#: core/inc/widget-recentpost.php:156
 msgid "Category:"
 msgstr ""
 
-#: core/inc/widget-recentpost.php:162
+#: core/inc/widget-recentpost.php:157
 msgid "Include sticky posts in the category"
 msgstr ""
 
-#: core/inc/widget-recentpost.php:163
+#: core/inc/widget-recentpost.php:158
 msgid "Thumbnail:"
 msgstr ""
 
-#: core/inc/widget-recentpost.php:164
+#: core/inc/widget-recentpost.php:159
 msgid "Display post meta"
 msgstr ""
 
-#: core/inc/widget-recentpost.php:165
+#: core/inc/widget-recentpost.php:160
 msgid "Single category link : "
 msgstr ""
 
-#: core/inc/widget-recentpost.php:166
+#: core/inc/widget-recentpost.php:161
 msgid "Custom Query:"
 msgstr ""
 
@@ -385,73 +377,73 @@ msgstr ""
 msgid "Hana Theme by RewindCreation"
 msgstr ""
 
-#: functions.php:46
+#: functions.php:44
 msgid "Top Menu"
 msgstr ""
 
-#: functions.php:47
+#: functions.php:45
 msgid "Section Menu"
 msgstr ""
 
-#: functions.php:48
+#: functions.php:46
 msgid "Footer Menu"
 msgstr ""
 
-#: functions.php:49
+#: functions.php:47
 msgid "Social Menu"
 msgstr ""
 
-#: functions.php:101
+#: functions.php:104
 msgid "Blog Widget Area (Full)"
 msgstr ""
 
-#: functions.php:102 inc/customize.php:133
+#: functions.php:105 inc/customize.php:129
 msgid "Blog Widget Area (Full) will not be displayed for Left & Right Sidebar"
 msgstr ""
 
-#: functions.php:105 functions.php:106
+#: functions.php:108 functions.php:109
 msgid "Blog Widget Area 1"
 msgstr ""
 
-#: functions.php:109 functions.php:110
+#: functions.php:112 functions.php:113
 msgid "Blog Widget Area 2"
 msgstr ""
 
-#: functions.php:113 functions.php:114
+#: functions.php:116 functions.php:117
 msgid "Footer Widget Area 1"
 msgstr ""
 
-#: functions.php:117 functions.php:118
+#: functions.php:120 functions.php:121
 msgid "Footer Widget Area 2"
 msgstr ""
 
-#: functions.php:121 functions.php:122
+#: functions.php:124 functions.php:125
 msgid "Footer Widget Area 3"
 msgstr ""
 
-#: functions.php:125 functions.php:126
+#: functions.php:128 functions.php:129
 msgid "Footer Widget Area 4"
 msgstr ""
 
-#: functions.php:131 functions.php:132
+#: functions.php:134 functions.php:135
 msgid "bbPress Widget Area"
 msgstr ""
 
-#: functions.php:152
+#: functions.php:155
 #, php-format
 msgid "The widgets will be displayed horizontally in %1$s-column layout."
 msgstr ""
 
-#: functions.php:168
+#: functions.php:171
 #, php-format
 msgid "Home Widget Area %1$s"
 msgstr ""
 
-#: functions.php:181
+#: functions.php:184
 msgid "Default"
 msgstr ""
 
-#: functions.php:185
+#: functions.php:188
 msgid "Rewind Creation"
 msgstr ""
 
@@ -467,260 +459,264 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: inc/customize.php:29 inc/customize.php:621
+#: inc/customize.php:25 inc/customize.php:618
 msgid "Layout"
 msgstr ""
 
-#: inc/customize.php:30
+#: inc/customize.php:26
 msgid "The theme uses 12-column grid system. Grid width is defined in pixels. Content and sidebar width are defined in columns. Make sure the sume of content and sidebar columns equals to 12."
 msgstr ""
 
-#: inc/customize.php:40
+#: inc/customize.php:36
 msgid "Fluid Grid (Full Width)"
 msgstr ""
 
-#: inc/customize.php:52
+#: inc/customize.php:48
 msgid "Grid Width (Pixel)"
 msgstr ""
 
-#: inc/customize.php:68
+#: inc/customize.php:64
 msgid "Content (Column)"
 msgstr ""
 
-#: inc/customize.php:83
+#: inc/customize.php:79
 msgid "Sidebar 1 (Column)"
 msgstr ""
 
-#: inc/customize.php:99
+#: inc/customize.php:95
 msgid "Sidebar 2 (Column)"
 msgstr ""
 
-#: inc/customize.php:115
+#: inc/customize.php:111
 msgid "bbPress Sidebar (Column)"
 msgstr ""
 
-#: inc/customize.php:132
+#: inc/customize.php:128
 msgid "Sidebar Position"
 msgstr ""
 
-#: inc/customize.php:145
+#: inc/customize.php:141
 msgid "Sticky Sidebar (Only one sidebar at each side will be sticky)"
 msgstr ""
 
-#: inc/customize.php:157
+#: inc/customize.php:153
 msgid "Typography"
 msgstr ""
 
-#: inc/customize.php:158
+#: inc/customize.php:154
 msgid "You can choose the font for many theme elements such as Body and Headings. Other fonts can be used to load additional web fonts"
 msgstr ""
 
-#: inc/customize.php:183
-msgid "Header"
+#: inc/customize.php:179
+msgid "Top Bar"
 msgstr ""
 
-#: inc/customize.php:193
-msgid "Fluid Width Header and Footer"
+#: inc/customize.php:189
+msgid "Fluid Width Top Bar and Footer"
 msgstr ""
 
-#: inc/customize.php:204
-msgid "Sticky Header"
+#: inc/customize.php:200
+msgid "Sticky Top Bar"
 msgstr ""
 
-#: inc/customize.php:215
+#: inc/customize.php:211
 msgid "Shrink Top Bar when scroll down"
 msgstr ""
 
-#: inc/customize.php:231
+#: inc/customize.php:227
 msgid "Maximum Featured Posts"
 msgstr ""
 
-#: inc/customize.php:247
+#: inc/customize.php:243
 msgid "Slider Type"
 msgstr ""
 
-#: inc/customize.php:259
+#: inc/customize.php:255
 msgid "Slider Mode"
 msgstr ""
 
-#: inc/customize.php:271
+#: inc/customize.php:267
 msgid "Align Fullwidth Slider to Top"
 msgstr ""
 
-#: inc/customize.php:282
+#: inc/customize.php:278
 msgid "Speed (second)"
 msgstr ""
 
-#: inc/customize.php:298
+#: inc/customize.php:294
 msgid "Slide Height (0 = Auto Height)"
 msgstr ""
 
-#: inc/customize.php:314
+#: inc/customize.php:310
 msgid "Minimum slides (Ticker mode)"
 msgstr ""
 
-#: inc/customize.php:329
+#: inc/customize.php:325
 msgid "Maximum slides (Ticker mode)"
 msgstr ""
 
-#: inc/customize.php:350
+#: inc/customize.php:346
 msgid "Scheme"
 msgstr ""
 
-#: inc/customize.php:362
+#: inc/customize.php:347
+msgid "Rewind Creation scheme (rewind.css) provides an example to customize your site."
+msgstr ""
+
+#: inc/customize.php:359
 msgid "Posts"
 msgstr ""
 
-#: inc/customize.php:373
+#: inc/customize.php:370
 msgid "Hide Author"
 msgstr ""
 
-#: inc/customize.php:384
+#: inc/customize.php:381
 msgid "Hide Date"
 msgstr ""
 
-#: inc/customize.php:395
+#: inc/customize.php:392
 msgid "Hide Featured Imagae in Single Post View"
 msgstr ""
 
-#: inc/customize.php:407
+#: inc/customize.php:404
 msgid "Footer"
 msgstr ""
 
-#: inc/customize.php:418
+#: inc/customize.php:415
 msgid "Footer Widget 1 (Column)"
 msgstr ""
 
-#: inc/customize.php:434
+#: inc/customize.php:431
 msgid "Footer Widget 2 (Column)"
 msgstr ""
 
-#: inc/customize.php:450
+#: inc/customize.php:447
 msgid "Footer Widget 3 (Column)"
 msgstr ""
 
-#: inc/customize.php:466
+#: inc/customize.php:463
 msgid "Footer Widget 4 (Column)"
 msgstr ""
 
-#: inc/customize.php:482
+#: inc/customize.php:479
 msgid "Copyright Text"
 msgstr ""
 
-#: inc/customize.php:493
+#: inc/customize.php:490
 msgid "Hide Design Credit"
 msgstr ""
 
-#: inc/customize.php:504
+#: inc/customize.php:501
 msgid "Social"
 msgstr ""
 
-#: inc/customize.php:505
+#: inc/customize.php:502
 msgid "Choose the location where Jetpack sharing buttons are displayed."
 msgstr ""
 
-#: inc/customize.php:514
+#: inc/customize.php:511
 msgid "Display Jetpack Sharing on Top"
 msgstr ""
 
-#: inc/customize.php:525
+#: inc/customize.php:522
 msgid "Display Jetpack Sharing at Bottom"
 msgstr ""
 
-#: inc/customize.php:536
+#: inc/customize.php:533
 msgid "Display Social Menu with Top Menu"
 msgstr ""
 
-#: inc/customize.php:537
+#: inc/customize.php:534
 msgid "Create a custom Social Menu and choose the location to display. Supported social services will be displayed as an icon. See theme documentation for setup instruction."
 msgstr ""
 
-#: inc/customize.php:548
+#: inc/customize.php:545
 msgid "Display Social Menu with Section Menu"
 msgstr ""
 
-#: inc/customize.php:559
+#: inc/customize.php:556
 msgid "Display Social Link in Footer"
 msgstr ""
 
-#: inc/customize.php:570
+#: inc/customize.php:567
 msgid "Home Page"
 msgstr ""
 
-#: inc/customize.php:571
+#: inc/customize.php:568
 msgid "Widgets in Home Widget Areas can be displayed horizontally. Simple specify the width and the layout for each widget area."
 msgstr ""
 
-#: inc/customize.php:584
+#: inc/customize.php:581
 #, php-format
 msgid "Home Widget Area %1$s Title"
 msgstr ""
 
-#: inc/customize.php:595
+#: inc/customize.php:592
 msgid "Sub-Title"
 msgstr ""
 
-#: inc/customize.php:606
+#: inc/customize.php:603
 msgid "Width (Column)"
 msgstr ""
 
-#: inc/customize.php:719
+#: inc/customize.php:716
 msgid "Right Sidebar"
 msgstr ""
 
-#: inc/customize.php:720
+#: inc/customize.php:717
 msgid "Left Sidebar"
 msgstr ""
 
-#: inc/customize.php:721
+#: inc/customize.php:718
 msgid "Left & Right Sidebar"
 msgstr ""
 
-#: inc/customize.php:722
+#: inc/customize.php:719
 msgid "No Sidebar"
 msgstr ""
 
-#: inc/customize.php:729
+#: inc/customize.php:726
 msgid "Full Width Slider"
 msgstr ""
 
-#: inc/customize.php:730
+#: inc/customize.php:727
 msgid "Grid Width Slider"
 msgstr ""
 
-#: inc/customize.php:731
+#: inc/customize.php:728
 msgid "Ticker"
 msgstr ""
 
-#: inc/customize.php:740
+#: inc/customize.php:737
 msgid "Fade"
 msgstr ""
 
-#: inc/customize.php:774
+#: inc/customize.php:772
 msgid "Body Font"
 msgstr ""
 
-#: inc/customize.php:776
+#: inc/customize.php:774
 msgid "Heading Font"
 msgstr ""
 
-#: inc/customize.php:778
+#: inc/customize.php:776
 msgid "Post Title Font"
 msgstr ""
 
-#: inc/customize.php:780
+#: inc/customize.php:778
 msgid "Site Title Font"
 msgstr ""
 
-#: inc/customize.php:782
+#: inc/customize.php:780
 msgid "Other Font 1"
 msgstr ""
 
-#: inc/customize.php:784
+#: inc/customize.php:782
 msgid "Other Font 2"
 msgstr ""
 
-#: inc/customize.php:786
+#: inc/customize.php:784
 msgid "Other Font 3"
 msgstr ""
 
@@ -757,4 +753,8 @@ msgstr ""
 
 #: parts/content-page.php:18 parts/content.php:37
 msgid "Pages:"
+msgstr ""
+
+#: parts/featured-full.php:32
+msgid "Learn More"
 msgstr ""

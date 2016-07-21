@@ -19,7 +19,7 @@
 <?php		if ( hana_get_video() ) {
 				echo hana_get_video();
 			} elseif ( has_post_thumbnail() )
-				the_post_thumbnail( 'full', array( 'class'	=> 'fullwidth-image', 'title' => get_the_title() ) ); ?>
+				the_post_thumbnail( 'full', array( 'class'	=> 'fullwidth-image', 'title' => esc_attr( get_the_title() ) ) ); ?>
 			<div class="featured-caption clearfix">
 <?php			if ( 'post' == get_post_type() )  {
 					$link_url = esc_url( hana_get_post_link() );
@@ -29,10 +29,9 @@
 							<?php the_excerpt( '' ); ?>
 						</div>
 <?php				} ?>
-					<a class="button btn-featured" href="<?php echo $link_url; ?>"><?php echo hana_readmore_text(); ?></a>
-<?php			} else {
-					the_title( '<h3 class="featured-title">', '</h3>' ); ?>
-					<div class="featured-page">
+					<a class="button btn-featured" href="<?php echo $link_url; ?>"><?php echo esc_html( apply_filters('hana_learnmore_label', __('Learn More', 'hana') ) ); ?></a>
+<?php			} else { ?>
+					<div class="featured-excerpt">
 						<?php the_content(); ?>
 					</div>
 <?php			} ?>

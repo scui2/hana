@@ -1,0 +1,38 @@
+/********************************************
+ * General
+ ********************************************/
+object, embed, iframe {
+	max-width: 100%;
+}
+
+audio,
+canvas,
+video {
+	display: inline-block;
+	max-width: 100%;
+}
+
+figure {
+	display: block;
+	margin: 0;
+}
+
+figcaption {
+	margin-top: 0.5rem;
+}
+
+body {
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+	color: $text-color;
+}
+
+pre {
+	padding-bottom: 1.25rem;
+	overflow: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: inherit;
+    margin-bottom: 0.75rem;
+}

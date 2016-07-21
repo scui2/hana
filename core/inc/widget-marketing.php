@@ -14,10 +14,10 @@ if ( ! class_exists( 'Hana_Marketing' ) ) {
 		function __construct() {
 			WP_Widget::__construct(
 				'widget_hana_marketing',
-				__( '(Hana) Marketing', 'hana' ),
+				esc_html__( '(Hana) Marketing', 'hana' ),
 				array(
 					'classname'   => 'marketing',
-					'description' => __( 'Display image/icon, headline and action button', 'hana' ),
+					'description' => esc_html__( 'Display image/icon, headline and action button', 'hana' ),
 				)
 			);
 		}
@@ -38,10 +38,10 @@ if ( ! class_exists( 'Hana_Marketing' ) ) {
 			  }
 			
 			  if ( 'vertical' == $layout) {
-				$class1 = $class2 = hana_grid()->column_class( 12, 12, false );
+				$class1 = $class2 = hana_grid()->column_class( 12, NULL, NULL, false );
 			  } else {
-				$class1 = hana_grid()->column_class( 4, 4, false );			
-				$class2 = hana_grid()->column_class( 8, 8, false );	
+				$class1 = hana_grid()->column_class( 4, NULL, NULL, false );			
+				$class2 = hana_grid()->column_class( 8, NULL, NULL, false );	
 			  } ?>
 			  <div class="row">		
 				<div class="marketing-logo <?php echo esc_attr( $class1 ); ?>">
@@ -58,9 +58,9 @@ if ( ! class_exists( 'Hana_Marketing' ) ) {
 				</div>
 				<div class="marketing-text <?php echo esc_attr( $class2 ); ?>">		
 	<?php			if ( ! empty( $headline ) )
-						echo '<h2>' . esc_attr( $headline ) . '</h2>';
+						echo '<h2>' . esc_html( $headline ) . '</h2>';
 					if ( ! empty( $tagline ) )
-						echo do_shortcode( $tagline );
+						echo wp_kses_post( $tagline );
 					if ( ! empty( $action_url ) && ! empty( $action_label ) ) {
 						echo '<a href="' . esc_url( $action_url );
 						$color = $action_color;
@@ -113,30 +113,30 @@ if ( ! class_exists( 'Hana_Marketing' ) ) {
 		// Display options
 		function form( $instance ) {
 			$instance = wp_parse_args( $instance, $this->widget_defaults() );
-			echo '<p>' . __( 'Enter FontAwesom icon name or choose an image. Only one of them will be displayed', 'hana') . '</p>';
-			hana_widget_field( $this, array ( 'field' => 'title', 'label' => __( 'Title:', 'hana' ) ), $instance['title'] );
-			hana_widget_field( $this, array ( 'field' => 'icon', 'label' => __( 'Icon:', 'hana' ) ), $instance['icon'] );
+			echo '<p>' . esc_html__( 'Enter FontAwesom icon name or choose an image. Only one of them will be displayed', 'hana') . '</p>';
+			hana_widget_field( $this, array ( 'field' => 'title', 'label' => esc_html__( 'Title:', 'hana' ) ), $instance['title'] );
+			hana_widget_field( $this, array ( 'field' => 'icon', 'label' => esc_html__( 'Icon:', 'hana' ) ), $instance['icon'] );
 			if ( $instance['image'] )
 				echo wp_get_attachment_image( $instance['image'], hana_thumbnail_size( $instance['thumbnail'] ), false, array( 'class' => 'widget-image' ) );
 			hana_widget_field( $this, array ( 'field' => 'image', 'label' => '', 'type' => 'media' ), $instance['image'] );
-			hana_widget_field( $this, array ( 'field' => 'thumbnail', 'type' => 'select', 'label' => __( 'Image Size:', 'hana' ), 'options' => hana_thumbnail_array(), 'class' => '' ), $instance['thumbnail'] );
-			hana_widget_field( $this, array ( 'field' => 'headline', 'label' => __( 'Headline:', 'hana' ) ), $instance['headline'] );
-			hana_widget_field( $this, array ( 'field' => 'tagline', 'label' => __( 'Tagline:', 'hana' ), 'type' => 'textarea' ), $instance['tagline'] );
-			hana_widget_field( $this, array ( 'field' => 'action_url', 'label' => __( 'Action URL:', 'hana' ), 'type' => 'url' ), $instance['action_url'] );
-			hana_widget_field( $this, array ( 'field' => 'action_label', 'label' => __( 'Action Label:', 'hana' ) ), $instance['action_label'] );
-			hana_widget_field( $this, array ( 'field' => 'action_color', 'type' => 'select', 'label' => __( 'Action Button Color: ', 'hana' ),
+			hana_widget_field( $this, array ( 'field' => 'thumbnail', 'type' => 'select', 'label' => esc_html__( 'Image Size:', 'hana' ), 'options' => hana_thumbnail_array(), 'class' => '' ), $instance['thumbnail'] );
+			hana_widget_field( $this, array ( 'field' => 'headline', 'label' => esc_html__( 'Headline:', 'hana' ) ), $instance['headline'] );
+			hana_widget_field( $this, array ( 'field' => 'tagline', 'label' => esc_html__( 'Tagline:', 'hana' ), 'type' => 'textarea' ), $instance['tagline'] );
+			hana_widget_field( $this, array ( 'field' => 'action_url', 'label' => esc_html__( 'Action URL:', 'hana' ), 'type' => 'url' ), $instance['action_url'] );
+			hana_widget_field( $this, array ( 'field' => 'action_label', 'label' => esc_html__( 'Action Label:', 'hana' ) ), $instance['action_label'] );
+			hana_widget_field( $this, array ( 'field' => 'action_color', 'type' => 'select', 'label' => esc_html__( 'Action Button Color: ', 'hana' ),
 				'options' => array (
-					'primary' => __( 'Primary', 'hana' ),
-					'secondary' => __( 'Secondary', 'hana' ),
-					'alert' => __( 'Alert', 'hana' ),
-					'warning' => __( 'Warning', 'hana' ),
-					'success' => __( 'Success', 'hana' ) ),
+					'primary' => esc_html__( 'Primary', 'hana' ),
+					'secondary' => esc_html__( 'Secondary', 'hana' ),
+					'alert' => esc_html__( 'Alert', 'hana' ),
+					'warning' => esc_html__( 'Warning', 'hana' ),
+					'success' => esc_html__( 'Success', 'hana' ) ),
 				'class' => '' ), $instance['action_color'] );
-			hana_widget_field( $this, array ( 'field' => 'hollow', 'type' => 'checkbox', 'desc' => __( 'Hollow Button', 'hana' ), 'class' => '' ), $instance['hollow'] );
-			hana_widget_field( $this, array ( 'field' => 'layout', 'type' => 'select', 'label' => __( 'Layout: ', 'hana' ),
+			hana_widget_field( $this, array ( 'field' => 'hollow', 'type' => 'checkbox', 'desc' => esc_html__( 'Hollow Button', 'hana' ), 'class' => '' ), $instance['hollow'] );
+			hana_widget_field( $this, array ( 'field' => 'layout', 'type' => 'select', 'label' => esc_html__( 'Layout: ', 'hana' ),
 				'options' => array (
-					'vertical' => __( 'Vertical', 'hana' ),
-					'horizontal' => __( 'Horizontal', 'hana' ) ),
+					'vertical' => esc_html__( 'Vertical', 'hana' ),
+					'horizontal' => esc_html__( 'Horizontal', 'hana' ) ),
 				'class' => '' ), $instance['layout'] );
 		}
 	}

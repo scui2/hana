@@ -14,10 +14,10 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 		function __construct() {
 			WP_Widget::__construct(
 				'hana_navigation',
-				__( '(Hana) Navigation', 'hana' ),
+				esc_html__( '(Hana) Navigation', 'hana' ),
 				array(
-					'classname'   => 'navigation',
-					'description' => __( 'Tabbed navigation.', 'hana' ),
+					'classname'   => 'hana_nav',
+					'description' => esc_html__( 'Tabbed navigation.', 'hana' ),
 				)
 			);
 		}
@@ -132,12 +132,12 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 					echo '<div class="widget_nav_menu">';				
 					$menu_args = array();
 					$menu_args['menu'] = esc_attr( $menu_id );
-					wp_nav_menu( $menu_args);		
+					wp_nav_menu( $menu_args );		
 					echo '</div>';	
 					break;
 				  case 'text':
 					echo '<div class="widget_text">';
-					echo do_shortcode( $textcontent );	
+					echo wp_kses_post( $textcontent );
 					echo '</div>';		
 					break;
 				}
@@ -191,18 +191,18 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 			return array(
 				'title' => '',
 				'category' => '2',
-				'category_label' => __('Categories','hana'),
+				'category_label' => esc_html__('Categories','hana'),
 				'archive' => '3',
-				'archive_label' => __('Archives','hana'),
+				'archive_label' => esc_html__('Archives','hana'),
 				'recent' => '1',
-				'recent_label' => __('Latest','hana'),
+				'recent_label' => esc_html__('Latest','hana'),
 				'tag' => '4',
-				'tag_label' => __('Tags','hana'),
+				'tag_label' => esc_html__('Tags','hana'),
 				'menu' => '0',
-				'menu_label' => __('Menu','hana'),
+				'menu_label' => esc_html__('Menu','hana'),
 				'menu_id' => '0',
 				'text' => '0',
-				'text_label' => __('Text','hana'),
+				'text_label' => esc_html__('Text','hana'),
 				'showcount' => '1',
 				'limits' => '10',
 				'textcontent' => '',
@@ -230,7 +230,7 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 					);
 			hana_sort_array($tabs, "order");
 			
-			hana_widget_field( $this, array ( 'field' => 'title', 'label' => __( 'Title:', 'hana' ) ), $instance['title'] );
+			hana_widget_field( $this, array ( 'field' => 'title', 'label' => esc_html__( 'Title:', 'hana' ) ), $instance['title'] );
 			?>
 			<ul id="widget-nav-tabs" class="hana-sortable">
 	<?php
@@ -247,7 +247,7 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 						if ( $flag )
 							echo 'class="tab-selected"';
 						echo '>';	
-						hana_widget_field( $this, array ( 'field' => 'category', 'type' => 'checkbox', 'desc' => __( 'Category', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
+						hana_widget_field( $this, array ( 'field' => 'category', 'type' => 'checkbox', 'desc' => esc_html__( 'Category', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
 						hana_widget_field( $this, array ( 'field' => 'category_label', 'type' => 'text', 'ptag' => false, 'class' => '' ), $instance['category_label'] );
 						echo '</li>';
 						break;
@@ -260,7 +260,7 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 						if ( $flag )
 							echo 'class="tab-selected"';
 						echo '>';
-						hana_widget_field( $this, array ( 'field' => 'archive', 'type' => 'checkbox', 'desc' => __( 'Archive', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
+						hana_widget_field( $this, array ( 'field' => 'archive', 'type' => 'checkbox', 'desc' => esc_html__( 'Archive', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
 						hana_widget_field( $this, array ( 'field' => 'archive_label', 'type' => 'text', 'ptag' => false, 'class' => '' ), $instance['archive_label'] );
 						echo '</li>';
 						break;
@@ -273,7 +273,7 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 						if ( $flag )
 							echo 'class="tab-selected"';
 						echo '>';
-						hana_widget_field( $this, array ( 'field' => 'recent', 'type' => 'checkbox', 'desc' => __( 'Recent', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
+						hana_widget_field( $this, array ( 'field' => 'recent', 'type' => 'checkbox', 'desc' => esc_html__( 'Recent', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
 						hana_widget_field( $this, array ( 'field' => 'recent_label', 'type' => 'text', 'ptag' => false, 'class' => '' ), $instance['recent_label'] );
 						echo '</li>';
 						break;
@@ -286,7 +286,7 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 						if ( $flag )
 							echo 'class="tab-selected"';
 						echo '>';
-						hana_widget_field( $this, array ( 'field' => 'tag', 'type' => 'checkbox', 'desc' => __( 'Tag', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
+						hana_widget_field( $this, array ( 'field' => 'tag', 'type' => 'checkbox', 'desc' => esc_html__( 'Tag', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
 						hana_widget_field( $this, array ( 'field' => 'tag_label', 'type' => 'text', 'ptag' => false, 'class' => '' ), $instance['tag_label'] );
 						echo '</li>';
 						break;
@@ -299,9 +299,9 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 						if ( $flag )
 							echo 'class="tab-selected"';
 						echo '>';
-						hana_widget_field( $this, array ( 'field' => 'menu', 'type' => 'checkbox', 'desc' => __( 'Menu', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
+						hana_widget_field( $this, array ( 'field' => 'menu', 'type' => 'checkbox', 'desc' => esc_html__( 'Menu', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
 						hana_widget_field( $this, array ( 'field' => 'menu_label', 'type' => 'text', 'ptag' => false, 'class' => '' ), $instance['menu_label'] );
-						hana_widget_field( $this, array ( 'field' => 'menu_id', 'type' => 'category', 'label' => __( 'Menu:', 'hana' ), 'label_all' => __( 'Select Menu', 'hana' ), 'options' => get_terms('nav_menu'), 'ptag' => true ), $instance['menu_id'] );
+						hana_widget_field( $this, array ( 'field' => 'menu_id', 'type' => 'category', 'label' => esc_html__( 'Menu:', 'hana' ), 'label_all' => esc_html__( 'Select Menu', 'hana' ), 'options' => get_terms('nav_menu'), 'ptag' => true ), $instance['menu_id'] );
 						echo '</li>';
 						break;
 					case 'text':
@@ -313,7 +313,7 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 						if ( $flag )
 							echo 'class="tab-selected"';
 						echo '>';
-						hana_widget_field( $this, array ( 'field' => 'text', 'type' => 'checkbox', 'desc' => __( 'Text', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
+						hana_widget_field( $this, array ( 'field' => 'text', 'type' => 'checkbox', 'desc' => esc_html__( 'Text', 'hana' ), 'ptag' => false, 'class' => 'widget-checkbox' ), $flag );
 						hana_widget_field( $this, array ( 'field' => 'text_label', 'type' => 'text', 'ptag' => false, 'class' => '' ), $instance['text_label'] );
 						echo '</li>';
 						break;
@@ -322,9 +322,9 @@ if ( ! class_exists( 'Hana_Navigation' ) ) {
 			$instance['data'] = $data;
 	?>		
 			</ul>
-	<?php	hana_widget_field( $this, array ( 'field' => 'limits', 'type' => 'number', 'label' => __( 'Post/Line Limits', 'hana' ),  'class' => '' ), $instance['limits'] );
-			hana_widget_field( $this, array ( 'field' => 'showcount', 'type' => 'checkbox', 'desc' => __( 'Show Post Counts', 'hana' ), 'class' => '' ), $instance['showcount'] );
-			hana_widget_field( $this, array ( 'field' => 'textcontent', 'type' => 'textarea', 'label' => __( 'Text:', 'hana' ) ), $instance['textcontent'] );
+	<?php	hana_widget_field( $this, array ( 'field' => 'limits', 'type' => 'number', 'label' => esc_html__( 'Post/Line Limits', 'hana' ),  'class' => '' ), $instance['limits'] );
+			hana_widget_field( $this, array ( 'field' => 'showcount', 'type' => 'checkbox', 'desc' => esc_html__( 'Show Post Counts', 'hana' ), 'class' => '' ), $instance['showcount'] );
+			hana_widget_field( $this, array ( 'field' => 'textcontent', 'type' => 'textarea', 'label' => esc_html__( 'Text:', 'hana' ) ), $instance['textcontent'] );
 			hana_widget_field( $this, array ( 'field' => 'data', 'type' => 'hidden', 'class' => 'widefat hanadata', 'ptag' => false ), $instance['data'] );		
 		}
 	}

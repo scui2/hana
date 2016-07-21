@@ -65,8 +65,8 @@ get_header();
 			<?php the_content(); ?>
 		</div>		
 <?php
-	}	
-	hana_display_portfolio( $query, $pt_thumbnail, $column, $entry_meta );
+	}
+	hana_display_portfolio( $query, $thumbnail, $column, $entry_meta );
 ?>		
 </div>
 <?php if ($sidebar) get_sidebar(); ?>

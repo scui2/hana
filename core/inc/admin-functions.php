@@ -125,73 +125,57 @@ function hana_meta_boxes() {
 	
 	'page' => array( 
 		'id' => 'hana-page-meta',
-		'title' => __('Template Options', 'hana'), 
+		'title' => esc_html__('Template Options', 'hana'), 
 		'type' => 'page',
 		'context' => 'side',  //normal, advaned, side  
 		'priority' => 'default', //high, core, default, low
 		'fields' => array(
         	array(
-            	'name' => __( 'Post Category :' ,'hana'),
+            	'name' => esc_html__( 'Post Category :' ,'hana'),
             	'desc' => '',
             	'id' => $prefix . '_category',
             	'type' => 'select',
 				'options' => hana_category_choices( 'metaall' ),
         	),
         	array(
-            	'name' => __( 'Posts per page/load :', 'hana' ),
+            	'name' => esc_html__( 'Posts per page/load :', 'hana' ),
             	'desc' => '',
             	'id' => $prefix . '_postperpage',
             	'type' => 'number',
         	),
 			array(
-            	'name' => __('Sidebar :', 'hana'),
-            	'desc' => __('check to display sidebar','hana'),
+            	'name' => esc_html__('Sidebar :', 'hana'),
+            	'desc' => esc_html__('check to display sidebar','hana'),
             	'id' => $prefix . '_sidebar',
             	'type' => 'checkbox',
         	),
         	array(
-            	'name' => __('Layout :', 'hana'),
+            	'name' => esc_html__('Layout :', 'hana'),
             	'desc' => '',
             	'id' => $prefix . '_column',
             	'type' => 'select',
 				'options' => hana_columns_choices( true ),
         	),
         	array(
-            	'name' => __('Image Size : ', 'hana'),
+            	'name' => esc_html__('Image Size : ', 'hana'),
             	'desc' => '',
             	'id' => $prefix . '_thumbnail',
             	'type' => 'select',
 				'options' => hana_thumbnail_array(),
         	),
         	array(
-            	'name' => __('Intro Text', 'hana'),
-            	'desc' => __('check to display page content', 'hana'),
+            	'name' => esc_html__('Intro Text', 'hana'),
+            	'desc' => esc_html__('check to display page content', 'hana'),
             	'id' => $prefix . '_intro',
             	'type' => 'checkbox',
         	),
         	array(
-            	'name' => __('Post Meta :', 'hana'),
-            	'desc' => __('check to display post meta','hana'),
+            	'name' => esc_html__('Post Meta :', 'hana'),
+            	'desc' => esc_html__('check to display post meta','hana'),
             	'id' => $prefix . '_disp_meta',
             	'type' => 'checkbox',
         	),
     	),
-	),
-	'post' => array( 
-		'id' => 'hana-post-meta',
-		'title' => __('Post Options', 'hana'), 
-		'type' => 'post',
-		'context' => 'side',  //normal, advaned, side  
-		'priority' => 'high', //high, core, default, low
-		'fields' => array(
-        	array(
-            	'name' => __('Read More Label :', 'hana'),
-            	'desc' => '',
-            	'id' => $prefix . '_readmore',
-            	'type' => 'text',
-            	'default' => '',
-        	),
-    	)
 	) );
 	return apply_filters( 'hana_meta_boxes', $meta_boxes );
 }
@@ -267,9 +251,9 @@ function hana_widget_field( $widget, $args = array(), $value ) {
 			echo '" name="' . $field_name . '" type="hidden" value="';
 			echo esc_attr( $value ) . '" />';
 			echo '<input class="media-upload-btn" id="' . $field_id;
-			echo '_btn" name="' . $field_name . '_btn" type="button" value="'. __( 'Choose Image', 'hana' ) . '">';
+			echo '_btn" name="' . $field_name . '_btn" type="button" value="'. esc_html__( 'Choose Image', 'hana' ) . '">';
 			echo '<input class="media-upload-del" id="' . $field_id;
-			echo '_del" name="' . $field_name . '_del" type="button" value="'. __( 'Remove', 'hana' ) . '">';
+			echo '_del" name="' . $field_name . '_del" type="button" value="'. esc_html__( 'Remove', 'hana' ) . '">';
 			break;
 	}
 	if ( $ptag )

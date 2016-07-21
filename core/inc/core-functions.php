@@ -32,8 +32,10 @@ function hanacore_enqueue_scripts() {
 // Change post class sticky to wp-sticky to avoid conflict with Foundation
 add_filter('post_class','hana_change_sticky_class');
 function hana_change_sticky_class( $classes ) {	
-	$classes = array_diff( $classes, array( 'sticky' ) );
-	$classes[] = 'wp-sticky';
+	if ( is_sticky() ) {
+		$classes = array_diff( $classes, array( 'sticky' ) );		
+		$classes[] = 'wp-sticky';
+	}
 	return $classes;
 }
 /** 
@@ -74,19 +76,21 @@ if ( ! function_exists( 'hana_archive_title' ) ) :
 function hana_archive_title() {	
 	if ( ! have_posts() )
 		return;
-	
-	$class = 'large-12 columns ';
+    
+	$class = '';
 	if ( is_search() ) {
 		$title = sprintf( '%1$s<span class="search-term">%2$s</span>', 
-					__( 'Search Results for: ', 'hana'),
+					esc_html__( 'Search Results for: ', 'hana'),
 					esc_html( get_search_query() ) );
 		$class .= 'ph-search'; ?>
-		<div class="page-header <?php echo esc_attr( $class ); ?>">
-			<h1 class="page-title"><?php echo $title; ?></h1>
+        <div class="page-header <?php echo esc_attr( $class ); ?>">
+            <div class="row column">
+                <h1 class="page-title"><?php echo $title; ?></h1>
+            </div>
 		</div>	
 <?php	return;
 	} 
-	elseif ( is_category() ) { //
+	elseif ( is_category() ) { 
 		$category_name = single_cat_title( '', false );
 		$category_id = get_cat_ID( $category_name );
 		// Category Title Class
@@ -108,10 +112,18 @@ function hana_archive_title() {
 	}
 ?>
 	<div class="page-header <?php echo esc_attr( $class ); ?>">
-<?php	the_archive_title( '<h1 class="page-title">', '</h1>' );
-		the_archive_description( '<div class="page-description">', '</div>' ); ?>
+        <div class="row column">
+<?php   ob_start();
+		the_archive_description( '<div class="page-description">', '</div>' ); 
+        $html = ob_get_clean();
+        if ( empty( $html ) ) //Only display page tile if no description
+            the_archive_title( '<h1 class="page-title">', '</h1>' );
+        else
+            echo $html;
+?>
+        </div>
 	</div>
-<?php		
+<?php
 }
 endif;
 
@@ -168,7 +180,7 @@ function hana_wp_title( $title, $sep ) {
 	if ( $site_description && ( is_home() || is_front_page() ) )
 		$title = "$title $sep $site_description";
 	if ( $paged >= 2 || $page >= 2 )
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'hana' ), max( $paged, $page ) );
+		$title = "$title $sep " . sprintf( esc_html__( 'Page %s', 'hana' ), max( $paged, $page ) );
 
 	return $title;
 }
@@ -186,16 +198,11 @@ function hana_auto_excerpt_more( $more ) {
 add_filter( 'get_the_excerpt', 'hana_custom_excerpt_more' );
 function hana_custom_excerpt_more( $output ) {
 	if ( ! is_attachment() ) {
-		$output .= ' <a class="more-link" href="'. esc_url( get_permalink() ) . '">' . hana_readmore_text() . '</a>';
+		$output .= ' <a class="more-link" href="'. esc_url( get_permalink() ) . '">' . esc_html( hana_readmore_text() ) . '</a>';
 	}
 	return $output;
 }
 
 function hana_readmore_text() {
-	global $post;
-	
-	$readmore = get_post_meta( $post->ID, '_hana_readmore', true );
-	if ( empty( $readmore ) )
-		$readmore = apply_filters( 'hana_readmore', __( 'Read More', 'hana' ) );
-	return esc_html( $readmore );
+	return apply_filters( 'hana_readmore_label', esc_html__( 'Read More', 'hana' ) );
 }

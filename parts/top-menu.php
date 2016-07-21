@@ -37,7 +37,7 @@
  			</div> 
 <?php		if ( get_theme_mod( 'social_top') && has_nav_menu( 'social') ) { ?>
  				<div class="top-bar-right">
-					<?php hana_social_menu( 'social menu' ); ?>
+					<?php hana_social_menu( apply_filters( 'hana_topbar_social', 'social social-topbar menu' ) ); ?>
  				</div>
 <?php		} ?>
   			<div class="top-bar-right">

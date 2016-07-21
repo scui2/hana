@@ -1,0 +1,60 @@
+/********************************************
+ * Footer
+ ********************************************/
+.custom-background #footer-widgets,
+.custom-background #footer {
+	background: rgba($footer-background, 0.8);
+}
+
+#footer {
+	font-size: 0.8125rem;
+	padding: 1rem 0;
+	background: $footer-background;
+	color: $footer-text-color; 
+}
+
+.copyright {
+	
+	@include respond-upto(medium) {
+		padding: 0.5rem 0;
+		text-align: center;			
+	}
+	
+	a {
+		color: $secondary-link-color;
+		padding: 0 0.25rem;
+	}
+}
+
+
+.design-credit {
+	margin-top: 1rem;
+	margin-bottom: -1rem;
+	font-style: italic;
+	
+	a {
+		color: $footer-text-color;
+	}
+}
+
+.back-to-top {
+	position: fixed;
+	bottom: 2em;
+	right: 1em;
+
+	a {
+		font-family: 'FontAwesome';
+		font-size: 1.25rem;
+		line-height: 1;
+		color: $footer-text-color;
+		padding: 0.35rem 0.5rem 0.45rem;
+		background: lighten($background,20%);
+		border-radius: 100%;;
+		text-decoration: none;
+		border: 2px solid lighten($footer-text-color,10%);
+        
+        :hover {
+            color: $hover-link-color;
+        }
+	}
+}

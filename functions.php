@@ -33,8 +33,6 @@ function hana_theme_setup() {
 		'max_posts' => get_theme_mod( 'max_featured', 10 ),
 	 	'post_types' => array( 'post', 'page' ),
 	 ));
-	// Woo Commerce support
-	add_theme_support( 'woocommerce' );
 	// Editor Style
 	add_editor_style( 'css/editor.css' );
 	// Image Sizes
@@ -43,15 +41,15 @@ function hana_theme_setup() {
 	add_image_size( 'hana-thumb', 480, 320, true);
 	// Menus
 	register_nav_menus( array(
-		'top-bar' => __( 'Top Menu' , 'hana' ),
-		'section' => __( 'Section Menu' , 'hana' ),
-		'footer'  => __( 'Footer Menu', 'hana' ),
-		'social'  => __( 'Social Menu', 'hana' ),
+		'top-bar' => esc_html__( 'Top Menu' , 'hana' ),
+		'section' => esc_html__( 'Section Menu' , 'hana' ),
+		'footer'  => esc_html__( 'Footer Menu', 'hana' ),
+		'social'  => esc_html__( 'Social Menu', 'hana' ),
 	));
 	// Widgets
 	add_theme_support( 'hana-recentpost' );
 	add_theme_support( 'hana-navigation' );
-	add_theme_support( 'hana-marketing' );	
+	add_theme_support( 'hana-marketing' );
 }
 endif;
 
@@ -100,41 +98,41 @@ function hana_theme_scripts() {
 endif;
 
 add_action( 'widgets_init', 'hana_widgets_init' );
-function hana_widgets_init() {	
+function hana_widgets_init() {
 	$sidebars = array (
 		'sidebar-full' => array(
-			'name' => __( 'Blog Widget Area (Full)', 'hana' ),
-			'description' => __( 'Blog Widget Area (Full) will not be displayed for Left & Right Sidebar', 'hana' ),
+			'name' => esc_html__( 'Blog Widget Area (Full)', 'hana' ),
+			'description' => esc_html__( 'Blog Widget Area (Full) will not be displayed for Left & Right Sidebar', 'hana' ),
 		),
 		'sidebar-1' => array(
-			'name' => __( 'Blog Widget Area 1', 'hana' ),
-			'description' => __( 'Blog Widget Area 1', 'hana' ),
+			'name' => esc_html__( 'Blog Widget Area 1', 'hana' ),
+			'description' => esc_html__( 'Blog Widget Area 1', 'hana' ),
 		),
 		'sidebar-2' => array(
-			'name' => __( 'Blog Widget Area 2', 'hana' ),
-			'description' => __( 'Blog Widget Area 2', 'hana' ),
+			'name' => esc_html__( 'Blog Widget Area 2', 'hana' ),
+			'description' => esc_html__( 'Blog Widget Area 2', 'hana' ),
 		),
 		'footer-1' => array(
-			'name' => __( 'Footer Widget Area 1', 'hana' ),
-			'description' => __( 'Footer Widget Area 1', 'hana' ),
+			'name' => esc_html__( 'Footer Widget Area 1', 'hana' ),
+			'description' => esc_html__( 'Footer Widget Area 1', 'hana' ),
 		),
 		'footer-2' => array(
-			'name' => __( 'Footer Widget Area 2', 'hana' ),
-			'description' => __( 'Footer Widget Area 2', 'hana' ),
+			'name' => esc_html__( 'Footer Widget Area 2', 'hana' ),
+			'description' => esc_html__( 'Footer Widget Area 2', 'hana' ),
 		),
 		'footer-3' => array(
-			'name' => __( 'Footer Widget Area 3', 'hana' ),
-			'description' => __( 'Footer Widget Area 3', 'hana' ),
+			'name' => esc_html__( 'Footer Widget Area 3', 'hana' ),
+			'description' => esc_html__( 'Footer Widget Area 3', 'hana' ),
 		),
 		'footer-4' => array(
-			'name' => __( 'Footer Widget Area 4', 'hana' ),
-			'description' => __( 'Footer Widget Area 4', 'hana' ),
+			'name' => esc_html__( 'Footer Widget Area 4', 'hana' ),
+			'description' => esc_html__( 'Footer Widget Area 4', 'hana' ),
 		),
 	);
 	if ( class_exists( 'bbPress' ) ) {
 		$sidebars['sidebar-bbp'] = array(
-			'name' => __( 'bbPress Widget Area', 'hana' ),
-			'description' => __( 'bbPress Widget Area', 'hana' ),
+			'name' => esc_html__( 'bbPress Widget Area', 'hana' ),
+			'description' => esc_html__( 'bbPress Widget Area', 'hana' ),
 		);
 	}
 	
@@ -145,16 +143,16 @@ function hana_widgets_init() {
 			'description'   => $sidebar['description'],
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section><hr class="widget-divider">',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
-		) );		
+			'before_title'  => '<div class="widget-title-container"><h4 class="widget-title">',
+			'after_title'   => '</h4></div>',
+		) );
 	}	
 	// Home Widget
 	$num = absint( apply_filters('hana_homewidget_number', 4) );
 	for ( $i = 1; $i <= $num; $i++ ) {
 		$column = absint( get_theme_mod( 'home_column_' . $i, 3 ) );
 		if ( $column > 1 ) {
-			$desc = sprintf( __('The widgets will be displayed horizontally in %1$s-column layout.', 'hana'), $column);	
+			$desc = sprintf( esc_html__('The widgets will be displayed horizontally in %1$s-column layout.', 'hana'), $column);	
 			$col = absint( 12 / $column );
 			$class = 'large-' . $col . ' columns ';	
 		} else {
@@ -170,7 +168,7 @@ function hana_widgets_init() {
 		}
 		register_sidebar( array(
 			'id'   			=> 'home-' . $i,
-			'name' 			=> sprintf( __('Home Widget Area %1$s', 'hana'), $i),
+			'name' 			=> sprintf( esc_html__('Home Widget Area %1$s', 'hana'), $i),
 			'description'   => $desc,
 			'before_widget' => '<section id="%1$s" class="' . $class . 'widget %2$s" ' . $watch .  '>',
 			'after_widget'  => '</section>',
@@ -183,14 +181,18 @@ function hana_widgets_init() {
 function hana_scheme_options() {
 	$schemes = array(
 		'default' 	=> array(
-			'label' => __('Default','hana'),
+			'label' => esc_html__('Default','hana'),
 			'css'   => '',
 		),
 		'rewind' 	=> array(
-			'label' => __('Rewind Creation','hana'),
+			'label' => esc_html__('Rewind Creation','hana'),
 			'css'   => HANA_THEME_URI . 'css/rewind.css',
 		),
-	);
+		'dark' 	=> array(
+			'label' => esc_html__('Dark','hana'),
+			'css'   => HANA_THEME_URI . 'css/dark.css',
+		),
+    );
 	return apply_filters( 'hana_scheme_options', $schemes );
 }
 

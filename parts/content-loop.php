@@ -24,7 +24,7 @@
 			hana_postmeta()->display( array( 'category', 'date', 'author' ), 'entry-meta-middle', false  ); ?>
 		</header>
 		<div class="entry-content clearfix">
-			<?php the_content( hana_readmore_text() ); ?>
+			<?php the_content( esc_html( hana_readmore_text() ) ); ?>
 		</div>
 <?php		
 	} else {

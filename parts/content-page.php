@@ -15,7 +15,7 @@
 	</header>
 	<div class="entry-content clearfix">
 <?php	the_content();
-		wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'hana' ) . '</span>', 'after' => '</div>' ) ); ?>
+		wp_link_pages( array( 'before' => '<div class="page-link"><span>' . esc_html__( 'Pages:', 'hana' ) . '</span>', 'after' => '</div>' ) ); ?>
 	</div>
 	<?php hana_postmeta()->edit_link(); ?>				
 </article>
