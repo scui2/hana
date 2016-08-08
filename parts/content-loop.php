@@ -13,7 +13,7 @@
 <?php
 	if ( hana_is_featured() && has_post_thumbnail() ) { ?>
 		<div class="featured-media-container clearfix">
-			<?php hana_featured_image( 'full' ); ?>
+			<?php hana_media()->featured_image( 'full' ); ?>
 		</div>
 <?php
 	}
@@ -28,8 +28,7 @@
 		</div>
 <?php		
 	} else {
-		if ( hana_has_featured_media() )
-			hana_featured_media(); ?>
+        hana_media()->the_media( 'hana-thumb', 'scale-item' ); ?>
 		<header class="entry-header">
 <?php		hana_post_title();
 			hana_postmeta()->display( array( 'comment' ), 'meta-comment' );

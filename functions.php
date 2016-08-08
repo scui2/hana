@@ -1,6 +1,6 @@
 <?php
 /**
- * New Voyage Functions
+ * Hana Theme Functions
  * 
  * @package	hana
  * @since   1.0
@@ -30,7 +30,7 @@ function hana_theme_setup() {
 	// Jetpack Featured Conent
 	add_theme_support( 'featured-content', array(
 		'filter' => 'hana_get_featured_posts',
-		'max_posts' => get_theme_mod( 'max_featured', 10 ),
+		'max_posts' => esc_attr( get_theme_mod( 'max_featured', 10 ) ),
 	 	'post_types' => array( 'post', 'page' ),
 	 ));
 	// Editor Style
@@ -46,10 +46,8 @@ function hana_theme_setup() {
 		'footer'  => esc_html__( 'Footer Menu', 'hana' ),
 		'social'  => esc_html__( 'Social Menu', 'hana' ),
 	));
-	// Widgets
-	add_theme_support( 'hana-recentpost' );
-	add_theme_support( 'hana-navigation' );
-	add_theme_support( 'hana-marketing' );
+	// Hana Widgets Support
+	add_theme_support( 'hana-widgets' );
 }
 endif;
 
@@ -170,8 +168,8 @@ function hana_widgets_init() {
 			'id'   			=> 'home-' . $i,
 			'name' 			=> sprintf( esc_html__('Home Widget Area %1$s', 'hana'), $i),
 			'description'   => $desc,
-			'before_widget' => '<section id="%1$s" class="' . $class . 'widget %2$s" ' . $watch .  '>',
-			'after_widget'  => '</section>',
+			'before_widget' => '<div id="%1$s" class="' . $class . 'widget %2$s" ' . $watch .  '>',
+			'after_widget'  => '</div>',
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>',
 		) );
@@ -205,7 +203,7 @@ function hana_body_classes( $classes ) {
 	if ( 'full' == get_theme_mod('slider_type', 'full' ) &&  get_theme_mod( 'sticky_header' ) &&  get_theme_mod( 'slider_top' ) && hana_has_featured_posts() )
 		$classes[] = 'fullwidth-slider';
 	if ( ! is_page_template( array('pages/fullwidth.php', 'pages/nosidebar.php') ) && ! is_attachment() )
-		$classes[] = 'sidebar-' . get_theme_mod( 'sidebar_pos', 'right' );
+		$classes[] = 'sidebar-' . esc_attr( get_theme_mod( 'sidebar_pos', 'right' ) );
 
 	return $classes;
 }

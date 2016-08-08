@@ -13,8 +13,8 @@
 <?php
 	global $hana_thumbnail, $hana_entry_meta;
 	
-	if ( $has_media = hana_has_featured_media() )
-		hana_featured_media( $hana_thumbnail ); ?>
+	if ( $has_media = hana_media()->has_media() )
+		hana_media()->the_media( $hana_thumbnail, 'scale-item' ); ?>
 	<header class="entry-header">
 		<?php hana_post_title(); ?>
 	</header>

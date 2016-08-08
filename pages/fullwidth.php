@@ -9,7 +9,7 @@
  * @link    http://rewindcreation.com/
  */
 get_header(); ?>
-<div id="content" class="site-content <?php hana_grid()->fullgrid_class(); ?>" role="main">
+<div id="content" class="site-content fullwidth <?php hana_grid()->fullgrid_class(); ?>" role="main">
 <?php
 	while ( have_posts() ) {
 		the_post();

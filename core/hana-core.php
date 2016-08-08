@@ -26,7 +26,6 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 			add_action( 'after_setup_theme', array( $this, 'constants' ), -99 ); //Before Theme
 			add_action( 'after_setup_theme', array( $this, 'core_functions' ), -98 );
 			add_action( 'after_setup_theme', array( $this, 'core_setup' ), 12 ); // After Theme
-			add_action( 'after_setup_theme', array( $this, 'theme_supports' ), 13 ); // After Theme
 			add_action( 'after_setup_theme', array( $this, 'admin' ),  99 ); // Admin Functions
 		}
 		/**
@@ -59,10 +58,10 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 			require_once( HANA_CORE_DIR . 'inc/class-grid.php' );
 			require_once( HANA_CORE_DIR . 'inc/class-kses.php' );
 			require_once( HANA_CORE_DIR . 'inc/class-post-meta.php' );
-			require_once( HANA_CORE_DIR . 'inc/core-functions.php' );
-			require_once( HANA_CORE_DIR . 'inc/lib-general.php' );
+			require_once( HANA_CORE_DIR . 'inc/class-media.php' );
+            require_once( HANA_CORE_DIR . 'inc/core-functions.php' );
+			require_once( HANA_CORE_DIR . 'inc/lib-choices.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-menu.php' );
-			require_once( HANA_CORE_DIR . 'inc/lib-formats.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-fonts.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-customizer.php' );
 		}		
@@ -77,15 +76,11 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 			//HTML5 support
 			add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
 		}
-		public function theme_supports() {
-			require_if_theme_supports( 'hana-recentpost', HANA_CORE_DIR . 'inc/widget-recentpost.php' );
-			require_if_theme_supports( 'hana-navigation', HANA_CORE_DIR . 'inc/widget-navigation.php' );
-			require_if_theme_supports( 'hana-marketing', HANA_CORE_DIR . 'inc/widget-marketing.php' );
-		}
-
+        
 		public function admin() {
 			if ( is_admin() ) {
-				require_once( HANA_CORE_DIR . 'inc/admin-functions.php' );				
+				require_once( HANA_CORE_DIR . 'inc/class-meta-box.php' );				
+                require_once( HANA_CORE_DIR . 'inc/admin-functions.php' );				
 			}
 		}	
 	} // Class HanaCore

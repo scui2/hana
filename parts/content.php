@@ -27,7 +27,7 @@
 
 	if ( ! get_theme_mod( 'hide_featured' ) && has_post_thumbnail() ) { ?>
 		<div class="featured-media-container clearfix">
-			<?php hana_featured_image(); ?>
+			<?php hana_media()->featured_image( 'full' ); ?>
 		</div>
 <?php
 	} ?>

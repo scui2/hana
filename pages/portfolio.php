@@ -26,8 +26,7 @@ get_header();
 		$entry_meta = get_post_meta($post->ID, '_hana_disp_meta', true);
 		$pt_thumbnail = get_post_meta($post->ID, '_hana_thumbnail', true);
 		$thumbnail = hana_thumbnail_size( $pt_thumbnail );
-	}
-	else {
+	} else {
 		$pt_category = '';
 		$intro = 0;
 		$column = 1;

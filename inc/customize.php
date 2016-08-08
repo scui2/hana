@@ -151,11 +151,11 @@ function hana_customize_register( $wp_customize ){
         'hana_typo',
         array(
             'title'         => esc_html__('Typography', 'hana'),
-		    'description'  => esc_html__( 'You can choose the font for many theme elements such as Body and Headings. Other fonts can be used to load additional web fonts', 'hana' ),            
+		    'description'  => esc_html__( 'You can choose the font for many theme elements such as Body and Headings. Other fonts can be used to load additional web fonts and used in the custom css.', 'hana' ),            
             'priority'      => 20,
         )
     );
-	$font_elements = hana_font_elements();
+	$font_elements = apply_filters( 'hana_font_elements', array() );;
 	foreach ( $font_elements as $key => $element ) {
 		$wp_customize->add_setting( $key, array(
 				'default'           => 'default',
@@ -619,7 +619,7 @@ function hana_customize_register( $wp_customize ){
 			'section'  => 'hana_homepage',
 			'type'     => 'select',
 			'priority' => 10 * $i,
-			'choices'  => hana_columns_choices(),
+			'choices'  => hana_column_choices(),
 		) );	
 	} //end for
     
@@ -657,7 +657,7 @@ function hana_custom_css( ) {
 	}
 	//Font
 	$hana_fonts = hana_font_list();	
-	$font_elements = hana_font_elements();
+	$font_elements = apply_filters( 'hana_font_elements', NULL );
 	foreach ( $font_elements as $key => $element ) {
 		$option = get_theme_mod( $key );
 		if ( $option &&  'default' != $option && !empty( $element['selector'] ) )
@@ -767,7 +767,7 @@ function hana_custom_header_background() {
 }
 endif;
 
-function hana_font_elements() {
+function hana_font_elements( $elements ) {
 	$elements = array(
 		'bodyfont'      => array( 'label' => esc_html__( 'Body Font', 'hana'),
 							 	'selector' => 'body'  ),
@@ -784,5 +784,6 @@ function hana_font_elements() {
 		'otherfont3' => array( 'label' => esc_html__( 'Other Font 3', 'hana'),
 								'selector' => ''  ),
 	);
-	return apply_filters( 'hana_font_elements', $elements );
+	return $elements;
 }
+add_filter( 'hana_font_elements', 'hana_font_elements');

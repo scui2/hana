@@ -62,8 +62,9 @@ function hana_replace_rel_category ($output) {
 
 // Display Post Title
 if ( ! function_exists( 'hana_post_title' ) ) :
-function hana_post_title( $link = false ) {
-	if ( ! is_single() || $link ) {
+function hana_post_title() {
+    global $post;
+    if ( ! is_single( $post ) ) {
 		the_title( sprintf( '<h2 class="entry-title"><a href="%1$s" rel="bookmark">', esc_url( hana_get_post_link() ) ), '</a></h2>' );
 	}
 	else {
@@ -206,3 +207,21 @@ function hana_custom_excerpt_more( $output ) {
 function hana_readmore_text() {
 	return apply_filters( 'hana_readmore_label', esc_html__( 'Read More', 'hana' ) );
 }
+// Returns permalink except link post in which first link will be returned
+if ( ! function_exists( 'hana_get_post_link' ) ) :
+function hana_get_post_link() {
+	$link_url = get_the_permalink();
+	if ( has_post_format( 'link' ) ) {
+		$link = array();
+		if ( preg_match('/<a (.+?)>/', get_the_content(), $match) ) {
+    		foreach ( wp_kses_hair($match[1], array('http')) as $attr) {
+        		$link[$attr['name']] = $attr['value'];
+    		}
+		}			
+    	if ( isset( $link['href'] ) )
+    		$link_url = $link['href'];
+	}
+	return $link_url;
+}
+endif;
+

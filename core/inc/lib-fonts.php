@@ -79,22 +79,22 @@ function hana_font_choices() {
 if ( ! function_exists( 'hana_google_font_url' ) ):
 function hana_google_font_url() {
 	$url = '';
-	$hana_fonts = hana_font_list();	
-	$font_elements = hana_font_elements();
-	$fonts = array();
-	foreach ( $font_elements as $key => $element ) {
+	$hana_fonts = hana_font_list();
+	$fonts = apply_filters( 'hana_default_fonts', array() );
+    $font_elements = apply_filters( 'hana_font_elements', NULL );
+    foreach ( $font_elements as $key => $element ) {
 		$value = get_theme_mod( $key );
 		if ( $value && 'default' != $value && ! in_array( $value, $fonts) ) {
 			$fonts[] = $value ;					
 		}
 	}
 	if ( !empty( $fonts ) ) {
-		$ffamilies = array();
+		$families = array();
 		foreach ( $fonts as $font ) {
-			$ffamilies[] = $hana_fonts[ $font ]['name'] . $hana_fonts[ $font ]['weight'];
+			$families[] = $hana_fonts[ $font ]['name'] . $hana_fonts[ $font ]['weight'];
 		}
 		$args = array(
-			'family' => urlencode( implode( '|', $ffamilies ) ),
+			'family' => urlencode( implode( '|', $families ) ),
 			'subset' => urlencode( apply_filters( 'hana_webfont_subset', 'latin,latin-ext' ) ),
 		);
 		$url = add_query_arg( $args, apply_filters( 'hana_webfont_url', '//fonts.googleapis.com/css' ) );

@@ -13,8 +13,8 @@
  * Site
  ********************************************/
 body {
-  background: #FEFEFE;
-  color: #0a0a0a;
+  background: #FFFFFF;
+  color: #2a2a2a;
 }
 
 a {
@@ -22,6 +22,20 @@ a {
 }
 a:hover, a:focus {
   color: #F38630;
+}
+
+table thead,
+table tbody,
+table tfoot {
+  color: #2a2a2a;
+  border: 1px solid #f2f2f2;
+  background: none;
+}
+table thead, table tfoot {
+  background-color: #f7f7f7;
+}
+table tbody tr:nth-child(even) {
+  background-color: #fafafa;
 }
 
 .button {
@@ -33,32 +47,33 @@ a:hover, a:focus {
 }
 
 .site-main {
-  background: #FEFEFE;
+  background: #FFFFFF;
 }
 
 .page-header {
   background: #f5faf6;
+  border-bottom: 1px solid #ebebeb;
 }
 
 .page-link {
-  border-top: 1px solid #f1f1f1;
+  border-top: 1px solid #f2f2f2;
 }
 .page-link .page-link-number {
-  border: 1px solid #f1f1f1;
+  border: 1px solid #f2f2f2;
 }
 .page-link > .page-link-number {
-  background: #f1f1f1;
+  background: #f2f2f2;
 }
 .page-link a:hover {
   color: #F38630;
 }
 .page-link a:hover .page-link-number {
-  background: #f1f1f1;
+  background: #f2f2f2;
 }
 
 .pagination .current {
-  background: #f1f1f1;
-  color: #0a0a0a;
+  background: #f2f2f2;
+  color: #2a2a2a;
 }
 
 /********************************************
@@ -108,11 +123,11 @@ a:hover, a:focus {
  ********************************************/
 .custom-background #footer-widgets,
 .custom-background #footer {
-  background: rgba(245, 246, 250, 0.8);
+  background: rgba(241, 241, 241, 0.8);
 }
 
 #footer {
-  background: #f5f6fa;
+  background: #F1F1F1;
   color: #303030;
 }
 
@@ -147,7 +162,7 @@ a:hover, a:focus {
   background: #f5faf6;
 }
 .section-menu ul li a {
-  color: #0a0a0a;
+  color: #2a2a2a;
 }
 .section-menu ul li a:hover {
   color: #F38630;
@@ -187,10 +202,10 @@ a:hover, a:focus {
 }
 
 .footer-menu ul li {
-  border-right: 1px solid #ebebeb;
+  border-right: 1px solid #e4e4e4;
 }
 .footer-menu ul li ul li:first-child {
-  border-left: 1px solid #ebebeb;
+  border-left: 1px solid #e4e4e4;
 }
 .footer-menu ul li a {
   color: #00281a;
@@ -203,16 +218,16 @@ a:hover, a:focus {
  * Featured Content
  ********************************************/
 .featured-content {
-  background: #f1f1f1;
+  background: #f2f2f2;
 }
 
 .featured-caption {
-  background: rgba(0, 99, 65, 0.2);
+  background: rgba(0, 0, 0, 0.3);
   color: #FFFAFA;
 }
 
 .featured-title a {
-  color: #FEFEFE;
+  color: #F38630;
 }
 .featured-title a:hover {
   color: #F38630;
@@ -237,7 +252,7 @@ a:hover, a:focus {
  * Post
  ********************************************/
 .hentry {
-  background: #FEFEFE;
+  background: #FFFFFF;
 }
 
 .entry-title a {
@@ -248,14 +263,14 @@ a:hover, a:focus {
 }
 
 .entry-excerpt {
-  color: #242424;
+  color: #444444;
 }
 
 .post-divider, .widget-divider, .section-divider {
-  background-image: -webkit-linear-gradient(left, #FEFEFE, #e5e5e5, #FEFEFE);
-  background-image: -moz-linear-gradient(left, #FEFEFE, #e5e5e5, #FEFEFE);
-  background-image: -ms-linear-gradient(left, #FEFEFE, #e5e5e5, #FEFEFE);
-  background-image: -o-linear-gradient(left, #FEFEFE, #e5e5e5, #FEFEFE);
+  background-image: -webkit-linear-gradient(left, #FFFFFF, #e6e6e6, #FFFFFF);
+  background-image: -moz-linear-gradient(left, #FFFFFF, #e6e6e6, #FFFFFF);
+  background-image: -ms-linear-gradient(left, #FFFFFF, #e6e6e6, #FFFFFF);
+  background-image: -o-linear-gradient(left, #FFFFFF, #e6e6e6, #FFFFFF);
 }
 
 /********************************************
@@ -265,8 +280,8 @@ a:hover, a:focus {
 .format-aside .entry-summary,
 .format-quote .entry-content,
 .format-quote .entry-summary {
-  background: #f1f1f1;
-  border-left: 1.25rem solid #e5e5e5;
+  background: #f2f2f2;
+  border-left: 1.25rem solid #e6e6e6;
 }
 
 .format-quote .entry-content::after,
@@ -295,7 +310,7 @@ a:hover, a:focus {
  * Post Comments
  ********************************************/
 .even > .comment-body {
-  background: #f6f6f6;
+  background: #f7f7f7;
 }
 
 .comment-meta .avatar {
@@ -318,27 +333,27 @@ a:hover, a:focus {
  ********************************************/
 .widget-title {
   font-size: 1.2rem;
-  color: #0a0a0a;
+  color: #2a2a2a;
   line-height: 1;
 }
 
 .sidebar {
-  color: #242424;
+  color: #444444;
 }
 .sidebar .widget {
-  background: #FEFEFE;
-  border: 1px solid #e5e5e5;
+  background: #FFFFFF;
+  border: 1px solid #e6e6e6;
   border-radius: 0.5rem;
 }
 .sidebar .widget-title {
   color: #808080;
   background: #f5f6fa;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #e6e6e6;
   border-radius: 1rem;
 }
 
 .widget_categories ul li a, .widget_archive ul li a, .widget_pages ul li a, .widget_recent_entries ul li a, .widget_meta ul li a, .widget_nav_menu ul li a, .widget_rss ul li a {
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f2f2f2;
   color: #00281a;
 }
 .widget_categories ul li a:hover, .widget_archive ul li a:hover, .widget_pages ul li a:hover, .widget_recent_entries ul li a:hover, .widget_meta ul li a:hover, .widget_nav_menu ul li a:hover, .widget_rss ul li a:hover {
@@ -349,11 +364,12 @@ a:hover, a:focus {
 }
 
 .widget_recent_comments ul li {
-  border-bottom: 1px 1px solid #f1f1f1;
+  border-bottom: 1px 1px solid #f2f2f2;
 }
 
 #footer-widgets {
-  background: #f5f6fa;
+  background: #F1F1F1;
+  border-top: 1px solid #e4e4e4;
   color: #303030;
 }
 
@@ -361,7 +377,7 @@ a:hover, a:focus {
   color: #00281a;
 }
 .footer-widget .widget-title-container {
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: 1px solid #dddddd;
 }
 .footer-widget .widget-title {
   color: #4a4a4a;
@@ -371,11 +387,11 @@ a:hover, a:focus {
  * Hana Navigation Widget
  ********************************************/
 .hana_nav .tabs {
-  border-top: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
 .hana_nav .tabs > li > a {
-  border-right: 1px solid #e5e5e5;
+  border-right: 1px solid #e6e6e6;
   color: #00281a;
 }
 .hana_nav .tabs > li > a:hover {
@@ -389,10 +405,6 @@ a:hover, a:focus {
 /********************************************
  * Hana Marking
  ********************************************/
-.marketing-vertical:hover, .marketing-horizontal:hover {
-  background: #f1f1f1;
-}
-
 .marketing-icon {
   color: #808080;
 }
@@ -405,7 +417,7 @@ a > .marketing-icon:hover {
  * Portfolio
  ********************************************/
 .pfitem .hentry {
-  background: #f1f1f1;
+  background: #f2f2f2;
 }
 .pfitem .hentry:hover {
   box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.5);
@@ -426,35 +438,21 @@ a > .marketing-icon:hover {
  * Pricing Table
  ********************************************/
 .pricing-table {
-  border: solid 1px #e5e5e5;
-  border-radius: 5px;
+  border: solid 1px #e6e6e6;
 }
 .pricing-table li {
-  border-bottom: dotted 1px #e5e5e5;
-  font-size: 0.75rem;
-  padding: 0.875rem 1.125rem;
-}
-.pricing-table li:last-child {
-  border-bottom: 0;
+  border-bottom: dotted 1px #e6e6e6;
 }
 .pricing-table .title {
   background-color: #666666;
   color: #EEEEEE;
-  font-size: 1rem;
-  border-bottom: 0;
 }
-.pricing-table .pricing-table .price {
-  background-color: #F6F6F6;
-  color: #333333;
-  font-size: 1.75rem;
-  border-bottom: 0;
+.pricing-table .price {
+  background-color: #f2f2f2;
+  color: #2a2a2a;
 }
 .pricing-table .description {
-  color: #777777;
-  font-size: 0.75rem;
-}
-.pricing-table .pricing-table .button {
-  margin: 0;
+  color: #2a2a2a;
 }
 
 /********************************************
@@ -473,7 +471,7 @@ a > .marketing-icon:hover {
 }
 
 .social-footer li a::before {
-  color: #0a0a0a !important;
+  color: #2a2a2a !important;
 }
 
 #home-section-2 {

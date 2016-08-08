@@ -16,10 +16,7 @@
 		setup_postdata( $post );
 ?>
 		<li class="hana-slide hana-slide-<?php the_ID(); ?>">
-<?php		if ( hana_get_video() ) {
-				echo hana_get_video();
-			} elseif ( has_post_thumbnail() )
-				the_post_thumbnail( 'full', array( 'class'	=> 'fullwidth-image', 'title' => esc_attr( get_the_title() ) ) ); ?>
+            <?php hana_media()->the_media( 'full' ); ?>
 			<div class="featured-caption clearfix">
 <?php			if ( 'post' == get_post_type() )  {
 					$link_url = esc_url( hana_get_post_link() );

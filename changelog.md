@@ -1,5 +1,9 @@
 ## Change Log
 
+### 1.0.6
+
+* Removed all widgets and created Hana Widgets plugin
+
 ### 1.0.5
 
 * Added HANA_KSES class for extracted image and embed

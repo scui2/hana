@@ -8,7 +8,6 @@
  * @license GPL v3 or later
  * @link    http://rewindcreation.com/
  */
-
 /***************************
 * Common Sanitize Functions 
 ***************************/
@@ -26,7 +25,7 @@ function hana_sanitize_fonts( $input ) {
 }
 // Layout Columns
 function hana_sanitize_columns( $input ) {
-    $valid = hana_columns_choices();
+    $valid = hana_column_choices();
  
     if ( array_key_exists( $input, $valid ) ) {
         return $input;
@@ -45,40 +44,5 @@ function hana_sanitize_checkbox( $input ) {
 // Text
 function hana_sanitize_text( $input ) {
     return wp_kses_post( force_balance_tags( $input ) );
-}
-/***************************
-* Common Choice Functions 
-***************************/
-function hana_category_choices( $inc = 'all' ) {
-	$categories = hana_categories();
-	
-	$choices = array();
-	if ( 'all' == $inc )
-		$choices[0] =  esc_html__( 'All Categories', 'hana' );
-	elseif ( 'metaall' == $inc )
-		$choices[''] =   esc_html__( 'All Categories', 'hana' );
-	elseif ( 'blank' == $inc )
-		$choices[''] = '';
-		
-	foreach ( $categories as $category )
-		$choices[ $category->term_id ] = $category->name;
-	return apply_filters( 'hana_category_choices', $choices );
-}
-
-function hana_columns_choices( $meta = false ) {
-	if ( $meta ) {
-		$choices =  array( 
-					'1' => esc_html__( 'Full', 'hana'),
-					'2' => esc_html__( 'Half', 'hana'),
-					'' 	=> esc_html__( 'One Third', 'hana'),	// Default
-					'4'	=> esc_html__( 'One Fourth', 'hana'));		
-	} else {
-		$choices =  array( 
-					'1' => esc_html__( 'Full', 'hana'),
-					'2' => esc_html__( 'Half', 'hana'),
-					'3' => esc_html__( 'One Third', 'hana'),
-					'4'	=> esc_html__( 'One Fourth', 'hana'));		
-	}
-	return apply_filters( 'hana_columns_choices', $choices );
 }
 

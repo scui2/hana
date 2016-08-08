@@ -11,8 +11,7 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php
-	if ( hana_has_featured_media() )
-		hana_featured_media(); ?>
+	hana_media()->the_media( 'hana-thumb', 'scale-item' ) ?>
 	<header class="entry-header">
 <?php	hana_post_title();
 		hana_postmeta()->display( array( 'comment' ), 'meta-comment' );

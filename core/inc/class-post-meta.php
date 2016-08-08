@@ -23,7 +23,7 @@ if ( ! class_exists( 'HANA_Post_Meta' ) ) {
 			if ( ! is_array( $metas ) ) // No Meta defined
 				return;
 			
-			if ( empty($class) )
+			if ( empty( $class ) )
 				$class = 'entry-meta';
 			else
 				$class .= ' entry-meta';
@@ -80,7 +80,8 @@ if ( ! class_exists( 'HANA_Post_Meta' ) ) {
 						esc_html__( 'Permalink', 'hana') );
 				} 
 			}
-		}	
+		}
+        
 		public function meta_category( $icon = true ) {
 			$html = '';
 	 		$sep = ' &bull; ';

@@ -10,7 +10,7 @@
  */
 get_header(); ?>
 <div id="content" class="site-content homepage" role="main">
-	<section id="home-section-0" class="page-content home-section home-section-odd">
+	<div id="home-section-0" class="page-content home-section home-section-odd">
 		<div class="row">
 			<div class="<?php hana_grid()->fullgrid_class(); ?>">
 <?php			while ( have_posts() ) {
@@ -19,7 +19,7 @@ get_header(); ?>
 				} ?>
 			</div>
 		</div>
-	</section>
+	</div>
 	<?php get_sidebar('home'); ?>
 </div>
 <?php get_footer(); ?>
