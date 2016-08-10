@@ -73,6 +73,18 @@ function hana_category_choices( $inc = 'all' ) {
 }
 endif;
 
+//Menus
+if ( ! function_exists( 'hana_menu_choices' ) ) : 
+function hana_menu_choices() {
+	$menus = get_terms('nav_menu');
+	$choices = array();
+    
+	foreach ( $menus as $menu )
+		$choices[ $menu->term_id ] = $menu->name;
+	return apply_filters( 'hana_menu_choices', $choices );
+}
+endif;
+
 //Columns
 if ( ! function_exists( 'hana_column_choices' ) ) : 
 function hana_column_choices( $meta = false ) {

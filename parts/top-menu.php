@@ -23,15 +23,17 @@
     </div>
 	<div id="top-menu" class="top-bar" data-toggler>
 		<div class="<?php hana_grid()->header_row_class(); ?>">
+            <?php do_action('hana_topbar_start'); //Action Hook ?>
 <?php		if ( has_nav_menu( 'section' ) ) { ?>
 		  		<div class="top-bar-left">
-					<button class="title-bar-icon leftmenu-toggle hide hide-for-small-only" data-toggle="offCanvasLeft"><i class="fa fa-bars"></i></button>    
+				<button class="title-bar-icon leftmenu-toggle hide hide-for-small-only" data-toggle="offCanvasLeft"><i class="fa fa-bars"></i></button>   
 	 	  		</div>
 <?php		} ?>
 			<div class="top-bar-left show-for-small-only small-search-form"> 
 				<?php get_search_form(); ?>
 			</div>
  			<div class="top-bar-title show-for-medium"><?php hana_branding(); ?></div>
+            <?php do_action('hana_topbar_middle'); //Action Hook ?>
   			<div class="top-bar-right show-for-medium">
   				<ul class="menu menu-search"><li><a data-open="modelSearch"><span class="fa fa-search"></span></a></li></ul>		
  			</div> 
@@ -50,7 +52,7 @@
 					'walker' => new hana_topbar_walker()
 				)); ?>
 			</div>
-			<?php do_action('hana_topbar_close'); //Action Hook ?>
+			<?php do_action('hana_topbar_end'); //Action Hook ?>
 		</div>	
 	</div><!-- top-bar -->
 <?php
