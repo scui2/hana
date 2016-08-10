@@ -46,4 +46,5 @@
 		hana_jetpack_sharing( 'bottom' );		
 		get_template_part( 'parts/biography' ); ?>
 	</footer>
+    <?php do_action('hana_content_single_bottom'); ?>
 </article>

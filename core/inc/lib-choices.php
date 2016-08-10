@@ -78,16 +78,18 @@ if ( ! function_exists( 'hana_column_choices' ) ) :
 function hana_column_choices( $meta = false ) {
 	if ( $meta ) {
 		$choices =  array( 
-					'1' => esc_html__( 'Full', 'hana'),
+					''  => esc_html__( 'Full', 'hana'),
 					'2' => esc_html__( 'Half', 'hana'),
-					'' 	=> esc_html__( 'One Third', 'hana'),	// Default
-					'4'	=> esc_html__( 'One Fourth', 'hana'));		
+					'3' => esc_html__( 'One Third', 'hana'),
+					'4'	=> esc_html__( 'One Fourth', 'hana'),
+					'6'	=> esc_html__( 'One Sixth', 'hana'));	
 	} else {
 		$choices =  array( 
 					'1' => esc_html__( 'Full', 'hana'),
 					'2' => esc_html__( 'Half', 'hana'),
 					'3' => esc_html__( 'One Third', 'hana'),
-					'4'	=> esc_html__( 'One Fourth', 'hana'));		
+					'4'	=> esc_html__( 'One Fourth', 'hana'),
+					'6'	=> esc_html__( 'One Sixth', 'hana'));		
 	}
 	return apply_filters( 'hana_layout_choices', $choices );
 }

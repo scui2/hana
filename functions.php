@@ -24,7 +24,7 @@ function hana_theme_setup() {
 		'flex-height' => true,
 	) );
 	// Featured Image
-	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'post-thumbnails', array('post','page','hana_block') );
 	// Post Formats	
 	add_theme_support( 'post-formats', array( 'aside', 'link', 'quote', 'gallery', 'status', 'quote', 'image', 'video', 'audio', 'chat' ) );
 	// Jetpack Featured Conent
@@ -46,8 +46,9 @@ function hana_theme_setup() {
 		'footer'  => esc_html__( 'Footer Menu', 'hana' ),
 		'social'  => esc_html__( 'Social Menu', 'hana' ),
 	));
-	// Hana Widgets Support
+	// Hana Plugin Support
 	add_theme_support( 'hana-widgets' );
+	add_theme_support( 'hana-block' );
 }
 endif;
 

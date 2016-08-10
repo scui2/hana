@@ -92,8 +92,14 @@ table tbody tr:nth-child(even) {
   color: #F38630;
 }
 .top-bar .submenu {
-  background: #2B2B2B;
-  border-color: #454545;
+  background: #333333;
+  border-color: #4d4d4d;
+}
+.top-bar .submenu a {
+  color: #FFFFFF;
+}
+.top-bar .submenu a:hover {
+  color: #F38630;
 }
 
 @media screen and (min-width: 64em) {

@@ -105,11 +105,10 @@ if ( ! class_exists( 'HANA_Media' ) ) {
         
         public function featured_image( $size = 'full', $class = null  ) {
             global $post;
-            
             if ( 'none' != $size && has_post_thumbnail() ) {
                 if ( ! is_single( $post ) ) {
                     printf ('<a href="%1$s" title="%2$s"><figure class="%3$s">', 
-                        esc_url( get_permalink() ),
+                        esc_url( hana_get_post_link() ),
                         esc_attr( the_title_attribute( 'echo=0' ) ),
                         esc_attr( $class ) );	
                     the_post_thumbnail( $size );

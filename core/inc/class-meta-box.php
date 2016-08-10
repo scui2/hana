@@ -103,6 +103,7 @@ if ( ! class_exists( 'Hana_Meta_Box' ) ) {
                     switch ( $field['type'] ) {
                         case 'select':
                             $new = sanitize_key( $new );
+                            break;
                         case 'radio':
                         case 'checkbox':
                         case 'number':

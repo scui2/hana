@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Full Width
+ * Template Name: Fluid Width
  *
  * @package	hana
  * @since   1.0
@@ -9,12 +9,11 @@
  * @link    http://rewindcreation.com/
  */
 get_header(); ?>
-<div id="content" class="site-content fullwidth <?php hana_grid()->fullgrid_class(); ?>" role="main">
+<div id="content" class="site-content fluidwidth" role="main">
 <?php
 	while ( have_posts() ) {
 		the_post();
-		get_template_part( 'parts/content', 'page' );
-		comments_template( '', true );
+        the_content();	
 	}
 ?>
 </div>

@@ -12,7 +12,6 @@
 if ( ! class_exists( 'HANA_Grid' ) ) {
 	
 	class HANA_Grid {
-
 		public $grid = array(
 			'grid_width' => 1200,
 			'grid_column' => 12, //Only 12-Column Grid is supported as of now
@@ -40,7 +39,7 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 		public function main_class( $echo = true ) {
 			$class = array();
             $class[] = 'site-main';
-			if ( is_page_template( apply_filters('hanagrid_fullwidth_templates', array('pages/fullwidth.php','pages/homepage.php') ) ) ) {
+			if ( is_page_template( apply_filters('hanagrid_fluidwidth_templates', array('pages/fluidwidth.php','pages/homepage.php') ) ) ) {
 				$class[] = 'clearfix';                
             } else {
 				$class[] = 'row';
@@ -55,6 +54,21 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 				return $imp_class;
 		}
 
+        public function row_class( $type = 'row', $echo = true  ) {
+            $class = array();
+            $class[] = 'row';
+            if ( 'rowcol' == $type || 'rowexpcol' == $type)
+                $class[] = 'collapse';
+            if ( 'rowexp' == $type || 'rowexpcol' == $type)
+                $class[] = 'expanded';
+			$class = apply_filters( 'hanagrid_row_class', $class );
+			$imp_class = implode( ' ', $class );
+			if ( $echo )
+				echo esc_attr( $imp_class );
+			else
+				return $imp_class;
+        }
+        
 		public function header_row_class( $echo = true ) {
 			$class = array();
 			$class[] = 'row';

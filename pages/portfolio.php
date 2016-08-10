@@ -15,7 +15,7 @@ get_header();
 		$pt_category = get_post_meta($post->ID, '_hana_category', true);
 		$column = get_post_meta($post->ID, '_hana_column', true);
 		if ( '' == $column )
-			$column = 3;
+			$column = 1;
 		$postperpage = get_post_meta($post->ID, '_hana_postperpage', true);
 		if ( '' != $postperpage && $postperpage < $column)
 			$postperpage = $column;
