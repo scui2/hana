@@ -24,7 +24,7 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 		*/
 		public function __construct() {
 			add_action( 'after_setup_theme', array( $this, 'constants' ), -99 ); //Before Theme
-			add_action( 'after_setup_theme', array( $this, 'core_functions' ), -98 );
+			add_action( 'after_setup_theme', array( $this, 'includes' ), -98 );
 			add_action( 'after_setup_theme', array( $this, 'core_setup' ), 12 ); // After Theme
 			add_action( 'after_setup_theme', array( $this, 'admin' ),  99 ); // Admin Functions
 		}
@@ -54,15 +54,15 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 		/**
 		* Load core functions
 		*/		
-		public function core_functions() {
+		public function includes() {
 			require_once( HANA_CORE_DIR . 'inc/class-grid.php' );
 			require_once( HANA_CORE_DIR . 'inc/class-kses.php' );
 			require_once( HANA_CORE_DIR . 'inc/class-post-meta.php' );
 			require_once( HANA_CORE_DIR . 'inc/class-media.php' );
+            require_once( HANA_CORE_DIR . 'inc/class-font.php' );
             require_once( HANA_CORE_DIR . 'inc/core-functions.php' );
-			require_once( HANA_CORE_DIR . 'inc/lib-choices.php' );
-			require_once( HANA_CORE_DIR . 'inc/lib-menu.php' );
-			require_once( HANA_CORE_DIR . 'inc/lib-fonts.php' );
+            require_once( HANA_CORE_DIR . 'inc/lib-choices.php' );
+            require_once( HANA_CORE_DIR . 'inc/lib-menu.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-customizer.php' );
 		}		
 		/**

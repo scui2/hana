@@ -33,7 +33,7 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 			$this->grid['content_column'] = absint(get_theme_mod( 'content_column', $this->grid['content_column'] ));
 			$this->grid['sidebar1_column'] = absint(get_theme_mod( 'sidebar1_column', $this->grid['sidebar1_column'] ));
 			$this->grid['sidebar2_column'] = absint(get_theme_mod( 'sidebar2_column', $this->grid['sidebar2_column'] ));
-			$this->grid['sidebar_bbp'] = absint(get_theme_mod( 'sidebar_bbp', $this->grid['sidebar_bbp'] ));
+			$this->grid['sidebar_bbp'] = absint(get_theme_mod( 'sidebar_bbp', $this->grid['sidebar_bbp'] ));            
 		}
 
 		public function main_class( $echo = true ) {

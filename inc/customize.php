@@ -166,7 +166,7 @@ function hana_customize_register( $wp_customize ){
 			'section'  => 'hana_typo',
 			'type'     => 'select',
 			'priority' => 10,
-			'choices'  => hana_font_choices(),
+			'choices'  => hana_font()->choices(),
 		) );	
 	}
 	
@@ -656,12 +656,11 @@ function hana_custom_css( ) {
 		$css .= '.hana-slide {max-height: ' . esc_attr( get_theme_mod( 'slider_height' ) ) . 'px;}' . "\n";
 	}
 	//Font
-	$hana_fonts = hana_font_list();	
-	$font_elements = apply_filters( 'hana_font_elements', NULL );
-	foreach ( $font_elements as $key => $element ) {
+	$elements = apply_filters( 'hana_font_elements', NULL );
+	foreach ( $elements as $key => $element ) {
 		$option = get_theme_mod( $key );
 		if ( $option &&  'default' != $option && !empty( $element['selector'] ) )
-			$css .= $element['selector'] . ' {font-family:"' . esc_attr( $hana_fonts[ $option ]['name'] ) . '",' . esc_attr( $hana_fonts[ $option ]['type'] ) . ';}' . "\n";		
+			$css .= $element['selector'] . ' {font-family:"' . esc_attr( hana_font()->fonts[ $option ]['name'] ) . '",' . esc_attr( hana_font()->fonts[ $option ]['type'] ) . ';}' . "\n";		
 	}
 	return apply_filters( 'hana_custom_css', $css );
 }

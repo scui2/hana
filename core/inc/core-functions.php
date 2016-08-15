@@ -74,7 +74,7 @@ function hana_post_title() {
 endif;
 
 if ( ! function_exists( 'hana_archive_title' ) ) :	
-function hana_archive_title() {	
+function hana_archive_title( $single_title = false ) {	
 	if ( ! have_posts() )
 		return;
     
@@ -82,7 +82,7 @@ function hana_archive_title() {
 	if ( is_search() ) {
 		$title = sprintf( '%1$s<span class="search-term">%2$s</span>', 
 					esc_html__( 'Search Results for: ', 'hana'),
-					esc_html( get_search_query() ) );
+					get_search_query() ); //already escaped
 		$class .= 'ph-search'; ?>
         <div class="page-header <?php echo esc_attr( $class ); ?>">
             <div class="row column">
@@ -90,8 +90,7 @@ function hana_archive_title() {
             </div>
 		</div>	
 <?php	return;
-	} 
-	elseif ( is_category() ) { 
+	} elseif ( is_category() ) { 
 		$category_name = single_cat_title( '', false );
 		$category_id = get_cat_ID( $category_name );
 		// Category Title Class
@@ -101,14 +100,11 @@ function hana_archive_title() {
 			$class .= ' pt-category-' . esc_attr( $parent->parent );
 			$parent = get_term( $parent->parent , 'category' );				
 		}
-	}
-	elseif ( is_tag() ) {
+	} elseif ( is_tag() ) {
 		$class .= 'pt-tag';
-	}
-	elseif ( is_day() || is_month() || is_year() ) {
+	} elseif ( is_day() || is_month() || is_year() ) {
 		$class .= 'pt-date';
-	}
-	else {
+	} else {
 		return;
 	}
 ?>

@@ -24,7 +24,7 @@ function hana_theme_setup() {
 		'flex-height' => true,
 	) );
 	// Featured Image
-	add_theme_support( 'post-thumbnails', array('post','page','hana_block') );
+	add_theme_support( 'post-thumbnails' );
 	// Post Formats	
 	add_theme_support( 'post-formats', array( 'aside', 'link', 'quote', 'gallery', 'status', 'quote', 'image', 'video', 'audio', 'chat' ) );
 	// Jetpack Featured Conent
@@ -62,7 +62,7 @@ add_action( 'wp_enqueue_scripts', 'hana_theme_scripts' );
 if ( ! function_exists( 'hana_theme_scripts' ) ):
 function hana_theme_scripts() {
 	// Load Google Font
-	$font_url = hana_google_font_url();
+	$font_url = hana_font()->url();
 	if (! empty( $font_url ) )
 		wp_enqueue_style( 'hana-fonts', $font_url );
 	// Load Font Awesome

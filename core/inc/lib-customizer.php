@@ -13,7 +13,7 @@
 ***************************/
 //Fonts
 function hana_sanitize_fonts( $input ) {
-    $valid = hana_font_choices();
+    $valid = hana_font()->choices();
  
     if ( array_key_exists( $input, $valid ) ) {
     	if ( is_numeric($input ) )
