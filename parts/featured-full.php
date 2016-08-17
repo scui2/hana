@@ -20,7 +20,7 @@
 			<div class="featured-caption clearfix">
 <?php			if ( 'post' == get_post_type() )  {
 					$link_url = esc_url( hana_get_post_link() );
-					the_title( sprintf( '<h3 class="featured-title"><a href="%1$s">', $link_url ), '</a></h3>' );
+					the_title( sprintf( '<h2 class="featured-title"><a href="%1$s">', $link_url ), '</a></h2>' );
 					if ( has_excerpt() ) { ?>
 						<div class="featured-excerpt">
 							<?php the_excerpt( '' ); ?>

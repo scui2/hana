@@ -27,12 +27,6 @@ function hana_theme_setup() {
 	add_theme_support( 'post-thumbnails' );
 	// Post Formats	
 	add_theme_support( 'post-formats', array( 'aside', 'link', 'quote', 'gallery', 'status', 'quote', 'image', 'video', 'audio', 'chat' ) );
-	// Jetpack Featured Conent
-	add_theme_support( 'featured-content', array(
-		'filter' => 'hana_get_featured_posts',
-		'max_posts' => esc_attr( get_theme_mod( 'max_featured', 10 ) ),
-	 	'post_types' => array( 'post', 'page' ),
-	 ));
 	// Editor Style
 	add_editor_style( 'css/editor.css' );
 	// Image Sizes
@@ -210,63 +204,18 @@ function hana_body_classes( $classes ) {
 }
 endif;
 
-if ( ! function_exists( 'hana_the_attached_image' ) ) :	
-function hana_the_attached_image() {
-//Adopted from Twenty Fourteen
-	$post = get_post();
-
-	$attachment_size     = apply_filters( 'hana_attachment_size', array( 1024, 1024 ) );
-	$next_attachment_url = wp_get_attachment_url();
-
-	$attachment_ids = get_posts( array(
-		'post_parent'    => $post->post_parent,
-		'fields'         => 'ids',
-		'numberposts'    => -1,
-		'post_status'    => 'inherit',
-		'post_type'      => 'attachment',
-		'post_mime_type' => 'image',
-		'order'          => 'ASC',
-		'orderby'        => 'menu_order ID',
-	) );
-
-	if ( count( $attachment_ids ) > 1 ) {
-		foreach ( $attachment_ids as $attachment_id ) {
-			if ( $attachment_id == $post->ID ) {
-				$next_id = current( $attachment_ids );
-				break;
-			}
-		}
-
-		if ( $next_id ) {
-			$next_attachment_url = get_attachment_link( $next_id );
-		} else {
-			$next_attachment_url = get_attachment_link( array_shift( $attachment_ids ) );
-		}
-	}
-
-	printf( '<a href="%1$s" rel="attachment">%2$s</a>',
-		esc_url( $next_attachment_url ),
-		wp_get_attachment_image( $post->ID, $attachment_size )
-	);
-}
-endif;
-
-if ( ! function_exists( 'hana_branding' ) ):
-function hana_branding() {
-	if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) { //To remove function_exists from 4.7
-		the_custom_logo();
-	}
-	else { // Display Site Title and Tagline ?>
-		<div class="site-title-container">
-		  <h3 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h3>
-		  <h4 class="site-description show-for-medium "><?php bloginfo( 'description' ); ?></h4>
+if ( ! function_exists( 'hana_featured_top' ) ):
+function hana_featured_top( ) {
+	if ( hana_has_featured_posts() ) {
+		$slider_type = esc_attr( get_theme_mod('slider_type', 'full') ); ?>
+		<div class="featured-content featured-content-<?php echo $slider_type; ?> clearfix">
+			<?php get_template_part( 'parts/featured', $slider_type ); ?>
 		</div>
-<?php	
+<?php
 	}
 }
 endif;
 
-require_once( trailingslashit( get_template_directory() ) . 'inc/lib-featured.php' );
 require_once( trailingslashit( get_template_directory() ) . 'inc/lib-template.php' );
 require_once( trailingslashit( get_template_directory() ) . 'inc/customize.php' );
 require_once( trailingslashit( get_template_directory() ) . 'inc/extras.php' );

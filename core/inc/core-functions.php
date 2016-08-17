@@ -9,6 +9,9 @@
  * @link      http://rewindcreation.com/
  */
 
+/**************************************************
+* Register 3rd party styles and script
+**************************************************/
 add_action( 'wp_enqueue_scripts', 'hanacore_register_scripts', 0 );
 function hanacore_register_scripts() {
 	// Font Awesome and bxSlider handdle should not be prefixed
@@ -28,8 +31,10 @@ function hanacore_enqueue_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-
-// Change post class sticky to wp-sticky to avoid conflict with Foundation
+/**************************************************
+* Change post class sticky to wp-sticky
+* to avoid conflict with Foundation 6
+**************************************************/
 add_filter('post_class','hana_change_sticky_class');
 function hana_change_sticky_class( $classes ) {	
 	if ( is_sticky() ) {
@@ -38,9 +43,9 @@ function hana_change_sticky_class( $classes ) {
 	}
 	return $classes;
 }
-/** 
+/**************************************************
 * Add span to category/archive count
-*/
+**************************************************/
 add_filter( 'wp_list_categories', 'hana_archive_count_span' );
 add_filter( 'get_archives_link', 'hana_archive_count_span' );
 function hana_archive_count_span( $links ) {
@@ -48,11 +53,10 @@ function hana_archive_count_span( $links ) {
 	$links = str_replace( ')', '</span>', $links );
 	return $links;
 }
-
-/**
- * Replace rel="category tag" with rel="tag"
- * For W3C validation purposes only.
- */
+/**************************************************
+* Replace rel="category tag" with rel="tag"
+* For W3C validation purposes only.
+**************************************************/
 add_filter('wp_list_categories', 'hana_replace_rel_category');
 add_filter('the_category', 'hana_replace_rel_category');
 function hana_replace_rel_category ($output) {
@@ -60,110 +64,9 @@ function hana_replace_rel_category ($output) {
     return $output;
 }
 
-// Display Post Title
-if ( ! function_exists( 'hana_post_title' ) ) :
-function hana_post_title() {
-    global $post;
-    if ( ! is_single( $post ) ) {
-		the_title( sprintf( '<h2 class="entry-title"><a href="%1$s" rel="bookmark">', esc_url( hana_get_post_link() ) ), '</a></h2>' );
-	}
-	else {
-		the_title( '<h1 class="entry-title">', '</h1>');
-	}
-}
-endif;
-
-if ( ! function_exists( 'hana_archive_title' ) ) :	
-function hana_archive_title( $single_title = false ) {	
-	if ( ! have_posts() )
-		return;
-    
-	$class = '';
-	if ( is_search() ) {
-		$title = sprintf( '%1$s<span class="search-term">%2$s</span>', 
-					esc_html__( 'Search Results for: ', 'hana'),
-					get_search_query() ); //already escaped
-		$class .= 'ph-search'; ?>
-        <div class="page-header <?php echo esc_attr( $class ); ?>">
-            <div class="row column">
-                <h1 class="page-title"><?php echo $title; ?></h1>
-            </div>
-		</div>	
-<?php	return;
-	} elseif ( is_category() ) { 
-		$category_name = single_cat_title( '', false );
-		$category_id = get_cat_ID( $category_name );
-		// Category Title Class
-		$class .= 'pt-category pt-category-' .  esc_attr( $category_id );
-		$parent = get_term( $category_id, 'category' );
-		while ( $parent->parent ) {
-			$class .= ' pt-category-' . esc_attr( $parent->parent );
-			$parent = get_term( $parent->parent , 'category' );				
-		}
-	} elseif ( is_tag() ) {
-		$class .= 'pt-tag';
-	} elseif ( is_day() || is_month() || is_year() ) {
-		$class .= 'pt-date';
-	} else {
-		return;
-	}
-?>
-	<div class="page-header <?php echo esc_attr( $class ); ?>">
-        <div class="row column">
-<?php   ob_start();
-		the_archive_description( '<div class="page-description">', '</div>' ); 
-        $html = ob_get_clean();
-        if ( empty( $html ) ) //Only display page tile if no description
-            the_archive_title( '<h1 class="page-title">', '</h1>' );
-        else
-            echo $html;
-?>
-        </div>
-	</div>
-<?php
-}
-endif;
-
-/******************************
-* Pagination for main loop
-******************************/
-function  hana_content_nav( $nav_id ) {
-	global $wp_query;
-	hana_content_nav_link( $wp_query->max_num_pages, $nav_id );
-}
-
-/******************************
-* Pagination
-******************************/
-function hana_content_nav_link( $num_of_pages, $nav_id ) {
-	$html = '';
-	if ( $num_of_pages > 1 ) {
-		$html .=  '<ul id="' .$nav_id. '" class="pagination text-center" role="navigation" aria-label="Pagination">';
-
-		$big = 999999999;
-    	if ( get_query_var( 'paged' ) )
-	    	$current_page = get_query_var( 'paged' );
-		elseif ( get_query_var( 'page' ) ) 
-	   	 	$current_page = get_query_var( 'page' );
-		else 
-			$current_page = 1;
-		$links =  paginate_links( array(
-			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-			'format' => '?paged=%#%',
-			'current' => max( 1, $current_page ),
-			'total' => $num_of_pages,
-			'mid_size' => 3,
-			'prev_text'    => '<i class="fa fa-chevron-left"></i>' ,
-			'next_text'    => '<i class="fa fa-chevron-right"></i>' ,
-			'type' => 'array' ) );
-			
-		foreach ( $links as $link )
-			$html .= '<li>' . $link . '</li>';			
-		$html .='</ul>';
-	}
-	echo apply_filters( 'hana_pagination', $html );
-}
-
+/**************************************************
+* wp_title filter for better SEO
+**************************************************/
 add_filter( 'wp_title', 'hana_wp_title', 10, 2 );
 function hana_wp_title( $title, $sep ) {
 	global $paged, $page;
@@ -182,6 +85,9 @@ function hana_wp_title( $title, $sep ) {
 	return $title;
 }
 
+/**************************************************
+* Filters for auto excerpt
+**************************************************/
 add_filter( 'excerpt_length', 'hana_excerpt_length' );
 function hana_excerpt_length( $length ) {
 	return apply_filters('hana_excerpt_length', 40);
@@ -203,21 +109,39 @@ function hana_custom_excerpt_more( $output ) {
 function hana_readmore_text() {
 	return apply_filters( 'hana_readmore_label', esc_html__( 'Read More', 'hana' ) );
 }
-// Returns permalink except link post in which first link will be returned
-if ( ! function_exists( 'hana_get_post_link' ) ) :
-function hana_get_post_link() {
-	$link_url = get_the_permalink();
-	if ( has_post_format( 'link' ) ) {
-		$link = array();
-		if ( preg_match('/<a (.+?)>/', get_the_content(), $match) ) {
-    		foreach ( wp_kses_hair($match[1], array('http')) as $attr) {
-        		$link[$attr['name']] = $attr['value'];
-    		}
-		}			
-    	if ( isset( $link['href'] ) )
-    		$link_url = $link['href'];
-	}
-	return $link_url;
+
+/**************************************************
+* Featured Posts
+**************************************************/
+function hana_is_featured() {
+	if ( is_sticky() && ! is_paged() )
+		return true;
+	else
+		return false;
 }
-endif;
+
+function hana_has_featured_posts( $minimum = 1 ) { 
+	global $hana_featured_posts;
+	if ( is_paged() || is_search() || is_archive() || is_single() || is_404() )
+       return false;
+       
+	if ( class_exists( 'bbPress' ) && is_bbpress() )
+       return false;	       
+       
+    if ( is_page() &&  ! is_front_page() )
+       return false;
+       	
+    $minimum = absint( $minimum );
+    
+    if ( ! is_array( $hana_featured_posts ) )
+	    $hana_featured_posts = apply_filters( 'hana_get_featured_posts', array() );
+ 
+    if ( ! is_array( $hana_featured_posts ) )
+        return false;
+ 
+    if ( $minimum > count( $hana_featured_posts ) )
+        return false;
+ 
+    return true;
+}
 

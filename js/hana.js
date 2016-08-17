@@ -77,8 +77,6 @@ jQuery(document).ready(function($){
 	  		stickyContainer.find('.top-bar').addClass('shrunk');
 			if($('.top-bar').is(':visible')) {
                  $('body').addClass('shrunk-header');
-//				topbarHeight = $(".top-bar").outerHeight( false );
-  //              $('body').css("padding-top",topbarHeight+"px");
 			}
         }
 
@@ -87,7 +85,6 @@ jQuery(document).ready(function($){
 		if (shrinkTopBar !== undefined) {
 	  		stickyContainer.find('.top-bar').removeClass('shrunk');
             $('body').removeClass('shrunk-header');
-            //$('body').css("padding-top","0");
   			setTimeout(hanaAdjustHeader, 510);
 		}
 	});
@@ -98,7 +95,6 @@ jQuery(document).ready(function($){
 		if ( $("#offCanvasLeft").length !== 0 ) {
 			$("#offCanvasLeft").foundation("close");
 		}
-		$(".sticky").foundation('_calc', true);
 		if ( slider ) {
 			slider.reloadSlider();			
 		}

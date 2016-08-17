@@ -95,10 +95,12 @@ if ( ! class_exists( 'HANA_Media' ) ) {
                 else
                     echo '<div class="' . esc_attr( $class ) . '">' . hana_kses()->image( $this->image() ) . '</div>';              
             } elseif ( $this->video() ) {
-                $class .= ' ' . $class.'-video'; 
+                if ( $class )
+                    $class .= ' ' . $class.'-video'; 
                 echo '<div class="' . esc_attr( $class ) . '"><div class="flex-video">' . hana_kses()->embed( $this->video() ) . '</div></div>';     
             } elseif ( $this->audio() ) {
-                $class .= ' ' . $class.'-audio';            
+                if ( $class )
+                    $class .= ' ' . $class.'-audio';        
                 echo '<div class="' . esc_attr( $class ) . '">'  . hana_kses()->embed( $this->audio() ). '</div>';
             }
         }

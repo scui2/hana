@@ -56,11 +56,13 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 		*/		
 		public function includes() {
 			require_once( HANA_CORE_DIR . 'inc/class-grid.php' );
-			require_once( HANA_CORE_DIR . 'inc/class-kses.php' );
+			require_once( HANA_CORE_DIR . 'inc/class-layout.php' );
+            require_once( HANA_CORE_DIR . 'inc/class-kses.php' );
 			require_once( HANA_CORE_DIR . 'inc/class-post-meta.php' );
 			require_once( HANA_CORE_DIR . 'inc/class-media.php' );
             require_once( HANA_CORE_DIR . 'inc/class-font.php' );
             require_once( HANA_CORE_DIR . 'inc/core-functions.php' );
+            require_once( HANA_CORE_DIR . 'inc/lib-contents.php' );
             require_once( HANA_CORE_DIR . 'inc/lib-choices.php' );
             require_once( HANA_CORE_DIR . 'inc/lib-menu.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-customizer.php' );
@@ -75,6 +77,12 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 			add_theme_support( 'title-tag' );
 			//HTML5 support
 			add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
+            // Jetpack Featured Conent
+            add_theme_support( 'featured-content', array(
+                'filter' => 'hana_get_featured_posts',
+                'max_posts' => absint( get_theme_mod( 'max_featured', 10 ) ),
+                'post_types' => array( 'post', 'page' ),
+             ));
 		}
         
 		public function admin() {

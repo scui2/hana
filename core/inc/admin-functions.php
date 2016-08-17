@@ -10,7 +10,8 @@
  */
 if ( ! defined('ABSPATH') ) exit;
 
-function hana_meta_boxes() {
+add_action( 'admin_menu', 'hana_add_meta_boxes' );
+function hana_add_meta_boxes() {
 	$prefix = apply_filters( 'hana_meta_box_prefix', '_hana');	
 	$meta_boxes = array(
 	
@@ -68,12 +69,7 @@ function hana_meta_boxes() {
         	),
     	),
 	) );
-	return apply_filters( 'hana_meta_boxes', $meta_boxes );
-}
-
-add_action( 'admin_menu', 'hana_add_meta_boxes' );
-function hana_add_meta_boxes() {
-	$meta_boxes = hana_meta_boxes();
+	$meta_boxes = apply_filters( 'hana_meta_boxes', $meta_boxes );
 	
 	foreach ( $meta_boxes as $meta_box )
 		$box = new Hana_Meta_Box( $meta_box );
