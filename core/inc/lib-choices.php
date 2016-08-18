@@ -106,3 +106,16 @@ function hana_column_choices( $meta = false ) {
 	return apply_filters( 'hana_layout_choices', $choices );
 }
 endif;
+
+// Sidebar Positions
+if ( ! function_exists( 'hana_sidebar_postion_choices' ) ) : 
+function hana_sidebar_postion_choices() {
+    $choices = array(
+        'right'    => esc_html__('Right Sidebar', 'hana'),
+        'left'     => esc_html__('Left Sidebar', 'hana'),
+        'both'     => esc_html__('Left & Right Sidebar', 'hana'),
+        'none'   => esc_html__('No Sidebar', 'hana')
+    );    
+ 	return apply_filters( 'hana_sidebar_postion_choices', $choices );
+}
+endif;

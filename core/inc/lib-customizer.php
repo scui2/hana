@@ -11,6 +11,16 @@
 /***************************
 * Common Sanitize Functions 
 ***************************/
+//Sidebar Position
+function hana_sanitize_sidebar( $input ) {
+    $valid = hana_sidebar_postion_choices();
+ 
+    if ( array_key_exists( $input, $valid ) ) {
+        return $input;
+    } else {
+        return '';
+    }
+}
 //Fonts
 function hana_sanitize_fonts( $input ) {
     $valid = hana_font()->choices();

@@ -34,7 +34,7 @@
  <?php
     hana_featured_top();
 	get_template_part( 'parts/section', 'menu' );
-	do_action('hana_header_before_main'); //Action Hook
     hana_archive_title(); 
+	do_action('hana_header_before_main'); //Action Hook
 ?>
 <div id="main" class="<?php hana_grid()->main_class(); ?>">

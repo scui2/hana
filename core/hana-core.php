@@ -15,6 +15,8 @@
  * @license   GPL v3 or later
  * @link      http://rewindcreation.com/
  */
+if ( ! defined('ABSPATH') ) exit;
+
 if ( ! class_exists( 'HANA_Core' ) ) {
 	
 	class HANA_Core {

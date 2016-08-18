@@ -668,16 +668,6 @@ function hana_custom_css( ) {
 /***********************
 * Sanitize Functions 
 ***********************/
-function hana_sanitize_sidebar( $input ) {
-    $valid = hana_sidebar_postion_choices();
- 
-    if ( array_key_exists( $input, $valid ) ) {
-        return $input;
-    } else {
-        return '';
-    }
-}
-
 function hana_sanitize_slider_type( $input ) {
     $valid = hana_slider_type_choices();
  
@@ -710,16 +700,6 @@ function hana_sanitize_schemes( $input ) {
 /***********************
 * Choices Functions 
 ***********************/
-function hana_sidebar_postion_choices() {
-    $choices = array(
-        'right'    => esc_html__('Right Sidebar', 'hana'),
-        'left'     => esc_html__('Left Sidebar', 'hana'),
-        'both'     => esc_html__('Left & Right Sidebar', 'hana'),
-        'none'   => esc_html__('No Sidebar', 'hana')
-    );    
- 	return apply_filters( 'hana_sidebar_postion_choices', $choices );
-}
-
 function hana_slider_type_choices() {
     $choices = array(
         'full'    => esc_html__('Full Width Slider', 'hana'),

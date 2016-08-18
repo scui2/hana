@@ -8,6 +8,7 @@
  * @license GPL v3 or later
  * @link    http://rewindcreation.com/
  */
+if ( ! defined('ABSPATH') ) exit;
 // Load HANACore Functions
 require_once( trailingslashit( get_template_directory() ) . 'core/hana-core.php' );
 new HANA_Core();
@@ -73,13 +74,12 @@ function hana_theme_scripts() {
 	$scheme = get_theme_mod( 'color_scheme', 'default' );
     if ( 'default' != $scheme  ) {
 		$schemes = hana_scheme_options();		
-		wp_enqueue_style( 'hana-scheme', $schemes[ $scheme ]['css'], $deps, HANA_THEME_VERSION );
- 		$deps[] = 'hana-scheme';
+		wp_enqueue_style( 'hana-scheme', $schemes[ $scheme ]['css'], $inline_handle, HANA_THEME_VERSION );
 		$inline_handle = 'hana-scheme';
 	} 
 	//Load child theme's style.css
     if ( HANA_THEME_URI != HANA_CHILD_URI ) {
-		wp_enqueue_style( 'hana-child', get_stylesheet_uri(), $deps, HANA_THEME_VERSION );		
+		wp_enqueue_style( 'hana-child', get_stylesheet_uri(), $inline_handle, HANA_THEME_VERSION );		
 		$inline_handle = 'hana-child';
 	}
 

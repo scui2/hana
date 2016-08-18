@@ -66,23 +66,3 @@ function hana_jetpack_sharing( $pos = 'bottom' ) {
 	}
 }
 endif;
-/******************************
-* Social Menu
-******************************/
-if ( ! function_exists( 'hana_social_menu' ) ) :
-function hana_social_menu( $class = 'sociallink' ) {
-	if ( has_nav_menu( 'social' ) ) {
-		wp_nav_menu(
-			array(
-				'theme_location'  => 'social',
-				'container'       => false,
-				'menu_class'      => $class,
-				'depth'           => 1,
-				'link_before'     => '<span class="screen-reader-text">',
-				'link_after'      => '</span>',
-				'fallback_cb'     => '',
-			)
-		);
-	}
-}
-endif;

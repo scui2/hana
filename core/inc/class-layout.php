@@ -1,6 +1,6 @@
 <?php
 /**
- * Foundaiton Grid Class
+ * Hana Block Layout
  * 
  * @package	  hanacore
  * @since     1.0
@@ -9,47 +9,79 @@
  * @license   GPL v3 or later
  * @link      http://rewindcreation.com/
  */
+
+ if ( ! class_exists( 'Hana_Layout_Set' ) ) {   
+     
+	class Hana_Layout_Set {
+        public $num_of_blocks = 0;
+        public $blocks = array();
+        public $default_block = 'block';
+        
+ 		public function __construct( $_blocks ) {
+            $this->blocks = $_blocks;
+            $this->num_of_blocks = count( $_blocks );
+        }
+        
+ 		public function display( $count, $template = '') {
+            $num = ( ( $count - 1 ) % $this->num_of_blocks ) + 1;
+            if ( isset( $this->blocks[ $num ] ) )
+                $block = $this->blocks[ $num ] ;
+            else
+                return false;
+                   
+            if ( isset( $block['inner'] ) )
+                $block_class = $block['inner'];
+            else
+                $block_class = $this->default_block; ?>
+            <div class="<?php echo esc_attr( $block['column'] ); ?>">
+                <div class="<?php echo esc_attr( $block_class ); ?>">
+                    <div class="block-inner">
+<?php                   if ( '' != locate_template( $template . '.php' ) )
+                            get_template_part( $template );
+                        elseif ( file_exists( $template ) )
+                            require( $template ); ?>
+                    </div>
+                </div>
+            </div>
+<?php       return true;
+        }         
+    }
+ }
+
 if ( ! class_exists( 'HANA_Layout' ) ) {
-	
+    
 	class HANA_Layout {
 		public $layouts = array();
 
-		private function __construct() {
+		public function __construct() {
 			// Core uses the own defaults if theme do not add them in customizer
             $this->core_layouts();
 		}
 
 		public function core_layouts() {
-            $this->layouts = array(
-                'post5' => array(
-                    'count' => 5,
-                    'class' => array(
-                        '1' => 'medium-6 medium-push-3 columns',
-                        '2' => 'medium-3 small-6 medium-pull-6 columns',
-                        '3' => 'medium-3 small-6 columns',
-                        '4' => 'medium-3 small-6 medium-pull-6 columns',
-                        '5' => 'medium-3 small-6 columns',
-                    ),
-                ), 
-            );
-		}
+            $this->layouts['block-5'] = new Hana_Layout_Set( 
+                    array(
+                    '1' => array( 'column' => 'medium-6 medium-push-3 columns' ),
+                    '2' => array( 'column' => 'medium-3 small-6 medium-pull-6 columns' ),
+                    '3' => array( 'column' => 'medium-3 small-6 columns' ),
+                    '4' => array( 'column' => 'medium-3 small-6 medium-pull-6 columns' ),
+                    '5' => array( 'column' => 'medium-3 small-6 columns' ),
+                    ) );
+        }
         
 		public function display( $layout, $posts, $template ) {
             global $post;
+            
+            if ( empty( $template ) )
+                return;
+            if ( ! isset( $this->layouts[$layout] ) )
+                return;
             $i = 0;
-            echo '<div class="row collapse">';
-
             foreach ( $posts as $order => $post ) {
                 $i = $i + 1;
-                if ($i > $this->layouts[$layout]['count'] )
-                    exit;
                 setup_postdata( $post );
-                echo '<div class="' . $this->layouts[$layout]['class'][$i] . '">';
-                echo '<div id="post-' . esc_attr($post->ID) . '" class="block"><div class="block-inner">';
-                get_template_part( 'parts/content', $template );
-                echo '</div></div></div>';
+                $this->layouts[$layout]->display( $i, $template );
             }
-            echo '</div>';
             wp_reset_postdata();
         }
 		/**
