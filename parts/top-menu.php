@@ -6,7 +6,7 @@
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 	if ( get_theme_mod( 'sticky_header' ) ) { ?>
 		<div data-sticky-container class="sticky-container">

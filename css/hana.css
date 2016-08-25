@@ -116,7 +116,7 @@ body {
   background: #FFFFFF;
 }
 body.shrunk-header {
-  padding-top: 137px;
+  padding-top: 42px;
 }
 
 a {
@@ -138,6 +138,17 @@ table thead, table tfoot {
 }
 table tbody tr:nth-child(even) {
   background-color: #f7f7f7;
+}
+
+blockquote {
+  margin: 0 0 1.5rem;
+  padding: 1.0rem 1.5rem 0.125rem;
+  border-left: 5px solid #5d5d5d;
+}
+
+blockquote p {
+  color: #444444;
+  font-size: 110%;
 }
 
 .list-fa {
@@ -315,7 +326,7 @@ table tbody tr:nth-child(even) {
 }
 
 @media screen and (min-width: 64em) {
-  .fullwidth-slider .is-anchored .top-bar {
+  .adjust-header .is-anchored .top-bar {
     background: rgba(27, 124, 168, 0.2);
   }
 }
@@ -345,12 +356,9 @@ table tbody tr:nth-child(even) {
 .title-bar .branding {
   position: absolute;
   top: 0;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0);
-  -moz-transform: translate(-50%, 0);
-  -ms-transform: translate(-50%, 0);
-  -o-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
+  left: 1.5rem;
+  right: 1.5rem;
+  text-align: center;
 }
 .title-bar .branding img {
   margin-top: -0.5rem;
@@ -366,6 +374,7 @@ table tbody tr:nth-child(even) {
   color: #FFFAFA;
   font-size: 1.25rem;
   margin: 0.375rem 0.25rem 0 0.25rem;
+  z-index: 99;
 }
 
 .branding {
@@ -679,6 +688,10 @@ table tbody tr:nth-child(even) {
   width: 100%;
   height: auto;
 }
+.featured-content.featured-content-expblock, .featured-content.featured-content-block {
+  visibility: visible;
+  height: auto;
+}
 
 .hanaSlider, .hanaTicker {
   margin: 0;
@@ -830,9 +843,6 @@ table tbody tr:nth-child(even) {
 .entry-excerpt {
   color: #444444;
 }
-.entry-excerpt .more-link {
-  display: none;
-}
 .entry-excerpt p {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
@@ -959,10 +969,6 @@ table tbody tr:nth-child(even) {
   content: "\f10d";
   font-size: 2rem;
   color: #808080;
-}
-
-.format-link .more-link {
-  visibility: hidden;
 }
 
 .format-link .entry-title a::before {
@@ -1493,6 +1499,9 @@ table tbody tr:nth-child(even) {
   padding-bottom: 4.5rem;
   text-align: center;
 }
+.marketing-vertical .widget-title-container, .marketing-horizontal .widget-title-container {
+  border-bottom: none !important;
+}
 .marketing-vertical.no-coa, .no-coa.marketing-horizontal {
   padding-bottom: 0.5rem;
 }
@@ -1561,42 +1570,157 @@ a > .marketing-icon:hover {
 }
 
 /********************************************
+ * Hana Blocks
+ ********************************************/
+.fluidwidth .block-section {
+  padding: 1.5rem 0;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
+.block {
+  position: relative;
+  padding-bottom: 66.667%;
+  overflow: hidden;
+}
+.block.image-center img {
+  max-width: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.block:hover .block-caption .block-excerpt {
+  max-height: 200px;
+  -webkit-transition: max-height 1s;
+  -moz-transition: max-height 1s;
+  -ms-transition: max-height 1s;
+  -o-transition: max-height 1s;
+  transition: max-height 1s;
+}
+
+.block-44 {
+  padding-bottom: 44.444%;
+}
+
+.block-inner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.block-title {
+  font-size: 1.25rem;
+}
+.block-title a {
+  color: #F38630;
+}
+.block-title a:hover {
+  color: #787878;
+}
+
+.block-caption {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  color: #FFFAFA;
+  bottom: 0;
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+  left: 1px;
+  right: 1px;
+  max-height: 98%;
+}
+.block-caption .block-title {
+  margin: 0;
+}
+.block-caption a {
+  color: #F38630;
+  display: block;
+}
+.block-caption a:hover {
+  color: #787878;
+}
+.block-caption .block-excerpt {
+  overflow: hidden;
+  max-height: 0;
+  -webkit-transition: max-height 1s;
+  -moz-transition: max-height 1s;
+  -ms-transition: max-height 1s;
+  -o-transition: max-height 1s;
+  transition: max-height 1s;
+}
+.block-caption .block-excerpt p {
+  margin: 0.5rem 0;
+}
+
+.block-content {
+  padding: 1rem;
+}
+
+.block-fade {
+  position: absolute;
+  background-image: linear-gradient(to bottom, rgba(255, 250, 250, 0.1), #FFFAFA);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2rem;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .block-content {
+    padding: 0.5rem;
+    text-align: center;
+  }
+  .block-content .block-excerpt {
+    display: none;
+  }
+
+  .block-title {
+    font-size: 0.875rem;
+  }
+}
+/********************************************
  * Portfolio
  ********************************************/
-.pfitem .scale-item {
-  max-width: 100%;
-  width: 100%;
-  margin-bottom: 0rem;
-  display: block;
-  float: none;
-}
-.pfitem .scale-item img {
-  width: 100%;
-}
-.pfitem .hentry {
-  padding-top: 0;
-  position: relative;
-  background: #f2f2f2;
+.block-portfolio {
+  padding-bottom: 120%;
+  background: #f7f7f7;
   margin-bottom: 1rem;
 }
-.pfitem .hentry:hover {
-  box-shadow: 2px 2px 2px 0px rgba(50, 50, 50, 0.5);
+.block-portfolio .block-content {
+  font-size: 90%;
 }
-.pfitem .entry-title {
+.block-portfolio .entry-title {
   font-size: 1.25rem;
 }
-.pfitem .entry-title a {
+.block-portfolio .entry-title a {
   font-size: 1.25rem;
   display: block;
 }
-.pfitem .entry-header,
-.pfitem .entry-summary,
-.pfitem .entry-footer {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.block-portfolio .entry-meta {
+  background: #f7f7f7;
+  padding: 0.5rem 1rem;
 }
-.pfitem .entry-header {
-  padding-top: 1rem;
+
+.portfolio-fade {
+  background-image: linear-gradient(to bottom, rgba(247, 247, 247, 0.1), #f7f7f7);
+  height: 1.5rem;
+}
+
+.portfolio-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /********************************************
@@ -1612,8 +1736,26 @@ a > .marketing-icon:hover {
     padding-bottom: 2rem;
   }
 }
+.home-section .widget-title-container {
+  border-bottom: 2px solid #cccccc;
+  padding: 0 0.5rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+.home-section .widget-title-container .widget-title {
+  font-size: 1.5rem;
+}
+.home-section .widget-title-container .widget-title a {
+  color: #808080;
+}
+.home-section .widget-title-container .widget-title a:hover {
+  color: #F38630;
+}
 .home-section .widget {
   margin-bottom: 0.5rem;
+  padding: 0.5rem;
 }
 .home-section.page-content {
   background: #f5f6fa;
@@ -1744,65 +1886,4 @@ a > .marketing-icon:hover {
 .hana-share-bottom {
   display: block;
   margin-top: 0.5rem;
-}
-
-/********************************************
- * Hana Blocks
- ********************************************/
-.fluidwidth .block-section {
-  padding: 1.5rem 0;
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
-}
-
-.block {
-  position: relative;
-  padding-bottom: 66.667%;
-  overflow: hidden;
-}
-.block.image-center img {
-  max-width: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.block-inner {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border: 1px solid transparent;
-}
-
-.block-caption {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.5);
-  color: #FFFAFA;
-  bottom: 1px;
-  padding: 0.25rem 0.5rem;
-  text-align: center;
-  left: 1px;
-  right: 1px;
-  max-height: 98%;
-}
-.block-caption .featured-title {
-  margin: 0;
-}
-.block-caption a {
-  color: #FFFAFA;
-}
-.block-caption a:hover {
-  color: #F38630;
-}
-
-.block-content {
-  padding: 1rem;
 }

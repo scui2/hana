@@ -2,11 +2,11 @@
 /**
  * Functions for Plug-In supports
  * 
- * @package	hana
+ * @package	hanacore
  * @since   1.0
  * @author  RewindCreation
  * @license GPL v3 or later
- * @link    http://www.rewindcreation.com/
+ * @link    http://rewindcreation.com/
  */
 /**
  * WooCommerce Support
@@ -45,7 +45,6 @@ function hana_jigoshop_content_wrapper_end() {
 /******************************
 * Jetpack Sharing Integration
 ******************************/
-
 if ( ! function_exists( 'hana_remove_sharing_filters' ) ) :
 function hana_remove_sharing_filters() {
 	if (  function_exists( 'sharing_display' ) ) {

@@ -13,9 +13,9 @@ function hana_customize_register( $wp_customize ){
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	
 	$featured_section = $wp_customize->get_section( 'featured_content' ); //Jetpack Featured Content
-	if ( !empty( $featured_section ) )
+	if ( ! empty( $featured_section ) )
 		$featured_section->priority = 22;
-	$featured_section = $wp_customize->get_section( 'static_front_page' )->priority = 20;
+	$wp_customize->get_section( 'static_front_page' )->priority = 20;
     /*****************
 	* Layout Section 
     *****************/
@@ -217,7 +217,7 @@ function hana_customize_register( $wp_customize ){
     /*****************
 	* Featured Content 
     *****************/
-	if ( !empty( $featured_section ) ) { //If Jetpack is active
+	if ( ! empty( $featured_section ) ) { //If Jetpack is active
 	
 		$wp_customize->add_setting( 'max_featured', array(
 			'default'           => 10,
@@ -229,7 +229,7 @@ function hana_customize_register( $wp_customize ){
 			'type'     => 'number',
 			'priority' => 40,
 	        'input_attrs' => array(
-	        	'min'   => 1,
+	        	'min'   => 2,
 	            'max'   => 99,
 	            'step'  => 1,
 	        ),
@@ -264,7 +264,7 @@ function hana_customize_register( $wp_customize ){
 			'sanitize_callback' => 'hana_sanitize_checkbox',
 		) );
 		$wp_customize->add_control( 'slider_top', array(
-			'label'    => esc_html__( 'Align Fullwidth Slider to Top', 'hana' ),
+			'label'    => esc_html__( 'Align Featured Content to Top', 'hana' ),
 			'section'  => 'featured_content',
 			'type'     => 'checkbox',
 			'priority' => 50,
@@ -303,7 +303,7 @@ function hana_customize_register( $wp_customize ){
 		) );   
 		
 		$wp_customize->add_setting( 'ticker_min', array(
-			'default'           => 2, //Slide
+			'default'           => 2, //Slides
 			'sanitize_callback' => 'absint',
 		) );
 		$wp_customize->add_control( 'ticker_min', array(
@@ -704,7 +704,9 @@ function hana_slider_type_choices() {
     $choices = array(
         'full'    => esc_html__('Full Width Slider', 'hana'),
         'grid'    => esc_html__('Grid Width Slider', 'hana'),
-        'ticker'     => esc_html__('Ticker', 'hana'),
+        'ticker'  => esc_html__('Ticker', 'hana'),
+        'expblock'   => esc_html__('Full Width Blocks', 'hana'),
+        'block'   => esc_html__('Grid Width Blocks', 'hana'),
     );    
  	return apply_filters( 'hana_slider_type_choices', $choices );
 }

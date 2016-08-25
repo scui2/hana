@@ -50,7 +50,7 @@ endif;
 // Global variable for content width
 add_action( 'after_setup_theme', 'hana_content_width', 0 );
 function hana_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'hana_content_width', 840 );
+	$GLOBALS['content_width'] = apply_filters( 'hana_content_width', 770 );
 }
 
 add_action( 'wp_enqueue_scripts', 'hana_theme_scripts' );
@@ -64,7 +64,7 @@ function hana_theme_scripts() {
 	wp_enqueue_style( 'font-awesome' );
 	// Load Theme Style and Script
 	$deps = array( 'hana-foundation' );
-	if ( $has_featured = hana_has_featured_posts() ) {
+	if ( $has_featured = hana_has_featured_posts() && 'block' != get_theme_mod('slider_type') ) {
 		$deps[] = 'jquery-bxslider';	
 	}
 	wp_enqueue_style( 'hana-style', HANA_THEME_URI . 'css/hana.css', $deps, HANA_THEME_VERSION );
@@ -163,10 +163,10 @@ function hana_widgets_init() {
 			'id'   			=> 'home-' . $i,
 			'name' 			=> sprintf( esc_html__('Home Widget Area %1$s', 'hana'), $i),
 			'description'   => $desc,
-			'before_widget' => '<div id="%1$s" class="' . $class . 'widget %2$s" ' . $watch .  '>',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h4 class="widget-title">',
-			'after_title'   => '</h4>',
+			'before_widget' => '<div class="' . $class . '" ' . $watch .  '><div id="%1$s" class="widget %2$s" ' . $watch .  '>',
+			'after_widget'  => '</div></div>',
+			'before_title'  => '<div class="widget-title-container"><h4 class="widget-title">',
+			'after_title'   => '</h4></div>',
 		) );
 	}
 }
@@ -195,8 +195,8 @@ function hana_body_classes( $classes ) {
 	if ( get_background_image() ) {
 		$classes[] = 'custom-background-image';
 	}
-	if ( 'full' == get_theme_mod('slider_type', 'full' ) &&  get_theme_mod( 'sticky_header' ) &&  get_theme_mod( 'slider_top' ) && hana_has_featured_posts() )
-		$classes[] = 'fullwidth-slider';
+	if ( get_theme_mod( 'slider_top' ) && hana_has_featured_posts() )
+		$classes[] = 'adjust-header';
 	if ( ! is_page_template( array('pages/fullwidth.php', 'pages/nosidebar.php') ) && ! is_attachment() )
 		$classes[] = 'sidebar-' . esc_attr( get_theme_mod( 'sidebar_pos', 'right' ) );
 
@@ -206,7 +206,12 @@ endif;
 
 if ( ! function_exists( 'hana_featured_top' ) ):
 function hana_featured_top( ) {
-	if ( hana_has_featured_posts() ) {
+    if ( has_action( 'hana_featured_top' ) ) { ?>
+        <div class="featured-content featured-content-block clearfix">
+            <?php do_action( 'hana_featured_top' ); ?>
+        </div>
+<?php
+    } elseif ( hana_has_featured_posts() ) {
 		$slider_type = esc_attr( get_theme_mod('slider_type', 'full') ); ?>
 		<div class="featured-content featured-content-<?php echo $slider_type; ?> clearfix">
 			<?php get_template_part( 'parts/featured', $slider_type ); ?>
@@ -218,4 +223,3 @@ endif;
 
 require_once( trailingslashit( get_template_directory() ) . 'inc/lib-template.php' );
 require_once( trailingslashit( get_template_directory() ) . 'inc/customize.php' );
-require_once( trailingslashit( get_template_directory() ) . 'inc/extras.php' );

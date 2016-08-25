@@ -27,7 +27,7 @@
 		<ul class="commentlist">
 			<?php wp_list_comments( array(
 					'short_ping'  => true,
-					'avatar_size' => 40 ) ); ?>
+					'avatar_size' => apply_filters('hana_comment_avatar_size', 40 ) ) ); ?>
 		</ul>
 <?php	the_comments_navigation();
 	} 

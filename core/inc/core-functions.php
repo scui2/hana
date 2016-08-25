@@ -97,19 +97,6 @@ add_filter( 'excerpt_more', 'hana_auto_excerpt_more' );
 function hana_auto_excerpt_more( $more ) {
 	return ' &hellip;';
 }
-
-add_filter( 'get_the_excerpt', 'hana_custom_excerpt_more' );
-function hana_custom_excerpt_more( $output ) {
-	if ( ! is_attachment() ) {
-		$output .= ' <a class="more-link" href="'. esc_url( get_permalink() ) . '">' . esc_html( hana_readmore_text() ) . '</a>';
-	}
-	return $output;
-}
-
-function hana_readmore_text() {
-	return apply_filters( 'hana_readmore_label', esc_html__( 'Read More', 'hana' ) );
-}
-
 /**************************************************
 * Featured Posts
 **************************************************/

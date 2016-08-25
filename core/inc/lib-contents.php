@@ -42,7 +42,18 @@ function hana_get_post_link() {
 	return $link_url;
 }
 endif;
-
+/**************************************************
+* Manual read more for get_the_excerpt filter 
+* or after the excerpt
+**************************************************/
+if ( ! function_exists( 'hana_read_more' ) ) :
+function hana_read_more( $output ) {
+	if ( ! is_attachment() ) {
+		$output .= ' <a class="more-link" href="'. esc_url( get_permalink() ) . '">' . apply_filters( 'hana_readmore_label', esc_html__( 'Read More', 'hana' ) ) . '</a>';
+	}
+    return $output;
+}
+endif;
 /**************************************************
 * Display Page Header for Archive pages
 **************************************************/

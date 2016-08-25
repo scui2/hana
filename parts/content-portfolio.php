@@ -8,31 +8,18 @@
  * @license GPL v3 or later
  * @link    http://www.rewindcreation.com/
  */
-?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-equalizer-watch>
-<?php
 	global $hana_thumbnail, $hana_entry_meta;
-	
-	if ( $has_media = hana_media()->has_media() )
-		hana_media()->the_media( $hana_thumbnail, 'scale-item' );
-    if ( ! has_post_format( array( 'quote', 'aside') ) ) { ?>
-        <header class="entry-header">
-            <?php hana_post_title(); ?>
-        </header>
-<?php
-    }
-	if ( ! $has_media ) { ?>
-		<div class="entry-summary clearfix">
-			<?php the_excerpt(); ?>
-		</div>
-<?php
-	}
-	hana_postmeta()->edit_link();
-	if ( $hana_entry_meta && ! has_post_format( array( 'quote', 'aside') ) ) { ?>
-		<footer class="entry-footer clearfix">
-<?php	 	hana_postmeta()->display( array( 'comment' ), 'meta-comment' );
-			hana_postmeta()->display( array( 'tag' ) );?>
-		</footer>
-<?php
-	} ?>
-</article>
+
+    hana_media()->the_media( $hana_thumbnail ); ?>
+    <div class="block-content">
+        <?php the_title( sprintf( '<h3 class="entry-title"><a href="%1$s">', esc_url( hana_get_post_link() ) ), '</a></h3>' ); ?>
+        <div class="block-excerpt">            
+            <?php the_excerpt(); ?>
+        </div>
+   
+    </div>
+    <div class="portfolio-footer">
+        <div class="portfolio-fade"></div> 
+<?php   if ( $hana_entry_meta )
+            hana_postmeta()->display( array( 'tag' ) ); ?>
+    </div> 

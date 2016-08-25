@@ -105,7 +105,7 @@ if ( ! class_exists( 'HANA_Media' ) ) {
             }
         }
         
-        public function featured_image( $size = 'full', $class = null  ) {
+        public function featured_image( $size = 'full', $class = 'featured-image'  ) {
             global $post;
             if ( 'none' != $size && has_post_thumbnail() ) {
                 if ( ! is_single( $post ) ) {

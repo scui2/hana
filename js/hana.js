@@ -137,13 +137,13 @@ jQuery(document).ready(function($){
 //Adjust header
 	hanaAdjustHeader();
 	function hanaAdjustHeader() {
-		if  ( $('.fullwidth-slider .featured-content-full').length !== 0 && $(window).scrollTop() === 0 ) {
+		if  ( $('.adjust-header').length !== 0 && $(window).scrollTop() === 0 ) {
 			var  hwHeight = 0;
 			if($('.top-bar').is(':visible')) {
 				hwHeight = $(".top-bar").outerHeight( false );
 			}
 			var cssStr = '-' + hwHeight + 'px';	
-			$(".fullwidth-slider .featured-content-full").css("margin-top",cssStr);					
+			$(".adjust-header .featured-content").css("margin-top",cssStr);					
 		}
 	}	
 //Portfolio Ajax Loading
@@ -153,7 +153,7 @@ jQuery(document).ready(function($){
 
 		$('body').on('click', '.portfolio .load-more', function(){
 			if( ! loading ) {
-				$('.portfolio .load-more').remove();
+				$('.portfolio .loadmore-container').remove();
 				loading = true;
 				var data = {
 					action: 'hana_portfolio_load_more',
@@ -166,12 +166,11 @@ jQuery(document).ready(function($){
 				};
 				$.post(hanaloadmore.url, data, function(res) {
 					if( res.success) {
-						$('.portfolio').append( res.data );
-						if ( hanaloadmore.column > 1 ) {
-							var newHanaEqualizer = new Foundation.Equalizer($(".portfolio"), {
- 								equalizeOnStack: false,equalizeByRow: true, equalizeOn: 'medium'
-							});					
-						}
+						if ( 1 == hanaloadmore.column ) {
+				            $('.portfolio').append( res.data );				
+						} else {
+                            $('.portfolio-items').append( res.data );	
+                        }
 						page = page + 1;				
 						loading = false;
 					} else {
@@ -181,7 +180,11 @@ jQuery(document).ready(function($){
 					 //console.log(xhr.responseText);
 				});
 			}
-		});	
+		}).on('click', '.portfolio-toggle', function(){
+            var $tags = $(this).data("tag").split(',');
+            $(this).toggleClass('disabled');
+            console.log( $tags );
+        });;	
 	} //Portfolio
 
 });

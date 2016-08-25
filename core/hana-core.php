@@ -67,6 +67,7 @@ if ( ! class_exists( 'HANA_Core' ) ) {
             require_once( HANA_CORE_DIR . 'inc/lib-contents.php' );
             require_once( HANA_CORE_DIR . 'inc/lib-choices.php' );
             require_once( HANA_CORE_DIR . 'inc/lib-menu.php' );
+            require_once( HANA_CORE_DIR . 'inc/lib-extras.php' );
 			require_once( HANA_CORE_DIR . 'inc/lib-customizer.php' );
 		}		
 		/**

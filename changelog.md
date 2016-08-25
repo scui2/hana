@@ -1,5 +1,10 @@
 ## Change Log
 
+### 1.0.7
+
+* Added Hana Block integration for portfolio page
+* Updated screenshot
+
 ### 1.0.6
 
 * Removed all widgets and created Hana Widgets plugin

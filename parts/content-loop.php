@@ -13,7 +13,7 @@
 <?php
 	if ( hana_is_featured() && has_post_thumbnail() ) { ?>
 		<div class="featured-media-container clearfix">
-			<?php hana_media()->featured_image( 'full' ); ?>
+			<?php hana_media()->featured_image( 'full', 'scale-item' ); ?>
 		</div>
 <?php
 	}
@@ -24,7 +24,7 @@
 			hana_postmeta()->display( array( 'category', 'date', 'author' ), 'entry-meta-middle', false  ); ?>
 		</header>
 		<div class="entry-content clearfix">
-			<?php the_content( esc_html( hana_readmore_text() ) ); ?>
+			<?php the_content( '' ); ?>
 		</div>
 <?php		
 	} else {
@@ -38,7 +38,7 @@
 <?php   } ?>
 		<div class="entry-summary clearfix">
 <?php		if ( has_post_format( array('quote','aside' ) ) )
-				the_content();
+				the_content( '' );
 			else
 				the_excerpt(); ?>
 		</div>

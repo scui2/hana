@@ -1,6 +1,5 @@
 # HANA
-HANA WordPress Theme is a simple and feature-rich Foundation 6 theme that is perfect for your business or personal sites. It features a full width carousels or ticker style slider with responsive header and siderbars. In addition to 3 Page Templates and 2 Custom Widgets, simple and powerful customize settings allow user changeing layout and design easily. HANA has build-in support to many popular plugins such as Jetpack, bbPress and many more.
-
+HANA is a feature-rich Foundation 6 theme that is perfect for your business or personal sites. It has multiple ways to present the featured content: slider, ticket, predefined grid or custom layout built with <a href="http://rewindcreation.com/hana-block">Hana Block</a> plugin. In addition to 4 Page Templates, simple and powerful customize settings allow user changeing layout and design without coding. The flexible and widgetized Home Page will certainly chanlenge your creativity. HANA has built-in supports for many popular plugins.
 ## Documentation
 
 For documentations and user guides, visit http://rewindcreation.com/docs
@@ -25,6 +24,10 @@ The resources used in Hana are all GPL-compatible:
 Hana Theme uses Jetpack's Featured Content function. The Featured Content Slider will appear when
 * Jetpack is activated
 * and there is at least ONE post tagged "featured" or user defined tag.
+
+The following image(s) used on screenshot are licensed under CC-0 (Public Domain) 
+
+* https://pixabay.com/en/black-sand-beach-hawaii-maui-91666/
 
 ## Credits
 
