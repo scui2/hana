@@ -15,36 +15,17 @@
 if ( ! function_exists( 'hana_post_title' ) ) :
 function hana_post_title() {
     global $post;
-    if ( ! is_single( $post ) )
-		the_title( sprintf( '<h2 class="entry-title"><a href="%1$s" rel="bookmark">', esc_url( hana_get_post_link() ) ), '</a></h2>' );
-	else
-		the_title( '<h1 class="entry-title">', '</h1>');
-}
-endif;
-
-/**************************************************
-* Returns permalink except link post
-* For link post, first link will be returned
-**************************************************/
-if ( ! function_exists( 'hana_get_post_link' ) ) :
-function hana_get_post_link() {
-	$link_url = get_the_permalink();
-	if ( has_post_format( 'link' ) ) {
-		$link = array();
-		if ( preg_match('/<a (.+?)>/', get_the_content(), $match) ) {
-    		foreach ( wp_kses_hair($match[1], array('http')) as $attr) {
-        		$link[$attr['name']] = $attr['value'];
-    		}
-		}			
-    	if ( isset( $link['href'] ) )
-    		$link_url = $link['href'];
-	}
-	return $link_url;
+    if ( ! is_single( $post ) ) { ?>
+        <h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>  
+<?php
+    } else {
+		the_title( '<h1 class="entry-title">', '</h1>');        
+    }
 }
 endif;
 /**************************************************
 * Manual read more for get_the_excerpt filter 
-* or after the excerpt
+* or display
 **************************************************/
 if ( ! function_exists( 'hana_read_more' ) ) :
 function hana_read_more( $output ) {
@@ -67,22 +48,14 @@ function hana_archive_title( $single_title = false ) {
 					esc_html__( 'Search Results for: ', 'hana'),
 					get_search_query() ); //already escaped
 		$class .= 'ph-search'; ?>
-        <div class="page-header <?php echo esc_attr( $class ); ?>">
+        <div class="page-header <?php echo sanitize_html_class( $class ); ?>">
             <div class="row column">
                 <h1 class="page-title"><?php echo $title; ?></h1>
             </div>
 		</div>	
 <?php	return;
 	} elseif ( is_category() ) { 
-		$category_name = single_cat_title( '', false );
-		$category_id = get_cat_ID( $category_name );
-		// Category Title Class
-		$class .= 'pt-category pt-category-' .  esc_attr( $category_id );
-		$parent = get_term( $category_id, 'category' );
-		while ( $parent->parent ) {
-			$class .= ' pt-category-' . esc_attr( $parent->parent );
-			$parent = get_term( $parent->parent , 'category' );				
-		}
+		$class .= 'pt-category';
 	} elseif ( is_tag() ) {
 		$class .= 'pt-tag';
 	} elseif ( is_day() || is_month() || is_year() ) {
@@ -91,10 +64,10 @@ function hana_archive_title( $single_title = false ) {
 		return;
 	}
 ?>
-	<div class="page-header <?php echo esc_attr( $class ); ?>">
+	<div class="page-header <?php echo sanitize_html_class( $class ); ?>">
         <div class="row column">
 <?php   ob_start();
-		the_archive_description( '<div class="page-description">', '</div>' ); 
+		the_archive_description( '<h1 class="page-description">', '</h1>' ); 
         $html = ob_get_clean();
         if ( empty( $html ) ) //Only display page tile if no description
             the_archive_title( '<h1 class="page-title">', '</h1>' );
@@ -115,9 +88,10 @@ function hana_branding( $tagline = TRUE ) { ?>
     <div class="branding">
 <?php
     if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) { //To remove function_exists from 4.7
+        // In addition, has_custom_logo return true after click remove. Not major issue, hopefully core will fix it.
 		the_custom_logo();
 	} else { // Display Site Title and Tagline ?>
-        <h3 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_html( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h3>
+        <h3 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h3>
 <?php   if ( $tagline ) { ?>
             <h4 class="site-description show-for-medium "><?php bloginfo( 'description' ); ?></h4>
 <?php   }

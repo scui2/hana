@@ -180,11 +180,7 @@ jQuery(document).ready(function($){
 					 //console.log(xhr.responseText);
 				});
 			}
-		}).on('click', '.portfolio-toggle', function(){
-            var $tags = $(this).data("tag").split(',');
-            $(this).toggleClass('disabled');
-            console.log( $tags );
-        });;	
+		});	
 	} //Portfolio
 
 });

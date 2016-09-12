@@ -53,7 +53,7 @@ if ( ! class_exists( 'HANA_Post_Meta' ) ) {
 				}
 			}
 			if ( !empty( $html ) ) { ?>
-				<ul class="<?php echo esc_attr($class); ?>">
+				<ul class="<?php echo hana_kses()->sanitize_html_classes( $class ); ?>">
 					<?php echo $html; ?>
 				</ul>
 	<?php	}
@@ -73,16 +73,14 @@ if ( ! class_exists( 'HANA_Post_Meta' ) ) {
 		------------------------------------------------------------------------- */
 		public function single_post_link() {
 			if ( ! is_single() ) {
-				if ( has_post_format( 'aside' ) || has_post_format( 'quote' ) || '' == the_title_attribute( 'echo=0' ) ) { 
-					printf ('<a class="single-post-link meta-icon" href="%1$s" title="%2$s"><span class="screen-reader-text">%3$s</span></a>',
-						esc_url( get_permalink() ),
-						esc_attr( get_the_title() ),
-						esc_html__( 'Permalink', 'hana') );
-				} 
+				if ( has_post_format( 'aside' ) || has_post_format( 'quote' ) || '' == the_title_attribute( 'echo=0' ) ) {  ?>
+					<a class="single-post-link meta-icon" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><span class="screen-reader-text"><?php esc_html_e( 'Permalink', 'hana'); ?></span></a>
+<?php			} 
 			}
 		}
         
 		public function meta_category( $icon = true ) {
+            // The following to ensure the category hierarchy are displayed in order.  
 			$html = '';
 	 		$sep = ' &bull; ';
 			$categories = wp_get_post_categories( get_the_ID() , array('fields' => 'ids'));

@@ -9,6 +9,6 @@
  * @link    http://rewindcreation.com/
  */
 ?>
-	<div class="row">
-		<?php get_template_part( 'parts/featured', 'full' ); ?>	
-	</div>
+<div class="row">
+    <?php get_template_part( 'parts/featured', 'full' ); ?>	
+</div>

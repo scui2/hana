@@ -25,7 +25,7 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 		);
 
 		private function __construct() {
-			// Core uses the own defaults if theme do not add them in customizer
+			// Core uses the own defaults if theme do not use it
 			$this->grid['grid_width'] = absint(get_theme_mod( 'grid_width', $this->grid['grid_width'] ));
 			$this->grid['fluid_grid'] = absint(get_theme_mod( 'fluid_grid', $this->grid['fluid_grid'] ));
 			$this->grid['fluid_header'] = absint(get_theme_mod( 'fluid_header', $this->grid['fluid_header'] ));
@@ -47,9 +47,10 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 					$class[] = 'expanded';
 			}
 			$class = apply_filters( 'hanagrid_main_class', $class );
+            $class = array_map("sanitize_html_class", $class);
 			$imp_class = implode( ' ', $class );
 			if ( $echo )
-				echo esc_attr( $imp_class );
+				echo $imp_class;
 			else
 				return $imp_class;
 		}
@@ -62,9 +63,10 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
             if ( 'rowexp' == $type || 'rowexpcol' == $type)
                 $class[] = 'expanded';
 			$class = apply_filters( 'hanagrid_row_class', $class );
+            $class = array_map("sanitize_html_class", $class);
 			$imp_class = implode( ' ', $class );
 			if ( $echo )
-				echo esc_attr( $imp_class );
+				echo $imp_class;
 			else
 				return $imp_class;
         }
@@ -75,9 +77,10 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 			if ( $this->grid['fluid_grid'] || $this->grid['fluid_header']  )
 				$class[] = 'expanded';
 			$class = apply_filters( 'hanagrid_header_row_class', $class );
+            $class = array_map("sanitize_html_class", $class);
 			$imp_class = implode( ' ', $class );
 			if ( $echo )
-				echo esc_attr( $imp_class );
+				echo $imp_class;
 			else
 				return $imp_class;
 		}
@@ -109,9 +112,10 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 			}
 			$class[] = 'columns';
 			$class = apply_filters( 'hanagrid_content_class', $class );
+            $class = array_map("sanitize_html_class", $class);
 			$imp_class = implode( ' ', $class );
 			if ( $echo )
-				echo esc_attr( $imp_class );
+				echo $imp_class;
 			else
 				return $imp_class;
 		}
@@ -161,10 +165,11 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 				}
 				$class[] = 'columns';
 				$class = apply_filters( 'hanagrid_sidebartwo_class', $class );	
-			}		
+			}
+            $class = array_map("sanitize_html_class", $class);
 			$imp_class = implode( ' ', $class );
 			if ( $echo )
-				echo esc_attr( $imp_class );
+				echo $imp_class;
 			else
 				return $imp_class;
 		}
@@ -173,9 +178,10 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 			$class = array();
 			$class[] = 'large-' . $this->grid['grid_column'];
 			$class[] = 'columns';
+            $class = array_map("sanitize_html_class", $class);
 			$imp_class = implode( ' ', $class );
 			if ( $echo )
-				echo esc_attr( $imp_class );
+				echo $imp_class;
 			else
 				return $imp_class;
 		}
@@ -188,9 +194,10 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 			if ( isset( $small_col ) )
                 $class[] = 'small-' . $small_col;
 			$class[] = 'columns';
+            $class = array_map("sanitize_html_class", $class);
 			$imp_class = implode( ' ', $class );
 			if ( $echo )
-				echo esc_attr( $imp_class );
+				echo $imp_class;
 			else
 				return $imp_class;
 		}
@@ -199,13 +206,13 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 			$class = array();
 
 			$width = $this->grid['grid_column'] - $this->grid['sidebar_bbp'];
-			$class[] = 'large-' . $width;
 			$class[] = 'medium-' . $width;
 			$class[] = 'columns';
 			$class = apply_filters( 'hanagrid_bbp_content_class', $class );
+            $class = array_map("sanitize_html_class", $class);
 			$imp_class = implode( ' ', $class );
 			if ( $echo )
-				echo esc_attr( $imp_class );
+				echo $imp_class;
 			else
 				return $imp_class;
 		}
@@ -213,13 +220,13 @@ if ( ! class_exists( 'HANA_Grid' ) ) {
 		public function bbp_sidebar_class ( $echo = true ) {
 			$class = array();
 
-			$class[] = 'large-' . $this->grid['sidebar_bbp'];
 			$class[] = 'medium-' . $this->grid['sidebar_bbp'];
 			$class[] = 'columns';
 			$class = apply_filters( 'hanagrid_bbp_sidebar_class', $class );
+            $class = array_map("sanitize_html_class", $class);
 			$imp_class = implode( ' ', $class );
 			if ( $echo )
-				echo esc_attr( $imp_class );
+				echo $imp_class;
 			else
 				return $imp_class;
 		}

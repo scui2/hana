@@ -43,7 +43,7 @@ function hana_display_portfolio( $args, $thumbnail = 'hana-thumb', $column = 1, 
                 echo '<div class="row portfolio-items">';
             hana_layout()->display( 'portfolio-' . $column, $blog->posts, 'parts/content-portfolio'  );
             if 	($args['paged'] < $blog->max_num_pages) {
-                echo apply_filters( 'hana_portfolio_load_more', '<div class="loadmore-container small-12 columns"><a class="expanded secondary button load-more">' . esc_html__('SEE MORE','hana') . '</a></div>' );
+                echo apply_filters( 'hana_portfolio_load_more', '<div class="loadmore-container small-12 columns"><a class="expanded secondary button load-more">' . esc_html__( 'SEE MORE','hana' ) . '</a></div>' );
             }
             if ( $wrapper )
                 echo '</div>';
@@ -53,7 +53,7 @@ function hana_display_portfolio( $args, $thumbnail = 'hana-thumb', $column = 1, 
                 get_template_part( 'parts/content', 'loop' );				
             }
             if 	($args['paged'] < $blog->max_num_pages) {
-                echo apply_filters( 'hana_portfolio_load_more', '<div class="loadmore-container small-12 columns"><a class="expanded secondary button load-more">' . esc_html__('SEE MORE','hana') . '</a></div>' );
+                echo apply_filters( 'hana_portfolio_load_more', '<div class="loadmore-container small-12 columns"><a class="expanded secondary button load-more">' . esc_html__( 'SEE MORE','hana' ) . '</a></div>' );
             }
         }
     }

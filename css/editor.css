@@ -1,5 +1,5 @@
 /**
- * HANA Theme editot style
+ * HANA Theme editor style
  * 
  * @package	hana
  * @since   1.0
@@ -8,6 +8,10 @@
  * @link    http://rewindcreation.com/
 ********************************************
 */
+body {
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-weight: normal;	
+}
 
 h1,
 h2,

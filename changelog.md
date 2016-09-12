@@ -1,8 +1,12 @@
 ## Change Log
 
+### 1.0.8
+
+* Use sanitize_html_class function for all classes
+
 ### 1.0.7
 
-* Added Hana Block integration for portfolio page
+* Added Hana Block integration
 * Updated screenshot
 
 ### 1.0.6

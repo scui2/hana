@@ -10,17 +10,16 @@
  */
  ?>
 </div><!-- main -->
-<?php
- 	get_sidebar( 'footer' ); ?>
+<?php get_sidebar( 'footer' ); ?>
 <div id="footer" class="site-footer">
 	<div class="<?php hana_grid()->header_row_class(); ?>">
 		<div id="site-info" class="copyright medium-4 columns">
 <?php 		if ( empty( get_theme_mod( 'copyright_text' ) ) ) {
-				printf( '%1$s %2$s <a href="%3$s" titlte="%4$s" rel="home">%4$s</a>',
+				printf( '%1$s %2$s <a href="%3$s" rel="home">%4$s</a>',
 									esc_html__( 'Copyright &copy;', 'hana'),
-									sprintf( esc_attr( date('Y') ) ),
+									esc_html( date('Y') ),
 									esc_url( home_url( '/' ) ),
-									esc_attr( get_bloginfo( 'name', 'display' ) ) );	
+									esc_html( get_bloginfo( 'name', 'display' ) ) );	
 			} else {
 				echo hana_kses()->text( get_theme_mod('copyright_text') );  //Only allow a, br and em and strong tag in copyright text
 			} ?>
@@ -32,7 +31,7 @@
 				<?php hana_social_menu( 'social social-footer' ); ?>
 			</div>
 <?php	} ?>
-		<div class="<?php echo $menu_class;?> columns footer-menu">
+		<div class="<?php echo sanitize_html_class( $menu_class );?> columns footer-menu">
 <?php		if ( has_nav_menu('footer') ) {
 				wp_nav_menu( array( 'theme_location' => 'footer', 'container' => false, 'menu_class' => '' ) ); 	
 			} ?>

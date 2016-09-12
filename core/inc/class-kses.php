@@ -85,6 +85,18 @@ if ( ! class_exists( 'HANA_KSES' ) ) {
 		public function embed( $content ) {
 			return wp_kses( $content , $this->allowed_embed_tags );
 		}
+        
+        public function sanitize_html_classes( $class, $fallback = null ) {
+            if ( is_string( $class ) ) {
+                $class = explode(' ', $class);
+            } 
+            if ( is_array( $class ) && count( $class ) > 0 ) {
+                $class = array_map("sanitize_html_class", $class);
+                return implode(' ', $class);
+            } else { 
+                return sanitize_html_class( $class, $fallback );
+            }
+		}
 		/**
 		 * Create the object when called for the 1st time
 		 */

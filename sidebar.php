@@ -22,6 +22,7 @@
 			<aside id="sidebar-full" class="<?php hana_grid()->sidebar_class( 'full' ); ?> sidebar" role="complementary" data-sticky-container>
 <?php			if ( !empty( $sticky ) )
 					echo $sticky;
+                do_action('hana_sidebar_full_top'); //action hook
 				dynamic_sidebar( 'sidebar-full' );
 				if ( !empty( $sticky ) ) {
 					echo '</div>';
@@ -36,7 +37,8 @@
 			<aside id="sidebar-1" class="<?php hana_grid()->sidebar_class( 'one' ); ?> sidebar" role="complementary" data-sticky-container>
 <?php			if ( !empty( $sticky ) )
 					echo $sticky;
-				dynamic_sidebar( 'sidebar-1' );
+                do_action('hana_sidebar_one_top'); //action hook
+                dynamic_sidebar( 'sidebar-1' );
 				if ( !empty( $sticky ) ) {
 					echo '</div>';
 				} ?>
@@ -48,7 +50,8 @@
 			<aside id="sidebar-2" class="<?php hana_grid()->sidebar_class( 'two' ); ?> sidebar" role="complementary" data-sticky-container>
 <?php			if ( !empty( $sticky ) )
 				echo $sticky;
-				dynamic_sidebar( 'sidebar-2' );
+                do_action('hana_sidebar_two_top'); //action hook
+                dynamic_sidebar( 'sidebar-2' );
 				if ( !empty( $sticky ) ) {
 					echo '</div>';
 				} ?>

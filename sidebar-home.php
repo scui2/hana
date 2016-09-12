@@ -1,6 +1,6 @@
 <?php
 /**
- * Footer Widget Areas
+ * Home Widget Areas used by Home Page Template
  * 
  * @package	hana
  * @since   1.0
@@ -8,8 +8,7 @@
  * @license GPL v3 or later
  * @link    http://rewindcreation.com/
  */
-
-	$num = absint( apply_filters('hana_homewidget_number', 4) );
+	$num = absint( apply_filters( 'hana_homewidget_number', 4) ); // allow child theme to add additionl widget area
 	$col = 0;
 	$section = 0;
 	for ( $i = 1; $i <= $num; $i++ ) {
@@ -36,16 +35,12 @@
 <?php			} ?>	
 				</div>				
 <?php		}
-			if ( $column > 1 ) {
-				if (12 == $width) { ?>
-					<div class="row" data-equalizer data-equalize-on="large">					
-<?php			} else { ?>
-					<div class="row">						
-<?php			}
-			}
+			if ( $column > 1 ) { ?>
+				<div class="row"<?php echo (12 == $width) ? ' data-equalizer data-equalize-on="large"':''; ?>>
+<?php		}
 			dynamic_sidebar( $id );
 			if ( $column > 1 ) { ?>
-					</div>
+				</div>
 <?php		} ?>			
 			</div>
 <?php		$col = $col + $width;
@@ -55,6 +50,6 @@
 	</div>
 <?php
 			}	
-		}
-	}
+		} //end if width > 0 and has widgets
+	} //For each home widget area
 

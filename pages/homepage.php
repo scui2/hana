@@ -11,7 +11,7 @@
 get_header(); ?>
 <div id="content" class="site-content homepage" role="main">
 	<div id="home-section-0" class="page-content home-section home-section-odd">
-		<div class="row">
+		<div class="<?php hana_grid()->row_class('row'); ?>">
 			<div class="<?php hana_grid()->fullgrid_class(); ?>">
 <?php			while ( have_posts() ) {
 					the_post();

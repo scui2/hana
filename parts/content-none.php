@@ -1,6 +1,6 @@
 <?php
 /**
- * The template part for displaying Nothing Found message
+ * The template part for 404
  *
  * @package	hana
  * @since   1.0
@@ -13,7 +13,6 @@
 	<header class="entry-header">
 		<h2 class="entry-title"><?php esc_html_e( 'Nothing Found', 'hana' ); ?></h2>
 	</header>
-
 	<div class="entry-content">
 <?php	if ( is_home() ) { ?>
 			<p><?php printf( esc_html__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'hana' ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>

@@ -24,7 +24,6 @@
 		hana_postmeta()->display( array( 'date', 'author' ), 'entry-meta-middle', false  ); ?>
 	</header>
 <?php
-
 	if ( ! get_theme_mod( 'hide_featured' ) && has_post_thumbnail() ) { ?>
 		<div class="featured-media-container clearfix">
 			<?php hana_media()->featured_image( 'full' ); ?>
@@ -46,5 +45,5 @@
 		hana_jetpack_sharing( 'bottom' );		
 		get_template_part( 'parts/biography' ); ?>
 	</footer>
-    <?php do_action('hana_content_single_bottom'); ?>
 </article>
+<?php do_action('hana_content_single_bottom'); ?>

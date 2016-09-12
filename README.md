@@ -11,23 +11,30 @@ Hana is distributed under the terms of the GNU GPL v3
 
 The resources used in Hana are all GPL-compatible:
 
-* Foundation Framework: Licensed under MIT Open Source http://foundation.zurb.com/
+* Foundation 6 By Zurb Licensed under MIT Open Source
 
-* Font Awesome is licensed under SIL Open Font License for font and MIT for CSS. http://fortawesome.github.io/Font-Awesome/
+https://github.com/zurb/foundation-sites/blob/develop/LICENSE
 
-* bxSlider is licensed under MIT license. https://github.com/stevenwanderski/bxslider-4
+* Font Awesome by @davegandy
+http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+
+* bxSlider by Steven Wanderski licensed under MIT license. 
+
+https://github.com/stevenwanderski/bxslider-4
 
 * Theme Backend and images are created by RewindCreation and licensed under GPL v3 http://rewindcreation.com/
 
 ## Screenshot
 
-Hana Theme uses Jetpack's Featured Content function. The Featured Content Slider will appear when
+Hana Theme uses Jetpack's Featured Content function. The Featured Content will appear when
 * Jetpack is activated
 * and there is at least ONE post tagged "featured" or user defined tag.
 
 The following image(s) used on screenshot are licensed under CC-0 (Public Domain) 
 
-* https://pixabay.com/en/black-sand-beach-hawaii-maui-91666/
+* https://pixabay.com/en/black-sand-beach-hawaii-maui-91666/ Copyright kdvandeventer https://pixabay.com/en/users/kdvandeventer-25979/
+
+Other image(s) are owned by Theme Author and released under GPL v3
 
 ## Credits
 

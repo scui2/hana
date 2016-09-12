@@ -19,7 +19,7 @@ if ( ( is_active_sidebar( 'footer-1' ) &&  $width1 > 0 )
 		|| ( is_active_sidebar( 'footer-4' ) && $width4 > 0 ) ) {
 ?>
 <div id="footer-widgets" role="complementary">
-	<div class="row">
+	<div class="<?php hana_grid()->row_class('row'); ?>">
 <?php
 	if ( is_active_sidebar( 'footer-1' ) && $width1 ) { ?>
 		<div id="footer-1" class="<?php hana_grid()->column_class( $width1 ); ?> footer-widget">

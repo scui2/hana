@@ -1,5 +1,7 @@
 jQuery(document).ready(function($){
-	
+
+	hanaTemplate( $( "#page_template" ).val() );
+    
 	$( "#page_template" ).change(function(){
 		hanaTemplate( $(this).val() );
 	});
@@ -7,8 +9,7 @@ jQuery(document).ready(function($){
 	function hanaTemplate( template ){
 		$( "#hana-page-meta" ).hide();
 
-		if ( 'pages/portfolio.php' == template
-			) {
+		if ( 'pages/portfolio.php' == template ) {
 			$( "#p_hana_category" ).show();
 			$( "#p_hana_postperpage" ).show();
 			$( "#p_hana_sidebar" ).show();
@@ -17,10 +18,6 @@ jQuery(document).ready(function($){
 			$( "#p_hana_disp_meta" ).show();
 			$( "#hana-page-meta" ).show();
 		}
-		else if ( 'pages/blog.php' == template ) {
-
-		}
 	}
-	
-	hanaTemplate( $( "#page_template" ).val() );
+
 });

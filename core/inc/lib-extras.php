@@ -18,7 +18,7 @@ add_action( 'woocommerce_before_main_content', 'hana_woocommerce_content_wrapper
 add_action( 'woocommerce_after_main_content', 'hana_woocommerce_content_wrapper_end', 10);
 
 function hana_woocommerce_content_wrapper() {
-  echo '<div id="content" class="' . esc_attr( hana_grid()-> content_class(false) ) . '">';
+  echo '<div id="content" class="' . hana_grid()->content_class(false) . '">';
 }
  
 function hana_woocommerce_content_wrapper_end() {
@@ -35,7 +35,7 @@ add_action( 'jigoshop_before_main_content', 'hana_jigoshop_content_wrapper', 10 
 add_action( 'jigoshop_after_main_content', 'hana_jigoshop_content_wrapper_end', 10 );
 
 function hana_jigoshop_content_wrapper() {
-  echo '<div id="content" class="' . esc_attr( hana_grid()->cotent_class(false) ) . '">';
+  echo '<div id="content" class="' . hana_grid()->cotent_class(false) . '">';
 }
  
 function hana_jigoshop_content_wrapper_end() {

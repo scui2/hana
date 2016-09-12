@@ -9,8 +9,7 @@
  * @link    http://rewindcreation.com/
  * 
  */
-	get_header();
-?>
+	get_header(); ?>
 <div id="content" class="site-content <?php hana_grid()->fullgrid_class(); ?>" role="main">
 <?php
 	while ( have_posts() ) {
@@ -38,7 +37,4 @@
 <?php
 	} ?>
 </div>
-<?php
-	get_footer();
-
-
+<?php get_footer(); ?>

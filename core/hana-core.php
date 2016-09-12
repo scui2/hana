@@ -1,7 +1,7 @@
 <?php
 /**
  * Hana Core supports the development of Hana Themes based on Foundaiton 6 Framework.
- * The idea is that core handles common functions such as Grid, Meta, Widgets, etc.
+ * The idea is that core handles common functions such as Grid, Meta, Media, etc.
  * Themes will focus on style, markup and other content presentation functions.
  * 
  * Credit: The idea and template loading sequencing of Hana Core class  
@@ -95,5 +95,7 @@ if ( ! class_exists( 'HANA_Core' ) ) {
 			}
 		}	
 	} // Class HanaCore
+    
+    new HANA_Core();
 
 }

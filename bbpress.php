@@ -1,5 +1,7 @@
 <?php
 /**
+ * Page template to support bbPress
+ *
  * @package	hana
  * @since   1.0
  * @author  RewindCreation

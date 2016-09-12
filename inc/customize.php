@@ -12,10 +12,12 @@ function hana_customize_register( $wp_customize ){
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	
-	$featured_section = $wp_customize->get_section( 'featured_content' ); //Jetpack Featured Content
-	if ( ! empty( $featured_section ) )
-		$featured_section->priority = 22;
-	$wp_customize->get_section( 'static_front_page' )->priority = 20;
+    /*****************
+	* Site Identity Section 
+    *****************/
+    $title_section = $wp_customize->get_section( 'title_tagline' ); 
+    //Add description
+    $title_section->description .= esc_html__('Site Title and Tagline will be displayed if there is no logo selected.', 'hana');
     /*****************
 	* Layout Section 
     *****************/
@@ -217,8 +219,11 @@ function hana_customize_register( $wp_customize ){
     /*****************
 	* Featured Content 
     *****************/
+    $featured_section = $wp_customize->get_section( 'featured_content' ); //Jetpack Featured Content
+
 	if ( ! empty( $featured_section ) ) { //If Jetpack is active
-	
+		$featured_section->priority = 22;	
+        
 		$wp_customize->add_setting( 'max_featured', array(
 			'default'           => 10,
 			'sanitize_callback' => 'absint',
@@ -570,7 +575,7 @@ function hana_customize_register( $wp_customize ){
         )
     );
     
-    $num = absint( apply_filters('hana_homewidget_number', 4) );
+    $num = absint( apply_filters('hana_homewidget_number', 4 ) );
 	for ( $i = 1; $i <= $num; $i++ ) {
 		// Title		
 		$wp_customize->add_setting( 'home_title_' . $i, array(
@@ -578,7 +583,7 @@ function hana_customize_register( $wp_customize ){
 			'sanitize_callback' => 'hana_sanitize_text',
 		) );
 		$wp_customize->add_control( 'home_title_' . $i, array(
-			'label'    => sprintf( esc_html__('Home Widget Area %1$s Title', 'hana'), $i),
+			'label'    => sprintf( esc_html__('Home Widget Area %1$s : Title', 'hana'), $i),
 			'section'  => 'hana_homepage',
 			'type'     => 'text',
 			'priority' => 10 * $i,
@@ -643,17 +648,15 @@ function hana_custom_css( ) {
 	if ( 1200 != $width ) {
 		$css .= '.row {max-width: ' . esc_attr( $width ) . 'px; }' . "\n";
 	}
-	// Site Title text color
-	if ( get_theme_mod('header_textcolor') )
-		$css .= '.site-title a {color: #' . esc_attr( get_theme_mod('header_textcolor') ) . '; }' . "\n";
 	// Header image as background	
 	$header_image = get_header_image();
 	if ( ! empty ($header_image) ) {
 		$css .= '.top-bar {background-image:url(' . esc_url( $header_image ) . '); }' . "\n";		
 	}
 	// Slider Height
-	if ( get_theme_mod( 'slider_height' ) ) {
-		$css .= '.hana-slide {max-height: ' . esc_attr( get_theme_mod( 'slider_height' ) ) . 'px;}' . "\n";
+    $height = get_theme_mod( 'slider_height', 0 );
+	if ( $height > 0 ) {
+		$css .= '.hana-slide {max-height: ' . esc_attr( $height ) . 'px;}' . "\n";
 	}
 	//Font
 	$elements = apply_filters( 'hana_font_elements', NULL );
@@ -702,11 +705,11 @@ function hana_sanitize_schemes( $input ) {
 ***********************/
 function hana_slider_type_choices() {
     $choices = array(
-        'full'    => esc_html__('Full Width Slider', 'hana'),
-        'grid'    => esc_html__('Grid Width Slider', 'hana'),
-        'ticker'  => esc_html__('Ticker', 'hana'),
-        'expblock'   => esc_html__('Full Width Blocks', 'hana'),
-        'block'   => esc_html__('Grid Width Blocks', 'hana'),
+        'full'     => esc_html__('Full Width Slider', 'hana'),
+        'grid'     => esc_html__('Grid Width Slider', 'hana'),
+        'ticker'   => esc_html__('Ticker', 'hana'),
+        'expblock' => esc_html__('Full Width Blocks', 'hana'),
+        'block'    => esc_html__('Grid Width Blocks', 'hana'),
     );    
  	return apply_filters( 'hana_slider_type_choices', $choices );
 }
@@ -741,7 +744,7 @@ function hana_custom_header_background() {
 		'default-text-color'     => 'FBB700',
 		'width'                  => 1980,
 		'height'                 => 300,
-        'header-text'            => false,
+        'header-text'            => false, //If there is no logo, site-tile and tag line will be displayed
 		'flex-height'            => true,
 	);
 	add_theme_support( 'custom-header', $arg );	

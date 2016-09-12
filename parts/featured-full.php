@@ -13,20 +13,18 @@
 	<ul class="hanaSlider">
 <?php
 	foreach ( $hana_featured_posts as $order => $post ) {
-		setup_postdata( $post );
-?>
+		setup_postdata( $post ); ?>
 		<li class="hana-slide hana-slide-<?php the_ID(); ?>">
             <?php hana_media()->the_media( 'full' ); ?>
 			<div class="featured-caption clearfix">
-<?php			if ( 'post' == get_post_type() )  {
-					$link_url = esc_url( hana_get_post_link() );
-					the_title( sprintf( '<h2 class="featured-title"><a href="%1$s">', $link_url ), '</a></h2>' );
-					if ( has_excerpt() ) { ?>
+<?php			if ( 'post' == get_post_type() ) { ?>
+                    <h2 class="featured-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+<?php			    if ( has_excerpt() ) { ?>
 						<div class="featured-excerpt">
-							<?php the_excerpt( '' ); ?>
+							<?php the_excerpt(); ?>
 						</div>
 <?php				} ?>
-					<a class="button btn-featured" href="<?php echo $link_url; ?>"><?php echo esc_html( apply_filters('hana_learnmore_label', __('Learn More', 'hana') ) ); ?></a>
+					<a class="button btn-featured" href="<?php the_permalink(); ?>"><?php echo esc_html( apply_filters('hana_learnmore_label', __('Learn More', 'hana') ) ); ?></a>
 <?php			} else { ?>
 					<div class="featured-excerpt">
 						<?php the_content(); ?>
@@ -44,3 +42,4 @@
 	);
 	wp_localize_script( 'hana-script', 'hanaSlider', $sliderOption );
 	wp_reset_postdata();
+?>

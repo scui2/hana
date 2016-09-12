@@ -161,8 +161,8 @@ if ( ! class_exists( 'HANA_Layout' ) ) {
                         $block_class = $block['block'];
                     else
                         $block_class = $this->default_block; ?>
-                    <div id="block-<?php the_ID(); ?>" class="<?php echo esc_attr( $block['column'] ); ?>">
-                        <div class="<?php echo esc_attr( $block_class ); ?>">
+                    <div id="block-<?php the_ID(); ?>" class="<?php echo hana_kses()->sanitize_html_classes( $block['column'] ); ?>">
+                        <div class="<?php echo hana_kses()->sanitize_html_classes( $block_class ); ?>">
                             <div class="block-inner">
                                 <?php get_template_part( $template ); ?>
                             </div>

@@ -98,6 +98,24 @@ function hana_auto_excerpt_more( $more ) {
 	return ' &hellip;';
 }
 /**************************************************
+* Permalink filter, link post will have 1st link
+**************************************************/
+add_filter( 'the_permalink', 'hana_the_permalink' );
+function hana_the_permalink( $link_url ) {
+	if ( 'link' == get_post_format( get_the_ID() ) ) {
+		$link = array();
+		if ( preg_match('/<a (.+?)>/', get_the_content(), $match) ) {
+    		foreach ( wp_kses_hair($match[1], array('http')) as $attr) {
+        		$link[$attr['name']] = $attr['value'];
+    		}
+		}			
+    	if ( isset( $link['href'] ) )
+    		$link_url = $link['href'];
+	} 
+	return $link_url;
+}
+
+/**************************************************
 * Featured Posts
 **************************************************/
 function hana_is_featured() {

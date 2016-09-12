@@ -8,16 +8,20 @@
  * @link    http://www.rewindcreation.com/
  */
 ( function( $ ) {
-	// Site title and description.
-	wp.customize( 'blogname', function( value ) {
+	var api = wp.customize;
+
+	// Site title.
+	api( 'blogname', function( value ) {
 		value.bind( function( to ) {
 			$( '.site-title a' ).text( to );
 		} );
 	} );
-	wp.customize( 'blogdescription', function( value ) {
+
+	// Site tagline.
+	api( 'blogdescription', function( value ) {
 		value.bind( function( to ) {
 			$( '.site-description' ).text( to );
 		} );
 	} );
-	
+
 } )( jQuery );

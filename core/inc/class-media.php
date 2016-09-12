@@ -18,13 +18,16 @@ if ( ! class_exists( 'HANA_Media' ) ) {
 		}
 
         public function image() {
-            if ( ! has_post_format( array( 'image','gallery' ) ) )
-                return false;
-
+            global $more;
             $post_id = get_the_ID();
             if( isset( $this->media[ $post_id ] ) )
-                return $this->media[ $post_id ];	
+                return $this->media[ $post_id ];
+            
+            $format = get_post_format( $post_id );
+            if ( 'image' != $format && 'gallery' != $format )
+                return false;
 
+            $more = 1;
             $content = get_the_content();
             $content = apply_filters( 'the_content', $content );
             $content = str_replace( ']]>', ']]&gt;', $content );
@@ -38,12 +41,16 @@ if ( ! class_exists( 'HANA_Media' ) ) {
 		}
 
         public function video() {
-            if ( ! has_post_format( 'video') )
-                return false;
+            global $more;
             $post_id = get_the_ID();
             if( isset( $this->media[ $post_id ] ) )
                 return $this->media[ $post_id ];	
 
+            $format = get_post_format( $post_id );
+            if ( 'video' != $format )
+                return false;
+
+            $more = 1;            
             $content = get_the_content();
             $content = apply_filters( 'the_content', $content );
             $embeds = get_media_embedded_in_content( $content );
@@ -56,12 +63,17 @@ if ( ! class_exists( 'HANA_Media' ) ) {
         }
 
         public function audio() {
-            if ( ! has_post_format( 'audio') )
-                return false;
+            global $more;
+            
             $post_id = get_the_ID();
             if( isset( $this->media[ $post_id ] ) )
-                return $this->media[ $post_id ];	
+                return $this->media[ $post_id ];
+            
+            $format = get_post_format( $post_id );
+            if ( 'audio' != $format )
+                return false;
 
+            $more = 1;
             $content = get_the_content();
             $content = apply_filters( 'the_content', $content );
             $embeds = get_media_embedded_in_content( $content );
@@ -86,44 +98,43 @@ if ( ! class_exists( 'HANA_Media' ) ) {
             return false;
         }
 
-        public function the_media( $size = 'hana-thumb', $class = NULL ) {
+        public function the_media( $size = 'hana-thumb', $class = 'featured-image' ) {
             if ( has_post_thumbnail() ) {
                 $this->featured_image( $size, $class );                
             } elseif ( $this->image() ) {
                 if ( empty( $class  ) )
                     echo hana_kses()->image( $this->image() );
                 else
-                    echo '<div class="' . esc_attr( $class ) . '">' . hana_kses()->image( $this->image() ) . '</div>';              
+                    echo '<div class="' . hana_kses()->sanitize_html_classes( $class ) . '">' . hana_kses()->image( $this->image() ) . '</div>';              
             } elseif ( $this->video() ) {
                 if ( $class )
                     $class .= ' ' . $class.'-video'; 
-                echo '<div class="' . esc_attr( $class ) . '"><div class="flex-video">' . hana_kses()->embed( $this->video() ) . '</div></div>';     
+                echo '<div class="' . hana_kses()->sanitize_html_classes( $class ) . '"><div class="flex-video">' . hana_kses()->embed( $this->video() ) . '</div></div>';     
             } elseif ( $this->audio() ) {
                 if ( $class )
                     $class .= ' ' . $class.'-audio';        
-                echo '<div class="' . esc_attr( $class ) . '">'  . hana_kses()->embed( $this->audio() ). '</div>';
+                echo '<div class="' . hana_kses()->sanitize_html_classes( $class ) . '">'  . hana_kses()->embed( $this->audio() ). '</div>';
             }
         }
         
         public function featured_image( $size = 'full', $class = 'featured-image'  ) {
             global $post;
             if ( 'none' != $size && has_post_thumbnail() ) {
-                if ( ! is_single( $post ) ) {
-                    printf ('<a href="%1$s" title="%2$s"><figure class="%3$s">', 
-                        esc_url( hana_get_post_link() ),
-                        esc_attr( the_title_attribute( 'echo=0' ) ),
-                        esc_attr( $class ) );	
-                    the_post_thumbnail( $size );
-                    echo '</figure></a>';
-                }
-                else {
-                    echo '<figure>';
-                    the_post_thumbnail( $size, array( 'class' => $class, 'title' => esc_attr( get_the_title() ) ) );
-                    $caption =  get_post( get_post_thumbnail_id() )->post_excerpt;
-                    if ( !empty($caption) )
-                        echo '<figcaption>' . hana_kses()->text( $caption ) . '</figcaption>';
-                    echo '</figure>';
-                }
+                if ( ! is_single( $post ) ) { ?>
+                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                        <figure class="<?php echo sanitize_html_class( $class ); ?>">
+                            <?php the_post_thumbnail( $size ); ?>
+                        </figure>
+                    </a>
+<?php           } else { ?>
+                    <figure class="<?php echo sanitize_html_class( $class ); ?>">
+<?php                   the_post_thumbnail( $size );
+                        $caption =  get_post( get_post_thumbnail_id() )->post_excerpt;
+                        if ( !empty($caption) ) { ?>
+                            <figcaption><?php echo hana_kses()->text( $caption ); ?></figcaption>                            
+<?php                   } ?>
+                    </figure>
+<?php          }
             }
         }
 		/**

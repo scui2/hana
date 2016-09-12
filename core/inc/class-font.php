@@ -1,6 +1,6 @@
 <?php
 /**
- * Google Fonts
+ * Google Web Fonts
  * 
  * @package	hana
  * @since   1.0
@@ -12,11 +12,12 @@ if ( ! class_exists( 'Hana_Font' ) ) {
     class Hana_Font {
         public $fonts = array();
         public $choices = NULL;
-        public $host_url = '//fonts.googleapis.com/css';
+        public $host_url = '//fonts.googleapis.com/css'; //Child can overide the $host_url
         
 		private function __construct() {
+            // Use type for backup font family
             $this->fonts = array(
-            //Sans	
+            //Sans
                 'default' => array( 
                         'name' => 'Default' ),
                 '1'		=> array( 
