@@ -1,5 +1,10 @@
 ## Change Log
 
+### 1.0.9
+
+* Fixed Issues recommended by Theme Review
+* Removed Sticky Sidebar feature
+
 ### 1.0.8
 
 * Use sanitize_html_class function for all classes

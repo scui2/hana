@@ -135,17 +135,6 @@ function hana_customize_register( $wp_customize ){
 		'priority' => 40,
 	) );	
 	
-	$wp_customize->add_setting( 'sticky_sidebar', array(
-		'default'           => 0,
-		'sanitize_callback' => 'hana_sanitize_checkbox',
-	) );
-	$wp_customize->add_control( 'sticky_sidebar', array(
-		'label'    => esc_html__( 'Sticky Sidebar (Only one sidebar at each side will be sticky)', 'hana' ),
-		'section'  => 'hana_layout',
-		'type'     => 'checkbox',
-		'priority' => 50,
-	) );
-
     /*****************
 	* Typography 
     *****************/
@@ -394,7 +383,7 @@ function hana_customize_register( $wp_customize ){
 		'sanitize_callback' => 'hana_sanitize_checkbox',
 	) );
 	$wp_customize->add_control( 'hide_featured', array(
-		'label'    => esc_html__( 'Hide Featured Imagae in Single Post View', 'hana' ),
+		'label'    => esc_html__( 'Hide Featured Image in Single Post View', 'hana' ),
 		'section'  => 'hana_posts',
 		'type'     => 'checkbox',
 		'priority' => 10,

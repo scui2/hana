@@ -26,7 +26,7 @@ function hana_theme_setup() {
 	// Featured Image
 	add_theme_support( 'post-thumbnails' );
 	// Post Formats	
-	add_theme_support( 'post-formats', array( 'aside', 'link', 'quote', 'gallery', 'status', 'quote', 'image', 'video', 'audio', 'chat' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'link', 'quote', 'gallery', 'image', 'video', 'audio' ) );
 	// Editor Style
 	add_editor_style( 'css/editor.css' );
 	// Image Sizes
